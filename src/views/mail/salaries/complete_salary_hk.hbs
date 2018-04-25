@@ -1,0 +1,9 @@
+{{#extend "mail/layouts/main"}}
+  {{#content "content"}}
+    <p>尊敬的 {{ fullName }}, 你的工資單已經更新, 請檢查. 請按照下面的鏈接查看工資單的全部詳細信息.</p>
+    <p><a href="{{siteUrl}}/employees/payslip/{{payslip.id}}/detail">{{siteUrl}}/employees/payslip/{{payslip.id}}/detail</a></p>
+    <p>如果仍有問題, 請聯繫YOOV支持.</p>
+    <p>{{ siteSupportEmail }}</p>
+    <p>這是一個自動生成的電子郵件, 請不要回覆 ***</p>
+  {{/content}}
+{{/extend}}

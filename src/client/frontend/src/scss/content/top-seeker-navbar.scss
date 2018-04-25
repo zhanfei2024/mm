@@ -1,0 +1,95 @@
+.top-seeker-navbar {
+  padding: 0 40px;
+  position: relative;
+  box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.14);
+}
+.seeker-left {
+  padding-right: 280px;
+}
+.seeker-left, .seeker-center {
+  float: left;
+}
+.seeker-right {
+  float: right;
+}
+.coc-icon {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  width: auto;
+  margin-top: 15px;
+  margin-right: 40px;
+}
+.coc-icon:hover {
+  cursor: pointer;
+}
+
+.seeker-list {
+  float: left;
+  line-height: 60px;
+  height: 60px;
+  padding: 0 42px;
+  margin: 0 30px;
+  a {
+    font: 18px $font-family-regular;
+    color: $gray-text-color;
+    margin-right: 10px;
+  }
+}
+.seeker-list:first-child {
+  margin-left: 0;
+}
+.seeker-list:last-child {
+  margin-right: 0;
+}
+.seeker-list.active {
+  border-bottom: 2px solid $blue-text-color;
+  a {
+    color: $blue-text-color;
+  }
+}
+.seeker-right {
+  .currentSate {
+    padding-right: 40px;
+    a {
+      padding: 0;
+      font: 14px $font-family-regular;
+      color: $gray-text-color;
+      line-height: 60px;
+    }
+    a:hover {
+      background-color: transparent;
+    }
+  }
+}
+
+.dropdown {
+
+}
+.seeker-right {
+  .dropdown {
+    line-height: 60px;
+    height: 60px;
+   .dropdown-toggle {
+      padding: 0 10px 0 0;
+      font: 14px $font-family-regular;
+      color: $gray-text-color;
+     line-height: 60px;
+     .background-white {
+       background-color: $white-dark-bg !important;
+     }
+     .background-blue {
+       background-color: $blue-dark-bg !important;
+     }
+    }
+    a:hover {
+      background-color: transparent;
+    }
+  }
+}
+.lang-dropdown {
+  .dropdown-item {
+    padding-left: 10px;
+  }
+}
+

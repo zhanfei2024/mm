@@ -1,0 +1,193 @@
+.news-message {
+  background-color: $gray-dark-bg;
+  .news-head {
+    margin: 60px 0 40px 0;;
+    padding: 10px 20px;
+    background-color: $white-dark-bg;
+    h2, .list-inline {
+      float: left;
+    }
+    .location-wrapper, .trade-wrapper, .scale-wrapper, .founding-time-wrapper {
+      display: flex;
+      padding: 10px 0;
+      border-bottom: 1px solid $gray-line-color;
+    }
+    h2 {
+      width: 86px;
+      flex: 0 0 86px;
+      text-align: left;
+      font: 14px $font-family-regular;
+      color: $gray-text-color;
+      line-height: 40px;
+    }
+    .list-inline {
+      flex: 1;
+      li {
+        padding: 0 24px;
+        font: 14px $font-family-regular;
+        color: $black-text-color;
+        line-height: 40px;
+      }
+      li:hover {
+        background-color: $blue-dark-bg;
+        color: $white-text-color;
+        cursor: pointer;
+      }
+    }
+    .list-inline {
+      .trade-more:hover {
+        background-color: transparent;
+      }
+    }
+  }
+  @media (min-width: $screen-lg) {
+    .news-list {
+      padding-right: 40px!important;
+      padding-left: 40px!important;
+      .content-wrapper{
+        margin-left: 20px;
+      }
+    }
+  }
+
+  .news-list {
+    margin: 0 0 20px;
+    padding: 20px;
+    background-color: $white-dark-bg;
+    .news-pic, .news-content {
+      padding: 0;
+    }
+    @media (min-width: $screen-lg) {
+      .news-pic {
+        padding-right: 20px;
+      }
+    }
+    .news-pic {
+      .pic-wrapper {
+        overflow: hidden;
+        img{
+          transition: all 0.6s;
+          width: 100%;
+        }
+      }
+    }
+    .news-content {
+      .content-wrapper {
+        .title {
+          margin-bottom: 0;
+          h1 {
+            margin-bottom: 10px;
+            font: $font-size-h4 $font-family-regular;
+            color: $black-text-color;
+            overflow: hidden;
+            white-space: nowrap;
+            letter-spacing: $letter-spacing-h4;
+            text-overflow: ellipsis;
+            font-weight: bold;
+          }
+          p {
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            font: 14px $font-family-regular;
+            color: $gray-text-color;
+            border-bottom: 1px dashed #dcdcdc;
+            .time {
+              margin-left: 0;
+              padding-right: 40px;
+              color: $gray;
+            }
+          }
+        }
+        .content {
+          height: 50px;
+          overflow: hidden;
+          font: $font-size-base $font-family-regular;
+          color: $gray-h4;
+          line-height: 24px;
+          display: -webkit-box;
+          letter-spacing: $letter-spacing-base;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
+        }
+        .content:after{
+          content: '...';
+        }
+      }
+    }
+  }
+  @media (min-width: $screen-lg) {
+    .list-right {
+      border-left: 1px solid #dddddd;
+      padding-left: 20px;
+      height: 140px;
+      .title {
+        padding-left: 20px;
+        text-align: left!important;
+        h4{
+          padding-bottom: 32px!important;
+        }
+      }
+      .list-content {
+        padding-left: 15px;
+      }
+    }
+  }
+
+  @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+    .clearSmPadding{
+      padding-left: 0 !important;
+      margin-top: 20px;
+    }
+    .list-right {
+      .clearImgPadding {
+        padding-left: 0 !important;
+        img{
+          padding-right: 20px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: $screen-xs-max)  {
+    .clearSmPadding{
+      padding-left: 0 !important;
+    }
+    .list-right {
+      .title {
+        margin-top: 15px;
+        text-align: center;
+      }
+    }
+  }
+  .list-right {
+    .title h4 {
+      font: $font-size-h4 $font-family-regular;
+      color: $blue-text-color;
+      padding-bottom: 20px;
+      letter-spacing: $letter-spacing-h4;
+    }
+    .list-content {
+      letter-spacing: $letter-spacing-h4;
+      li {
+        display: inline-block;
+        padding-right: 20px;
+        .number {
+          font: $font-size-base $font-family-regular;
+          color: $gray-h4;
+        }
+        .text {
+          color: $gray;
+        }
+      }
+    }
+  }
+}
+
+.news-list:hover {
+  .news-pic {
+    .pic-wrapper img {
+      transform: scale(1.1);
+    }
+  }
+}

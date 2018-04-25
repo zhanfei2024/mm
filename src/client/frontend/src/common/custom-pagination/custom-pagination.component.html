@@ -1,0 +1,16 @@
+<div class="text-center">
+  <button type="button"  style="padding: 0 21px;margin-right: 20px" class="btn btn-link pointer" (click)="goPage(itemsPrePage)"
+          [disabled]="itemsPrePage == '1' && currentPage == '1'"
+          [style.background]="itemsPrePage == '1' && currentPage == '1' ? '#ddd' : '#0b409c'">
+    <img src="../../assets/img/fa-angle-double-left.png" height="13" width="16" style="vertical-align: middle;"/>
+    <!--<i class="fa fa-angle-double-left"></i> {{'button.prev_page' | translate}}-->
+  </button>
+
+  <button type="button" style="padding: 0 21px;margin-left: 20px" class="btn btn-link pointer" (click)="goPage(itemsNextPage)"
+          [disabled]="!itemsNextPage"
+          [style.background]="!itemsNextPage ? '#ddd' : '#0b409c'">
+    <img src="../../assets/img/fa-angle-double-right.png" height="13" width="16" style="vertical-align: middle;"/>
+    <!--{{'button.next_page' | translate}} <i class="fa fa-angle-double-right"></i>-->
+  </button>
+</div>
+

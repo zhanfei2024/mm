@@ -1,0 +1,10 @@
+{{#extend "mail/layouts/main"}}
+  {{#content "content"}}
+    <p>尊敬的 {{email}} 用户，你被邀请到 {{user.firstName}} {{user.lastName}}的Team. 点击
+     <a href="{{siteUrl}}/auth/login">{{siteUrl}}/auth/login</a>
+      登录或注册您的帐户.</p>
+    <p>如果仍有问题, 请联系YOOV支持.</p>
+    <p>{{ siteSupportEmail }}</p>
+    <p>这是一个自动生成的电子邮件, 请不要回复 ***</p>
+  {{/content}}
+{{/extend}}

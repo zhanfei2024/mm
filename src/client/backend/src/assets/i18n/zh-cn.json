@@ -1,0 +1,564 @@
+{
+  "panel": {
+    "name": "YOOVCMS",
+    "dashboard_Welcome": "欢迎来到RESTPOS CMS后台！",
+    "dashboard": "首页",
+    "users": "会员",
+    "user": "会员列表",
+    "coc-manage": "商会",
+    "enterprise": "入驻审核",
+    "member": "成员管理",
+    "coc": "商会管理",
+    "post": "文章管理",
+    "post-categories": "文章种类管理",
+    "industry": "商会分类",
+    "candidate": "申请管理",
+    "activity": "活动",
+    "activity-attachments": "活动附件管理",
+    "activity-categories": "活动种类管理",
+    "activity-candidate": "活动报名审核",
+    "setting": "设置",
+    "link": "友情链接",
+    "permissions": "权限",
+    "adminlist": "管理员列表",
+    "bank": "支付管理",
+    "rule": "入会须知",
+    "announce": "公告管理",
+    "settings": "平台设置",
+    "messages": "留言管理",
+    "slide": "轮播管理",
+    "invitations": "邀请列表",
+    "account":"账户设置",
+    "404": {
+      "not_found": "找不到",
+      "title": "哎呀！找到不页面.",
+      "title_msg": "您搜寻的页面丢失了"
+    },
+    "message": {
+      "no_edit": "如果您离开此页面，所有未保存的更改将会丢失。你确定要离开这个页面？",
+      "success": "成功",
+      "error": "失败",
+      "update_message": "修改成功",
+      "store_message": "添加成功",
+      "delete_message": "删除成功",
+      "variants_err_message": "请检查规格是否全部填写",
+      "category_err_message": "请选择菜品分类",
+      "confirm_delete": "确定删除？",
+      "binding_message": "绑定成功",
+      "unbinding_message": "解绑成功",
+      "confirm_unbinding": "确定解绑？",
+      "drop_message": "请拖动到此处进行排序",
+      "drop_update_success_msg": "图片排序成功"
+    },
+    "footer": {
+      "copyright": "版权",
+      "all_rights_reserved": "版权所有"
+    }
+  },
+  "global": {
+    "all": "全部"
+  },
+  "lang": {
+    "traditional_chinese": "繁体中文",
+    "simplified_chinese": "简体中文",
+    "english": "英文"
+  },
+  "language": {
+    "language": "语言",
+    "languages": "语言",
+    "en-us": "英文",
+    "zh-hk": "繁体中文",
+    "zh-cn": "简体中文"
+  },
+  "button": {
+    "login": "登录",
+    "logout": "退出",
+    "submit": "提交",
+    "back": "返回",
+    "close": "关闭",
+    "edit": "编辑",
+    "delete": "刪除",
+    "update": "修改",
+    "create": "创建",
+    "exprot": "导出",
+    "cancel": "取消",
+    "reset": "重置",
+    "search": "搜索",
+    "prev_page": "上一页",
+    "next_page": "下一页",
+    "save": "保存"
+  },
+  "upload": {
+    "uploading": "正在上传",
+    "supported_drop_msg": "点击这里上传文件",
+    "unsupported_drop_msg": "此浏览器不支持文件拖放。",
+    "upload": "上传",
+    "new_image": "一张新的图片"
+  },
+  "auth": {
+    "login_now": "正在登录",
+    "remember_me": "记住我",
+    "forget_password": "忘记密码?",
+    "logout": "登出",
+    "login": "登录",
+    "email": "邮箱",
+    "password": "密码",
+    "sign_up": "注册",
+    "re_password": "重置密码",
+    "f_password": "忘记密码",
+    "modify_password": "修改密码",
+    "new_password": "新密码",
+    "old_password": "旧密码",
+    "confirm_password": "确认密码",
+    "message": {
+      "login_error_msg": "用户名或密码错误",
+      "email_required": "必须输入邮件",
+      "email_incorrect": "邮件格式不正确",
+      "password_required": "必须输入密码",
+      "password_length_error": "密码长度至少为6位",
+      "signup_account": "还没有注册帐户?",
+      "email_illegal": "邮件输入不合法",
+      "has_account": "已经有账户？",
+      "old_password_required": "必须输入旧密码",
+      "new_password_required": "必须输入新密码",
+      "confirm_password_required": "必须输入确认密码",
+      "reset_password_msg": "密码重置成功",
+      "password_is_not_same": "两次密码输入不壹致",
+      "mail_sent_msg": "邮件发送成功",
+      "pay_attention_mail": "请注意查收邮箱",
+      "login_in": "马上登录",
+      "old_password_msg": "请输入旧密码",
+      "new_password_msg": "请输入新密码",
+      "confirm_password_msg": "请输入确认密码",
+      "lastName_required": "必须输入姓名",
+      "firstName_required": "必须输入姓氏"
+    }
+  },
+  "user-setting": {
+    "setting": "用户设置"
+  },
+  "dashboard": {
+    "pending_coc": "待审核商会",
+    "success_coc": "审核成功商会",
+    "member": "商会成员数",
+    "users": "平台总用户数",
+    "pending": "待处理事务",
+    "link": "常用功能入口",
+    "settled": "商会入驻审核",
+    "join": "入会申请管理",
+    "activity": "活动报名审核管理",
+    "message": "商会留言管理",
+    "coc_privew":"商会总览",
+    "members_privew":"成员总览",
+    "tacs":"今日新增",
+    "yacs":"昨日新增",
+    "macs":"本月新增",
+    "cocs":"商会总数",
+    "members":"成员总数"
+  },
+  "industry": {
+    "industry_list": "商会分类列表",
+    "industry_edit": "商会分类编辑",
+    "thead": {
+      "category": "分类名称",
+      "order": "排序ID",
+      "updateTime": "添加时间",
+      "status": "状态",
+      "option": "操作"
+    },
+    "button": {
+      "save": "保存",
+      "cancel": "取消"
+    }
+  },
+  "coc": {
+    "coc_list": "商会列表",
+    "id": "用户ID",
+    "email": "账号",
+    "user_name": "姓名",
+    "phone": "电话",
+    "coc_name": "商会名称",
+    "coc":"商会信息",
+    "industry": "行业",
+    "location": "地区",
+    "link_man": "联系人",
+    "link_man_phone": "联系人电话",
+    "link_email": "联系邮箱",
+    "address": "商会地址",
+    "purpose": "商会宗旨",
+    "option": "操作",
+    "check": "查看",
+    "status": "状态",
+    "pic": "商会图片",
+    "detal_pic": "图片详情",
+    "description": "商会简介",
+    "logo": "商会logo",
+    "qualifications": "商会资质",
+    "main": "商会主图",
+    "pedding": "待审核",
+    "search":"请输入商会名称/行业",
+    "detail": {
+      "title":"详情",
+      "id": "身份证照",
+      "email": "账号",
+      "first_name": "姓氏",
+      "last_name": "名字",
+      "phone": "电话",
+      "updatedAt": "通过时间",
+      "createdAt": "注册时间",
+      "proved": "申请通过",
+      "isProved":"审核通过",
+      "nproved": "申请不通过",
+      "found_time": "创建时间",
+      "num": "人数"
+    }
+  },
+  "member": {
+    "member_list": "成员列表",
+    "id": "用户ID",
+    "email": "账号",
+    "name": "姓名",
+    "location": "地区",
+    "phone": "电话",
+    "coc": "商会",
+    "group": "职位",
+    "start_time": "会员开始时间",
+    "end_time": "会员到期时间",
+    "option": "操作",
+    "check": "查看"
+  },
+  "post": {
+    "post_list": "新闻列表",
+    "title": "标题",
+    "coc": "发布商会",
+    "publish_time": "发布时间",
+    "recommend": "推荐",
+    "status": "状态",
+    "option": "操作",
+    "check": "查看"
+  },
+  "bank": {
+    "bank_list": "支付列表",
+    "coc": "商会名称",
+    "bank": "银行名称",
+    "card": "银行卡号",
+    "holder": "开户人",
+    "depositBank": "开户行",
+    "updatedAt": "开户时间"
+  },
+  "rule": {
+    "rule_list": "入会须知列表",
+    "coc": "发布商会",
+    "title": "文章标题",
+    "createdAt": "发布时间",
+    "option": "操作",
+    "check": "查看"
+  },
+  "announce": {
+    "announce_list": "公告列表",
+    "coc": "发布商会",
+    "title": "公告标题",
+    "publicAt": "发布时间",
+    "permission": "权限",
+    "option": "操作",
+    "check": "查看",
+    "content": "内容"
+  },
+  "messages": {
+    "messages_list": "留言列表",
+    "email": "账号",
+    "coc": "商会名称",
+    "title": "标题",
+    "leavingMessagedAt": "时间",
+    "leavingMessage": "内容",
+    "status": "状态",
+    "option": "操作",
+    "check": "查看",
+    "wait": "等待回复",
+    "check_re": "查看回复",
+    "messageReply": "管理员回复"
+  },
+  "slide": {
+    "slide_list": "轮播图列表",
+    "pic": "图片",
+    "coc": "商会名称",
+    "title": "标题",
+    "url": "链接地址",
+    "createdAt": "添加时间",
+    "order": "排序ID",
+    "add_slide": "编辑轮播",
+    "option": "操作",
+    "check": "查看",
+    "content": "内容"
+  },
+  "activity": {
+    "list": "活动列表",
+    "title": "活动名称",
+    "category": "所属分类",
+    "start_time": "开始时间",
+    "end_time": "结束时间",
+    "number": "报名人数",
+    "coc": "发布商会",
+    "publishAt": "发布时间",
+    "status": "活动状态",
+    "recommend": "推荐",
+    "option": "操作",
+    "check": "查看",
+    "wait": "等待回复",
+    "check_re": "查看回复",
+    "messageReply": "管理员回复",
+    "sign-up": "报名中",
+    "full": "满人",
+    "close": "关闭",
+    "in-process": "进行中",
+    "ended": "结束"
+  },
+  "activity_category": {
+    "list": "分类列表",
+    "category": "分类名称",
+    "order": "排序ID",
+    "createdAt": "添加时间",
+    "status": "状态",
+    "option": "操作",
+    "check": "查看"
+  },
+  "activity_candidate": {
+    "list": "活动报名列表",
+    "id": "用户ID",
+    "email": "账号",
+    "name": "姓名",
+    "phone": "手机号",
+    "activity": "活动名称",
+    "start_time": "开始时间",
+    "end_time": "结束时间",
+    "createdAt": "添加时间",
+    "status": "活动状态",
+    "candidate_status": "审核状态",
+    "option": "操作",
+    "not_pass": "拒绝",
+    "pass": "通过",
+    "pending": "待审核",
+    "sign-up": "报名中",
+    "full": "满人",
+    "close": "关闭",
+    "in-process": "进行中",
+    "ended": "结束"
+  },
+  "validation": {
+    "required": "{{ field }}不能为空",
+    "ng2select_required": "请选择{{ field }}",
+    "min": "{{field}}最小为{{value}}",
+    "max": "{{field}}最大为{{value}}",
+    "minlength": "{{field}}最小长度为{{value}}",
+    "tel": "{{ field }}格式不正确"
+  },
+  "chamber": {
+    "know": {
+      "title": "标题",
+      "author": "作者",
+      "time": "时间",
+      "image": "图片",
+      "sort": "排序 id",
+      "link_address": "链接地址",
+      "operation": "操作",
+      "content": "内容",
+      "jurisdiction": "权限",
+      "coc": "商会",
+      "search": "输入关键字检索"
+    },
+    "btn": {
+      "file_update": "上传图片"
+    },
+    "placeholder": {
+      "course": {
+        "title": "这是商会首页第一张轮播图 建议放加入商会的优势",
+        "link_address": "例如：http://www.xsgsges.com./sgsh.html",
+        "sort": "请填写数字 排序规则根据数字从大到小"
+      }
+    }
+  },
+  "link": {
+    "link_edit": "友情链接编辑",
+    "name": "网站名称",
+    "url": "网站地址",
+    "contacts": "联系人",
+    "phone": "联系方式",
+    "createdAt": "添加时间",
+    "order": "排序id",
+    "isActive": "状态",
+    "option": "操作"
+  },
+  "settings": {
+    "name": "平台名称",
+    "title": "平台标题",
+    "description": "平台描述",
+    "keywords": "关键词",
+    "footer": "网站底部",
+    "footer_placeholder": "确保网站所有页面共用一个底部",
+    "logo": "网站LOGO",
+    "statisticsCode": "统计代码",
+    "statisticsCode_placeholder": "请放入白度统计、cnzz等平台的统计代码"
+  },
+  "user": {
+    "id": "用户ID",
+    "number": "账号",
+    "name": "姓名",
+    "phone": "电话",
+    "time": "注册时间",
+    "option": "操作",
+    "position": "职务",
+    "status": "状态",
+    "inter_time": "邀请时间",
+    "coc": "商会",
+    "pending": "等待中",
+    "success": "已成功",
+    "fail": "已拒绝",
+    "search": "请输入用户ID/账号/姓名/商会名称进行搜索",
+    "baseinfo": "基本信息",
+    "experience": "工作经验",
+    "company": "我的公司",
+    "education": "交易背景",
+    "user_details": "用户详情"
+
+  },
+  "user_baseinfo": {
+    "name": "姓名",
+    "input_name": "请输入姓名",
+    "genders": "性别",
+    "select_gender": "请选择性别",
+    "M": "男",
+    "F": "女",
+    "age": "年龄",
+    "input_age": "请输入正确的年龄",
+    "location": "所在地区",
+    "select_location": "请选择地区",
+    "phone": "电话",
+    "input_phone": "请输入正确的电话号码",
+    "email": "邮箱",
+    "card_types": "证件类型",
+    "select_card_type": "选择证件类型",
+    "card_type": {
+      "id": "身份证",
+      "pass": "通行证",
+      "passport": "护照",
+      "driverLi": "驾驶证"
+    },
+    "card_number": "证件号码",
+    "input_card_number": "请输入合法的证件号码",
+    "no_user_baseinfo": "暂无基本信息，请添加基本信息"
+  },
+  "user_experience": {
+    "start": "开始时间",
+    "end": "结束时间",
+    "company": "公司",
+    "position": "职位",
+    "job_description": "工作描述",
+    "input_start": "请输入开始时间",
+    "input_end": "请输入结束时间",
+    "input_company_name": "请输入公司全称",
+    "input_position": "请输入职位",
+    "input_job_description": "请输入工作描述",
+    "no_job_description": "暂无工作经验，请添加工作经验"
+  },
+  "user_company": {
+    "company_name": "公司名称",
+    "corporate_legal_person": "公司法人",
+    "business_license": "营业执照",
+    "tel": "联系电话",
+    "address": "公司地址",
+    "scope_experience": "经营范围",
+    "input_company_name": "请输入公司名称",
+    "input_corporate_legal_person": "请输入公司法人",
+    "input_business_license": "请输入营业执照",
+    "input_tel": "请输入联系电话",
+    "input_address": "请输入公司地址",
+    "inpu_scope_experience": "请输入经营范围",
+    "no_user_company": "暂无我的公司，请添加我的公司"
+  },
+  "user_education": {
+    "start": "开始时间",
+    "end": "结束时间",
+    "school": "学校名称",
+    "major": "专业名称",
+    "education_levels": "学历等级",
+    "education_level": {
+      "high_school": "高中",
+      "college": "大学",
+      "postgraduate": "研究生",
+      "master": "硕士",
+      "baccalaureate": "学士学位"
+    },
+    "performance": "在校经历",
+    "input_start": "请输入开始时间",
+    "input_end": "请输入结束时间",
+    "input_school": "例：XX大学",
+    "input_subject": "例：XX专业",
+    "input_school_performance": "请输入在校实践或荣誉",
+    "no_user_education": "暂无教育背景，请添加教育背景"
+  },
+  "account":{
+    "list":"账户设置",
+    "name":"用户名",
+    "email": "Email",
+    "old_pass_word": "旧密码",
+    "new_pass_word": "新密码",
+    "very_pass_word":"确认密码"
+  },
+  "admin":{
+    "list":"管理员列表",
+    "name":"管理员名称",
+    "description":"管理描述",
+    "time":"添加时间",
+    "status":"状态",
+    "option": "操作",
+    "edit": "编辑",
+    "set": "设置权限",
+    "email":"账号",
+    "password":"密码",
+    "remark":"权限备注"
+  },
+  "no_content":{
+    "no_order":"暂无数据"
+  },
+  "commom":{
+    "filter_query":"筛选查询"
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

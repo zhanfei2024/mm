@@ -1,0 +1,29 @@
+{
+  "inCandidate": {
+    "statusCode": 403,
+    "message": {
+      "en": "The user is in candidate",
+      "cn": "用户处于候选状态",
+      "hk": "用戶處于候選狀態"
+    },
+    "code": 403
+  },
+  "inMember": {
+    "statusCode": 403,
+    "message": {
+      "en": "The user is exists",
+      "cn": "用户已存在",
+      "hk": "用戶已存在"
+    },
+    "code": 403
+  },
+  "memberExists":{
+    "statusCode": 403,
+    "message": {
+      "en": "The user is exists",
+      "cn": "用户已存在",
+      "hk": "用戶已存在"
+    },
+    "code": 403
+  }
+}

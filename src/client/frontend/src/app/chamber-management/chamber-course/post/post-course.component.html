@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="post-container" style="min-height: 740px">
+    <form class="container-fluid" name="mainForm" #mainForm="ngForm">
+    <div class="row clearfix" style="margin: 20px 0">
+       <div class="post-header">
+         <a class="br"  [routerLink]="['/chamber',id,'course','list']"> <img src="../../../../assets/img/back.png" class="icon"/>{{'chamber.left.course' | translate}} </a> ——
+         <span>{{title | translate}}</span>
+         <div class="pull-right" >
+           <button class="success post-border-right" role="button" (click)="onSubmit()" [disabled]="!mainForm.form.valid || submitLoading" >
+             <img src="../../../../assets/img/success.png" class="icon"/>
+             <span *ngIf="submitLoading"><i class="fa fa-spin fa-spinner"></i></span>
+             <span *ngIf="!submitLoading">{{'chamber.btn.submit' | translate}}</span>
+           </button>
+           <a class="success" [routerLink]="['/chamber',id,'course','list']">
+             <img src="../../../../assets/img/fail.png" class="icon"/>{{'chamber.btn.cancel' | translate}}
+           </a>
+         </div>
+       </div>
+    </div>
+      <div class="form-group row clearfix">
+        <label for="title" class="col-md-12 py-h px-1">{{'chamber.know.title' |
+          translate}}</label>
+        <div class="col-md-12">
+          <input type="text" class="form-control" id="title" name="title" required
+                 [(ngModel)]="know.title" #titileHanlder="ngModel" placeholder="{{'chamber.placeholder.course.title' | translate}}">
+          <form-message [control]="titileHanlder"
+                        [fieldName]="'chamber.know.title' | translate"></form-message>
+        </div>
+      </div>
+
+      <div class="form-group row clearfix">
+        <label for="url" class="col-md-6 py-h px-1">{{'chamber.know.link_address' | translate}}</label>
+        <label for="order" class="col-md-6 py-h px-1">{{'chamber.know.sort' | translate}}</label>
+        <div class="col-md-6">
+          <input type="text" class="form-control" id="url" name="url" required placeholder="{{'chamber.placeholder.course.link_address' | translate}}"
+                 [(ngModel)]="know.url" #urlHandler="ngModel">
+          <form-message [control]="urlHandler"
+                        [fieldName]="'chamber.placeholder.course.link_address' | translate"></form-message>
+        </div>
+        <div class="col-md-6">
+          <input type="number" class="form-control" id="order" name="order" required placeholder="{{'chamber.placeholder.course.sort' | translate}}"
+                 [(ngModel)]="know.order" #orderHandler="ngModel">
+          <form-message [control]="orderHandler"
+                        [fieldName]="'chamber.know.sort' | translate"></form-message>
+        </div>
+
+      </div>
+
+      <div class="form-group row clearfix">
+        <div class="col-md-12" style="padding-left: 0">
+          <label class="col-md-12 py-h px-1">{{'chamber.left.course' | translate}}</label>
+        </div>
+        <div class="col-md-5  relative" style="min-height: 180px">
+          <img class="file_img" [src]="courseUrl" height="180" width="100%"
+               *ngIf="courseUrl !== '../../../assets/img/logo/default_company_icon.png'"/>
+          <app-file-uploader type="file" [fileInput]="fileName"
+                             [croppedHeight]="440"
+                             [croppedWidth]="1200"
+                             [width]="1200"
+                             [height]="440"
+                             [id]="'course'"
+                             [isCover]="isCover"
+                             [widthCover]="'180px'"
+                             (editChange)="editCountChange($event)" #course></app-file-uploader>
+
+        </div>
+        <div class="col-md-4 relative clearfix">
+          <p class="text promptPadding">{{'chamber.prompt.title' | translate}}</p>
+          <p class="text promptPaddingText">
+            {{'chamber.prompt.update_file_size_text' | translate}}
+          </p>
+        </div>
+
+      </div>
+
+    </form>
+  </div>
+</div>

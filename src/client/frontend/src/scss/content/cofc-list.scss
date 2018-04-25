@@ -1,0 +1,310 @@
+.pagination > .active > a{
+  background: $blue-text-color;
+}
+.header {
+  font-size: $font-size-h2;
+  color: $gray-h4;
+  font-family: $font-family-regular;
+  margin-top: 60px;
+  letter-spacing: $letter-spacing-h2;
+  background: transparent;
+}
+.no_search{
+  padding: 24%;
+  .title{
+    font-size: $font-size-h2;
+    margin: 30px 0;
+    color: $gray;
+  }
+  .text{
+    color: $gray;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: $screen-xs-max) {
+  .header h4{
+    padding-left: 20px;
+  }
+}
+
+.header h4:before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 30px;
+  background: $blue-text-color;
+  position: relative;
+  top: 5px;
+  left: 0;
+  margin-right: 10px;
+}
+
+.hot-cofc-list {
+  font-family: $font-family-regular;
+  padding: 25px;
+  background: $white-text-color;
+  margin-bottom: 20px;
+  transition: all 0.6s;
+  .title {
+    padding-left: 15px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+    .name {
+      font-size: $font-size-h3;
+      color: $gray-h4;
+      margin-right: 15px;
+      overflow: hidden;
+      white-space: nowrap;
+      letter-spacing: $letter-spacing-h3;
+      text-overflow: ellipsis;
+    }
+    .cearte-time {
+      margin-left: 15px;
+      letter-spacing: $letter-spacing-base;
+      font-size: $font-size-base;
+      color: $gray;
+    }
+  }
+  .basic, .address {
+    letter-spacing: $letter-spacing-base;
+    margin-bottom: 20px;
+    .text, .phone {
+      font-size: $font-size-base;
+      color: $gray-font-color;
+      padding: 0 15px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+  @media (min-width: $screen-lg) {
+    .apply-content{
+      text-align: right;
+      line-height: 120px;
+      .apply{
+        padding: 5px 50px!important;
+      }
+    }
+  }
+  @media (max-width: $screen-xs-max) {
+    .apply-content{
+      text-align: center;
+      .apply{
+        padding: 5px 50px!important;
+      }
+    }
+  }
+  .apply {
+    font-size: $font-size-base;
+    letter-spacing: $letter-spacing-base;
+  }
+}
+
+.hot-cofc-list:hover {
+  box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.14);
+  .apply{
+    background: $blue-text-color !important;
+    color: $white-text-color;
+  }
+}
+
+.btn-primary {
+  background: transparent;
+  border: 1px solid $blue-text-color;
+  color: $blue-text-color;
+  border-radius: 0;
+  padding: 6px 20px !important;
+}
+
+.btn-primary:hover {
+  background: $blue-text-color !important;
+}
+
+.news-body {
+  background-color: $gray-dark-bg;
+}
+
+.cofc-list, .cofc-filter {
+  padding: 20px;
+  padding-top: 0;
+  background-color: $white-dark-bg;
+
+  h2, .list-inline {
+    float: left;
+  }
+  .location-wrapper, .trade-wrapper, .scale-wrapper, .founding-time-wrapper {
+    letter-spacing: $letter-spacing-base;
+    display: flex;
+    padding: 20px 0;
+    border-bottom: 1px solid $gray-line-color;
+  }
+  h2 {
+    width: 86px;
+    flex: 0 0 86px;
+    text-align: left;
+    font: 14px $font-family-regular;
+    color: $gray-text-color;
+    line-height: 40px;
+  }
+  .list-inline {
+    flex: 1;
+    li {
+      padding: 0 24px;
+      font: 14px $font-family-regular;
+      color: $black-text-color;
+      line-height: 40px;
+      margin-right: 5px;
+    }
+    li.active {
+      background-color: $blue-dark-bg;
+      color: $white-text-color;
+    }
+    li:hover {
+      background-color: $blue-dark-bg;
+      color: $white-text-color;
+      cursor: pointer;
+    }
+  }
+  .list-inline {
+    .trade-more {
+      a {
+        color: #00a0b9;
+      }
+    }
+    .trade-more:hover {
+      background-color: transparent;
+    }
+  }
+}
+
+.cofc-list {
+  margin-top: 40px;
+}
+
+.cofc-filter {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  padding: 10px 20px;
+  letter-spacing: $letter-spacing-base;
+  background-color: $white-dark-bg;
+  .list-inline {
+
+    li:hover, .scopeShow {
+      background-color: transparent;
+      color: $blue-text-color;
+    }
+  }
+  span {
+    margin-right: 10px;
+  }
+}
+
+.cofc-card-wrapper {
+  margin: 0 0 40px 0;
+  padding: 20px 0;
+  background-color: $white-dark-bg;
+  box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.14);
+  .cofc-detail, .cofc-dynamic {
+    border-right: 1px solid $gray-line-color;
+    padding: 0 20px;
+  }
+  .cofc-avatar, .cofc-info {
+    float: left;
+  }
+  .cofc-avatar {
+    margin-right: 20px;
+  }
+  .cofc-info {
+    h1 {
+      font: 22px $font-family-regular;
+      color: #232323;
+      line-height: 24px;
+      .sacle {
+        margin-left: 20px;
+        .fa {
+          color: #FFFFFF;
+        }
+        font-size: 12px;
+        color: #a0a0a0;
+        background: #f1f4f6;
+        padding: 3px 20px;
+        border-radius: 20px;
+      }
+      .sacle:before {
+        content: '';
+        width: 10px;
+        height: 10px;
+        background: #FFFFFF;
+        border-radius: 50%;
+        position: relative;
+        display: inline-block;
+        left: -15px;
+      }
+    }
+    p {
+      font: 14px $font-family-regular;
+      color: #646464;
+      line-height: 24px;
+    }
+    .icon {
+      margin-right: 40px;
+      i {
+        margin-right: 10px;
+      }
+    }
+  }
+  .cofc-dynamic {
+    padding: 0 20px 0 20px;
+    .dynamic-title {
+      font: 14px $font-family-regular;
+      color: $black-text-color;
+      line-height: 14px;
+      margin-bottom: 20px;
+      span:first-child {
+        font-weight: bold;
+      }
+      span:last-child {
+        margin-right: 12px;
+        float: right;
+        color: $gray-text-color;
+        a {
+          margin-left: 10px;
+          display: inline-block;
+          width: 9px;
+          height: 9px;
+          border-top: 2px solid $gray-text-color;
+          border-right: 2px solid $gray-text-color;
+          transform: rotate(45deg);
+        }
+      }
+    }
+    .dynamic-content {
+      display: flex;
+    }
+    .dynamic-pic {
+      margin-right: 20px;
+      width: 115px;
+      flex: 0 0 115px;
+    }
+
+    .dynamic-text {
+      flex: 0 0 1;
+      h1 {
+        font-weight: 14px $font-family-regular;
+        color: $black-text-color;
+        line-height: 14px;
+        margin-bottom: 9px;
+      }
+      p {
+        font: 14px $font-family-regular;
+        color: $gray-text-color;
+        line-height: 24px;
+      }
+
+    }
+  }
+  .cofc-dynamic {
+    border-right: none;
+  }
+}

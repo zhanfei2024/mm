@@ -1,0 +1,50 @@
+
+      <!--商会活动-->
+      <div class="coc-home">
+        <div class="enterprise-tab-wrapper clearfix custom-heigh">
+          <div class="enterprise-tab-head row">
+            <div class="big-title clearfix">
+              <h1 class="text-center">{{'cocShow.activity.coc_activity' | translate}}</h1>
+            </div>
+          </div>
+          <div *ngIf="activities?.length > 0" class="activity-card row clearfix">
+            <div *ngFor="let item of activities; let i = index" [routerLink]="['/coc-show', item?.coc?.id, 'activity', item?.id,'detail']" class="activity-card-wrapper col-xs-12 col-sm-12 col-md-6">
+              <div class="activity-pic-wrapper">
+                <img *ngIf="[item?.attachments[0]?.url]" class="activity-pic img-responsive" [src]="[item?.attachments[0]?.url]">
+                <img *ngIf="![item?.attachments[0]?.url]" class="activity-pic img-responsive" src="../../../assets/img/null_pic/400x240.png">
+              </div>
+              <h1 class="activity-title">{{item?.title}}</h1>
+              <p class="activity-info">
+                <span class="info-item"><img class="info-logo hidden-xs hidden-sm hidden-md" src="../../../assets/img/time.png"><span class="info-text">{{item?.signUpEndTimedAt | date:'yyyy-MM-dd'}}</span></span><span class="info-item">
+                <img class="info-logo  hidden-xs hidden-sm hidden-md" src="../../../assets/img/black_me.png"><span class="info-text">{{item?.applyNumberOfPeople}}{{'cocShow.activity.apply_num' | translate}}</span></span><span class="info-item">
+                <img class="info-logo  hidden-xs hidden-sm hidden-md" src="../../../assets/img/black_fly.png">
+                <span class="status info-text" > {{'cocShow.home.'+item.status | translate}}</span>
+                </span>
+              </p>
+            </div>
+          </div>
+
+          <div *ngIf="activities?.length === 0" class="row no-coc-content1">
+            <div class="news-content">
+              <img class="center-block" src="../../../assets/img/no-coc-activities.png">
+              <p class="content text-center">{{'cocShow.home.no_coc_activity' | translate}}</p>
+            </div>
+          </div>
+
+          <div class="row no-member-rules" *ngIf="activitiesLoading">
+            <div class="news-content">
+              <i class="loading-img"></i>
+            </div>
+          </div>
+
+          <!--分页-->
+          <div class="coc-pagination  col-xs-12 col-sm-12 col-md-12" *ngIf="activities?.length > 0">
+            <div class="pagination-wrapper text-center">
+              <pagination [previousText]="'navbar.previous_page' | translate" [nextText]="'navbar.next_page' | translate" [itemsPerPage]="filter.limit" [totalItems]="meta?.pagination.totalCount" [(ngModel)]="filter.page" (pageChanged)="pageChanged($event)">
+              </pagination>
+            </div>
+          </div>
+        </div>
+
+
+      </div>

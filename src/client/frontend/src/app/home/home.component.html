@@ -1,0 +1,385 @@
+<app-home-navbar></app-home-navbar>
+<!---首页导航start-->
+
+<!--首页导航end-->
+<!--热门商会start-->
+<section class="hot-cofc">
+  <div class="container">
+    <div class="row">
+      <div class="header">
+        <h4>{{'global.hot_coc' | translate}}</h4>
+      </div>
+    </div>
+    <div [hidden]="!tableLoading">
+      <div class="text-center pt-3 pb-3">
+        <div class="pt-3 pb-3">
+          <i class="loading-img"></i>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix" *ngIf="hotCocs?.length === 0 && !tableLoading">
+      <div class="col-sm-12 no_message no_coc text-center">
+        <img src="../../../../assets/img/no_coc.png" height="120" width="120"/>
+        <p> {{'message.no_message' | translate}}</p>
+      </div>
+    </div>
+    <div class="row clearfix" *ngIf="hotCocs?.length > 0 && !tableLoading">
+      <div class="activity-card bg clearfix home-cos">
+        <div class="col-sm-6 col-md-4" *ngFor="let item of hotCocs">
+          <div role="button" style="padding: 0"
+               [routerLink]="['/coc-show', item.id,'home']">
+            <div class="item" style="padding: 25px">
+              <div class="img-content">
+                <img [src]="item?.coverImageUrl" class="img-responsive">
+              </div>
+              <div class="activity-bottom">
+                <div class="title">
+                  <h4>{{item?.name}}</h4>
+                </div>
+                <div class="purpose">
+                  {{item?.purpose}}
+                </div>
+              </div>
+              <div class="list-content clearfix">
+                <ul class="list-unstyled">
+                  <li class="text-left col-xs-4 text-overflow">
+                    <p class="text">{{'cocShow.navbar.scale' | translate}}</p>
+                    <span class="number">{{item?.scale}}</span>
+                  </li>
+
+                  <li class="text-center col-xs-4 text-overflow">
+                    <p class="text">{{'cocShow.navbar.industry' | translate}}</p>
+                    <span class="number">{{item?.industry?.name}}</span>
+                  </li>
+                  <li class="text-center col-xs-4 text-overflow">
+                    <p class="text">{{'cocShow.news.views' | translate}}</p>
+                    <span class="number">{{item?.view}}</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bottom-buttons row clearfix " style="padding: 0">
+                <button class="btn btn-primary">
+                  {{'global.see_coc' | translate}}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--pc端-->
+        <!--<div class="swiper-container  hidden-xs hidden-sm" [swiper]="mdConfig">-->
+        <!--<div class="swiper-wrapper">-->
+        <!--<div class="swiper-slide" *ngFor="let item of hotCocs">-->
+        <!--<div role="button" style="padding: 0"-->
+        <!--[routerLink]="['/coc-show', item.id]">-->
+        <!--<div class="item" style="padding: 25px">-->
+        <!--<div class="img-content">-->
+        <!--<img [src]="item?.coverImageUrl" class="img-responsive">-->
+        <!--</div>-->
+        <!--<div class="activity-bottom">-->
+        <!--<div class="title">-->
+        <!--<h4>{{item?.name}}</h4>-->
+        <!--</div>-->
+        <!--<div class="purpose">-->
+        <!--{{item?.purpose}}-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="list-content clearfix">-->
+        <!--<ul class="list-unstyled">-->
+        <!--<li class="text-center col-xs-4">-->
+        <!--<span class="number">{{item?.scale}}</span>-->
+        <!--<p class="text">{{'cocShow.navbar.scale' | translate}}</p>-->
+        <!--</li>-->
+
+        <!--<li class="text-center col-xs-4">-->
+        <!--<span class="number">{{item?.industry?.name}}</span>-->
+        <!--<p class="text">{{'cocShow.navbar.industry' | translate}}</p>-->
+        <!--</li>-->
+        <!--<li class="text-center col-xs-4">-->
+        <!--<span class="number">{{item?.view}}</span>-->
+        <!--<p class="text">{{'cocShow.news.views' | translate}}</p>-->
+        <!--</li>-->
+        <!--</ul>-->
+        <!--</div>-->
+
+        <!--<div class="bottom-buttons row">-->
+        <!--<button class="btn btn-primary">-->
+        <!--{{'global.see_coc' | translate}}-->
+        <!--</button>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="swiper-button-next"></div>-->
+        <!--<div class="swiper-button-prev"></div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;平板端&ndash;&gt;-->
+        <!--<div class="swiper-container  hidden-md hidden-lg  hidden-xs" [swiper]="smConfig">-->
+        <!--<div class="swiper-wrapper">-->
+        <!--<div class="swiper-slide" *ngFor="let item of hotCocs">-->
+        <!--<div role="button" style="padding: 0"-->
+        <!--(click)="gotoDetailShow('hotCocs', item.id)">-->
+        <!--<div class="item" style="padding: 25px">-->
+        <!--<div class="img-content">-->
+        <!--<img [src]="item?.coverImageUrl" class="img-responsive">-->
+        <!--</div>-->
+        <!--<div class="activity-bottom">-->
+        <!--<div class="title">-->
+        <!--<h4>{{item?.name}}</h4>-->
+        <!--</div>-->
+        <!--<div class="purpose">-->
+        <!--{{item?.purpose}}-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="list-content clearfix">-->
+        <!--<ul class="list-unstyled">-->
+        <!--<li class="text-center col-xs-4">-->
+        <!--<span class="number">12</span>-->
+        <!--<p class="text">规模</p>-->
+        <!--</li>-->
+
+        <!--<li class="text-center col-xs-4">-->
+        <!--<span class="number">12</span>-->
+        <!--<p class="text">行业</p>-->
+        <!--</li>-->
+        <!--<li class="text-center col-xs-4">-->
+        <!--<span class="number">{{item?.view}}</span>-->
+        <!--<p class="text">预览</p>-->
+        <!--</li>-->
+        <!--</ul>-->
+        <!--</div>-->
+
+        <!--<div class="bottom-buttons row">-->
+        <!--<button class="btn btn-primary" [routerLink]="['/home', 'coc-list']" style="">-->
+        <!--{{'global.see_more' | translate}}-->
+        <!--</button>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="swiper-button-next"></div>-->
+        <!--<div class="swiper-button-prev"></div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;手机端&ndash;&gt;-->
+        <!--<div class="swiper-container  hidden-md hidden-lg  hidden-sm" [swiper]="xsConfig">-->
+        <!--<div class="swiper-wrapper">-->
+        <!--<div class="swiper-slide" *ngFor="let item of hotCocs">-->
+        <!--<div role="button" style="padding: 0"-->
+        <!--(click)="gotoDetailShow('hotCocs', item.id)">-->
+        <!--<div class="item" style="padding: 25px">-->
+        <!--<div class="img-content">-->
+        <!--<img [src]="item?.coverImageUrl" class="img-responsive">-->
+        <!--</div>-->
+        <!--<div class="activity-bottom">-->
+        <!--<div class="title">-->
+        <!--<h4>{{item?.name}}</h4>-->
+        <!--</div>-->
+        <!--<div class="purpose">-->
+        <!--{{item?.purpose}}-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="list-content clearfix">-->
+        <!--<ul class="list-unstyled">-->
+        <!--<li class="text-center col-xs-4">-->
+        <!--<span class="number">12</span>-->
+        <!--<p class="text">规模</p>-->
+        <!--</li>-->
+
+        <!--<li class="text-center col-xs-4">-->
+        <!--<span class="number">12</span>-->
+        <!--<p class="text">行业</p>-->
+        <!--</li>-->
+        <!--<li class="text-center col-xs-4">-->
+        <!--<span class="number">{{item?.view}}</span>-->
+        <!--<p class="text">预览</p>-->
+        <!--</li>-->
+        <!--</ul>-->
+        <!--</div>-->
+
+        <!--<div class="bottom-buttons row">-->
+        <!--<button class="btn btn-primary" [routerLink]="['/home', 'coc-list']" style="">-->
+        <!--{{'global.see_more' | translate}}-->
+        <!--</button>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="swiper-button-next"></div>-->
+        <!--<div class="swiper-button-prev"></div>-->
+        <!--</div>-->
+        <div class="bottom-button col-xs-12  clearfix" *ngIf="hotCocs?.length > 0">
+          <button class="more-button xs-button text-center tm-bg" [routerLink]="['/coc-list']">
+            {{'global.see_more' | translate}}
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!---------------------------热门商会end------------------------------->
+<!-------------------热门活动start---------------------->
+<section class="hot-activities" style="background: #ffffff">
+  <div class="container">
+    <div class="row clearfix">
+      <div class="header">
+        <h4>{{'global.hot_activity' | translate}}</h4>
+      </div>
+    </div>
+    <div [hidden]="!activityLoading">
+      <div class="text-center pt-3 pb-3">
+        <div class="pt-3 pb-3">
+          <i class="loading-img"></i>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix" *ngIf="hotActivities?.length === 0 && !activityLoading">
+      <div class="col-sm-12 no_message no_news text-center">
+        <img src="../../../../assets/img/no_activity.png" height="120" width="120"/>
+        <p> {{'cocShow.home.no_coc_activity' | translate}}</p>
+      </div>
+    </div>
+    <div class="row clearfix" *ngIf="hotActivities?.length > 0 && !activityLoading">
+      <div class="activity-card clearfix">
+        <div class="col-md-4 col-sm-6" *ngFor="let item of hotActivities" role="button" style="padding-left: 0"
+             [routerLink]="['/coc-show', item?.coc?.id, 'activity', item?.id,'detail']">
+          <div class="item">
+            <div class="img-content">
+              <img [src]="item?.attachments[0]?.url" class="img-responsive" style="width: 100%">
+            </div>
+            <div class="activity-bottom">
+              <div class="title">
+                <h4>{{item.title}}</h4>
+              </div>
+              <div class="basic text-overflow">
+                <span class="text" style="padding-left: 0">
+                  <span>
+                    <img src="../../../assets/img/time.png" height="20" width="20"/>
+                  </span>
+                  <span [class]="item.status" style="padding-left: 10px;"
+                        title="{{item.startTimedAt | date:'yy.MM.dd'}}">{{item.startTimedAt | date:'yy.MM.dd'}}</span>
+                </span> <span class="text clearPadding">|</span>
+                <span class="text">
+                  <img src="../../../assets/img/user.png" height="20" width="20"/>
+                  <span style="padding-left: 10px;"
+                        title="{{item?.applyNumberOfPeople}} {{'global.enroll' | translate}}">{{item?.applyNumberOfPeople}} {{'global.enroll' | translate}}</span>
+                </span> <span class="text clearPadding">|</span>
+                <span class="text clearPadding">
+                                    <img src="../../../assets/img/status.png" height="20" width="20"
+                                         style="margin-left: 10px"/>
+
+                <span class="col-sm-2 status" [class]="item.status" style="padding-left: 10px;"
+                      title="{{'cocShow.home.'+item.status | translate}}"> {{'cocShow.home.'+item.status | translate}}</span>
+              </span>
+              </div>
+              <div class="address">
+                <img src="../../../assets/img/address.png" height="20" width="20" style="margin-right: 10px"/>
+                {{item.address}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-button row clearfix" *ngIf="hotActivities?.length > 0">
+      <button class="more-button text-center tm-bg" [routerLink]="['/activity-list']">
+        {{'global.see_more' | translate}}
+      </button>
+    </div>
+  </div>
+</section>
+<!------------------热门活动end-------------------------->
+
+<!-------------------热门新闻start---------------------->
+<div class="news-message" style="padding-bottom: 60px;">
+  <div class="container">
+    <div class="row clearfix">
+      <div class="row clearfix">
+        <div class="header">
+          <h4>{{'global.hot_news' | translate}}</h4>
+        </div>
+      </div>
+      <div [hidden]="!newsLoading">
+        <div class="text-center pt-3 pb-3">
+          <div class="pt-3 pb-3">
+            <i class="loading-img"></i>
+          </div>
+        </div>
+      </div>
+      <div class="row clearfix" *ngIf="hotNews?.length === 0 && !newsLoading">
+        <div class="col-sm-12 no_message no_activity text-center">
+          <img src="../../../../assets/img/no_news.png" height="120" width="120"/>
+          <p> {{'cocShow.home.no_coc_news' | translate}}</p>
+        </div>
+      </div>
+      <div style="margin-top: 40px;" class="news-mesasge-container" [hidden]="!(hotNews?.length > 0 && !newsLoading)">
+        <div class="news-list row clearfix" role="button" *ngFor="let item of hotNews"
+             [routerLink]="['/coc-show', item?.coc?.id, 'news', item?.id,'detail']">
+          <div class="col-md-8" style="padding-left: 0">
+            <div class="clearfix">
+              <div class="news-pic col-xs-12 col-sm-4">
+                <div class="pic-wrapper">
+                  <img [src]="item?.cover?.url" class="img-responsive">
+                </div>
+              </div>
+              <div class="news-content col-xs-12 col-sm-8 col-md-8">
+                <div class="content-wrapper">
+                  <div class="title">
+                    <h1 class="new-title">{{item.title}}</h1>
+                    <p><span class="time"><img style="margin-right: 10px" height="20" src="../../../assets/img/time.png"
+                                               width="20"> {{item.createdAt | date:'yyyy-MM-dd'}}</span></p>
+                  </div>
+                  <div class="content" [innerHtml]="item.content | htmlToPlaintext :50">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-md-4 clearSmPadding">
+            <div class="list-right clearfix">
+              <div class="col-sm-12 clearPadding">
+                <div class="title text-overflow title-center">
+                  <h4>{{item?.coc?.name}}</h4>
+                </div>
+                <div class="list-content clearfix">
+                  <ul class="list-unstyled clearfix">
+                    <li class="text-left col-xs-4 text-overflow">
+                      <p class="text">{{'cocShow.navbar.scale' | translate}}</p>
+                      <span class="number">{{item?.coc?.scale}}</span>
+                    </li>
+
+                    <li class="text-center col-xs-4 text-overflow">
+                      <p class="text">{{'cocShow.navbar.industry' | translate}}</p>
+                      <span class="number">{{item?.coc?.industry?.name}}</span>
+                    </li>
+                    <li class="text-center col-xs-4 text-overflow">
+                      <p class="text">{{'cocShow.news.views' | translate}}</p>
+                      <span class="number">{{item?.view}}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--分页-->
+        </div>
+
+        <div class="bottom-button row clearfix" *ngIf="hotNews?.length > 0">
+          <button class="more-button text-center tm-bg" [routerLink]="['/news-list']">
+            {{'global.see_more' | translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <!------------------热门新闻end-------------------------->
+
+
+

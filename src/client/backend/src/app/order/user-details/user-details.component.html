@@ -1,0 +1,189 @@
+<div class="text-right card-block clearfix">
+  <h4 class="text-primary pull-left">
+    {{'user.user_details'|translate}}
+  </h4>
+  <button [routerLink]="['/users/list']" class="btn btn-primary pointer">
+    <i class="fa fa-reply font-sm"></i>
+    {{'button.back' | translate}}
+  </button>
+</div>
+<div class="card">
+  <div class="card-block td-text-left">
+    <div *ngIf="modalDetailsLoading">
+      <div class="sk-three-bounce">
+        <div class="sk-child sk-bounce1"></div>
+        <div class="sk-child sk-bounce2"></div>
+        <div class="sk-child sk-bounce3"></div>
+      </div>
+    </div>
+    <div *ngIf="!modalDetailsLoading">
+      <div class="table-responsive">
+        <table class="table table-align-middle  details-head-bg">
+          <thead>
+          <tr>
+            <td collapse="5">
+              <h5 class="text-primary">{{'user.baseinfo' | translate}}</h5>
+            </td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td rowspan="5">
+              <img [src]="details?.userProfile?.avatar" alt=""  style="display: block;margin: 0 auto; width:150px;">
+              <p class="text-center">{{details?.userProfile?.name}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>{{'user.id' | translate}}</td>
+            <td>{{details?.id}}</td>
+            <td>{{'user.number' | translate}}</td>
+            <td>{{details?.userProfile?.email}}</td>
+          </tr>
+          <tr>
+            <td>{{'user_baseinfo.genders' | translate}}</td>
+            <td>{{details?.userProfile?.gender}}</td>
+            <td>{{'user_baseinfo.age' | translate}}</td>
+            <td>{{details?.userProfile?.age}}</td>
+          </tr>
+          <tr>
+            <td>{{'user_baseinfo.location' | translate}}</td>
+            <td>{{details?.userProfile?.countryId}}</td>
+            <td>{{'user_baseinfo.phone' | translate}}</td>
+            <td>{{details?.userProfile?.phone}}</td>
+          </tr>
+          <tr>
+            <td>{{'user_baseinfo.card_types' | translate}} {{'user_baseinfo.card_number' | translate}}</td>
+            <td>{{details?.userProfile?.IDNumber}}</td>
+            <td>{{'user.time' | translate}}</td>
+            <td>{{details?.userProfile?.createdAt | date: 'yyyy-MM-dd'}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <br>
+
+      <!--// 我的商会 -->
+      <div class="table-responsive" *ngIf="details?.cocs?.length > 0">
+        <table class="table table-align-middle  details-head-bg">
+          <thead>
+          <tr>
+            <td collapse="5">
+              <h5 class="text-primary">{{'coc.coc_list' | translate}}</h5>
+            </td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>{{'coc.coc_name'  | translate}} </td>
+            <td>{{'user_experience.position'  | translate}}</td>
+            <td>{{'coc.status'  | translate}}</td>
+            <td>{{'user.time'  | translate}}</td>
+            <td></td>
+          </tr>
+          <tr *ngFor="let item of details?.cocs">
+            <td> {{item?.coc?.name }} </td>
+            <td> {{item?.group?.name}}</td>
+            <td *ngIf="item?.status == 'success'">{{'user.success' | translate}} </td>
+            <td *ngIf="item?.status == 'pending'">{{'user.pending' | translate}} </td>
+            <td *ngIf="item?.status == 'fail'">{{'user.fail' | translate}} </td>
+            <td>{{ item?.appliedAt  |date: 'yyyy-MM-dd'}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!--//工作经验-->
+      <div class="table-responsive" *ngIf="details?.userExperience?.length > 0">
+        <table class="table table-align-middle  details-head-bg">
+          <thead>
+          <tr>
+            <td collapse="5">
+              <h5 class="text-primary">{{'user.experience' | translate}}</h5>
+            </td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>{{'user_experience.start'  | translate}} - {{'user_experience.end'  | translate}}</td>
+            <td>{{'user_experience.company'  | translate}}</td>
+            <td>{{'user_experience.position'  | translate}}</td>
+            <td>{{'user_experience.job_description'  | translate}}</td>
+          </tr>
+          <tr *ngFor="let item of details?.userExperience">
+            <td> {{item?.startedDate | date: 'yyyy-MM-dd'}} - {{item?.endedDate | date: 'yyyy-MM-dd'}}</td>
+            <td> {{item?.companyName}}</td>
+            <td> {{item?.position}}</td>
+            <td><p class="col-sm-12 " [innerHtml]="item?.description"></p>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!--//我的公司-->
+      <div class="table-responsive" *ngIf="details?.userCompany?.length > 0">
+        <table class="table table-align-middle  details-head-bg">
+          <thead>
+          <tr>
+            <td collapse="5">
+              <h5 class="text-primary">{{'user.company' | translate}}</h5>
+            </td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>{{'user_company.company_name'  | translate}}</td>
+            <td>{{'user_company.corporate_legal_person'  | translate}}</td>
+            <td>{{'user_company.business_license'  | translate}}</td>
+            <td>{{'user_company.tel'  | translate}}</td>
+            <td>{{'user_company.address'  | translate}}</td>
+            <td>{{'user_company.scope_experience'  | translate}}</td>
+          </tr>
+
+          <tr *ngFor="let item of details?.userCompany">
+            <td> {{item?.companyName}}</td>
+            <td> {{item?.legalPersonName}}</td>
+            <td> {{item?.businessNo}}</td>
+            <td> {{item?.mobile}}</td>
+            <td> {{item?.address}}</td>
+            <td><p class="col-sm-12 " [innerHtml]="item?.scopeOfOperation"></p>
+            </td>
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <!--//教育背景-->
+      <div class="table-responsive" *ngIf="details?.userEducation?.length > 0">
+        <table class="table table-align-middle  details-head-bg">
+          <thead>
+          <tr>
+            <td collapse="5">
+              <h5 class="text-primary">{{'user.education' | translate}}</h5>
+            </td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>{{'user_experience.start'  | translate}} - {{'user_experience.end'  | translate}}</td>
+            <td>{{'user_education.school'  | translate}}</td>
+            <td>{{'user_education.major'  | translate}}</td>
+            <td>{{'user_education.performance'  | translate}}</td>
+          </tr>
+
+          <tr *ngFor="let item of details?.userEducation">
+            <td> {{item?.startDate | date : 'yyyy-MM-dd'}} -  {{item?.endDate | date : 'yyyy-MM-dd'}}</td>
+            <td> {{item?.schoolName}}</td>
+            <td> {{item?.subject}}</td>
+            <td><p class="col-sm-12 " [innerHtml]="item?.description"></p>
+            </td>
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,200 @@
+
+      <div class="coc-home">
+        <!--活动详情-->
+        <div class="enterprise-tab-wrapper clearfix">
+          <div class="enterprise-tab-head row">
+            <div class="big-title clearfix">
+              <h1 class="text-center">{{'cocShow.activity.activity_detail' | translate}}</h1>
+            </div>
+          </div>
+          <!--加载-->
+          <div [hidden]="!tableLoading" class="row no-member-rules">
+            <div class="news-content">
+              <i class="loading-img"></i>
+            </div>
+          </div>
+          <div [hidden]="tableLoading" class="activity-poster row clearfix">
+            <div class="activity-avatar clearfix hidden-xs hidden-sm hidden-md">
+              <img class="img-responsive" *ngIf="rows?.attachments[0]?.url" [src]="rows?.attachments[0]?.url">
+              <img class="img-responsive" *ngIf="!rows?.attachments[0]?.url" src="../../../assets/img/null_pic/400x240.png">
+            </div>
+            <div class="activity-info">
+              <div class="activity-head clearfix">
+                <span class="apply-title col-sm-12">{{rows?.title}}</span>
+              </div>
+              <p class="hold-time">
+                <img src="../../../assets/img/actice_clock.png"><span>{{'navbar.activity_time' | translate}}：{{rows?.startTimedAt | date:'yyyy-MM-dd hh:mm'}} ~ {{rows?.endTimedAt | date:'yyyy-MM-dd hh:mm'}}</span>
+              </p>
+              <p class="activity-address">
+                <img src="../../../assets/img/active_addrees.png">
+                <span>{{'chamber.activity.address' | translate}}：{{rows?.address}}</span>
+              </p>
+              <p class="activity-scale">
+                <img src="../../../assets/img/active_point.png"><span>{{'chamber.activity.scale' | translate}}：{{rows?.personnelNumber}}人</span>
+
+                  | <span class="apply-num">{{rows?.applyNumberOfPeople}}{{'cocShow.activity.apply_num' | translate}}</span>
+              </p>
+              <p class="activity-deadline">
+                <img src="../../../assets/img/actice_clock.png"><span>{{'chamber.activity.signUpEndTimedAt' | translate}}：{{rows?.signUpEndTimedAt | date:'yyyy-MM-dd hh:mm'}}</span>
+              </p>
+              <p class="activity-view">
+                <img src="../../../assets/img/active_eye.png"><span>{{rows?.view}}{{'cocShow.activity.views' | translate}}</span>
+              </p>
+            </div>
+          </div>
+          <div *ngIf="!tableLoading" class="apply-activity row text-center">
+            <button class="apply-btn" (click)="openModel()" [disabled]="title ==='user.home.pending' || title === 'cocShow.home.ended' || title === 'cocShow.home.in-process' || title === 'user.home.success'">{{title | translate}}
+            </button>
+          </div>
+        </div>
+
+        <!--主办方-->
+        <div class="enterprise-tab-wrapper activity-detail-content hostCoc clearfix">
+          <div class="enterprise-tab-head row">
+            <div class="big-title clearfix">
+              <h1 class="text-center">{{'user.home.sponsor' | translate}}</h1>
+            </div>
+          </div>
+          <div [hidden]="!tableLoading" class="row no-member-rules">
+            <div class="news-content">
+              <i class="loading-img"></i>
+            </div>
+          </div>
+          <div [hidden]="tableLoading" class="activity-poster hostCoc-poster row">
+            <div class="activity-info">
+              <p class="hold-time host-info">
+                <img src="../../../assets/img/user_home.png"><span>{{'chamber.activity.sponsor_coc' | translate}}：{{rows?.hostCoc}}</span>
+              </p>
+              <p class="activity-address host-info">
+                <img src="../../../assets/img/user_coc.png"><span>{{'chamber.activity.sponsor' | translate}}：{{rows?.hostContacts}}</span>
+              </p>
+              <p class="activity-scale host-info">
+                <img src="../../../assets/img/phone.png"><span>{{'chamber.create.phone' | translate}}：{{rows?.hostPhone}}</span>
+              </p>
+              <p class="activity-deadline host-info">
+                <img src="../../../assets/img/user_info.png"><span>{{'chamber.create.email' | translate}}：{{rows?.hostEmail}}</span>
+              </p>
+            </div>
+          </div>
+          <!--加载-->
+        </div>
+
+
+        <!--活动内容-->
+        <div class="enterprise-tab-wrapper activity-detail-content clearfix">
+          <div class="enterprise-tab-head row">
+            <div class="big-title clearfix">
+              <h1 class="text-center">{{'chamber.activity.content' | translate}}</h1>
+            </div>
+          </div>
+          <div [hidden]="tableLoading" class="activity-content row">
+            <p class="content-text" [innerHtml]="rows?.description | html">
+            </p>
+          </div>
+          <!--加载-->
+          <div [hidden]="!tableLoading" class="row no-member-rules">
+            <div class="news-content">
+              <i class="loading-img"></i>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+<!--我要报名模态框-->
+
+<div class="modal fade" bsModal #applyModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true" [config]="{backdrop: 'static',ignoreBackdropClick: true}">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header clearfix">
+        <div class="col-sm-12">
+          <div class="header">
+            <h4>
+              {{'cocShow.activity.me_apply' | translate}}
+            </h4>
+            <a type="button" class="close pull-right" aria-label="Close" (click)="applyModal.hide()">
+              <span aria-hidden="true" >
+                <img src="../../../../assets/img/delete.png" height="20" width="20"/>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-body" style="padding-top: 0">
+        <form class="container-fluid clearPadding" name="postForm" #postForm="ngForm">
+          <div class="form-group row clearfix">
+            <div class="col-md-12 clearPadding">
+              <label for="contact" class="col-md-12 py-h px-1">{{'user.user_baseinfo.name' | translate}}</label>
+              <div class="col-md-12">
+                <input type="text" class="form-control"
+                       required
+                       name="chineseName"
+                       id="contact"
+                       [(ngModel)]="post.contact"
+                       #nameModel="ngModel">
+                <form-message [control]="nameModel" [fieldName]="'user.user_baseinfo.name' | translate"></form-message>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row clearfix">
+            <div class="col-md-12 clearPadding">
+              <label for="phones" class="col-md-12 py-h px-1">{{'user.user_baseinfo.phone' | translate}}</label>
+              <div class="col-md-12">
+                <input type="text" class="form-control"
+                       pattern="(^[1-9](\d{4})|(\d{8})$)"
+                       name="phone"
+                       required
+                       id="phones"
+                       [(ngModel)]="post.phone" #phoneModel="ngModel">
+                <form-message [control]="phoneModel" [fieldName]="'user.user_baseinfo.phone' | translate"></form-message>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row clearfix">
+            <div class="col-md-12 clearPadding">
+              <label for="email" class="col-md-12 py-h px-1">{{'user.user_baseinfo.email' | translate}}</label>
+              <div class="col-md-12">
+                <input type="email" class="form-control" name="email"
+                       required
+                       pattern="[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$"
+                       id="email"
+                       [(ngModel)]="post.email"
+                       #emailModel="ngModel">
+                <form-message [control]="emailModel" [fieldName]="'user.user_baseinfo.email' | translate"></form-message>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group row clearfix">
+            <div class="col-md-12 clearPadding">
+              <label for="numberOfPeople" class="col-md-12 py-h px-1">{{'cocShow.activity.enrolment' | translate}}</label>
+              <div class="col-md-12">
+                <input type="number" class="form-control" name="numberOfPeople"
+                       required
+                       pattern="^([1-9][0-9]*)$"
+                       id="numberOfPeople"
+                       [(ngModel)]="post.numberOfPeople"
+                       #numberOfPeopleModel="ngModel">
+                <form-message [control]="numberOfPeopleModel" [fieldName]="'cocShow.activity.enrolment' | translate"></form-message>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-selected-footer text-center">
+        <div class="row clearfix">
+          <button class="btn-primary btn btn-submit-primary" style="line-height: 1.8;" [disabled]="!postForm.form.valid || submitLoading" (click)="onSubmit()">
+            <span *ngIf="submitLoading"><i class="fa fa-spin fa-spinner"></i></span>
+            <span *ngIf="!submitLoading">{{'chamber.btn.submit' | translate}}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

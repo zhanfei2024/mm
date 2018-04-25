@@ -1,0 +1,21 @@
+.team-header .dropdown-toggle::after {
+  display: none;
+}
+.team-dropdown-icon,
+.team-dropdown-icon:focus,
+.team-dropdown-icon:hover
+{
+  color: #fff;
+  display: inline-block;
+}
+.team-dropdown-user {
+  font-size: 22px;
+}
+.team-dropdown-default-text {
+  padding-left: 5px;
+  padding-right: 10px;
+}
+
+.team-dropdown-content {
+  top: 100%;
+}

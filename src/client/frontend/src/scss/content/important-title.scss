@@ -1,0 +1,59 @@
+.important-title {
+  .hot-cofc-title {
+    padding: 60px 0 40px 0;
+    .hot{
+      position: relative;
+      z-index: 1;
+      float: left;
+      padding-right: 10px;
+      font: 30px $font-family-regular;
+      line-height: 30px;
+      color: $black-text-color;
+      background-color: inherit;
+    }
+    .des {
+      position: relative;
+      z-index: 1;
+      float: left;
+      background-color: inherit;
+      padding: 0 10px 0 0;
+      p:first-child{
+        padding-bottom: 5px;
+        font: 14px $font-family-regular;
+        line-height: 14px;
+        color: $black-text-color;
+      }
+      p:last-child{
+        font: 12px $font-family-regular;
+        line-height: 12px;
+        color: $gray-text-color;
+      }
+    }
+    .des-right {
+      position: relative;
+      z-index: 1;
+      float: right;
+      padding-left: 10px;
+      background-color: inherit;
+
+      p:first-child{
+        padding-bottom: 5px;
+        font: 14px $font-family-regular;
+        line-height: 14px;
+        color: transparent;
+      }
+      p:last-child{
+        font: 12px $font-family-regular;
+        line-height: 12px;
+        color: $blue-text-color;
+      }
+    }
+
+  }
+  .bottom-line {
+    background-color: $gray-text-color;
+    height: 1px;
+    position: relative;
+    top: -42px;
+  }
+}

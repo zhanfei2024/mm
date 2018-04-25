@@ -1,0 +1,9 @@
+{{#extend "mail/layouts/main"}}
+  {{#content "content"}}
+    <p>Dear {{ fullName }}, {{ applier.firstName }} {{ applier.lastName }} has applied for Resignation. Follow the link below to view complete details of approval.</p>
+    <p><a href="{{siteUrl}}/todo-list/resignation-approval">{{siteUrl}}/todo-list/resignation-approval</a></p>
+    <p>If you continue to have difficulty, please contact YOOV Support.</p>
+    <p>{{ siteSupportEmail }}</p>
+    <p>This is an automatically generated email, please do not reply ***</p>
+  {{/content}}
+{{/extend}}

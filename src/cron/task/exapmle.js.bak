@@ -1,0 +1,34 @@
+// core
+const debug = require('debug')('APP:TASK_POSITION');
+const co = require('co');
+
+// model
+const models = require(__base + 'models');
+// library
+const positionInvitationMethod = require(__base + 'methods/positionInvitationMethod');
+
+module.exports = function (CronJob) {
+
+  const send = co.wrap(function *() {
+    try {
+      // ...
+      return Promise.resolve();
+    } catch (err) {
+      return Promise.reject(err);
+    }
+  });
+
+
+  var job = new CronJob({
+    // every hour
+    cronTime: '0 */1 * * *',
+    onTick: function () {
+      debug('running task matchUserAndSendInvitation...');
+
+      return send();
+    },
+    start: false
+  });
+  job.start();
+
+};

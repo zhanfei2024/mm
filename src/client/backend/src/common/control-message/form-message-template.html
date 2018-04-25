@@ -1,0 +1,41 @@
+<div *ngIf="control.errors">
+  <div *ngIf="control.dirty || control.touched">
+    <div class="alert alert-danger" [ngClass]="{'d-none': !control.errors.required}">
+      {{ 'validation.required' | translate: {field : fieldName} }}
+    </div>
+    <div class="alert alert-danger" [ngClass]="{'d-none': !control.errors.minlength}">
+      {{ 'validation.minlength' | translate:{field : fieldName, value: control.errors.minlength?.requiredLength } }}
+    </div>
+    <div class="alert alert-danger"  [ngClass]="{'d-none': !control.errors.maxlength}">
+      {{ 'validation.maxlength' | translate:{field : fieldName, value: control.errors.maxlength?.requiredLength } }}
+    </div>
+
+
+    <div class="alert alert-danger" [ngClass]="{'d-none': !control.errors.min}">
+      {{ 'validation.min' | translate:{field : fieldName, value: getMinOrMax(control['_rawValidators'],'min') } }}
+    </div>
+    <div class="alert alert-danger" [ngClass]="{'d-none': !control.errors.max}">
+      {{ 'validation.max' | translate:{field : fieldName, value: getMinOrMax(control['_rawValidators'],'max') } }}
+    </div>
+
+
+    <div [ngClass]="{'d-none': control.errors.required}">
+      <div class="alert alert-danger" [ngClass]="{'d-none': !control.errors.onlyNumber}">
+        {{ 'validation.onlyNumber' | translate: {field : fieldName} }}
+      </div>
+    </div>
+    <div [ngClass]="{'d-none': control.errors.required}">
+      <div class="alert alert-danger" [ngClass]="{'d-none': !control.errors.tel}">
+        {{ 'validation.tel' | translate: {field : fieldName} }}
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-danger" [ngClass]="{'d-none': !control.errors.ng2SelectRequired}">
+    {{ 'validation.ng2select_required' | translate: {field : fieldName} }}
+  </div>
+
+  <div class="alert alert-danger" [ngClass]="{'d-none': !control.errors.minDate}">
+    min date
+  </div>
+</div>

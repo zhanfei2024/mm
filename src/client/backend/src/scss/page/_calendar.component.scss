@@ -1,0 +1,223 @@
+.calendar-leave-bg {
+  background-color: #f6b841;
+}
+
+.calendar-holiday-bg {
+  background-color: #ddd;
+  color: red!important;
+}
+
+.calendar-overtime-bg {
+  background-color: #183457;
+}
+
+.calendar {
+  border-width: 0;
+  padding: 0 8px;
+}
+
+.calendar-text {
+  color: rgb(197,197,197);
+}
+
+.calendar-circle {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+.calendar-line-through {
+  text-decoration: line-through;
+}
+// base
+.fc .fc-toolbar {
+  height: 35px;
+  vertical-align: middle!important;
+}
+.fc-left .fc-today-button,
+.fc-center h2 {
+  font-weight: bold;
+  color: #28ADA7;
+  text-transform: uppercase!important;
+}
+
+.fc-left .fc-button,
+.fc-center .fc-button {
+  border: 0;
+}
+
+.fc-left .fc-button:hover,
+.fc-center .fc-button:hover {
+  background-color: transparent;
+}
+
+.fc-left .fc-button:focus,
+.fc-center .fc-button:focus {
+  box-shadow: 0 0 0 2px rgba(204, 204, 204, 0);
+}
+
+.fc-left .fc-today-button {
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.fc-left .fc-today-button:hover,
+.fc-left .fc-today-button:focus {
+  color: #28ADA7;
+}
+
+// fc-center
+.fc-center {
+  vertical-align: middle!important;
+}
+.fc-center h2 {
+  font-size: 1.15rem;
+  height: 35px;
+  vertical-align: middle!important;
+  line-height: 35px;
+}
+
+.fc-center .fc-prev-button {
+  margin-right: .75rem;
+}
+
+.fc-center .fc-prev-button,
+.fc-center .fc-next-button
+{
+  position: relative;
+  top: 10px!important;
+  cursor: pointer;
+}
+
+.fc button .fc-icon {
+  display: none!important;
+}
+
+.fc-center .fc-prev-button:before,
+.fc-center .fc-next-button:before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: -3px;
+  border-radius: 1px;
+}
+
+.fc-center .fc-prev-button:before {
+  border-left: 6px solid transparent;
+  border-right:6px solid  #28ADA7;
+}
+
+.fc-center .fc-next-button:before {
+  border-right: 6px solid transparent;
+  border-left: 6px solid  #28ADA7;
+}
+
+// fc-right
+.fc-right .fc-button-group .fc-month-button,
+.fc-right .fc-button-group .fc-basicWeek-button,
+.fc-right .fc-button-group .fc-basicDay-button,
+.fc-right .fc-button-group .fc-listWeek-button {
+  border: 1px solid #28ADA7;
+  border-radius: 50%;
+  color: #28ADA7;
+  font-weight: bold;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 0;
+  cursor: pointer;
+}
+
+.fc-right .fc-button-group button {
+  border-bottom-right-radius: 50%;
+  border-top-right-radius: 50%;
+}
+
+.fc .fc-button-group > button:first-child:not(:last-child):not(.dropdown-toggle),
+.fc .fc-button-group > button:not(:first-child):not(:last-child):not(.dropdown-toggle),
+.fc .fc-button-group > button:last-child:not(:first-child) {
+  border-radius: 50%;
+}
+
+.fc-right .fc-button-group .fc-month-button,
+.fc-right .fc-button-group .fc-basicWeek-button,
+.fc-right .fc-button-group .fc-basicDay-button {
+  margin-right: 1rem;
+}
+
+.fc-right .fc-button:hover,
+.fc-right .fc-button-group .fc-state-active {
+  background-color: #28ADA7;
+  color: #fff;
+}
+
+.fc-right .fc-button:focus {
+  box-shadow: 0 0 0 0 rgba(204, 204, 204, 0);
+}
+
+
+.fc-view {
+  border: 1px solid #eee;
+}
+
+.fc-list-heading .fc-widget-header {
+  border-top: 0;
+}
+
+.fc-list-item {
+  padding: 5px 0;
+}
+
+
+.fc .fc-list-table {
+  table-layout: auto;
+}
+.fc .fc-list-table td {
+  border: 0;
+  border-top: 1px solid #ddd;
+}
+.fc .fc-list-heading {
+  border-top: 1px solid #ddd;
+}
+.fc .fc-list-heading .fc-widget-header {
+  background-color: #eee;
+  font-weight: 700;
+  padding: 8px 14px;
+}
+.fc .fc-list-heading-alt {
+  float: right;
+}
+.fc .fc-list-item.bg-none {
+  background-color: #fff;
+}
+.fc .fc-list-item td {
+  padding: 6px 14px;
+}
+.fc .fc-list-item:hover td {
+  background-color: #f5f5f5;
+}
+.fc .fc-time-custom, .fc .fc-list-item-marker {
+  white-space: nowrap;
+  width: 1px !important;
+}
+.fc .fc-event-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+}
+
+.fc-row .fc-content-skeleton td {
+  border-color: transparent!important;
+}
+
+.fc-day-number {
+  cursor: pointer;
+}
+

@@ -1,0 +1,174 @@
+<!--有商会轮播图-->
+<div *ngIf="cocCarousel?.length >0" class="enterprise-banner">
+  <div class="container">
+    <div class="row clearfix">
+      <div class="carousel col-xs-12 col-sm-12 col-md-12">
+        <div class="swiper-container ">
+          <swiper [config]="config" [(index)]="index">
+            <div *ngFor="let item of cocCarousel">
+              <a class="slide-href" [href]="item.url" target="_blank">
+                <img [src]="item?.slideShowUrl" alt="First slide" style="width: 100%;">
+              </a>
+              <div class="carousel-caption caption-style-filter">
+                <p></p>
+              </div>
+              <div class="carousel-caption caption-style-content">
+                <p class="slide-title">{{item?.title}}</p>
+              </div>
+            </div>
+          </swiper>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--暂无商会轮播图-->
+<div class="no-cocCarousel" *ngIf="cocCarousel?.length === 0">
+  <div class="container">
+    <div class="row no-coc-content1 height-440">
+      <div class="news-content padding-140">
+        <img class="center-block no-margin-bottom" src="../../../assets/img/no-pic.png">
+        <p class="content text-center">{{'user.user_baseinfo.no-cocCarousel' | translate}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="enterprise-point">
+      <div class="coc-home">
+
+        <!--商会简介-->
+        <div class="enterprise-tab-wrapper home-coc-framework clearfix">
+          <div class="enterprise-tab-head row clearfix">
+            <div class="big-title clearfix">
+              <h1 class="text-center">{{'cocShow.framework.introduction_coc' | translate}}</h1>
+            </div>
+          </div>
+          <div *ngIf="cocSelf?.description" class="news-content col-xs-12 col-sm-12 col-md-12">
+            <p class="framework-text" [innerHTML]="cocSelf?.description | html"></p>
+          </div>
+          <!--无数据-->
+          <div *ngIf="!cocSelf?.description && !frameworkLoading" class="row no-coc-content1 height-300">
+            <div class="news-content">
+              <img class="center-block" src="../../../assets/img/no-coc-framwork.png">
+              <p class="content text-center">{{'cocShow.framework.no_introduction_coc' | translate}}</p>
+            </div>
+          </div>
+          <!--加载-->
+          <div class="row no-member-rules" *ngIf="frameworkLoading">
+            <div class="news-content">
+              <i class="loading-img"></i>
+            </div>
+          </div>
+        </div>
+        <!--商会新闻-->
+        <div class="enterprise-tab-wrapper">
+          <div class="enterprise-tab-head row clearfix">
+            <div class="big-title clearfix">
+              <h1 class="text-center">{{'cocShow.home.coc_news' | translate}}</h1>
+            </div>
+          </div>
+          <div class="home-news-card-wrapper">
+            <div class="row home-news-card clearfix" *ngFor="let item of cocPost">
+              <div class="news-avatar-wrapper hidden-xs">
+                <div class="news-avatar cursor">
+                  <img class="" *ngIf="item?.cover?.url['240']" [src]="item?.cover?.url" style="width: 100%" [routerLink]="['/coc-show', item?.coc?.id, 'news', item?.id,'detail']">
+                  <img class="" *ngIf="!item?.cover?.url['240']" src="../../../assets/img/null_pic/168x112.png" style="width: 100%" [routerLink]="['/coc-show', item?.coc?.id, 'news', item?.id,'detail']">
+                </div>
+              </div>
+              <div class="news-content-wrapper">
+                <div class="news-content">
+                  <h1 class="title cursor text-overflow" [routerLink]="['/coc-show', item.coc.id, 'news', item.id,'detail']">{{item?.title}}</h1>
+                  <p class="time">{{item?.updatedAt | date: 'yyyy-MM-dd'}}</p>
+                  <p class="content cursor" [innerHTML]="item?.content | htmlToPlaintext: 80" [routerLink]="['/coc-show', item?.coc?.id, 'news', item?.id,'detail']"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="cocPost?.length === 0" class="row no-coc-content1 height-300">
+            <div class="news-content">
+              <img class="center-block" src="../../../assets/img/no-coc-news.png">
+              <p class="content text-center">{{'cocShow.news.no_coc_news' | translate}}</p>
+            </div>
+          </div>
+
+
+          <div class="row no-member-rules" *ngIf="newsLoading">
+            <div class="news-content">
+              <i class="loading-img"></i>
+            </div>
+          </div>
+          <div *ngIf="cocPost?.length > 0" class="more-content row clearfix" style="border-bottom: 1px solid #dcdcdc">
+            <p class="more-button" [routerLink]="['/coc-show', cocId, 'news']">{{'cocShow.notice.more' | translate}}
+            </p>
+          </div>
+        </div>
+
+
+        <!--商会活动-->
+        <div class="enterprise-tab-wrapper">
+          <div class="enterprise-tab-head row clearfix">
+            <div class="big-title clearfix">
+              <h1 class="text-center">{{'cocShow.activity.coc_activity' | translate}}</h1>
+            </div>
+          </div>
+          <div class="coc-activity-margin row clearfix">
+            <div *ngFor="let item of cocActivities" class="coc-activity col-xs-6 col-sm-6 col-md-4">
+              <div class="apply-activity-wrapper">
+                <div class="coc-activity-pic" [routerLink]="['/coc-show', cocId, 'activity', item?.id,'detail']">
+                  <img *ngIf="item?.attachments[0]?.url" [src]="item?.attachments[0]?.url" style="width: 100%; height: 156px">
+                  <img *ngIf="!item?.attachments[0]?.url" src="../../../assets/img/null_pic/260x156.png">
+                  <p class="activity-head text-overflow">{{item?.title}}</p>
+                  <div class="filter-layout"></div>
+                </div>
+                <div class="apply-info">
+                  <span class="col-sm-6 no-padding text-left">
+                    <img class="hidden-xs hidden-sm hidden-md" src="../../../assets/img/black_me.png"><span
+                    class="apply-num">{{item?.applyNumberOfPeople}}人报名</span>
+                  </span>
+                  <span class="col-sm-6 no-padding text-right">
+                    <img class="hidden-xs hidden-sm hidden-md" src="../../../assets/img/time.png"><span
+                    class="activity-time">{{item?.signUpEndTimedAt | date:'yyyy-MM-dd'}}</span>
+                  </span>
+                </div>
+                <div class="activity-state">
+                  <!--<span *ngIf="item?.status === 'sign-up'" class="activity-state pull-right">{{'cocShow.home.sign-up' | translate}}</span>-->
+                  <!--<span *ngIf="item?.status === 'close'" class="activity-state pull-right">{{'cocShow.home.closed' | translate}}</span>-->
+                  <!--<span *ngIf="item?.status === 'in-process'" class="activity-state pull-right">{{'cocShow.home.in-process' | translate}}</span>-->
+                  <!--<span *ngIf="item?.status === 'ended'" class="activity-state pull-right">{{'cocShow.home.ended' | translate}}</span>-->
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div *ngIf="cocActivities?.length > 0" class="more-content row clearfix">
+            <p class="more-button" [routerLink]="['/coc-show', cocId, 'activity']">{{'cocShow.notice.more' | translate}}
+            </p>
+          </div>
+
+
+          <div *ngIf="cocActivities?.length === 0" class="row no-coc-content1 height-300">
+            <div class="news-content">
+              <img class="center-block" src="../../../assets/img/no-coc-activities.png">
+              <p class="content text-center">{{'cocShow.home.no_coc_activity' | translate}}</p>
+            </div>
+          </div>
+
+          <div class="row no-member-rules" *ngIf="activitiesLoading">
+            <div class="news-content">
+              <i class="loading-img"></i>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+  <div class="app-notice-announcement-wrapper">
+    <app-notice-announcement></app-notice-announcement>
+  </div>
+</div>
+

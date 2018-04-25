@@ -1,0 +1,12 @@
+<div class="text-center">
+  <button type="button" class="btn btn-link pointer" (click)="goPage(itemsPrePage)"
+          [disabled]="itemsPrePage == '1' && currentPage == '1'">
+    <i class="fa fa-angle-double-left"></i> {{'button.prev_page' | translate}}
+  </button>
+
+  <button type="button" class="btn btn-link pointer" (click)="goPage(itemsNextPage)"
+          [disabled]="!itemsNextPage">
+    {{'button.next_page' | translate}} <i class="fa fa-angle-double-right"></i>
+  </button>
+</div>
+

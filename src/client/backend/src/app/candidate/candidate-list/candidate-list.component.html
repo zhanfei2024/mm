@@ -1,0 +1,113 @@
+
+
+<div class="content-heading">
+  {{'order.order_list'|translate}}
+</div>
+
+<div class="">
+  <!--<h6 class="card-header text-primary">-->
+  <!--{{'order.order_list'|translate}}-->
+  <!--</h6>-->
+  <div class="card-block">
+    <div class="row align-items-center">
+      <div class="col-sm-3 form-group">
+        <ng-select
+          #orderTypeSelector
+          [items]="orderTypeItems"
+          (data)="selectOrderType($event)"
+          placeholder="{{'order.placeholder.order_type' | translate}}">
+        </ng-select>
+      </div>
+      <div class="col-sm-3 form-group">
+        <ng-select
+          #payTypeSelector
+          [items]="payTypeItems"
+          (data)="selectPayType($event)"
+          placeholder="{{'order.placeholder.pay_type' | translate}}">
+        </ng-select>
+      </div>
+      <div class="col-sm-3 form-group">
+        <ng-select
+          #orderStatusSelector
+          [items]="orderStatusItems"
+          (data)="selectOrderStatus($event)"
+          placeholder="{{'order.placeholder.order_status' | translate}}">
+        </ng-select>
+      </div>
+      <div class="col-sm-3 form-group">
+        <button (click)="reset()" [disabled]="isResetBtnDisabled" type="button"
+                class="btn btn-outline-primary">{{ 'button.reset' |
+          translate }}
+        </button>
+      </div>
+    </div>
+    <!-- /.row -->
+    <div *ngIf="tableLoading" class="card-block">
+      <div class="sk-three-bounce">
+        <div class="sk-child sk-bounce1"></div>
+        <div class="sk-child sk-bounce2"></div>
+        <div class="sk-child sk-bounce3"></div>
+      </div>
+    </div>
+    <div *ngIf="!tableLoading">
+      <div *ngIf="rows.length===0">
+        <div class="text-muted pt-3 pb-3 text-center">
+          <div hidden>
+            <img src="../../../assets/img/content/no-role.png" alt="" class="img-fluid mx-auto d-block">
+          </div>
+          <div class="pt-3 pb-3 font-xl">
+            <img src="../../../assets/img/content/no-role.png" alt="" class="img-fluid mx-auto d-block">
+            <p>{{'no_content.no_order' | translate}}</p>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="rows.length!==0" class="table-responsive table-panel">
+        <table class="table  table-striped table-align-middle table-outline text-center">
+          <thead>
+          <tr>
+            <th>{{'order.thead.orderNo'|translate }}</th>
+            <th>{{'order.thead.type'|translate }}</th>
+            <th>{{'order.thead.pay_type'|translate }}</th>
+            <th>{{'order.thead.tableNo'|translate }}</th>
+            <th>{{'order.thead.order_time'|translate }}</th>
+            <th>{{'order.thead.total_price'|translate }}</th>
+            <th>{{'order.thead.status'|translate }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let row of rows">
+            <td>
+              <button [routerLink]="['/orders',row.id,'details']" class="btn btn-outline-primary pointer">
+                {{row.id}}
+              </button>
+            </td>
+            <td>{{row.isTakeOut?('order.types.take_out'|translate):('order.types.eat_in'|translate)}}</td>
+            <td>
+              {{row.orderTransaction?.payType?.name?(('order.pay_types.'+row.orderTransaction?.payType?.name) |
+              translate):''}}
+            </td>
+            <td>{{row.table?.name}}</td>
+            <td>{{row.createdAt | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+            <td>{{row.totalPrice}}</td>
+            <td>
+              {{('order.status.' + row.financialStatus) |translate }}
+              <i (click)="deleteCandidate(row)" class="fa fa-trash text-primary cursor color-active" aria-hidden="true"></i>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <!-- /.table-->
+      </div>
+      <div class="text-center" [hidden]="tableLoading || rows.length === 0">
+        <custom-pagination [itemsPrePage]="meta.pagination.prevPage"
+                           [itemsNextPage]="meta.pagination.nextPage"
+                           [currentPage]="meta.pagination.currentPage"
+                           (pageChanged)="changePage($event)">
+        </custom-pagination>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.card-block -->
+</div>
+

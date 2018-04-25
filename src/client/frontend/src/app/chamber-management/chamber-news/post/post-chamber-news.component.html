@@ -1,0 +1,105 @@
+<div class="container">
+  <div class="post-container">
+    <form class="container-fluid"  name="mainForm" #mainForm="ngForm">
+      <div class="row clearfix" style="margin: 20px 0">
+        <div class="post-header">
+          <a class="br" [routerLink]="['/chamber',id , routerUrl,'list']"><img src="../../../../assets/img/back.png"
+                                                                        class="icon"/>{{title |
+            translate}} </a> ——
+          <span>{{addTitle | translate}}</span>
+          <div class="pull-right">
+            <button class="success post-border-right" (click)="onSubmit()" [disabled]="!mainForm.form.valid || submitLoading">
+              <img src="../../../../assets/img/success.png" class="icon"/>
+              <span *ngIf="submitLoading"><i class="fa fa-spin fa-spinner"></i></span><span *ngIf="!submitLoading">{{'chamber.btn.submit' | translate}}</span>
+            </button>
+            <a class="success" [routerLink]="['/chamber',id,routerUrl,'list']">
+              <img src="../../../../assets/img/fail.png" class="icon"/>{{'chamber.btn.cancel' | translate}}
+            </a>
+            <!--预览-->
+            <a class="success" (click)="submitShow = !submitShow">
+              <img *ngIf="submitShow == true" src="../../../../assets/img/active_eye.png" class="icon"/>
+              <img *ngIf="submitShow == false" src="../../../../assets/img/black_eye.png" class="icon"/>
+              <span *ngIf="submitShow == false">{{'global.preview' | translate}}</span>
+              <span *ngIf="submitShow == true">{{'global.cancel_preview' | translate}}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div [hidden]="submitShow">
+        <div class="form-group row clearfix">
+          <div class="col-md-9">
+            <label for="title" class="col-md-12 py-h px-1" style="padding-left: 0">{{'chamber.know.title' | translate}}</label>
+            <div class="col-md-12" style="padding: 0">
+              <input type="text" class="form-control" id="title" name="title" required
+                     [(ngModel)]="post.title" #titleHanlder="ngModel">
+              <form-message [control]="titleHanlder"
+                            [fieldName]="'chamber.know.title' | translate"></form-message>
+            </div>
+          </div>
+          <!--<div class="col-md-3 clearPadding" *ngIf="routerUrl === 'notice'">-->
+            <!--<label for="isPublic" class="col-md-12 py-h px-1">{{'chamber.know.jurisdiction'-->
+              <!--| translate}}-->
+            <!--</label>-->
+            <!--<div class="col-md-12">-->
+              <!--<ng-select-->
+                <!--id="isPublic"-->
+                <!--[items]="public"-->
+                <!--[active]="activeatePublic"-->
+                <!--name="isPublic"-->
+                <!--(data)="selected($event)">-->
+              <!--</ng-select>-->
+            <!--</div>-->
+          <!--</div>-->
+        </div>
+
+        <div class="form-group row clearfix" *ngIf="routerUrl === 'news'">
+          <div class="col-md-12" style="padding-left: 0">
+            <label class="col-md-12 py-h px-1">{{'chamber.create.news_cover'
+              | translate}}</label>
+          </div>
+
+          <div class="col-md-3  relative" style="min-height: 166px">
+            <img class="file_img" [src]="coverUrl" height="166" width="100%"
+                 *ngIf="coverUrl !== '../../../assets/img/logo/default_company_icon.png'"/>
+            <app-file-uploader type="file" [fileInput]="fileName"
+                               [croppedHeight]="166"
+                               [croppedWidth]="300"
+                               [width]="300"
+                               [height]="166"
+                               [id]="'cover'"
+                               [isCover]="isCover"
+                               [widthCover]="'166px'"
+                               (editChange)="editCountChange($event)" #cover></app-file-uploader>
+
+          </div>
+          <div class="col-md-4 relative clearfix">
+            <p class="text promptPadding">{{'chamber.prompt.title' | translate}}</p>
+            <p class="text promptPaddingText">
+              {{'chamber.prompt.update_news_cover' | translate}}
+            </p>
+          </div>
+
+        </div>
+        <div class="form-group row clearfix">
+          <label for="content" class="col-md-12 py-h px-1">{{'chamber.know.content'
+            | translate}}
+          </label>
+          <div class="col-md-12">
+            <quill-editor [(ngModel)]="post.content" name="content" id="content" required
+                          #contentHanlder="ngModel"></quill-editor>
+            <form-message [control]="contentHanlder"
+                          [fieldName]="'chamber.know.content' | translate"></form-message>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!--新闻预览-->
+  <div *ngIf="submitShow" class="news-detail enterprise-tab col-xs-12 col-sm-12 col-md-12">
+    <h1 class="news-title text-center">{{post.title}}</h1>
+    <p *ngIf="post?.content" class="preview" [innerHTML]="post.content">
+    </p>
+  </div>
+
+</div>

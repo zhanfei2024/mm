@@ -1,0 +1,22 @@
+.carousel {
+  a {
+    display: none;
+  }
+  .carousel-indicators {
+    right: 14px;
+    bottom: 20px;
+    li {
+      margin: 0 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 5px;
+      background-color: $carousel-point-bg;
+    }
+    li.active {
+      width: 20px;
+      height: 10px;
+      border-radius: 5px;
+      background-color: $carousel-point-bg;
+    }
+  }
+}

@@ -1,0 +1,58 @@
+<label [for]="id" role="button" class="file_cut relative" [style.line-height]="widthCover" [style.height]="widthCover"
+       [style.width]="widthCover === '100px' ? '100px' : '100%'" [ngClass]="{'isFile': data.image || isCover}" style="padding: 35px">
+   <span *ngIf="!data.image" style="color: #4a5065">{{name}}</span>
+</label>
+<!--<button type="button"  class="btn btn-primary cursor" *ngIf="data.image" [disabled]="true" [style.width]="widthCover ? '100%' : 'auto'">-->
+<!--<i class="fa fa-cloud-upload" aria-hidden="true"></i>-->
+<!--{{name}}-->
+<!--</button>-->
+
+<input type="file"
+       [id]="id"
+       multiple="multiple"
+       (change)="fileChangeEvent($event)"
+       placeholder="Upload file"
+       name="files" [accept]="acceptType" hidden/>
+<!--<button type="button" (click)="upload()">Upload</button>-->
+
+<div class="modal fade" bsModal #coverModals="bs-modal" [config]="{backdrop: 'static',ignoreBackdropClick: true}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header" style="padding: 15px 15px 30px 20px;">
+        <div class="header" style="border: none; width: 100%">
+          <h4>
+            {{'chamber.btn.file_update' | translate}}
+            <a type="button" class="close pull-right" aria-label="Close" (click)="coverModals.hide()">
+              <span aria-hidden="true" >
+                <img style="width: 20px;height: 20px" src="../../assets/img/delete.png"/>
+              </span>
+            </a>
+          </h4>
+
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="row clearfix" style="padding-bottom: 40px">
+          <div class="col-sm-8">
+            <img-cropper #croppers [image]="data" [settings]="cropperSettings"></img-cropper>
+          </div>
+          <div class="col-sm-4">
+             <span class="result rounded" *ngIf="data.image">
+              <img class="img-responsive" [src]="data.image" style="width: 100%;">
+             </span>
+             <div class="text-center" style="width: 100%;margin-top: 30px;">
+               <button type="button" class="btn btn-primary btn-submit-primary" data-dismiss="modal" (click)="cropCover(data.image,id)"
+                       [disabled]="loding">
+                 <i class="fa fa-check"></i>
+                 <span *ngIf="loding"><i class="fa fa-spin fa-spinner"></i></span>
+                 <span *ngIf="!loding">{{'button.save' | translate}}</span>
+               </button>
+             </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

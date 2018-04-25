@@ -1,0 +1,249 @@
+<header class="app-header navbar">
+  <button class="navbar-toggler mobile-sidebar-toggler hidden-lg-up" type="button">&#9776;</button>
+  <a class=" text-center navbar-brand" style="border-bottom: none;padding-top: 18px;font-size:24px;text-align: left !important;">
+    Connected
+  </a>
+
+  <ul class="nav navbar-nav hidden-md-down">
+    <li class="nav-item">
+      <a class="nav-link navbar-toggler sidebar-toggler"  href="javascript:;">
+        <i class="fa fa-bars"></i>
+      </a>
+    </li>
+  </ul>
+  <ul class="nav navbar-nav ml-auto">
+    <li class="nav-item">
+      <a href="javascript:" class="nav-link" (click)="logout()" title="{{ 'button.logout' | translate }}" >
+        <i class="fa fa-sign-out"></i>
+      </a>
+    </li>
+    <li class="nav-item dropdown" dropdown>
+      <a class="nav-link" data-toggle="dropdown" href="javascript:" role="button" dropdownToggle>
+        <i class="fa fa-lg fa-globe"></i>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" *dropdownMenu
+           aria-labelledby="simple-dropdown">
+        <a class="dropdown-item" href="javascript:" (click)="setLanguage('2')"
+           *ngIf="language !== 'zh-hk'">
+          {{'language.zh-hk' | translate}}
+        </a>
+        <a class="dropdown-item" href="javascript:" (click)="setLanguage('3')"
+           *ngIf="language !== 'zh-cn'">
+          {{'language.zh-cn' | translate}}
+        </a>
+      </div>
+    </li>
+    <!--<li class="nav-item">
+      <a class="nav-link" href="https://support.yoov.com" target="_blank"><i
+        class="fa fa-lg fa-question-circle"></i></a>
+    </li>-->
+  </ul>
+</header>
+
+<div class="app-body">
+  <div class="sidebar">
+
+    <nav class="sidebar-nav">
+      <ul #nav class="nav cursor" >
+        <!--     首页    -->
+        <li (click)="toggleNav(1)" [class.open]="navIndex===1" class="nav-item nav-dropdown ">
+          <a class="nav-link nav-dropdown-toggle" >
+            <i class="fa fa-home"></i>
+            {{ 'panel.dashboard' | translate }}
+          </a>
+          <ul class='nav-dropdown-items'>
+            <li class='nav-item'>
+              <a class='nav-link' [routerLink]="['/dashboard']" routerLinkActive="active">
+                <i class="fa fa-square"></i>
+                {{ 'panel.dashboard' | translate }}
+              </a>
+            </li>
+            <li class='nav-item'>
+              <a class='nav-link' [routerLink]="['/account']" routerLinkActive="active">
+                <i class="fa fa-square"></i>
+                {{ 'panel.account' | translate }}
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!--     商会    -->
+        <li (click)="toggleNav(2)" [class.open]="navIndex===2" class="nav-item nav-dropdown">
+          <a class="nav-link nav-dropdown-toggle">
+            <i class="fa fa-book"></i>
+            {{ 'panel.coc-manage' | translate }}
+          </a>
+          <ul class='nav-dropdown-items'>
+            <li class='nav-item'>
+              <a class='nav-link' [routerLink]="['/industry']" routerLinkActive="active">
+                <i class="fa fa-square"></i>
+                {{ 'panel.industry' | translate }}
+              </a>
+            </li>
+            <li class='nav-item'>
+              <a class='nav-link' [routerLink]="['/coc']" routerLinkActive="active">
+                <i class="fa fa-square"></i>
+                {{ 'panel.coc' | translate }}
+              </a>
+            </li>
+            <li class='nav-item'>
+              <a class='nav-link' [routerLink]="['/enterprise']" routerLinkActive="active">
+                <i class="fa fa-square"></i>
+                {{ 'panel.enterprise' | translate }}
+              </a>
+            </li>
+            <li class='nav-item'>
+              <a class='nav-link' [routerLink]="['/post']" routerLinkActive="active">
+                <i class="fa fa-square"></i>
+                {{ 'panel.post' | translate }}
+              </a>
+            </li>
+            <li class='nav-item'>
+              <a class='nav-link' [routerLink]="['/bank']" routerLinkActive="active">
+                <i class="fa fa-square"></i>
+                {{ 'panel.bank' | translate }}
+              </a>
+            </li>
+            <li class='nav-item'>
+              <a class='nav-link' [routerLink]="['/announce']" routerLinkActive="active">
+                <i class="fa fa-square"></i>
+                {{ 'panel.announce' | translate }}
+              </a>
+            </li>
+            <li class='nav-item'>
+              <a class='nav-link' [routerLink]="['/rule']" routerLinkActive="active">
+                <i class="fa fa-square"></i>
+                {{ 'panel.rule' | translate }}
+              </a>
+            </li>
+            <li class='nav-item'>
+              <a class='nav-link' [routerLink]="['/message']" routerLinkActive="active">
+                <i class="fa fa-square"></i>
+                {{ 'panel.messages' | translate }}
+              </a>
+            </li>
+            <li class='nav-item'>
+              <a class='nav-link' [routerLink]="['/slide']" routerLinkActive="active">
+                <i class="fa fa-square"></i>
+                {{ 'panel.slide' | translate }}
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!--     活动    -->
+        <li (click)="toggleNav(3)" [class.open]="navIndex===3" class="nav-item nav-dropdown">
+          <a class="nav-link nav-dropdown-toggle">
+            <i class="fa fa-futbol-o"></i>
+            {{ 'panel.activity' | translate }}
+          </a>
+          <ul class='nav-dropdown-items'>
+            <li class='nav-item'>
+              <a class='nav-link' [routerLink]="['/activity']" routerLinkActive="active">
+                <i class="fa fa-square"></i>
+                {{ 'panel.activity' | translate }}
+              </a>
+            </li>
+            <li class='nav-item'>
+              <a class='nav-link' [routerLink]="['/activity-candidate']" routerLinkActive="active">
+                <i class="fa fa-square"></i>
+                {{ 'panel.activity-candidate' | translate }}
+              </a>
+            </li>
+            <li class='nav-item'>
+              <a class='nav-link' [routerLink]="['/activity-category']" routerLinkActive="active">
+                <i class="fa fa-square"></i>
+                {{ 'panel.activity-categories' | translate }}
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!--     会员    -->
+        <li (click)="toggleNav(4)" [class.open]="navIndex===4" class="nav-item nav-dropdown">
+          <a class="nav-link nav-dropdown-toggle">
+            <i class="fa fa-address-book-o"></i>
+            {{ 'panel.users' | translate }}
+          </a>
+          <ul class='nav-dropdown-items'>
+            <li class='nav-item'>
+              <a class='nav-link' [routerLink]="['/users', 'list']" routerLinkActive="active">
+                <i class="fa fa-square"></i>
+                {{ 'panel.user' | translate }}
+              </a>
+            </li>
+            <li class='nav-item'>
+              <a class='nav-link' [routerLink]="['/users', 'invitation']" routerLinkActive="active">
+                <i class="fa fa-square"></i>
+                {{ 'panel.invitations' | translate }}
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!--     设置    -->
+        <li (click)="toggleNav(5)" [class.open]="navIndex===5" class="nav-item nav-dropdown">
+          <a class="nav-link nav-dropdown-toggle">
+            <i class="fa fa-cog"></i>
+            {{ 'panel.setting' | translate }}
+          </a>
+          <ul class='nav-dropdown-items'>
+            <li class='nav-item'>
+              <a class='nav-link' [routerLink]="['/setting']" routerLinkActive="active">
+                <i class="fa fa-square"></i>
+                {{ 'panel.settings' | translate }}
+              </a>
+            </li>
+            <li class='nav-item'>
+              <a class='nav-link' [routerLink]="['/link']" routerLinkActive="active">
+                <i class="fa fa-square"></i>
+                {{ 'panel.link' | translate }}
+              </a>
+            </li>
+            <li class='nav-item'>
+              <a class='nav-link' [routerLink]="['/carousel']" routerLinkActive="active">
+                <i class="fa fa-square"></i>
+                {{ 'panel.slide' | translate }}
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!--     权限    -->
+        <li (click)="toggleNav(6)" [class.open]="navIndex===6" class="nav-item nav-dropdown">
+          <a class="nav-link nav-dropdown-toggle">
+            <i class="fa fa-lock"></i>
+            {{ 'panel.permissions' | translate }}
+          </a>
+          <ul class='nav-dropdown-items'>
+            <li class='nav-item'>
+              <a class='nav-link' [routerLink]="['/admin']" routerLinkActive="active">
+                <i class="fa fa-square"></i>
+                {{ 'panel.adminlist' | translate }}
+              </a>
+            </li>
+          </ul>
+        </li>
+
+
+
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Main content -->
+  <main class="main">
+    <div class="">
+      <router-outlet></router-outlet>
+    </div>
+    <!-- /.conainer-fluid -->
+  </main>
+</div>
+
+<footer class="app-footer"
+        style="-webkit-box-sizing: content-box;-moz-box-sizing: content-box;box-sizing: content-box;">
+  Copyright &copy; 2017 YOOV. All Rights Reserved.
+  <span class="float-right">
+    Powered by YOOVTEAM
+  </span>
+</footer>

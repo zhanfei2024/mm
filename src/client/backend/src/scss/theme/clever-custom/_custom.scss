@@ -1,0 +1,145 @@
+// Here you can add other styles
+.navbar {
+  .form-inline {
+    i {
+      color: $navbar-color;
+    }
+    .form-control {
+      margin-top: -3px;
+      color: $navbar-color;
+      border: 0;
+
+      &::placeholder {
+        color: $navbar-color;
+      }
+    }
+    .form-control::-webkit-input-placeholder {
+      color: $navbar-color;
+    }
+    .form-control:-moz-placeholder {
+      color: $navbar-color;
+    }
+    .form-control::-moz-placeholder {
+      color: $navbar-color;
+    }
+    .form-control:-ms-input-placeholder {
+      color: $navbar-color;
+    }
+  }
+  .nav-item {
+
+    .nav-link.nav-pill {
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      line-height: 32px;
+      border: 1px solid $navbar-color;
+      border-radius: 50em;
+
+      &:hover {
+        border-color: $navbar-hover-color;
+      }
+
+      .badge-pill {
+        margin-top: -18px;
+        margin-left: -5px;
+        border: 2px solid #fff !important;
+        line-height: 14px;
+      }
+
+      &.avatar {
+        width: 38px;
+        height: 38px;
+
+        img {
+          width: 36px;
+          height: 36px;
+          margin: 0;
+          border: 0;
+        }
+
+        .badge {
+          margin-top: -22px;
+          margin-left: 5px;
+        }
+
+        &.dropdown-toggle:after {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.sidebar {
+  width: $sidebar-width;
+  padding: 0;
+  overflow: hidden;
+  .sidebar-nav .nav {
+    background: $sidebar-bg;
+    color:$sidebar-color;
+    .nav-title {
+      span {
+        position: relative;
+        display: inline-block;
+
+        &:before, &:after {
+          position: absolute;
+          top: 50%;
+          width: 25px;
+          height: 1px;
+          margin-top: -1px;
+          content: '';
+          border-bottom: 1px solid $sidebar-nav-title-color;
+        }
+
+        &:before {
+          left: -30px;
+        }
+
+        &:after {
+          right: -30px;
+        }
+      }
+    }
+  }
+}
+
+$sidebar-header-height: 180px;
+body:not(.top-nav) {
+  .sidebar {
+    .sidebar-header {
+      height: $sidebar-header-height;
+      padding-bottom: 10px;
+      text-align: center;
+      background: $sidebar-bg;
+
+      .img-avatar {
+        width: 80px;
+        margin: 20px auto 10px;
+        border-radius: 50em;
+      }
+
+      .text-muted {
+        margin-top: -5px;
+      }
+
+      > .btn-group {
+        margin-top: 10px;
+      }
+
+      .btn-link {
+        color: $text-muted;
+
+        &:hover {
+          color: $sidebar-color;
+          text-decoration: none;
+        }
+      }
+    }
+    .sidebar-header + .sidebar-nav {
+      height: calc(100vh - #{$navbar-height} - #{$sidebar-header-height}) !important;
+    }
+  }
+}
+

@@ -1,0 +1,236 @@
+<div class="member-login-body">
+  <div class="container">
+    <div class="login-body row clearfix">
+      <!--轮播图-->
+      <app-auth-carousel></app-auth-carousel>
+      <!--用户注册-->
+      <div class="login-from pull-left"  *ngIf="sigupRole === 'user'">
+        <form (submit)="userSignup('user')" #memberSigup="ngForm" (keyup.enter)="userSignup('user')" >
+          <div class="form-group-1">
+            <label  class="form-title pull-left" (click)="setState('user');" [ngClass]="{'active': sigupRole === 'user'}">{{'auth.user_signup' | translate}}</label>
+            <label  class="form-title pull-right text-right" (click)="setState('coc');"  [ngClass]="{'active': sigupRole === 'coc'}">{{'auth.coc_signup' | translate}}</label>
+            <div class="line"></div>
+            <input type="email" class="form-control"
+                   placeholder="{{'auth.input_email' | translate}}"
+                   pattern="^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"
+                   [ngClass]="{'email-error': !emailModel.valid && !emailModel.pristine}"
+                   required
+                   [(ngModel)]="email" name="email"
+                   #emailModel="ngModel">
+            <div [hidden]="emailModel.valid || emailModel.pristine" style="display: block"
+                 class="alert alert-danger">
+              Email is required
+            </div>
+          </div>
+          <!--输入密码-->
+          <div class="form-group-2">
+            <form class="form-inline">
+              <div class="form-group">
+                <div class="input-group">
+                  <input *ngIf="passwordShow" type="text" class="form-control"
+                         placeholder="{{'auth.input_password' | translate}}"
+                         [ngClass]="{'password-error': password}"
+                          required
+                         [(ngModel)]="password" name="password"
+                         #passwordModel="ngModel">
+                  <input *ngIf="!passwordShow" type="password" class="form-control"
+                         placeholder="{{'auth.input_password' | translate}}"
+                         [ngClass]="{'password-error': password}"
+                         required
+                         [(ngModel)]="password" name="password"
+                         #cocPasswordModel="ngModel">
+                  <div class="operation-btn" *ngIf="password">
+                    <img (click)="password = ''" src="../../../assets/img/clear_btn.png">
+                    <img *ngIf="passwordShow" (click)="passwordState()" src="../../../assets/img/active_eye.png">
+                    <img *ngIf="!passwordShow" (click)="passwordState()" src="../../../assets/img/black_eye.png">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!--确认密码-->
+          <div class="form-group-2">
+            <form class="form-inline">
+              <div class="form-group">
+                <div class="input-group">
+                  <input *ngIf="confirmPasswordShow" type="text" class="form-control"
+                         placeholder="{{'auth.again_input_password' | translate}}"
+                         [ngClass]="{'password-error': confirmPassword}"
+                         required
+                         [(ngModel)]="confirmPassword" name="confirmPassword"
+                         (keyup)="compare()"
+                         (blur)="compare()"
+                         #confirmPasswordModel="ngModel">
+                  <input *ngIf="!confirmPasswordShow" type="password" class="form-control"
+                         placeholder="{{'auth.again_input_password' | translate}}"
+                         [ngClass]="{'password-error': confirmPassword}"
+                         required
+                         [(ngModel)]="confirmPassword" name="confirmPassword"
+                         (keyup)="compare()"
+                         (blur)="compare()"
+                         #confirmPasswordModel="ngModel">
+                  <div class="operation-btn" *ngIf="confirmPassword">
+                    <img (click)="confirmPassword = ''" src="../../../assets/img/clear_btn.png">
+                    <img *ngIf="confirmPasswordShow" (click)="passwordState()" src="../../../assets/img/active_eye.png">
+                    <img *ngIf="!confirmPasswordShow" (click)="passwordState()" src="../../../assets/img/black_eye.png">
+                  </div>
+                  <div [hidden]="confirmResult" style="display: block"
+                       class="alert alert-danger">
+                    Please enter the same password
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!--人机验证-->
+          <re-captcha (resolved)="resolved($event)" siteKey="6LcPnksUAAAAAD6E9wOgDf4Q6JcUDjgxFrVucum8"></re-captcha>
+
+
+
+
+          <!--提交-->
+          <div class="supplement signup-padding">
+            <ul class="clearfix">
+              <li class="pull-left default-active">{{'auth.exist_login' | translate}}<a [routerLink]="['/auth', 'login']">{{'auth.login' | translate}}</a> </li>
+              <li class="pull-right"><a class="forget-password" (click)="forgetPassword('user')">{{'auth.forget' | translate}}</a> </li>
+            </ul>
+          </div>
+
+          <div class="form-group-4">
+            <div class="checkbox">
+                <img class="cursor" *ngIf="!checked" src="../../../assets/img/auth_default.png" (click)="checked = !checked">
+                <img class="cursor" *ngIf="checked" src="../../../assets/img/auth_agree.png" (click)="checked = !checked">
+                <span class="has-read">{{'auth.agree' | translate}}</span><a class="agreement" href="javascript:;" target="_blank" [routerLink]="['/supplement', 'service-agreement']">{{'auth.agreement' | translate}}</a>
+             </div>
+          </div>
+
+          <button type="submit" class="btn-submit"
+                  [ngClass]="{'btn-success': memberSigup.form.valid && !signUpLoading && confirmResult && confirmPassword && checked && isRecaptcha}"
+                  [disabled]="!memberSigup.form.valid || signUpLoading || !confirmResult || !confirmPassword || !checked || !isRecaptcha">{{'auth.signup' | translate}}</button>
+
+          <div class="form-group form-footer">
+            <label>{{'auth.signup_email_text' | translate}}  <a href="info@connected.hk">info@connected.hk</a></label>
+          </div>
+        </form>
+      </div>
+      <!--商会注册-->
+      <div class="login-from pull-left" *ngIf="sigupRole === 'coc'">
+        <form (submit)="cocSignup('enterprise')"  name="cocForm" #cocForm="ngForm" (keyup.enter)="userSignup('user')" >
+          <div class="form-group-1">
+            <label  class="form-title pull-left" (click)="setState('user'); cocForm.reset()" [ngClass]="{'active': sigupRole === 'user'}">{{'auth.user_signup' | translate}}</label>
+            <label  class="form-title pull-right text-right" (click)="setState('coc'); cocForm.reset()"  [ngClass]="{'active': sigupRole === 'coc'}">{{'auth.coc_signup' | translate}}</label>
+            <div class="line"></div>
+            <input type="email" class="form-control"
+                   placeholder="{{'auth.input_email' | translate}}"
+                   pattern="^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"
+                   [ngClass]="{'email-error': !emailModel.valid && !emailModel.pristine}"
+                   required
+                   [(ngModel)]="email" name="email"
+                   #emailModel="ngModel">
+            <div [hidden]="emailModel.valid || emailModel.pristine" style="display: block"
+                 class="alert alert-danger">
+              Email is required
+            </div>
+          </div>
+          <!--输入密码-->
+          <div class="form-group-2">
+            <form class="form-inline">
+              <div class="form-group">
+                <div class="input-group">
+                  <input *ngIf="passwordShow" type="text" class="form-control"
+                         placeholder="{{'auth.input_password' | translate}}"
+                         [ngClass]="{'password-error': password}"
+                         required
+                         [(ngModel)]="password" name="password"
+                         #passwordModel="ngModel">
+                  <input *ngIf="!passwordShow" type="password" class="form-control"
+                         placeholder="{{'auth.input_password' | translate}}"
+                         [ngClass]="{'password-error': password}"
+                         required
+                         [(ngModel)]="password" name="password"
+                         #cocPasswordModel="ngModel">
+                  <div class="operation-btn" *ngIf="password">
+                    <img (click)="password = ''" src="../../../assets/img/clear_btn.png">
+                    <img *ngIf="passwordShow" (click)="passwordState()" src="../../../assets/img/active_eye.png">
+                    <img *ngIf="!passwordShow" (click)="passwordState()" src="../../../assets/img/black_eye.png">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!--确认密码-->
+          <div class="form-group-2">
+            <form class="form-inline">
+              <div class="form-group">
+                <div class="input-group">
+                  <input *ngIf="confirmPasswordShow" type="text" class="form-control"
+                         placeholder="{{'auth.again_input_password' | translate}}"
+                         [ngClass]="{'password-error': confirmPassword}"
+                         required
+                         [(ngModel)]="confirmPassword" name="confirmPassword"
+                         (keyup)="compare()"
+                         (blur)="compare()"
+                         #confirmPasswordModel="ngModel">
+                  <input *ngIf="!confirmPasswordShow" type="password" class="form-control"
+                         placeholder="{{'auth.again_input_password' | translate}}"
+                         [ngClass]="{'password-error': confirmPassword}"
+                         required
+                         [(ngModel)]="confirmPassword" name="confirmPassword"
+                         (keyup)="compare()"
+                         (blur)="compare()"
+                         #confirmPasswordModel="ngModel">
+                  <div class="operation-btn" *ngIf="confirmPassword">
+                    <img (click)="confirmPassword = ''" src="../../../assets/img/clear_btn.png">
+                    <img *ngIf="confirmPasswordShow" (click)="passwordState()" src="../../../assets/img/active_eye.png">
+                    <img *ngIf="!confirmPasswordShow" (click)="passwordState()" src="../../../assets/img/black_eye.png">
+                  </div>
+                  <div [hidden]="confirmResult" style="display: block"
+                       class="alert alert-danger">
+                    Please enter the same password
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+
+          <!--人机验证-->
+          <re-captcha (resolved)="resolved($event)" siteKey="6LcPnksUAAAAAD6E9wOgDf4Q6JcUDjgxFrVucum8"></re-captcha>
+
+
+
+
+          <!--提交-->
+          <div class="supplement signup-padding">
+            <ul class="clearfix">
+              <li class="pull-left default-active">{{'auth.exist_login' | translate}}<a [routerLink]="['/auth', 'login']">{{'auth.login' | translate}}</a> </li>
+              <li class="pull-right"><a class="forget-password" (click)="forgetPassword('user')">{{'auth.forget' | translate}}</a> </li>
+            </ul>
+          </div>
+
+          <div class="form-group-4">
+            <div class="checkbox">
+              <img class="cursor" *ngIf="!checked" src="../../../assets/img/auth_default.png" (click)="checked = !checked">
+              <img class="cursor" *ngIf="checked" src="../../../assets/img/auth_agree.png" (click)="checked = !checked">
+              <span class="has-read">{{'auth.agree' | translate}}</span><a class="agreement" href="javascript:;" target="_blank" [routerLink]="['/supplement', 'service-agreement']">{{'auth.agreement' | translate}}</a>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit"
+                  [ngClass]="{'btn-success': cocForm.form.valid && !signUpLoading && confirmResult && confirmPassword && checked && isRecaptcha}"
+                  [disabled]="!cocForm.form.valid || signUpLoading || !confirmResult || !confirmPassword || !checked || !isRecaptcha">{{'auth.signup' | translate}}</button>
+
+          <div class="form-group form-footer">
+            <label>{{'auth.signup_email_text' | translate}}  <a href="info@connected.hk">info@connected.hk</a></label>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

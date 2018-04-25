@@ -1,0 +1,14 @@
+{{#extend "mail/layouts/main"}}
+  {{#content "content"}}
+    <span>尊敬的 {{ fullName }},</span>
+    <p>标题: 假期拒絕</p>
+    <p>你的假期已經被拒絕了.</p>
+    <p>假期類型: {{ leaveType.name }}</p>
+    <p>開始時間: {{ leave.startedDate }}</p>
+    <p>結束時間: {{ leave.endedDate }}</p>
+    <p>如果這封電子郵件對你沒有任何意義, 可能是有人故意或無意地輸入了您的電子郵件地址, 那麼請忽略這封電子郵件.</p>
+    <p>謝謝,</p>
+    <p>{{ siteTeamName }}</p>
+    <p>如果想進一步查詢, 請聯繫: {{ siteSupportEmail }}</p>
+  {{/content}}
+{{/extend}}

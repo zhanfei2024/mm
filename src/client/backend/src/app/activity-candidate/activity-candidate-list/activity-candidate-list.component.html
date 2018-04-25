@@ -1,0 +1,131 @@
+<div class="content-heading">
+  {{'activity_candidate.list'|translate}}
+</div>
+
+<div class="">
+  <!--<h6 class="card-header text-primary">-->
+  <!--{{'order.order_list'|translate}}-->
+  <!--</h6>-->
+  <div class="card-block">
+
+    <div class="col-sm-3 ">
+      <p>{{'commom.filter_query' | translate}}</p>
+    </div>
+    <div class="row align-items-center">
+      <div class="col-sm-2 form-group">
+        <label>{{'activity_candidate.email'| translate}}</label>
+        <input type="text" class="form-control" [(ngModel)]="filter.account" placeholder="{{'activity_candidate.email' | translate}}">
+      </div>
+
+      <div class="col-sm-2 form-group">
+        <label>{{'activity_candidate.status'| translate}}</label>
+        <ng-select
+          [items]="activityItems"
+          (data)="selectActivityStatus($event)"
+          placeholder="{{'activity_candidate.candidate_status' | translate}}">
+        </ng-select>
+      </div>
+
+      <div class="col-sm-2 form-group">
+        <label>{{'activity_candidate.candidate_status'| translate}}</label>
+        <ng-select
+          [items]="statusItems"
+          (data)="selectStatus($event)"
+          placeholder="{{'activity_candidate.candidate_status' | translate}}">
+        </ng-select>
+      </div>
+
+      <div class="col-sm-2 form-group">
+        <label>{{'activity_candidate.activity'| translate}}</label>
+        <input type="text" class="form-control cursor" [(ngModel)]="filter.search" placeholder="{{'activity_candidate.activity' | translate}}">
+      </div>
+
+      <div class="col-sm-3 form-group">
+        <button (click)="onReset()" [disabled]="!filter.search && !filter.account && !filter.status && !filter.activityStatus" type="button"
+                class="btn btn-outline-primary cursor">{{ 'button.reset' |
+          translate }}
+        </button>
+        <button (click)="onSearch()" [disabled]="!filter.search && !filter.account && !filter.status && !filter.activityStatus" type="button"
+                class="btn btn-outline-primary cursor">{{ 'button.search' |
+          translate }}
+        </button>
+      </div>
+    </div>
+
+    <!-- /.row -->
+    <div *ngIf="tableLoading" class="card-block">
+      <div class="sk-three-bounce">
+        <div class="sk-child sk-bounce1"></div>
+        <div class="sk-child sk-bounce2"></div>
+        <div class="sk-child sk-bounce3"></div>
+      </div>
+    </div>
+    <div *ngIf="!tableLoading">
+      <div *ngIf="rows.length===0">
+        <div class="text-muted pt-3 pb-3 text-center">
+          <div hidden>
+            <img src="../../../assets/img/content/no-role.png" alt="" class="img-fluid mx-auto d-block">
+          </div>
+          <div class="pt-3 pb-3 font-xl">
+            <img src="../../../assets/img/content/no-role.png" alt="" class="img-fluid mx-auto d-block">
+            <p>{{'no_content.no_order' | translate}}</p>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="rows.length!==0" class="table-responsive table-panel">
+        <table class="table table-align-middle table-outline text-center activity-table">
+          <thead>
+          <tr>
+            <th class="text-center">{{'activity_candidate.id'|translate }}</th>
+            <th>{{'activity_candidate.email'|translate }}</th>
+            <th>{{'activity_candidate.name'|translate }}</th>
+            <th>{{'activity_candidate.phone'|translate }}</th>
+            <th>{{'activity_candidate.activity'|translate }}</th>
+            <th>{{'activity_candidate.start_time'|translate }}</th>
+            <th>{{'activity_candidate.end_time'|translate }}</th>
+            <th class="text-center">{{'activity_candidate.status'|translate }}</th>
+            <th>{{'activity_candidate.option'|translate }}</th>
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let row of rows">
+            <td class="text-center">{{row?.userId}}</td>
+            <td>{{row?.email}}</td>
+            <td>{{row?.user?.firstName}} {{row?.user?.lastName}}</td>
+            <td>{{row?.phone}}</td>
+            <td>{{row?.activities?.title}}</td>
+            <td>{{row?.activities?.startTimedAt | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+            <td>{{row?.activities?.endTimedAt | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+
+            <td *ngIf="row.activities.status == 'full'" class="text-center">{{'activity_candidate.full'|translate}}</td>
+            <td *ngIf="row.activities.status == 'sign-up'"class="text-center">{{'activity_candidate.sign-up'|translate}}</td>
+            <td *ngIf="row.activities.status == 'close'"class="text-center">{{'activity_candidate.close'|translate}}</td>
+            <td *ngIf="row.activities.status == 'in-process'"class="text-center">{{'activity_candidate.in-process'|translate}}</td>
+            <td *ngIf="row.activities.status == 'ended'"class="text-center">{{'activity_candidate.ended'|translate}}</td>
+
+
+
+            <td *ngIf="row.status == 'success'">{{'activity_candidate.pass'|translate}}</td>
+            <td *ngIf="row.status == 'fail'">{{'activity_candidate.not_pass'|translate}}</td>
+            <td *ngIf="row.status == 'pending'">{{'activity_candidate.pending'|translate}}</td>
+
+          </tr>
+          </tbody>
+        </table>
+        <!-- /.table-->
+      </div>
+      <div class="text-center" [hidden]="tableLoading || rows.length === 0">
+        <custom-pagination [itemsPrePage]="meta.pagination.prevPage"
+                           [itemsNextPage]="meta.pagination.nextPage"
+                           [currentPage]="meta.pagination.currentPage"
+                           (pageChanged)="changePage($event)">
+        </custom-pagination>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.card-block -->
+
+</div>
+

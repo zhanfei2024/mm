@@ -1,0 +1,49 @@
+@media screen and (min-width: 1200px){
+  .analytics-item {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 1 33.33%;
+    flex: 0 1 33.33%!important;
+  }
+}
+@media screen and (min-width: 1200px){
+  .analytics-row {
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+  }
+}
+
+@media (min-width: 46.5em){
+  .Polaris-Card {
+    border-radius: 3px;
+  }
+}
+
+.Polaris-Card {
+  overflow: hidden;
+  background-color: #fff;
+  padding-top: 1.6rem;
+  box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px 0 rgba(63,63,68,.15);
+}
+.analytics-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  margin-right: 20px;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+
+}
+
+
+.analytics-item {
+  min-width: 0;
+  max-width: 100%;
+  padding-left: 1.6rem;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 0 100%;
+  margin-bottom: 20px;
+  flex: 1 0 100%;
+}

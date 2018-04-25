@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="post-container">
+    <form class="container-fluid" name="mainForm" #mainForm="ngForm">
+    <div class="row clearfix" style="margin: 20px 0">
+       <div class="post-header">
+         <a class="br"  [routerLink]="['/chamber',id,'positions','list']">
+           <img src="../../../../assets/img/back.png" class="icon"/>{{'chamber.left.position' | translate}} </a> ——
+         <span>{{title | translate}}</span>
+         <div class="pull-right" >
+           <button class="success" (click)="onSubmit()" [disabled]="!mainForm.form.valid || submitLoading" >
+             <img src="../../../../assets/img/success.png" class="icon"/>
+             <span *ngIf="submitLoading"><i class="fa fa-spin fa-spinner"></i></span>
+             <span *ngIf="!submitLoading">{{'chamber.btn.submit' | translate}}</span>
+           </button> |
+           <a class="success" [routerLink]="['/chamber',id,'positions','list']">
+             <img src="../../../../assets/img/fail.png" class="icon"/>{{'chamber.btn.cancel' | translate}}
+           </a>
+           <!--预览-->
+           <a class="success" (click)="submitShow = !submitShow">
+             <img *ngIf="submitShow == true" src="../../../../assets/img/active_eye.png" class="icon"/>
+             <img *ngIf="submitShow == false" src="../../../../assets/img/black_eye.png" class="icon"/>
+             <span *ngIf="submitShow == false">{{'global.preview' | translate}}</span>
+             <span *ngIf="submitShow == true">{{'global.cancel_preview' | translate}}</span>
+           </a>
+         </div>
+       </div>
+    </div>
+    <div [hidden]="submitShow">
+      <div class="form-group row clearfix">
+        <label for="title" class="col-md-12 py-h px-1">{{'chamber.know.title' |
+          translate}}</label>
+        <div class="col-md-12">
+          <input type="text" class="form-control" id="title" name="title" required
+                 [(ngModel)]="know.title" #titileHanlder="ngModel">
+          <form-message [control]="titileHanlder"
+                        [fieldName]="'chamber.know.title' | translate"></form-message>
+        </div>
+      </div>
+      <div class="form-group row clearfix">
+        <label for="content" class="col-md-12 py-h px-1">{{'chamber.know.content'
+          | translate}}
+        </label>
+        <div class="col-md-12">
+          <quill-editor [(ngModel)]="know.description" id="content" name="content" required
+                        #contentHanlder="ngModel"></quill-editor>
+          <form-message [control]="contentHanlder"
+                        [fieldName]="'chamber.know.content' | translate"></form-message>
+        </div>
+      </div>
+    </div>
+
+
+
+    </form>
+  </div>
+
+  <!--预览-->
+  <div *ngIf="submitShow" class="news-detail enterprise-tab col-xs-12 col-sm-12 col-md-12">
+    <h1 class="news-title text-center">{{know?.title}}</h1>
+    <p *ngIf="know?.description" class="preview" [innerHTML]="know?.description | html">
+    </p>
+  </div>
+</div>

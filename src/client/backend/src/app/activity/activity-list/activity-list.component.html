@@ -1,0 +1,135 @@
+
+
+<div class="content-heading">
+  {{'activity.list'|translate}}
+</div>
+
+<div class="">
+  <!--<h6 class="card-header text-primary">-->
+  <!--{{'order.order_list'|translate}}-->
+  <!--</h6>-->
+  <div class="card-block">
+    <div class="row align-items-center">
+      <div class="col-sm-2 form-group">
+        <label>{{'activity.title'|translate}}</label>
+        <input type="text" class="form-control" [(ngModel)]="filter.title" placeholder="{{'activity.title' | translate}}">
+      </div>
+      <div class="col-sm-2 form-group" *ngIf="!tableLoading">
+        <label>{{'activity.category'|translate}}</label>
+          <ng-select
+            [items]="category"
+            (data)="selectCategoryStatus($event)"
+            placeholder="{{'activity.category' | translate}}">
+          </ng-select>
+      </div>
+
+      <div class="col-sm-2 form-group" *ngIf="!tableLoading">
+        <label>{{'activity.status'|translate}}</label>
+        <ng-select
+          [items]="activityItems"
+          (data)="selectStatus($event)"
+          placeholder="{{'activity.category' | translate}}">
+        </ng-select>
+      </div>
+      <div class="col-sm-2 form-group">
+        <label>{{'activity.coc'|translate}}</label>
+        <input type="text" class="form-control" [(ngModel)]="filter.cocName" placeholder="{{'activity.coc' | translate}}">
+      </div>
+
+      <div class="col-sm-2 form-group">
+        <button (click)="onSearch()"  type="button"
+                class="btn btn-outline-primary cursor">{{ 'button.search' |
+          translate }}
+        </button>
+
+        <button (click)="onReset()"  type="button"
+                class="btn btn-outline-primary cursor">{{ 'button.cancel' |
+          translate }}
+        </button>
+      </div>
+      <!--<div class="col-sm-3 form-group">-->
+      <!--<button (click)="OnReset()"  type="button"-->
+      <!--class="btn btn-outline-primary">{{ 'button.reset' |-->
+      <!--translate }}-->
+      <!--</button>-->
+      <!--</div>-->
+    </div>
+    <!-- /.row -->
+    <div *ngIf="tableLoading" class="card-block">
+      <div class="sk-three-bounce">
+        <div class="sk-child sk-bounce1"></div>
+        <div class="sk-child sk-bounce2"></div>
+        <div class="sk-child sk-bounce3"></div>
+      </div>
+    </div>
+    <div *ngIf="!tableLoading">
+      <div *ngIf="rows.length===0">
+        <div class="text-muted pt-3 pb-3 text-center">
+          <div hidden>
+            <img src="../../../assets/img/content/no-role.png" alt="" class="img-fluid mx-auto d-block">
+          </div>
+          <div class="pt-3 pb-3 font-xl">
+            <img src="../../../assets/img/content/no-role.png" alt="" class="img-fluid mx-auto d-block">
+            <p>{{'no_content.no_order' | translate}}</p>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="rows.length!==0" class="table-responsive table-panel">
+        <table class="table table-align-middle table-outline text-center activity-table">
+          <thead>
+          <tr>
+            <th>{{'activity.title'|translate }}</th>
+            <th>{{'activity.category'|translate }}</th>
+            <th>{{'activity.start_time'|translate }}</th>
+            <th>{{'activity.end_time'|translate }}</th>
+            <th class="text-center">{{'activity.number'|translate }}</th>
+            <th>{{'activity.coc'|translate }}</th>
+            <th>{{'activity.publishAt'|translate }}</th>
+            <th class="text-center">{{'activity.status'|translate }}</th>
+            <th>{{'activity.recommend'|translate }}</th>
+            <th>{{'activity.option'|translate }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let row of rows">
+            <td>{{row?.title}}</td>
+            <td>{{row?.categories[0]?.name}}</td>
+            <td>{{row?.startTimedAt | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+            <td>{{row?.endTimedAt | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+            <td class="text-center">{{row?.applyNumberOfPeople}}</td>
+            <td>{{row?.coc?.name}}</td>
+            <td>{{row?.createdAt | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+            <td *ngIf="row?.status == 'sign-up'">{{'activity.sign-up'|translate }}</td>
+            <td *ngIf="row?.status == 'full'">{{'activity.full'|translate }}</td>
+            <td *ngIf="row?.status == 'close'">{{'activity.close'|translate }}</td>
+            <td *ngIf="row?.status == 'in-process'">{{'activity.in-process'|translate }}</td>
+            <td *ngIf="row?.status == 'ended'">{{'activity.ended'|translate }}</td>
+            <td>
+              <label class="switch switch-3d switch-success">
+                <input (change)="switchEnable(row)" [(ngModel)]="row.isFeatured"  [checked]="row.isFeatured" class="switch-input" type="checkbox">
+                <span class="switch-label"></span>
+                <span class="switch-handle"></span>
+              </label>
+            </td>
+            <td>
+              <a target="_blank" href="{{frontPath}}/coc-show/{{row?.coc?.id}}/activity/{{row?.id}}/detail">{{'activity.check'|translate }}</a>
+              <i (click)="deleteActivity(row)" class="fa fa-trash text-primary cursor color-active" aria-hidden="true"></i>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <!-- /.table-->
+      </div>
+      <div class="text-center" [hidden]="tableLoading || rows.length === 0">
+        <custom-pagination [itemsPrePage]="meta.pagination.prevPage"
+                           [itemsNextPage]="meta.pagination.nextPage"
+                           [currentPage]="meta.pagination.currentPage"
+                           (pageChanged)="changePage($event)">
+        </custom-pagination>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.card-block -->
+</div>
+

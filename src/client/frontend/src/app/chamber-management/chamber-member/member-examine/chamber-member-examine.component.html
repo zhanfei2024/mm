@@ -1,0 +1,205 @@
+<div class="coc-container">
+  <div class="chamber-home">
+    <div class="row clearfix">
+      <app-chamber-left></app-chamber-left>
+      <div class="col-md-10">
+        <div class="list-right">
+          <div class="row clearfix">
+            <div class="header">
+              <h4>{{'chamber.left.member' | translate}}</h4>
+            </div>
+          </div>
+
+          <div class="row clearfix">
+            <div class="search-contaner clearfix">
+              <div class="col-sm-3">
+                <ng-select
+                  id="group"
+                  [items]="groups"
+                  name="group"
+                  placeholder="{{'chamber.member.post' | translate}}"
+                  (data)="changStatus($event,'group')">
+                </ng-select>
+
+              </div>
+              <div class="col-sm-3" style="padding-left: 15px;">
+                <ng-select
+                  id="Filter"
+                  [items]="iFilter"
+                  name="Filter"
+                  placeholder="{{'global.iFilter' | translate}}"
+                  (data)="changStatus($event,'Filter')">
+                </ng-select>
+
+              </div>
+              <div class="col-sm-5 xs-search">
+                <div class="search-input-group">
+                  <input type="text" class="form-control search-input"
+                         data-clearbtn="true"
+                         name="search"
+                         placeholder="{{'global.search_text' | translate }}"
+                         (keyup.enter)="onSearch()" [(ngModel)]="filter.search" aria-describedby="sizing-addon2">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-responsive custom-member-tabel" >
+            <table class="table table-align-middle table-outline text-center">
+              <thead>
+              <tr>
+                <th class="custom-member-head-first">{{'chamber.member.name' | translate}}</th>
+                <th>{{'chamber.member.number' | translate}}</th>
+                <th>{{'chamber.member.post' | translate}}</th>
+                <th>{{'chamber.member.position' | translate}}</th>
+                <th>{{'chamber.member.phone' | translate}}</th>
+                <th>{{'chamber.member.email' | translate}}</th>
+                <th>{{'chamber.member.position_end_time' | translate}}</th>
+                <th>{{'chamber.member.operation' | translate}}</th>
+              </tr>
+              </thead>
+              <tbody [hidden]="!tableLoading">
+              <tr>
+                <td colspan="6">
+                  <div class="text-center pt-3 pb-3">
+                    <div class="pt-3 pb-3">
+                      <i class="loading-img"></i>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+              <tbody [hidden]="!(rows?.length === 0 && !tableLoading)">
+              <tr>
+                <td colspan="6" class="td_no_meassge">
+                  <div class="row clearfix">
+                    <div class="col-sm-12 no_message text-center" >
+                      <img src="../../../../assets/img/no_member.png" height="120" width="120"/>
+                      <p class="clearfix"> {{'message.no_member_add_title' | translate}}</p>
+                      <p class="clearfix"> {{'message.no_member_add_text' | translate}}</p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+
+              <tbody [hidden]="!(rows?.length > 0 && !tableLoading)">
+              <tr *ngFor="let item of rows;let i =index;">
+
+                <td class="custom-member-content-first">{{item?.user?.userProfile?.name}}</td>
+                <td>{{item?.number}}</td>
+                <td>{{item?.group?.name}}</td>
+                <td>{{item?.memberRating?.title}}</td>
+                <td>{{item?.user?.userProfile?.phone}}</td>
+                <td>{{item?.user?.email}}</td>
+                <td>{{item?.expireDate | date : 'yyyy-MM-dd'}}
+                </td>
+                <td>
+                  <a (click)="openModel(i)">
+                    <img src="../../../assets/img/edit.png"  class="icon" style="vertical-align: middle; margin-right: 5px"/>
+                  </a>
+                  <a class="invitation"
+                     [routerLink]="['/chamber',id,'member',item.id,'show']">{{'chamber.btn.see' | translate}} </a>
+                  <img src="../../../../assets/img/right.png" height="10" width="10"
+                       style="vertical-align: middle;margin-left: 10px"/>
+
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <!-- /.table-->
+            <div class="text-center" [hidden]="tableLoading || rows?.length === 0">
+              <custom-pagination [itemsPrePage]="meta?.pagination.prevPage"
+                                 [itemsNextPage]="meta?.pagination.nextPage"
+                                 [currentPage]="meta?.pagination.currentPage"
+                                 (pageChanged)="changePage($event)">
+              </custom-pagination>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" bsModal #inviteModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true" [config]="{backdrop: 'static',ignoreBackdropClick: true}">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-sm-12">
+          <div class="header">
+            <h4>
+              {{'global.member' | translate}}
+            </h4>
+            <a type="button" class="close pull-right" aria-label="Close" (click)="inviteModal.hide()">
+              <span aria-hidden="true" >
+                <img src="../../../../assets/img/delete.png" height="20" width="20"/>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <form class="container-fluid" name="postForm" #postForm="ngForm">
+          <div class="form-group row clearfix">
+            <label for="groups" class="col-md-12 py-h px-1">{{'chamber.member.post' | translate}}</label>
+            <div class="col-md-12">
+              <ng-select
+                #gup
+                id="groups"
+                [items]="groups"
+                [active]="activeGroups"
+                name="group"
+                ng2SelectRequired
+                placeholder="{{'chamber.member.post' | translate}}"
+                (data)="changGroup('group',$event)">
+              </ng-select>
+            </div>
+          </div>
+          <div class="form-group row clearfix">
+            <label for="positionId" class="col-md-12 py-h px-1">{{'chamber.left.position' | translate}}</label>
+            <div class="col-md-12">
+              <ng-select
+                #poson
+                id="positionId"
+                [items]="position"
+                [active]="activePosition"
+                name="positionId"
+                ng2SelectRequired
+                placeholder="{{'chamber.left.position' | translate}}"
+                (data)="changGroup('position',$event)">
+              </ng-select>
+            </div>
+          </div>
+          <div class="form-group row clearfix">
+            <label for="groupId" class="col-md-12 py-h px-1">{{'chamber.member.number' | translate}}</label>
+            <div class="col-md-12">
+              <input type="text" name="code" [(ngModel)]="code" class="form-control">
+            </div>
+          </div>
+          <div class="form-group row clearfix">
+            <label for="expireDate" class="col-md-12 py-h px-1">{{'global.endTimedAt' | translate}}</label>
+            <div class="col-md-12">
+              <input type="text" class="form-control" #myDate id="expireDate" name="expireDate" required
+                     [(ngModel)]="expireDate"
+                     #expireDateHandler="ngModel">
+              <form-message [control]="expireDateHandler"
+                            [fieldName]="'global.endTimedAt' | translate"></form-message>
+            </div>
+          </div>
+          <div class="modal-selected-footer">
+            <div class="row clearfix text-center">
+              <button class="btn-primary btn btn-submit-primary" [disabled]="!postForm.form.valid || submitLoading" (click)="onSubmit()">
+                <span *ngIf="submitLoading"><i class="fa fa-spin fa-spinner"></i></span>
+                <span *ngIf="!submitLoading">{{'button.publish' | translate}}</span>
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,250 @@
+{
+  "userProfileExists": {
+    "statusCode": 400,
+    "message": {
+      "en": "Personal data already exists",
+      "cn": "个人数据已经存在",
+      "hk": "個人數據已經存在"
+    },
+    "code": 1999
+  },
+  "userProfileIsRequired": {
+    "statusCode": 400,
+    "message": "Personal data must be filled in.",
+    "code": 20000
+  },
+  "userExperienceIsRequired": {
+    "statusCode": 400,
+    "message": {
+      "en": "Personal data is required",
+      "cn": "工作经验数据必须填写",
+      "hk": "工作經驗數據必須填寫"
+    },
+    "code": 20001
+  },
+  "applyFail": {
+    "statusCode": 400,
+    "message": {
+      "en": "Apply Fail",
+      "cn": "申请失败",
+      "hk": "申請失敗"
+    },
+    "code": 20002
+  },
+  "applyExists": {
+    "statusCode": 400,
+    "message": {
+      "en": "Your apply already exists",
+      "cn": "你的申请已经存在",
+      "hk": "你的申請已經存在"
+    },
+    "code": 20003
+  },
+  "invitationExists": {
+    "statusCode": 400,
+    "message": {
+      "en": "Your invitation already exists",
+      "cn": "你的邀请已经存在",
+      "hk": "你的邀請已經存在"
+    },
+    "code": 20003
+  },
+  "applyPositionNotExists": {
+    "statusCode": 400,
+    "message": {
+      "en": "You apply for a position not exists",
+      "cn": "你申请的职位不存在",
+      "hk": "你申請的職位不存在"
+    },
+    "code": 20004
+  },
+  "applyCoc": {
+    "statusCode": 400,
+    "message": {
+      "en": "The chamber of Commerce you are applying for is under review",
+      "cn": "你正在申请的商会正在审查中",
+      "hk": "你正在申請的商會正在審查中"
+    },
+    "code": 20005
+  },
+  "applyPassed": {
+    "statusCode": 400,
+    "message": {
+      "en": "Your application has passed",
+      "cn": "你的申请已通过",
+      "hk": "你的申請已通過"
+    },
+    "code": 20006
+  },
+  "userEducationIsRequired": {
+    "statusCode": 400,
+    "message": {
+      "en": "Education data must be filled in",
+      "cn": "教育数据必须填写",
+      "hk": "教育數據必須填寫"
+    },
+    "code": 20007
+  },
+  "userProfileNameNull": {
+    "statusCode": 400,
+    "message": {
+      "en": "Personal data's Name can't be empty",
+      "cn": "个人资料中名字不能为空",
+      "hk": "個人資料中名字不能為空"
+    },
+    "code": 20008
+  },
+  "userProfileEnglishNameNull": {
+    "statusCode": 400,
+    "message": {
+      "en": "Personal data's English Name can't be empty",
+      "cn": "个人资料中英文姓名不能为空",
+      "hk": "個人資料中英文姓名不能為空"
+    },
+    "code": 20009
+  },
+  "userProfileIDNumberNull": {
+    "statusCode": 400,
+    "message": {
+      "en": "Personal data's ID number can't be empty",
+      "cn": "个人资料中身份证号码不能为空",
+      "hk": "個人資料中身份證號碼不能為空"
+    },
+    "code": 20010
+  },
+  "userProfilePhoneNull": {
+    "statusCode": 400,
+    "message": {
+      "en": "Personal data's phone can't be empty",
+      "cn": "个人资料中手机号码不能为空",
+      "hk": "個人資料中手機號碼不能為空"
+    },
+    "code": 20011
+  },
+  "userProfileWechatNull": {
+    "statusCode": 400,
+    "message": {
+      "en": "Personal data's Wechat can't be empty",
+      "cn": "个人资料中微信不能为空",
+      "hk": "個人資料中微信不能為空"
+    },
+    "code": 20012
+  },
+  "userProfileCountryIdNull": {
+    "statusCode": 400,
+    "message": {
+      "en": "Personal data's Country can't be empty",
+      "cn": "个人资料中国家不能为空",
+      "hk": "個人資料中國家不能為空"
+    },
+    "code": 20013
+  },
+  "userProfileAvatarNull": {
+    "statusCode": 400,
+    "message": {
+      "en": "Personal data's Avatar can't be empty",
+      "cn": "个人资料中头像不能为空",
+      "hk": "個人資料中頭像不能為空"
+    },
+    "code": 20014
+  },
+  "userExperienceCompanyNameNull": {
+    "statusCode": 400,
+    "message": {
+      "en": "Company name can't be empty",
+      "cn": "公司姓名不能为空",
+      "hk": "公司姓名不能為空"
+    },
+    "code": 20015
+  },
+  "userExperienceTitleNull": {
+    "statusCode": 400,
+    "message": {
+      "en": "Title can't be empty",
+      "cn": "标题不能为空",
+      "hk": "标题不能為空"
+    },
+    "code": 20016
+  },
+  "userExperienceStartedDateNull": {
+    "statusCode": 400,
+    "message": {
+      "en": "Date can't be empty",
+      "cn": "时间日期不能为空",
+      "hk": "時間日期不能為空"
+    },
+    "code": 20017
+  },
+  "userExperienceEndedDateNull": {
+    "statusCode": 400,
+    "message": {
+      "en": "Date can't be empty",
+      "cn": "时间日期不能为空",
+      "hk": "時間日期不能為空"
+    },
+    "code": 20018
+  },
+  "userEducationLevelNull": {
+    "statusCode": 400,
+    "message": {
+      "en": "Education Level can't be empty",
+      "cn": "教育水平不能为空",
+      "hk": "交易水平不能為空"
+    },
+    "code": 20019
+  },
+  "userEducationSchoolNameNull": {
+    "statusCode": 400,
+    "message": {
+      "en": "School name can't be empty",
+      "cn": "学校姓名不能为空",
+      "hk": "學校姓名不能為空"
+    },
+    "code": 20020
+  },
+  "userEducationSubjectNull": {
+    "statusCode": 400,
+    "message": {
+      "en": "Subject Level can't be empty",
+      "cn": "学科水平不能为空",
+      "hk": "學科水平不能為空"
+    },
+    "code": 20021
+  },
+  "userEducationGraduationYearNull": {
+    "statusCode": 400,
+    "message": {
+      "en": "Graduation Year Level can't be empty",
+      "cn": "毕业一年的水平不能为空",
+      "hk": "畢業一年的水平不能為空"
+    },
+    "code": 20022
+  },
+  "userEducationStartDateNull": {
+    "statusCode": 400,
+    "message": {
+      "en": "Date can't be empty",
+      "cn": "时间日期不能为空",
+      "hk": "時間日期不能為空"
+    },
+    "code": 20017
+  },
+  "userEducationEndDateNull": {
+    "statusCode": 400,
+    "message": {
+      "en": "Date can't be empty",
+      "cn": "时间日期不能为空",
+      "hk": "時間日期不能為空"
+    },
+    "code": 20018
+  },
+  "userEducationGpaNull": {
+    "statusCode": 400,
+    "message": {
+      "en": "Graduation Year Level can't be empty",
+      "cn": "毕业一年的水平不能为空",
+      "hk": "畢業一年的水平不能為空"
+    },
+    "code": 20023
+  }
+}

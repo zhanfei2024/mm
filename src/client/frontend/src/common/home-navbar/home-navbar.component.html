@@ -1,0 +1,29 @@
+<div class="search">
+  <div class="container">
+    <div class="search-wrapper row">
+      <div class="search-input col-xs-12 col-sm-10 col-md-8
+       col-sm-offset-1 col-md-offset-2">
+        <div class="search-wrapper " style="    padding-top: 10px;">
+          <div class="search-input">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="{{'global.search_text' | translate }}" aria-label="Search for..."
+                     [(ngModel)]="search" (keyup.enter)="onSearch(search)">
+              <div class="input-group-addon" style="background: #ffffff;border-radius: 0" role="button" (click)="onSearch(search)"><img style="    width: 20px;
+    margin-right: 5px;
+}" src="../../assets/img/search.png">{{'navbar.search' | translate}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="hot-list col-xs-10 col-sm-10 col-md-8
+       col-sm-offset-1 col-md-offset-2">
+        <ul class="list-inline">
+          <li><a [routerLink]="['/']">{{'navbar.hot_search' | translate}} :</a> </li>
+          <li *ngFor="let item of cocs"><a (click)="onSearch(item.name)">{{item.name}}</a> </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

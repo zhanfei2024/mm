@@ -1,0 +1,66 @@
+<div class="content-heading">
+  {{'account.list'|translate}}
+</div>
+
+<div class="">
+  <!--<h6 class="card-header text-primary">-->
+  <!--{{'order.order_list'|translate}}-->
+  <!--</h6>-->
+  <div class="card-block">
+
+    <!-- /.row -->
+    <div *ngIf="tableLoading" class="card-block">
+      <div class="sk-three-bounce">
+        <div class="sk-child sk-bounce1"></div>
+        <div class="sk-child sk-bounce2"></div>
+        <div class="sk-child sk-bounce3"></div>
+      </div>
+    </div>
+    <div *ngIf="!tableLoading">
+
+      <div style="padding: 100px 100px 10px;" >
+        <div class="bs-example bs-example-form" role="form">
+          <div class="input-group">
+            <span class="input-group-addon" style="background: #0b409c">{{'account.name' | translate}}</span>
+            <label class="form-control" >{{row?.firstName}} {{row?.lastName}}</label>
+          </div>
+          <br>
+          <div class="input-group">
+            <span class="input-group-addon" style="background: #0b409c">{{'account.email' | translate}}</span>
+            <label class="form-control" > {{row?.email}}</label>
+          </div>
+          <br>
+          <div class="input-group">
+            <span class="input-group-addon"style="background: #0b409c">{{'account.old_pass_word' | translate}}</span>
+            <input type="text" class="form-control"  [(ngModel)]="filter.oldPassword">
+          </div>
+          <br>
+          <div class="input-group">
+            <span class="input-group-addon"style="background: #0b409c">{{'account.new_pass_word' | translate}}</span>
+            <input type="text" class="form-control"  [(ngModel)]="filter.password">
+          </div>
+          <br>
+          <div class="input-group">
+            <span class="input-group-addon"style="background: #0b409c">{{'account.very_pass_word' | translate}}</span>
+            <input type="text" class="form-control"  [(ngModel)]="filter.verifyPassword">
+          </div>
+          <br>
+          <div class="col-sm-12 form-group">
+            <button (click)="onSubmit()"  type="button"
+                    class="btn btn-outline-primary pull-right cursor">{{ 'button.save' |
+              translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- /.table-->
+
+
+  </div>
+
+</div>
+<!-- /.card-block -->
+
+</div>
+

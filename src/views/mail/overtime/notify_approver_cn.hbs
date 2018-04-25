@@ -1,0 +1,9 @@
+{{#extend "mail/layouts/main"}}
+  {{#content "content"}}
+    <p>尊敬的 {{ fullName }}, {{ overtime.employee.firstName }} {{ overtime.employee.lastName }} 申请加班. 请按照下面的链接查看验收的完整细节.</p>
+    <p><a href="{{siteUrl}}/employees/overtimes/{{overtime.id}}">{{siteUrl}}/leaves/overtimes/{{overtime.id}}</a></p>
+    <p>如果仍有问题, 请联系YOOV支持.</p>
+    <p>{{ siteSupportEmail }}</p>
+    <p>这是一个自动生成的电子邮件, 请不要回复 ***</p>
+  {{/content}}
+{{/extend}}

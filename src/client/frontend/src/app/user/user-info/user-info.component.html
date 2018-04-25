@@ -1,0 +1,758 @@
+<div class="clearfix no-padding  col-xs-12 col-sm-10 col-md-10">
+  <div class="user-right-sidebar">
+    <div class="user-center">
+      <div class="invitations-wrapper">
+        <div class="user-title invitations-title invitations-title-custom row clearfix ">
+          <h1 class="text-head margin-right"><span class="square"></span>{{'user.navbar.my_information' | translate}}
+          </h1>
+          <span class="must-input">(<span style="color: red">&nbsp;*&nbsp;</span>{{'user.user_baseinfo.required-content' | translate}})</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="user-center">
+      <div class="center-wrapper">
+        <div class="row clearfix">
+          <!--基本信息-->
+          <div class="col-sm-12 no-padding">
+            <div class="user-item user-base-info">
+              <div class="title add-more clearfix">
+                <span class="head"><span style="color: red">*&nbsp;</span>{{'user.title.essential_information' | translate}}</span>
+                <span class="pull-right" (click)="isEdit = true">
+              <img class="base_info" src="../../../assets/img/base_info_edit.png"><span class="edit-state">{{'user.title.edit_baseinfo' | translate}}</span>
+            </span>
+              </div>
+              <!--有基本信息-->
+              <div class="user-info" *ngIf="!isEdit">
+                <div class="info-item">
+                      <span class="item-title">{{'user.user_baseinfo.name' | translate}}：<a
+                    class="item-text">{{self.name}}</a> </span>
+                      <span class="item-title">{{'user.user_baseinfo.genders' | translate}}：
+                        <a *ngIf="self.gender === 'F'" class="item-text">{{'global.F' | translate}}</a>
+                        <a *ngIf="self.gender === 'M'" class="item-text">{{'global.M' | translate}}</a>
+                      </span>
+                      <span class="item-title">{{'user.user_baseinfo.age' | translate}}：<a
+                        [ngClass]="{'age-active': !self.age}" class="item-text">{{self.age}}</a> </span>
+                      <span class="item-title">{{'user.user_baseinfo.location' | translate}}：
+                        <a *ngIf="self.countryId" class="item-text">{{'global.'+self.countryId | translate }}</a>
+                      </span>
+                       <span class="item-title">{{'user.user_baseinfo.phone' | translate}}：<a
+                    [ngClass]="{'phone-active': !self.phone}"
+                    class="item-text">{{self.phone}}</a> </span>
+                      <span class="item-title">{{'user.user_baseinfo.email' | translate}}：<a
+                        class="item-text">{{self.email}}</a> </span>
+                      <span class="item-title">{{'user.user_baseinfo.card_types' | translate}}：
+                        <a *ngIf="self.IDType" class="item-text">{{'global.'+self.IDType | translate}}</a> </span>
+                      <span class="item-title">{{'user.user_baseinfo.card_number' | translate}}：<a
+                        [ngClass]="{'IDNumber-active': !self.IDNumber}"
+                        class="item-text">{{self.IDNumber}}</a> </span>
+                </div>
+              </div>
+              <!--无基本信息-->
+              <table class="table table-striped table-align-middle table-outline text-center table-margin-bottom"
+                     *ngIf="isMemberEmpty">
+                <tbody>
+                <tr>
+                  <td>
+                    <div class="text-center">
+                      <img style="margin: 0 auto" src="../../../assets/img/content_empty.png">
+                    </div>
+                    <p class="text-center no-userinfo-content">{{'user.user_baseinfo.no_user_baseinfo' | translate}}</p>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <!--基本信息编辑-->
+            <div class="row clearfix" [hidden]="!isEdit">
+              <form class="infi-edit-content container-fluid no-padding clearPadding" (submit)="editProfile(member)"
+                    name="userAddForm"
+                    #userAddForm="ngForm">
+                <div class="info-edit-wrapper">
+                  <div class="info-edit">
+                    <!--姓名-->
+                    <div class="col-sm-4 padding-right">
+                      <div class="form-group row clearfix">
+                        <label class="col-xs-12 col-md-12 no-padding"><span style="color: red">&nbsp;*&nbsp;</span>{{'user.user_baseinfo.name'
+                          | translate}}
+                        </label>
+                        <div class="col-md-12 no-padding">
+                          <input type="text" class="form-control"
+                                 [(ngModel)]="member.name"
+                                 name="name"
+                                 #addNameModel="ngModel"
+                                 required>
+                          <div [hidden]="addNameModel.valid || addNameModel.pristine" style="display: block"
+                               class="text-danger absolute">
+                            {{'user.user_baseinfo.input_name' | translate}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--性别-->
+                    <div class="col-sm-4 padding-right">
+                      <div class="form-group row clearfix">
+                        <label class="col-xs-12 col-md-12 no-padding"><span style="color: red">&nbsp;*&nbsp;</span>{{'user.user_baseinfo.genders'
+                          | translate}}
+                        </label>
+                        <div class="col-md-12 no-padding">
+                          <ng-select class="col-md-12 select-control no-padding"
+                                     [items]="genders"
+                                     [active]="activeGenders"
+                                     [placeholder]="'global.'+member.gender | translate"
+                                     (data)="selected($event, 'genders')">
+                          </ng-select>
+                        </div>
+                      </div>
+                    </div>
+                    <!--年龄-->
+                    <div class="col-sm-4 no-padding">
+                      <div class="form-group row clearfix">
+                        <label class="col-xs-12 col-md-12 no-padding"><span style="color: red">&nbsp;*&nbsp;</span>{{'user.user_baseinfo.age'
+                          | translate}}
+                        </label>
+                        <div class="col-md-12 clearPadding form-date-content">
+                          <input type="text" class="form-control form-date" #age id="age" name="age" required
+                                 [(ngModel)]="member.age"
+                                 #endTimedAtHanlder="ngModel">
+                          <i class="caret pull-right" style="right: 15px"></i>
+                          <form-message [control]="endTimedAtHanlder"
+                                        [fieldName]="'user.user_baseinfo.age' | translate"></form-message>
+                        </div>
+                      </div>
+                    </div>
+                    <!--地区-->
+                    <div class="col-sm-4 padding-right">
+                      <div class="form-group row clearfix">
+                        <label class="col-xs-12 col-md-12 no-padding"><span style="color: red">&nbsp;*&nbsp;</span>{{'user.user_baseinfo.location'
+                          | translate}}
+                        </label>
+                        <div class="col-md-12 no-padding">
+                          <ng-select
+                            class="col-md-12 select-control no-padding"
+                            #addCountryIdModel
+                            [items]="countryIds"
+                            [active]="activrCountryIds"
+                            [placeholder]="member.countryId"
+                            (data)="selected($event, 'countryIds')">
+                          </ng-select>
+                          <input type="hidden" name="countryId" #addCountryIdModel="ngModel"
+                                 [(ngModel)]="member.countryId"
+                                 required
+                                 ng2SelectRequired>
+                          <div [hidden]="addCountryIdModel.valid || addCountryIdModel.pristine"
+                               style="display: block"
+                               class="alert alert-danger user-input">
+                            {{'user.user_baseinfo.select_location' | translate}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--电话-->
+                    <div class="col-sm-4 padding-right">
+                      <div class="form-group row clearfix">
+                        <label class="col-xs-12 col-md-12 no-padding"><span style="color: red">&nbsp;*&nbsp;</span>{{'user.user_baseinfo.phone'
+                          | translate}}
+                        </label>
+                        <div class="col-md-12 no-padding">
+                          <input type="text" class="form-control"
+                                 required
+                                 pattern="(^[1-9](\d{4})|(\d{8})$)"
+                                 [(ngModel)]="member.phone"
+                                 name="phone"
+                                 #addPhoneModel="ngModel"
+                          >
+                          <div [hidden]="addPhoneModel.valid || addPhoneModel.pristine" style="display: block"
+                               class="text-danger absolute">
+                            {{'user.user_baseinfo.input_phone' | translate}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--邮件-->
+                    <div class="col-sm-4 no-padding">
+                      <div class="form-group row clearfix">
+                        <label class="col-xs-12 col-md-12 no-padding"><span style="color: red">&nbsp;*&nbsp;</span>{{'user.user_baseinfo.email'
+                          | translate}}
+                        </label>
+                        <div class="col-md-12 no-padding">
+                          <input type="text" class="form-control"
+                                 disabled="disabled"
+                                 [value]="member.email"
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <!--证件类型-->
+                    <div class="col-sm-4 padding-right">
+                      <div class="form-group row clearfix">
+                        <label class="col-xs-12 col-md-12 no-padding">{{'user.user_baseinfo.card_types' | translate}}
+                        </label>
+                        <div class="col-md-12 no-padding">
+                          <ng-select class="col-md-12 select-control no-padding"
+                                     #addIDTypeModel
+                                     [items]="IDTypes"
+                                     [active]="activeIDTypes"
+                                     [placeholder]="'global.'+member.IDType | translate"
+                                     (data)="selected($event, 'IDTypes')">
+                          </ng-select>
+                        </div>
+                      </div>
+                    </div>
+                    <!--证件号码-->
+                    <div class="col-sm-8 no-padding">
+                      <div class="form-group row clearfix">
+                        <label class="col-xs-12 col-md-12 no-padding">{{'user.user_baseinfo.card_number' | translate}}
+                        </label>
+                        <div class="col-md-12 no-padding">
+                          <input type="text" class="form-control"
+                                 [(ngModel)]="member.IDNumber"
+                                 name="IDNumber"
+                                 #addIDNumberModel="ngModel">
+                          <form-message [control]="addIDNumberModel" [fieldName]="'user.user_baseinfo.card_number' | translate"></form-message>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="sava-wrapper">
+              <span class="accept-wrapper">
+                <button type="submit" [disabled]="!userAddForm.form.valid"><img class="accept-logo"
+                                                                                src="../../../assets/img/success.png">
+                  {{'button.save' | translate}}</button>
+              </span>
+              <span class="reject-wrapper">
+                <button type="button" (click)="reject($event)"><img class="reject-logo" src="../../../assets/img/fail.png">{{'button.cancel' | translate}}</button>
+              </span>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!--我的公司-->
+          <div class="col-sm-12 no-padding">
+            <div class="experience">
+              <div class="user-item">
+                <div class="title add-more">
+                  <span class="head"><span
+                    style="color: red">*&nbsp;</span>{{'user.title.my_company' | translate}}</span>
+                  <span class="add-state pull-right" (click)="showModal('company')">+ &nbsp;{{'user.title.add_myCompany' | translate}}</span>
+                </div>
+                <!--我的公司-->
+                <table *ngIf="companies?.length > 0"
+                       class="table table-striped table-align-middle table-outline text-center table-margin-bottom">
+                  <tbody>
+                  <tr>
+                    <td>{{'user.user_company.company_name' | translate}}</td>
+                    <td>{{'user.home.industry' | translate}}</td>
+                    <td>{{'user.user_company.tel' | translate}}</td>
+                    <td></td>
+                  </tr>
+                  <tr *ngFor="let item of companies">
+                    <td>{{item.companyName }}</td>
+                    <td>{{item?.industry?.name}}</td>
+                    <td>{{item.mobile}}</td>
+                    <td>
+                      <img class="pull-right" (click)="delete('deleteCompany',item.id)"
+                           src="../../../assets/img/fail.png" style="vertical-align: middle; margin-left: 20px;"/>
+                      <img class="pull-right" src="../../../assets/img/user_edit.png"
+                           (click)="showModal('company', item)">
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+                <!--加载我的公司-->
+                <div class="no-invitations-bottom row clearfix" *ngIf="companyLoading">
+                  <div class="no-padding col-xs-12 col-sm-12 col-md-12 clearfix">
+                    <div class="empty-baseinfo-wrapper text-center clearfix">
+                      <img class="empty-pic loading-gif" src="../../../assets/img/loading.gif">
+                    </div>
+                  </div>
+                </div>
+                <!--无我的公司-->
+                <div class="no-invitations-bottom row clearfix" *ngIf="companies?.length === 0">
+                  <div class="no-padding col-xs-12 col-sm-12 col-md-12 clearfix">
+                    <div class="empty-baseinfo-wrapper text-center clearfix">
+                      <img class="empty-pic" src="../../../assets/img/no-company.png">
+                      <p class="empty-text text-center">{{'user.user_baseinfo.no-company-add' | translate}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--工作经验-->
+          <div class="col-sm-12 no-padding">
+            <div class="experience">
+              <div class="user-item">
+                <div class="title add-more">
+                  <span class="head">{{'user.title.hands-on_background' | translate}}</span>
+                  <span class="add-state pull-right" (click)="showModal('experience'); isaddExperience = true">+ &nbsp;{{'user.title.add_experience' | translate}}</span>
+                </div>
+                <!--有工作经验信息-->
+                <table *ngIf="experiences?.length > 0"
+                       class="table table-striped table-align-middle table-outline text-center table-margin-bottom">
+                  <tbody>
+                  <tr>
+                    <td>{{'chamber.know.time' | translate}}</td>
+                    <td>{{'user.user_company.company_name' | translate}}</td>
+                    <td>{{'user.user_experience.position' | translate}}</td>
+                    <td></td>
+                  </tr>
+                  <tr *ngFor="let item of experiences">
+                    <td>{{item.startedDate | date: 'yyyy-MM'}} {{'user.home.to' | translate}} {{item.endedDate | date:
+                      'yyyy-MM'}}
+                    </td>
+                    <td>{{item.companyName}}</td>
+                    <td>{{item.position}}</td>
+                    <td>
+                      <img class="pull-right" (click)="delete('deleteExperience',item.id)"
+                           src="../../../assets/img/fail.png" style="vertical-align: middle; margin-left: 20px;"/>
+                      <img class="pull-right" src="../../../assets/img/user_edit.png"
+                           (click)="showModal('experience', item)">
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+                <!--加载工作经验-->
+                <div class="no-invitations-bottom row clearfix" *ngIf="experienceLoading">
+                  <div class="no-padding col-xs-12 col-sm-12 col-md-12 clearfix">
+                    <div class="empty-baseinfo-wrapper text-center clearfix">
+                      <img class="empty-pic loading-gif" src="../../../assets/img/loading.gif">
+                    </div>
+                  </div>
+                </div>
+                <!--无工作经验信息-->
+                <div class="no-invitations-bottom row clearfix" *ngIf="experiences?.length === 0">
+                  <div class="no-padding col-xs-12 col-sm-12 col-md-12 clearfix">
+                    <div class="empty-baseinfo-wrapper text-center clearfix">
+                      <img class="empty-pic" src="../../../assets/img/no-experienc.png">
+                      <p class="empty-text text-center">{{'user.user_baseinfo.no-experience-add' | translate}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--教育背景-->
+          <div class="col-sm-12 no-padding">
+            <div class="education">
+              <div class="user-item">
+                <div class="title add-more">
+                  <span class="head">{{'user.title.educational_background' | translate}}</span>
+                  <span class="add-state pull-right" (click)="showModal('education')">+ &nbsp;{{'user.title.add_education' | translate}}</span>
+                </div>
+                <table *ngIf="educations?.length > 0"
+                       class="table table-striped table-align-middle table-outline text-center table-margin-bottom">
+                  <tbody>
+                  <tr>
+                    <td>{{'chamber.know.time' | translate}}</td>
+                    <td>{{'user.user_education.school' | translate}}</td>
+                    <td>{{'user.user_education.major' | translate}}</td>
+                    <td></td>
+                  </tr>
+                  <tr *ngFor="let item of educations">
+                    <td>{{item.startDate | date: 'yyyy-MM' }} {{'user.home.to' | translate}} {{item.endDate | date:
+                      'yyyy-MM' }}
+                    </td>
+                    <td>{{item.schoolName}}</td>
+                    <td>{{item.subject}}</td>
+                    <td>
+                      <img class="pull-right" (click)="delete('deleteEducation',item.id)"
+                           src="../../../assets/img/fail.png" style="vertical-align: middle; margin-left: 20px;"/>
+                      <img class="pull-right" src="../../../assets/img/user_edit.png"
+                           (click)="showModal('education', item)">
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+                <!--加载教育背景-->
+                <div class="no-invitations-bottom row clearfix" *ngIf="educationLoading">
+                  <div class="no-padding col-xs-12 col-sm-12 col-md-12 clearfix">
+                    <div class="empty-baseinfo-wrapper text-center clearfix">
+                      <img class="empty-pic loading-gif" src="../../../assets/img/loading.gif">
+                    </div>
+                  </div>
+                </div>
+                <!--无教育背景-->
+                <div class="no-invitations-bottom row clearfix" *ngIf="educations?.length === 0">
+                  <div class="no-padding col-xs-12 col-sm-12 col-md-12 clearfix">
+                    <div class="empty-baseinfo-wrapper text-center clearfix">
+                      <img class="empty-pic" src="../../../assets/img/no-education.png">
+                      <p class="empty-text text-center">{{'user.user_baseinfo.no_education_add' | translate}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--工作经验模态框-->
+<div class="modal fade" bsModal #experienceModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header modal-header-padding clearfix">
+        <div class="big-title form-big-title clearfix">
+          <h1 class="text-center">{{'user.title.hands-on_background' | translate}}</h1> <img
+          class="close-btn pull-right cursor" src="../../../assets/img/black_close.png"
+          (click)="onHidden('experience')">
+        </div>
+      </div>
+      <div class="modal-body modal-body-padding">
+        <form class="container-fluid no-padding" (submit)="submitExperience()"
+              name="experienceForm"
+              #experienceForm="ngForm">
+          <div class="form-group row clearfix">
+            <div class="col-sm-6 padding-right">
+              <label for="startedDate" class="col-md-12 no-padding">{{'user.user_experience.start' | translate}}</label>
+              <div class="col-md-12 clearPadding form-date-content">
+                <input type="text" class="form-control form-date" #startedDate id="startedDate" name="startedDate"
+                       required
+                       [(ngModel)]="experience.startedDate"
+                       #startedDateHanlder="ngModel">
+                <i class="caret pull-right" style="right: 15px"></i>
+                <form-message [control]="startedDateHanlder"
+                              [fieldName]="'user.user_education.start' | translate"></form-message>
+              </div>
+
+            </div>
+            <div class="col-sm-6 padding-left">
+              <label for="endedDate" class="col-md-12 no-padding">{{'user.user_experience.end' | translate}}
+                <span class="pull-right choice-current-wrapper">
+                  <input class="choice-current" type="checkbox" name="now" id="now" (change)="changeNow()" [(ngModel)]="now">
+                  <label class="to-current" for="now" role="button">至今</label>
+               </span>
+              </label>
+              <div class="col-md-12 no-padding">
+                <div class="col-md-12 clearPadding form-date-content">
+                  <input type="text" class="form-control form-date" #endDate id="endedDate" name="endedDate" required
+                         [(ngModel)]="experience.endedDate"
+                         #endDateHanlder="ngModel">
+                  <i class="caret pull-right" style="right: 15px"></i>
+                  <form-message [control]="endDateHanlder"
+                                [fieldName]="'user.user_education.end' | translate"></form-message>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row clearfix">
+            <div class="col-sm-6 padding-right">
+              <label class="col-md-12 no-padding">{{'user.user_experience.company' |
+                translate}}</label>
+              <div class="col-md-12 no-padding">
+                <input type="text" class="form-control"
+                       [(ngModel)]="experience.companyName"
+                       required
+                       name="companyName"
+                       #companyModel="ngModel"
+                       placeholder="{{'user.user_experience.input_company_name' | translate}}">
+                <form-message [control]="companyModel"
+                              [fieldName]="'user.user_company.company_name' | translate"></form-message>
+              </div>
+            </div>
+            <div class="col-sm-6 padding-left">
+              <label class="col-md-12 no-padding">{{'user.user_experience.position' | translate}}</label>
+              <div class="col-md-12 no-padding">
+                <input type="text" class="form-control"
+                       [(ngModel)]="experience.position"
+                       required
+                       name="position"
+                       #positionModel="ngModel"
+                       placeholder="{{'user.user_experience.input_position' | translate}}">
+                <form-message [control]="positionModel"
+                              [fieldName]="'user.user_experience.position' | translate"></form-message>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row clearfix">
+            <div class="col-sm-12 no-padding">
+              <label class="col-md-12 no-padding education-label">{{'user.user_experience.job_description'
+                | translate}}</label>
+              <div class="col-xs-12 col-md-12 no-padding">
+                <textarea class="col-xs-12 col-md-12 textarea-control" rows="3"
+                          [(ngModel)]="experience.description"
+                          required
+                          name="description"
+                          #descriptionModel="ngModel"
+                          placeholder="{{'user.user_experience.input_job_description' | translate}}"></textarea>
+                <form-message [control]="descriptionModel"
+                              [fieldName]="'user.user_experience.job_description' | translate"></form-message>
+              </div>
+            </div>
+          </div>
+          <div class="row text-center clearfix">
+            <button type="submit" class="custom-btn cursor" style="line-height: 1.8;" (click)="experienceModal.hide()"
+                    aria-label="Close" [disabled]="!experienceForm.form.valid">
+              {{'button.save' | translate}}
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--我的公司模态框-->
+<div *ngIf="isCompanyShow" [config]="{ show: true }" (onHidden)="onHidden('company')" class="modal fade" bsModal
+     #companyModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header modal-header-padding clearfix">
+        <div class="big-title form-big-title clearfix">
+          <h1 class="text-center">{{'user.title.my_company' | translate}}</h1> <img class="close-btn pull-right cursor"
+                                                                                    src="../../../assets/img/black_close.png"
+                                                                                    (click)="onHidden('company')">
+        </div>
+      </div>
+      <div class="modal-body modal-body-padding">
+        <form class="container-fluid no-padding" (submit)="submitCompany()" name="companyForm"
+              #companyForm="ngForm">
+          <div class="form-group row clearfix">
+            <div class="col-sm-6 padding-right">
+              <label for="companyName" class="col-md-12 no-padding">{{'user.user_company.company_name' |
+                translate}}
+                <div class="checkbox custom-checkbox">
+                  <label>
+                    <input type="checkbox"
+                           [(ngModel)]="company.isDefault"
+                           name="role"
+                           #companyRole="ngModel"
+
+                    > {{'global.set-company-account' | translate}}
+                  </label>
+                </div>
+              </label>
+              <div class="col-md-12 no-padding">
+                <input type="text" class="form-control"
+                       [(ngModel)]="company.companyName"
+                       required
+                       name="companyName"
+                       #companyNameModel="ngModel"
+                       placeholder="{{'user.user_company.input_company_name' | translate}}">
+                <form-message [control]="companyNameModel"
+                              [fieldName]="'user.user_company.company_name' | translate"></form-message>
+              </div>
+            </div>
+            <div class="col-sm-6 padding-left clearfix">
+              <label class="no-padding">{{'chamber.select.industry' |
+                translate}}</label>
+              <ng-select class="select-control no-padding"
+                         #industryModel
+                         [items]="industry"
+                         [active]="activeIndustry"
+                         [placeholder]="'chamber.select.industry' | translate"
+                         (data)="selected($event, 'industry')">
+              </ng-select>
+              <input type="hidden" name="industry" #industryModel="ngModel"
+                     [(ngModel)]="company.industryId"
+                     required
+                     ng2SelectRequired>
+              <form-message [control]="industryModel"
+                            [fieldName]="'chamber.select.industry' | translate"></form-message>
+            </div>
+          </div>
+          <div class="form-group row clearfix">
+
+            <div class="col-sm-6 padding-right">
+              <label class="col-md-12 no-padding">{{'user.user_company.company_email' | translate}}</label>
+              <div class="col-md-12 no-padding">
+                <input type="text" class="form-control"
+                       [(ngModel)]="company.companyEmail"
+                       required
+                       name="companyEmail"
+                       #companyEmailModel="ngModel"
+                       placeholder="{{'user.user_company.company_email' | translate}}">
+                <form-message [control]="companyEmailModel"
+                              [fieldName]="'user.user_company.company_email' | translate"></form-message>
+              </div>
+            </div>
+
+            <div class="col-sm-6 padding-left">
+              <label class="col-md-12 no-padding">{{'user.user_company.tel' | translate}}</label>
+              <div class="col-md-12 no-padding">
+                <input type="text" class="form-control"
+                       [(ngModel)]="company.mobile"
+                       pattern="(^[1-9](\d{4})|(\d{8})$)"
+                       required
+                       name="mobile"
+                       #mobileModel="ngModel"
+                       placeholder="{{'user.user_company.input_tel' | translate}}">
+                <form-message [control]="mobileModel"
+                              [fieldName]="'user.user_company.tel' | translate"></form-message>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row clearfix">
+            <div class="col-sm-12 no-padding">
+              <label class="col-md-12 no-padding education-label">{{'user.user_company.address' |
+                translate}}</label>
+              <div class="col-md-12 no-padding">
+                <input type="text" class="form-control textarea-control"
+                       [(ngModel)]="company.address"
+                       required
+                       name="address"
+                       #addressModel="ngModel"
+                       placeholder="{{'user.user_company.input_address' | translate}}">
+                <form-message [control]="addressModel"
+                              [fieldName]="'user.user_company.address' | translate"></form-message>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row clearfix">
+            <div class="col-sm-12 no-padding">
+              <label class="col-md-12 no-padding education-label">{{'user.user_company.scope_experience'
+                | translate}}</label>
+              <div class="col-md-12 no-padding">
+              <textarea class="col-xs-12 col-md-12 textarea-control" rows="3"
+                        [(ngModel)]="company.scopeOfOperation"
+                        required
+                        name="scopeOfOperation"
+                        #scopeModel="ngModel"
+                        placeholder="{{'user.user_company.inpu_scope_experience' | translate}}"></textarea>
+                <form-message [control]="scopeModel"
+                              [fieldName]="'user.user_company.scope_experience' | translate"></form-message>
+              </div>
+            </div>
+          </div>
+          <div class="row text-center clearfix">
+            <button type="submit" class="custom-btn" style="line-height: 1.8;" (click)="companyModal.hide()"
+                    aria-label="Close" [disabled]="!companyForm.form.valid || !company.industryId">
+              {{'button.save' | translate}}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--添加教育背景模态框-->
+<div class="modal fade" bsModal #educationModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header modal-header-padding clearfix">
+        <div class="big-title form-big-title clearfix">
+          <h1 class="text-center">{{'user.title.educational_background' | translate}}</h1> <img
+          class="close-btn pull-right cursor" src="../../../assets/img/black_close.png" (click)="onHidden('education')">
+        </div>
+      </div>
+      <div class="modal-body modal-body-padding">
+        <form class="container-fluid no-padding" (submit)="submitEducation()" name="educationForm"
+              #educationForm="ngForm">
+          <div class="form-group row clearfix">
+            <div class="col-sm-6 padding-right">
+              <label for="EstartDate" class="col-md-12 no-padding">{{'user.user_education.start' | translate}}</label>
+              <div class="col-md-12 no-padding">
+                <div class="col-md-12 clearPadding form-date-content">
+                  <input type="text" class="form-control form-date" #EstartDate id="EstartDate" name="EendedDate"
+                         required
+                         [(ngModel)]="education.startDate"
+                         #EStrartDateHanlder="ngModel">
+                  <i class="caret pull-right" style="right: 15px"></i>
+                  <form-message [control]="EStrartDateHanlder"
+                                [fieldName]="'user.user_education.start' | translate"></form-message>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6 padding-left">
+              <label for="EendDate" class="col-md-12 no-padding">{{'user.user_education.end' | translate}}</label>
+              <div class="col-md-12 no-padding">
+                <div class="col-md-12 clearPadding form-date-content">
+                  <input type="text" class="form-control form-date" #EendDate id="EendDate" name="EendDate" required
+                         [(ngModel)]="education.endDate"
+                         #EendDateHanlder="ngModel">
+                  <i class="caret pull-right" style="right: 15px"></i>
+                  <form-message [control]="EendDateHanlder"
+                                [fieldName]="'user.user_education.start' | translate"></form-message>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row clearfix">
+            <div class="col-sm-6 padding-right">
+              <label class="col-md-12 no-padding">{{'user.user_education.school' | translate}}</label>
+              <div class="col-md-12 no-padding">
+                <input type="text" class="form-control"
+                       [(ngModel)]="education.schoolName"
+                       required
+                       name="schoolName"
+                       #schoolModel="ngModel"
+                       placeholder="{{'user.user_education.input_school' | translate}}">
+                <form-message [fieldName]="'user.user_education.school' | translate"
+                              [control]="schoolModel"></form-message>
+              </div>
+            </div>
+            <div class="col-sm-6 padding-left">
+              <label class="col-md-12 no-padding">{{'user.user_education.major' | translate}}</label>
+              <div class="col-md-12 no-padding">
+                <input type="text" class="form-control"
+                       [(ngModel)]="education.subject"
+                       required
+                       name="subject"
+                       #subjectModel="ngModel"
+                       placeholder="{{'user.user_education.input_subject' | translate}}">
+                <form-message [fieldName]="'user.user_education.major' | translate"
+                              [control]="subjectModel"></form-message>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row clearfix">
+            <div class="col-sm-12 no-padding">
+              <label class="col-md-12 education-label no-padding">{{'user.user_education.education_levels'
+                | translate}}</label>
+              <div class="col-md-12 no-padding">
+                <ng-select class="col-md-12 select-control no-padding"
+                           #educationLevelModel
+                           [items]="educationLevels"
+                           [active]="activeEducationLevels"
+                           [placeholder]="'user.user_education.education_levels' | translate"
+                           (data)="selected($event, 'educationLevels')">
+                </ng-select>
+                <input type="hidden" name="educationLevel" #educationLevelModel="ngModel"
+                       [(ngModel)]="education.educationLevel"
+                       required
+                       ng2SelectRequired>
+                <form-message [control]="educationLevelModel"
+                              [fieldName]="'user.user_education.education_levels' | translate"></form-message>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row clearfix">
+            <div class="col-sm-12 no-padding">
+              <label class="col-xs-12 col-md-12 description-label no-padding">{{'user.user_education.job_description'
+                | translate}}</label>
+              <div class="col-md-12 no-padding">
+                <textarea class="col-xs-12 col-md-12 textarea-control" rows="3"
+                          [(ngModel)]="education.description"
+                          required
+                          name="scopeOfOperation"
+                          #textareaModel="ngModel"
+                          placeholder="{{'user.user_education.input_school_performance' | translate}}"></textarea>
+                <form-message [fieldName]="'user.user_education.job_description' | translate"
+                              [control]="textareaModel"></form-message>
+              </div>
+            </div>
+          </div>
+          <div class="row text-center clearfix">
+            <button type="submit" class="custom-btn" style="line-height: 1.8;"
+                    (click)="educationModal.hide()" [disabled]="!educationForm.form.valid"
+                    aria-label="Close">
+              {{'button.save' | translate}}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

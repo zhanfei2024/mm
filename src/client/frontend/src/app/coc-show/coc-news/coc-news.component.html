@@ -1,0 +1,57 @@
+
+      <!--商会新闻列表-->
+      <div class="coc-home" *ngIf="newsShow">
+        <div class="enterprise-tab-wrapper clearfix custom-heigh">
+          <div class="enterprise-tab-head row">
+            <div class="big-title clearfix">
+              <h1 class="text-center">{{'cocShow.news.coc_news' | translate}}</h1>
+            </div>
+          </div>
+
+          <div class="row news-card news-margin clearfix" *ngFor="let item of news; let i = index">
+
+            <div class="news-avatar cursor hidden-xs hidden-sm">
+              <img class="img-responsive" *ngIf="item?.cover?.url" [src]="item?.cover?.url"
+                   style="width: 100%" [routerLink]="['/coc-show', item?.coc?.id, 'news', item?.id,'detail']">
+              <img class="img-responsive" *ngIf="!item?.cover?.url"
+                   src="../../../assets/img/null_pic/168x112.png" style="width: 100%"
+                   [routerLink]="['/coc-show', item?.coc?.id, 'news', item?.id,'detail']">
+            </div>
+
+
+            <div class="news-content">
+              <h1 class="title cursor text-overflow" [routerLink]="['/coc-show', item.coc.id, 'news', item.id,'detail']">
+                {{item?.title}}</h1>
+              <p class="time">{{item?.createdAt | date: 'yyyy-MM-dd'}}</p>
+              <p class="time-bottom"></p>
+              <p class="content cursor" [innerHTML]="item?.content | htmlToPlaintext: 80"
+                 [routerLink]="['/coc-show', item.coc.id, 'news', item.id,'detail']"></p>
+            </div>
+
+          </div>
+          <div *ngIf="news?.length === 0" class="row no-coc-content1">
+            <div class="news-content">
+              <img class="center-block" src="../../../assets/img/no-coc-news.png">
+              <p class="content text-center">{{'cocShow.news.no_coc_news' | translate}}</p>
+            </div>
+          </div>
+          <div class="row no-member-rules" *ngIf="newsLoading">
+            <div class="news-content">
+              <i class="loading-img"></i>
+            </div>
+          </div>
+          <!--分页-->
+          <div class="coc-pagination  col-xs-12 col-sm-12 col-md-12" *ngIf="news?.length > 0">
+            <div class="pagination-wrapper text-center">
+              <pagination [previousText]="'navbar.previous_page' | translate"
+                          [nextText]="'navbar.next_page' | translate"
+                          [itemsPerPage]="filter.limit"
+                          [totalItems]="meta.pagination.totalCount"
+                          [(ngModel)]="filter.page"
+                          (pageChanged)="pageChanged($event)">
+              </pagination>
+            </div>
+          </div>
+        </div>
+      </div>
+

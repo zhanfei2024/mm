@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+.loading-img {
+  background: url(/assets/img/loading.gif) no-repeat;
+  width: 80px;
+  height: 80px;
+  display: block;
+  margin: auto;
+}
+
+.text-overflow{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.swiper-slide {
+  -webkit-flex-shrink: 0;
+  -ms-flex: 0 0 auto;
+  flex-shrink: 0;
+  overflow: inherit !important;
+}
+
+.swiper-pagination {
+  text-align: right !important;
+  padding-right: 15px !important;
+}
+
+.swiper-pagination-bullet-active {
+  width: 20px !important;
+  height: 10px !important;
+  border-radius: 5px !important;
+  background-color: #ffffff !important;
+}
+
+.swiper-pagination-bullet {
+  margin: 0 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px !important;
+  background-color: #ffffff !important;
+}
+
+.pt-3 {
+  padding-top: 3rem !important;
+}
+
+.pb-3 {
+  padding-bottom: 3rem !important;
+}

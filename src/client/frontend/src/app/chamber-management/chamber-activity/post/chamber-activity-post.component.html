@@ -1,0 +1,216 @@
+<div class="container">
+  <div class="post-container activity-post-container">
+    <div class="post-header" style="margin: 20px 0">
+      <a class="br" [routerLink]="['/chamber',id,'activity','list']"> <img src="../../../../assets/img/back.png" class="icon"/>{{'chamber.left.activity'
+        | translate}} </a> ——
+      <span>{{title | translate}}</span>
+    </div>
+    <form class="container-fluid activity-form" name="mainForm" #mainForm="ngForm">
+      <div class="form-group row clearfix">
+        <div class="col-md-6 clearPadding">
+          <label for="title" class="col-md-12 clearPadding py-h px-1">{{'chamber.activity.name'
+            |
+            translate}}</label>
+          <div class="col-md-12 clearPadding">
+            <input type="text" class="form-control" id="title" name="title" required
+                   [(ngModel)]="activity.title" #titleHanlder="ngModel">
+            <form-message [control]="titleHanlder"
+                          [fieldName]="'chamber.activity.name' | translate"></form-message>
+          </div>
+        </div>
+        <div class="col-md-3 clearPadding">
+          <label for="personnelNumber" class="col-md-12 py-h px-1">{{'chamber.activity.scale'
+            | translate}}</label>
+          <div class="col-md-12">
+            <input type="number" class="form-control" required id="personnelNumber"
+                   name="personnelNumber" [(ngModel)]="activity.personnelNumber" #personnelNumberHanlder="ngModel">
+            <form-message [control]="personnelNumberHanlder"
+                          [fieldName]="'chamber.activity.scale' | translate"></form-message>
+          </div>
+        </div>
+        <div class="col-md-3 clearPadding">
+          <label for="category" class="col-md-12 py-h px-1">{{'chamber.activity.category'
+            | translate}}</label>
+          <div class="col-md-12" style="padding-right: 0">
+            <ng-select
+              #category
+              [items]="categories"
+              [active]="activeategoryIds"
+              name="categorys"
+              (data)="selected($event,'categoryIds')">
+            </ng-select>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="form-group row clearfix">
+        <div class="col-md-4 clearPadding">
+          <label for="startTimedAt" class="col-md-12 clearPadding py-h px-1">{{'chamber.activity.startTimedAt'
+            | translate}}</label>
+          <div class="col-md-12 clearPadding form-date-content">
+            <input type="text" class="form-control form-date" #startTimedAt id="startTimedAt" name="startTimedAt"  required
+                   [(ngModel)]="activity.startTimedAt"
+                   #startTimedAtHanlder="ngModel">
+            <i class="caret pull-right" style="right: 15px"></i>
+            <form-message [control]="startTimedAtHanlder"
+                          [fieldName]="'chamber.activity.startTimedAt' | translate"></form-message>
+          </div>
+        </div>
+        <div class="col-md-4 ">
+          <label for="endTimedAt" class="col-md-12 clearPadding  py-h px-1">{{'chamber.activity.endTimedAt'
+            | translate}}</label>
+          <div class="col-md-12 clearPadding form-date-content">
+            <input type="text" class="form-control form-date" #endTimedAt id="endTimedAt" name="endTimedAt"  required
+                   [(ngModel)]="activity.endTimedAt"
+                   #endTimedAtHanlder="ngModel">
+            <i class="caret pull-right" style="right: 15px"></i>
+            <form-message [control]="endTimedAtHanlder"
+                          [fieldName]="'chamber.activity.endTimedAt' | translate"></form-message>
+          </div>
+        </div>
+        <div class="col-md-4 clearPadding">
+          <label for="signUpEndTimedAt" class="col-md-12 clearPadding  py-h px-1">{{'chamber.activity.signUpEndTimedAt'
+            | translate}}</label>
+          <div class="col-md-12 clearPadding form-date-content">
+            <input type="text" class="form-control form-date" #signUpEndTimedAt id="signUpEndTimedAt" name="signUpEndTimedAt"
+                   required
+                   [(ngModel)]="activity.signUpEndTimedAt"
+                   #signUpEndTimedAtHanlder="ngModel">
+            <i class="caret pull-right" style="right: 15px"></i>
+            <form-message [control]="signUpEndTimedAtHanlder"
+                          [fieldName]="'chamber.activity.signUpEndTimedAt' | translate"></form-message>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group row clearfix">
+        <div class="col-md-12 clearPadding">
+          <label for="address" class="col-md-12 clearPadding py-h px-1">{{'chamber.activity.address'
+            | translate}}</label>
+          <div class="col-md-12 clearPadding">
+            <input type="text" class="form-control" required name="address" id="address"
+                   [(ngModel)]="activity.address" #addressHanlder="ngModel">
+            <form-message [control]="addressHanlder"
+                          [fieldName]="'chamber.activity.address' | translate"></form-message>
+          </div>
+        </div>
+        <!--<div class="col-md-4 " style="padding-right: 0">-->
+          <!--<label for="isPublic" class="col-md-12 clearPadding py-h px-1">{{'chamber.activity.setting'-->
+            <!--| translate}}</label>-->
+          <!--<div class="col-md-12 clearPadding">-->
+            <!--<ng-select-->
+              <!--#category-->
+              <!--[items]="public"-->
+              <!--[active]="activeatePublic"-->
+              <!--name="isPublic"-->
+              <!--(data)="selected($event,'public')">-->
+            <!--</ng-select>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <div class="form-group row clearfix" style="min-height: 140px">
+
+        <div class="col-md-12 clearPadding">
+          <label for="number" class="col-md-12 clearPadding py-h px-1">{{'chamber.btn.file_update'
+            | translate}}</label>
+        </div>
+        <div class="col-md-5 clearPadding relative" style="width: 288px;min-height: 180px">
+          <img class="file_img" [src]="logoUrl" height="180" width="100%"
+               *ngIf="logoUrl !== '../../../assets/img/logo/default_company_icon.png'"/>
+          <app-file-uploader type="file" [fileInput]="fileName"
+                             [croppedHeight]="270"
+                             [croppedWidth]="380"
+                             [width]="380"
+                             [height]="270"
+                             [id]="'cover'"
+                             [isCover]="isCover"
+                             [widthCover]="'180px'"
+                             (editChange)="editCountChange($event)" #cover></app-file-uploader>
+
+        </div>
+        <div class="col-md-4 relative clearfix">
+          <p class="text promptPadding">{{'chamber.prompt.title' | translate}}</p>
+          <p class="text promptPaddingText">
+            {{'chamber.prompt.update_file_size_text' | translate}}
+          </p>
+        </div>
+      </div>
+
+      <div class="form-group row clearfix">
+        <label for="description" class="col-md-12 py-h px-1 clearPadding">{{'chamber.activity.content'
+          | translate}}</label>
+        <div class="col-md-12 clearPadding">
+          <quill-editor [(ngModel)]="description" id="description" name="description" required
+                        #descriptionHanlder="ngModel"></quill-editor>
+          <form-message [control]="descriptionHanlder"
+                        [fieldName]="'chamber.activity.content' | translate"></form-message>
+        </div>
+      </div>
+
+      <div class="row clearfix">
+        <div class="host-title">
+          {{'chamber.activity.sponsor' | translate}}
+        </div>
+      </div>
+
+      <div class="form-group row clearfix host-content">
+        <div class="col-md-3 col-sm-6">
+          <label for="hostCoc" class="col-md-12 clearPadding py-h px-1">
+            {{'chamber.activity.sponsor_coc' | translate}}</label>
+          <div class="col-md-12" style="padding-left: 0">
+            <input type="text" class="form-control" id="hostCoc" name="hostCoc" required
+                   [(ngModel)]="activity.hostCoc" >
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <label for="hostContacts" class="col-md-12 clearPadding py-h px-1">
+            {{'chamber.create.contacts' | translate}}</label>
+          <div class="col-md-12">
+            <input type="text" class="form-control" id="hostContacts" name="hostContacts" required
+                   [(ngModel)]="activity.hostContacts" >
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <label for="hostPhone" class="col-md-12 py-h px-1">{{'chamber.create.phone'
+            |
+            translate}}</label>
+          <div class="col-md-12">
+            <input type="text" class="form-control" id="hostPhone" name="hostPhone" required
+                   [(ngModel)]="activity.hostPhone" >
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <label for="hostEmail" class="col-md-12 py-h px-1">{{'chamber.create.email'
+            |
+            translate}}</label>
+          <div class="col-md-12">
+            <input type="text" class="form-control" id="hostEmail" name="hostEmail" required
+                   [(ngModel)]="activity.hostEmail" >
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-sm-12 clearPadding text-center" style="margin-top: 40px;">
+        <button type="button" class="btn  cursor btn-submit-primary btn-margin-right" style="padding: 8px 85px;line-height: 1.8;"
+                (click)="onSubmit()"
+                [disabled]="!mainForm.form.valid || submitLoading"
+                aria-label="Close">
+          <span *ngIf="submitLoading"><i class="fa fa-spin fa-spinner"></i></span>
+          <span *ngIf="!submitLoading">{{'chamber.btn.submit' | translate}}</span>
+        </button>
+        <button type="submit" class="btn btn-outline-primary cursor btn-submit-primary btn-margin-left"
+                style="padding: 8px 85px;line-height: 1.8;"
+                [routerLink]="['/chamber',id,'activity','list']">
+          {{'chamber.btn.cancel' | translate}}
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+</div>

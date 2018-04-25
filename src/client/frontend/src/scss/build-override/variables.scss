@@ -1,0 +1,92 @@
+$gray-base:              #000;
+$gray-font-color:        #4a5065;
+$gray-darker:            lighten($gray-base, 13.5%); // #222
+$gray-dark:              lighten($gray-base, 20%);   // #333
+$gray:                   #828da0;
+$gray-h4:                 #323d50;
+
+//text-color
+$light-blue-line:         #828da0;
+$gray-text-color:         #828da0;
+$white-text-color:        #ffffff;
+$black-text-color:        #323d50;
+$input-text-color:        #c8c8c8;
+$light-black-text-color:  #686765;
+$blue-text-color:         #0b409c;
+$gray-light-1x:           #cccccc;
+$gray-light-2x:          lighten($gray-base, 85.0%); // #ddd
+$gray-lighter:           lighten($gray-base, 93.5%); // #eee
+
+
+$gray-line-color:       #DCDCDC;
+
+$brand-primary:         #003366;
+$brand-dark:            #3f3f3f;
+$brand-success:         #1e56a0;
+$brand-info:            #4a80bc;
+$brand-warning:         #1e517e;
+$brand-danger:          #999999;
+
+$letter-spacing-base:     1.12px;  //~14px
+$letter-spacing-h4:       1.44px;  //~18px
+$letter-spacing-h3:       1.92px;  //~24px
+$letter-spacing-h6:       0.96px;  //~12px
+$letter-spacing-h2:       2.4px;  //~30px
+
+$font-size-base:          14px;
+$font-size-large:         ceil(($font-size-base * 1.14)); // ~16px
+$font-size-small:         ceil(($font-size-base * 0.85)); // ~12px
+
+$font-size-h1:            floor(($font-size-base * 2.6)); // ~36px
+$font-size-h2:            floor(($font-size-base * 2.15)); // ~30px
+$font-size-h3:            ceil(($font-size-base * 1.7)); // ~24px
+$font-size-h4:            ceil(($font-size-base * 1.28)); // ~18px
+$font-size-h5:            $font-size-base;
+$font-size-h6:            ceil(($font-size-base * 0.85)); // ~12px
+
+
+// navbar
+$navbar-default-color:             #777;
+$navbar-default-bg:                $body-bg;
+$navbar-default-border:            darken($navbar-default-bg, 6.5%);
+$brand-default-border:             #dcdcdc;
+
+// Navbar links
+$navbar-default-link-color:                #333;
+$navbar-default-link-hover-color:          $brand-success;
+$navbar-default-link-hover-bg:             transparent;
+$navbar-default-link-active-color:         $brand-success;
+$navbar-default-link-active-bg:            $body-bg;
+$navbar-default-link-disabled-color:       #ccc;
+$navbar-default-link-disabled-bg:          transparent;
+
+// Navbar brand label
+$navbar-default-brand-color:               $navbar-default-link-color;
+$navbar-default-brand-hover-color:         darken($navbar-default-brand-color, 10%);
+$navbar-default-brand-hover-bg:            transparent;
+
+// Navbar toggle
+$navbar-default-toggle-hover-bg:           #ddd;
+$navbar-default-toggle-icon-bar-bg:        #888;
+$navbar-default-toggle-border-color:       #ddd;
+
+// background-color
+$black-dark-bg:                            #323d50;
+$gray-light-bg:                            #FAFAFA;
+$gray-dark-bg:                             #f1f4f6;
+$white-dark-bg:                            #ffffff;
+$blue-dark-bg:                             #0b409c;
+$pic-default-bg:                           #333333;
+$carousel-point-bg:                        #ffffff;
+$cyan-dark-bg:                             #01AAC1;
+
+
+$font-family-sans-serif: PingFangSC-Light, PingFang SC Light, PingFang SC;
+$font-family-serif: PingFangSC-Light, PingFang SC Light, PingFang SC;
+$font-family-base: PingFangSC-Light, PingFang SC Light, PingFang SC;
+$font-family-regular: 'PingFangSC-Regular', 'PingFang SC';
+$font-family-light: 'PingFangSC-Light', 'PingFang SC Light', 'PingFang SC';
+$font-family-medium: 'PingFangSC-Medium', 'PingFang SC Medium', 'PingFang SC';
+//$font-family-sans-serif: PingFangSC-Light, PingFang SC Light, PingFang SC;
+//$font-family-serif: PingFangSC-Light, PingFang SC Light, PingFang SC;
+

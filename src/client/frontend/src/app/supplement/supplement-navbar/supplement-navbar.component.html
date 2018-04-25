@@ -1,0 +1,28 @@
+<div class="user-home-bg">
+  <div class="container user-home">
+    <div class="clearfix user-center-wrapper">
+      <div class="center-navbar col-xs-12 col-sm-2 col-md-2">
+        <div class="navbar-wrapper">
+          <ul class="user-navbar-list clearfix">
+            <li [routerLink]="['/supplement', 'service-agreement']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+              <span class="square"></span>
+              <img class="statice-img" src="../../../assets/img/user_home.png">
+              <img class="active-img" src="../../../assets/img/user_active_home.png"><a>服務協議</a>
+            </li>
+            <li [routerLink]="['/supplement', 'about-us']" routerLinkActive="active">
+              <span class="square"></span>
+              <img class="statice-img" src="../../../assets/img/user_info.png">
+              <img class="active-img" src="../../../assets/img/user_active_info.png"><a>關於我們</a>
+            </li>
+            <li [routerLink]="['/supplement', 'contact-us']" routerLinkActive="active">
+              <span class="square"></span>
+              <img class="statice-img" src="../../../assets/img/user_coc.png">
+              <img class="active-img" src="../../../assets/img/user_active_coc.png"><a>聯繫我們</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

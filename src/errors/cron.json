@@ -1,0 +1,11 @@
+{
+  "jobTypeNotFound": {
+    "statusCode": 400,
+    "message": {
+      "en": "jobType not found",
+      "cn": "任务类型不存在",
+      "hk": "任務類型不存在"
+    },
+    "code": 22000
+  }
+}

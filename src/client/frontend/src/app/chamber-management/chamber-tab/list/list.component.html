@@ -1,0 +1,84 @@
+
+<div class="coc-container">
+  <div class="chamber-home">
+    <div class="row clearfix">
+      <app-chamber-left></app-chamber-left>
+      <div class="col-md-10">
+        <div class="list-right">
+          <div class="row clearfix">
+            <div class="header">
+              <h4>{{'chamber.tab.custom_tab' | translate}}</h4>
+            </div>
+          </div>
+
+          <div class="row clearfix">
+            <div class="search-contaner clearfix">
+              <div class="col-sm-5 clearPadding">
+              </div>
+              <div *ngIf="tabs?.length < 2" class="col-sm-7 xs-search">
+                <button class="btn-primary btn pull-right btn-submit-primary" style="line-height: 1.5"
+                        [routerLink]="['/chamber', chamberId, 'tab', 'create']">{{'chamber.tab.add_tab' | translate}}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-align-middle table-outline text-center">
+              <thead>
+              <tr>
+                <th>{{'chamber.tab.tab_title' | translate}}</th>
+                <th>{{'chamber.tab.tab_content' | translate}}</th>
+                <th class="text-center">{{'chamber.know.operation' | translate}}</th>
+              </tr>
+              </thead>
+              <!--加载中-->
+              <tbody [hidden]="!tabsLaoding">
+              <tr>
+                <td colspan="4">
+                  <div class="text-center pt-3 pb-3">
+                    <div class="pt-3 pb-3">
+                      <i class="loading-img"></i>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+              <!--无数据-->
+              <tbody *ngIf="tabs?.length === 0 && !tabsLaoding">
+              <tr>
+                <td colspan="4" class="td_no_meassge">
+                  <div class="row clearfix">
+                    <div class="col-sm-12 no_message text-center">
+                      <img src="../../../../assets/img/no_post.png" height="120" width="120"/>
+                      <p> {{'message.no_post_add_text' | translate}}</p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+              <!--有数据-->
+              <tbody  *ngIf="tabs?.length > 0 && !tabsLaoding">
+              <tr *ngFor="let item of tabs">
+                <td>{{item?.title}}</td>
+                <td>{{item?.content | htmlToPlaintext:30}}...</td>
+                <td class="text-center">
+                  <a [routerLink]="['/chamber',chamberId, 'tab', item?.id,'edit']">
+                    <img src="../../../assets/img/edit.png" class="icon"
+                         style="vertical-align: middle; margin-right: 60px"/>
+                  </a>
+                  <a (click)="delete(item.id)">
+                    <img src="../../../assets/img/fail.png" class="icon" style="vertical-align: middle;"/>
+                  </a>
+                </td>
+              </tr>
+
+              </tbody>
+            </table>
+            <!-- /.table-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

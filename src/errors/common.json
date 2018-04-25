@@ -1,0 +1,83 @@
+{
+  "notFound": {
+    "statusCode": 404,
+    "message": {
+      "en": "Not found",
+      "cn": "没有找到",
+      "hk": "沒有找到"
+    },
+    "code": 404
+  },
+  "dataError": {
+    "statusCode": 404,
+    "message": {
+      "en": "Data format Error",
+      "cn": "日期格式错误",
+      "hk": "日期格式錯誤"
+    },
+    "code": 400
+  },
+  "timeError": {
+    "statusCode": 400,
+    "message": {
+      "en": "Time format Error",
+      "cn": "时间格式错误",
+      "hk": "時間格式錯誤"
+    },
+    "code": 400
+  },
+  "locationError": {
+    "statusCode": 400,
+    "message": {
+      "en": "The location is error",
+      "cn": "选择地区出现错误",
+      "hk": "選擇地區出現錯誤"
+    },
+    "code": 400
+  },
+  "startGreaterEndTime": {
+    "statusCode": 400,
+    "message": {
+      "en": "start time is greater than end time",
+      "cn": "开始时间不能晚于结束时间",
+      "hk": "開始時間不能晚於結束時間"
+    },
+    "code": 17001
+  },
+  "isExists": {
+    "statusCode": 400,
+    "message": {
+      "en": "The info is exists",
+      "cn": "已存在",
+      "hk": "已存在"
+    },
+    "code": 17001
+  },
+  "historyNotFound": {
+    "statusCode": 400,
+    "message": {
+      "en": "The history is not exists",
+      "cn": "历史不存在",
+      "hk": "歷史不存在"
+    },
+    "code": 17002
+  },
+  "pictureThan5M": {
+    "statusCode": 400,
+    "message": {
+      "en": "The picture is than 5M",
+      "cn": "图片大小不能超过5M",
+      "hk": "圖片大小不能超過5M"
+    },
+    "code": 17003
+  },
+  "userIsNotMember": {
+    "statusCode": 400,
+    "message": {
+      "en": "The user is not member in this coc",
+      "cn": "用户不是商会的会员",
+      "hk": "用戶不是商會的會員"
+    },
+    "code": 17004
+  }
+}

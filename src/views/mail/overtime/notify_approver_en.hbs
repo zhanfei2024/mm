@@ -1,0 +1,9 @@
+{{#extend "mail/layouts/main"}}
+  {{#content "content"}}
+    <p>Dear {{ fullName }}, {{ overtime.employee.firstName }} {{ overtime.employee.lastName }} has applied for Overtime. Follow the link below to view complete details of approval.</p>
+    <p><a href="{{siteUrl}}/employees/overtimes/{{overtime.id}}">{{siteUrl}}/leaves/overtimes/{{overtime.id}}</a></p>
+    <p>If you continue to have difficulty, please contact YOOV Support.</p>
+    <p>{{ siteSupportEmail }}</p>
+    <p>This is an automatically generated email, please do not reply ***</p>
+  {{/content}}
+{{/extend}}

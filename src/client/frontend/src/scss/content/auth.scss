@@ -1,0 +1,293 @@
+.carousel-pic {
+  padding: 0;
+}
+
+.auth-carousel {
+  .carousel-inner {
+    max-width: 700px;
+  }
+}
+
+.member-login {
+  height: 100%;
+  background-color: #eeeeee;
+}
+
+.member-login-body {
+  padding: 60px 0 160px 0;
+  background-color: $gray-dark-bg;
+  .login-body {
+    padding: 20px;
+    background-color: $white-dark-bg;
+    display: flex;
+    app-auth-carousel {
+      height: 575px;
+    }
+    .cursor {
+      cursor: pointer;
+    }
+    .auth-carousel-pic {
+      flex: 0 0 auto;
+    }
+    .login-from {
+      box-sizing: border-box;
+      width: 480px;
+      background-color: white;
+      padding: 60px 80px 0 100px;
+      .ng-valid:not(form) {
+        border: 1px solid $blue-dark-bg;
+      }
+      .email-error, .password-error {
+        border: 1px solid #ec1410;
+      }
+      .form-group-1 {
+        position: relative;
+        padding-bottom: 20px;
+        .form-title {
+          width: 50%;
+          margin-bottom: 39px;
+          font: 23px $font-family-regular;
+          line-height: 23px;
+          color: $black-text-color;
+        }
+        .form-title:first-child {
+          border-right: 1px solid $gray-line-color;
+        }
+        .block {
+          display: block;
+          float: left;
+          width: 10px;
+          height: 24px;
+          background-color: $blue-dark-bg;
+          margin-right: 10px;
+        }
+        .form-title.forgetT {
+          border-right: none;
+        }
+        .form-title:hover {
+          cursor: pointer;
+        }
+        .active {
+          color: $blue-text-color;
+        }
+        .form-control {
+          width: 100%;
+          height: 40px;
+          padding: 10px 20px;
+          border-radius: 0;
+          font: 14px $font-family-regular;
+          color: $black-text-color;
+        }
+        .line {
+          margin-bottom: 40px;
+          width: 100%;
+          content: '';
+          font-size: 0;
+          line-height: 1px;
+          height: 1px;
+          overflow: hidden;
+          background-color: $gray-line-color;
+        }
+        .alert-danger {
+          position: absolute;
+          bottom: -62px;
+          width: 100%;
+          height: 40px;
+          padding: 10px 20px;
+          font: 14px $font-family-regular;
+          background-color: transparent;
+          border: none;
+        }
+      }
+      .form-group-2 {
+        position: relative;
+        .form-group {
+          width: 100%;
+        }
+        .input-group {
+          width: 100%;
+        }
+        .form-control {
+          width: 100%;
+          height: 40px;
+          padding: 10px 20px;
+          border-radius: 0;
+          font: 14px $font-family-regular;
+          color: $gray-text-color;
+        }
+        .forget-form-control {
+          width: 50%;
+          display: inline-block;
+        }
+        .alert-danger {
+          position: absolute;
+          left: 0;
+          top: 28px;
+          width: 100%;
+          height: 40px;
+          padding: 10px 20px;
+          font: 14px $font-family-regular;
+          background-color: transparent;
+          border: none;
+        }
+      }
+
+      .form-inline {
+        margin-bottom: 20px;
+        .form-control {
+          width: 100%;
+          height: 40px;
+          padding: 10px 20px;
+          border-radius: 0;
+          font: 14px $font-family-regular;
+          color: $gray-text-color;
+        }
+        .position {
+          position: relative;
+        }
+        .operation-btn {
+          position: absolute;
+          right: 20px;
+          z-index: 99;
+          img {
+            margin: 9px 0;
+            display: block;
+            float: left;
+          }
+          img:first-child {
+            margin-right: 10px;
+          }
+          img:hover {
+            cursor: pointer;
+          }
+        }
+        .group-addon-error {
+          border-color: #ec1410;
+        }
+        .input-group-addon:hover {
+          cursor: pointer;
+        }
+      }
+
+      .forget-form-group {
+        padding-bottom: 163px;
+      }
+      .form-group-4 {
+        margin-bottom: 10px;
+      }
+      .supplement {
+        width: 100%;
+        font: 14px $font-family-regular;
+        .default-active {
+          a {
+            color: $blue-text-color;
+          }
+        }
+        .forget-password {
+          color: $light-black-text-color;
+        }
+      }
+      .signup-padding {
+        li {
+          font: 14px $font-family-regular;
+          color: $gray-text-color;
+          a {
+            color: $blue-text-color;
+          }
+        }
+      }
+      .login-padding {
+        padding-bottom: 30px;
+      }
+      .login-padding-top {
+        margin-top: 30px;
+      }
+      .checkbox {
+        .has-read {
+          font: 12px $font-family-regular;
+          color: $light-black-text-color;
+          line-height: 20px;
+          transform: scale(0.83);
+        }
+        .agreement {
+          font: 12px $font-family-regular;
+          color: $cyan-dark-bg;
+          line-height: 12px;
+          transform: scale(0.83);
+        }
+      }
+      .form-footer {
+        font: 14px $font-family-regular;
+        color: $gray-text-color;
+        line-height: 21px;
+        transform: scale(0.83);
+        margin-left: 8%;
+        text-align: center;
+      }
+      .forget-padding {
+        margin: 0 0px 240px 0px;
+        a {
+          color: $cyan-dark-bg;
+        }
+      }
+      .btn-submit {
+        width: 100%;
+        background: $white-text-color;
+        height: 40px;
+        border-radius: 0;
+        border: 1px solid $blue-dark-bg;
+        font: 14px $font-family-regular;
+        color: $blue-text-color;
+      }
+      .btn-success {
+        background-color: $blue-dark-bg;
+        color: $white-text-color;
+      }
+      .forget-btn {
+        width: 40%;
+      }
+      .btn-submit:hover {
+        cursor: pointer;
+      }
+    }
+    .signup-from {
+      .form-control, .form-inline {
+        margin-bottom: 0;
+      }
+      .alert-danger {
+        left: 0;
+        top: 30px;
+      }
+    }
+  }
+}
+
+.form-control {
+  box-shadow: none;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, input[type=password]:focus, textarea:focus {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+@media (max-width: $screen-sm-min) {
+  .member-login-body {
+    padding-top: 0 !important;
+    .container {
+      padding: 0;
+    }
+    .login-from {
+      padding: 0 !important;
+      flex: 0 0 100% !important;
+      width: 100% !important;
+    }
+    .col-xs-12 {
+      padding: 0;
+    }
+  }
+
+}

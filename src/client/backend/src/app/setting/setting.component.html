@@ -1,0 +1,106 @@
+<div class="text-right content-heading card-block clearfix">
+  <h4 class="text-primary pull-left" style="margin-bottom: 0">
+    {{'panel.settings'|translate}}
+  </h4>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="ui-card" style="margin-bottom: 15px">
+        <header class="row" style="padding: 15px;">
+          <label class="col-md-2 py-h px-1 text-right" style="padding: 0;margin-bottom: 20px;">
+            <sub class="text-danger font-lg">*</sub>
+            {{'settings.name' | translate}}</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="rows.name" required
+                   #nameHandler="ngModel">
+            <form-message [control]="nameHandler"
+                          [fieldName]="'settings.name' | translate"></form-message>
+          </div>
+        </header>
+        <header class="row" style="padding: 15px;">
+          <label for="title" class="col-md-2 py-h px-1 text-right"><sub class="text-danger font-lg">*</sub>{{'settings.title'
+            | translate}}</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control" id="title" name="title" required
+                   [(ngModel)]="rows.title" #titleHandler="ngModel">
+            <form-message [control]="titleHandler"
+                          [fieldName]="'settings.title' | translate"></form-message>
+          </div>
+        </header>
+
+        <header class="row" style="padding: 15px;">
+          <label for="description" class="col-md-2 py-h px-1 text-right"><sub class="text-danger font-lg">*</sub>{{'settings.description'
+            | translate}}</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control" id="description" name="description" required
+                   [(ngModel)]="rows.description" #descriptionHandler="ngModel">
+            <form-message [control]="descriptionHandler"
+                          [fieldName]="'settings.description' | translate"></form-message>
+          </div>
+        </header>
+
+        <header class="row" style="padding: 15px;">
+          <label for="keywords" class="col-md-2 py-h px-1 text-right"><sub class="text-danger font-lg">*</sub>{{'settings.keywords'
+            | translate}}</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control" id="keywords" name="keywords" required
+                   [(ngModel)]="rows.keywords" #keywordsHandler="ngModel">
+            <form-message [control]="keywordsHandler"
+                          [fieldName]="'settings.keywords' | translate"></form-message>
+          </div>
+        </header>
+
+
+        <header class="row" style="padding: 15px;">
+          <label class="col-md-2 py-h px-1 text-right"><sub class="text-danger font-lg">*</sub>{{'settings.logo'
+            | translate}}</label>
+          <div class="col-md-8">
+            <!--<app-file-uploader type="file" [fileInput]="fileName"-->
+                               <!--[croppedHeight]="50"-->
+                               <!--[croppedWidth]="105"-->
+                               <!--[id]="'course'"-->
+                               <!--(editChange)="editCountChange($event)" #course></app-file-uploader>-->
+            <file-uploader
+                          type="file" [fileInput]="fileName"
+                          [id]="'course'"
+                          (fileChanged)="editCountChange($event)" #course></file-uploader>
+          </div>
+          <div class="col-md-8 offset-md-2" *ngIf="courseUrl" style="margin-top: 20px">
+            <img [src]="courseUrl" alt="" style="width: 100px" class="img-responsive">
+          </div>
+        </header>
+
+        <header class="row" style="padding: 15px;">
+          <label for="footer" class="col-md-2 py-h px-1 text-right">{{'settings.footer' |
+            translate}}</label>
+          <div class="col-md-8">
+            <textarea class="form-control" id="footer" name="footer" style="min-height: 100px"
+                      placeholder="{{'settings.footer_placeholder' | translate}}"
+                      [(ngModel)]="rows.footer" #footerHandler="ngModel"></textarea>
+          </div>
+        </header>
+
+        <header class="row" style="padding: 15px;">
+          <label for="statisticsCode" class="col-md-2 py-h px-1 text-right">{{'settings.statisticsCode'
+            | translate}}</label>
+          <div class="col-md-8">
+            <textarea class="form-control" id="statisticsCode" name="statisticsCode" style="min-height: 100px"
+                      placeholder="{{'settings.statisticsCode_placeholder' | translate}}"
+                      [(ngModel)]="rows.statisticsCode" #statisticsCode="ngModel"></textarea>
+
+          </div>
+        </header>
+
+        <div style="margin-top: 20px;">
+          <div class="col-md-8 offset-md-2">
+            <button class="btn btn-primary cursor" (click)="onSubmit()">{{'button.save' | translate}}</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

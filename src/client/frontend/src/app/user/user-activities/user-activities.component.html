@@ -1,0 +1,127 @@
+<div class="clearfix no-padding  col-xs-12 col-sm-10 col-md-10">
+  <div class="user-right-sidebar">
+    <div class="user-center">
+      <div class="invitations-wrapper">
+        <div class="user-title invitations-title row clearfix ">
+          <h1 class="text-head"><span class="square"></span>{{'user.navbar.my_activities' | translate}}</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="user-center">
+      <div class="center-wrapper">
+        <div class="form-filter row clearfix">
+          <div class="row clearfix">
+            <div class="search-contaner clearfix">
+              <div class="col-sm-5 custom-padding">
+                <ng-select
+                  id="state"
+                  [items]="states"
+                  name="state"
+                  placeholder="{{'user.user_baseinfo.select-status' | translate}}"
+                  (data)="selected($event)">
+                </ng-select>
+              </div>
+              <div class="form-group clear-padding  col-xs-12 col-sm-7 col-md-7">
+                <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                <div class="input-group">
+                  <input type="text" class="form-control search-input" id="exampleInputAmount"
+                         placeholder="{{'user.home.input_search_activity' | translate}}"
+                         #searchBox
+                         (keyup)="search(searchBox.value)"
+                         (keyup.enter)="search(searchBox.value)">
+                  <div class="input-group-addon"><img src="../../../assets/img/search.png"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="activities?.length > 0" class="user-coc-title row clearfix">
+          <p class="coc-title-head col-xs-9 col-sm-9 col-md-9">{{'chamber.activity.name' | translate}}</p>
+          <p class="coc-state col-xs-3 col-sm-3 col-md-3">{{'chamber.select.status' | translate}}</p>
+        </div>
+        <div *ngIf="activities?.length > 0">
+          <div class="user-card row clearfix" *ngFor="let item of activities">
+            <div class="user-card-wrapper col-xs-12 col-sm-9 col-md-9 no-padding clearfix">
+              <div class="coc-info margin-no pull-left">
+                <h1 class="coc-title cursor">
+                  <span [routerLink]="['/coc-show', item?.coc?.id, 'activity', item?.activityId, 'detail']">{{'chamber.activity.name' | translate}}：{{item?.activities.title | slice:0:12}}</span>
+                  <span class="group" [routerLink]="['/coc-show', item?.coc?.id, 'home']">{{'chamber.activity.sponsor' | translate}}：{{item?.coc?.name}}</span>
+                </h1>
+                <ul class="coc-text activity-info clearfix">
+                  <li><img src="../../../assets/img/black_me.png">{{item?.activities.applyNumberOfPeople}}</li>
+                  <li *ngIf="item?.activities.status === 'sign-up'"><img src="../../../assets/img/black_fly.png">{{'cocShow.home.sign-up'
+                    | translate}}
+                  </li>
+                  <li *ngIf="item?.activities.status === 'close'"><img src="../../../assets/img/black_fly.png">{{'cocShow.home.closed'
+                    | translate}}
+                  </li>
+                  <li *ngIf="item?.activities.status === 'in-process'"><img src="../../../assets/img/black_fly.png">{{'cocShow.home.in-process'
+                    | translate}}
+                  </li>
+                  <li *ngIf="item?.activities.status === 'ended'"><img src="../../../assets/img/black_fly.png">{{'cocShow.home.ended'
+                    | translate}}
+                  </li>
+                  <li *ngIf="item?.activities.status === 'full'"><img src="../../../assets/img/black_fly.png">{{'cocShow.home.full'
+                    | translate}}
+                  </li>
+                  <li><img src="../../../assets/img/time.png">{{item?.activities.startTimedAt | date:'yyyy-MM-dd'}} ~
+                    {{item?.activities.endTimedAt | date:'yyyy-MM-dd'}}
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="operation col-xs-12 col-sm-3 col-md-3">
+              <div class="status" *ngIf="item?.status === 'success'">
+                <span class="state" [ngClass]="{'state-active': item?.status === 'success'}">{{'user.home.success' | translate}}</span>
+              </div>
+              <div class="status" *ngIf="item?.status === 'pending'">
+                <span class="state">{{'user.home.pending' | translate}}</span>
+              </div>
+              <div class="status" *ngIf="item?.status === 'fail'">
+                <p><span class="state-reject">{{'user.home.fail' | translate}}</span><span class="reject-reason">{{'user.home.administrator_refusal' | translate}}：</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!--分页-->
+          <div class="user-card row clearfix">
+            <div class="coc-pagination  col-xs-12 col-sm-12 col-md-12">
+              <div class="pagination-wrapper center-block">
+                <pagination [previousText]="'navbar.previous_page' | translate"
+                            [nextText]="'navbar.next_page' | translate"
+                            [itemsPerPage]="filter.limit"
+                            [totalItems]="userActivitiesMeta.pagination.totalCount"
+                            [(ngModel)]="filter.page"
+                            (pageChanged)="pageChanged($event)">
+                </pagination>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--加载-->
+        <div class="row clearfix" *ngIf="activitiesLoading">
+          <div class="no-me-coc-wrapper no-padding col-xs-12 col-sm-12 col-md-12 clearfix">
+            <div class="empty-pic-wrapper text-center">
+              <img class="empty-pic" src="../../../assets/img/loading.gif">
+            </div>
+          </div>
+        </div>
+        <!--暂无活动-->
+        <div class="row clearfix" *ngIf="activities?.length === 0">
+          <div class="no-me-coc-wrapper no-padding col-xs-12 col-sm-12 col-md-12 clearfix">
+            <div class="empty-pic-wrapper text-center">
+              <img class="empty-pic" src="../../../assets/img/no-me-activity.png">
+            </div>
+            <p class="empty-text text-center">{{'user.title.no_activity' | translate}}</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+

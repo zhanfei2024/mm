@@ -1,0 +1,520 @@
+<div class="container">
+  <div class="settled-container">
+    <form class="container-fluid" name="mainForm" #mainForm="ngForm">
+      <div class="form-group row border" style="margin-bottom: 0" *ngIf="isShow">
+        <div class="row clearfix">
+          <div class="header settled-title">
+            <h4>{{'global.settled_coc' | translate}}</h4>
+          </div>
+        </div>
+        <div class="row clearfix">
+          <h4 class="user-title">{{'chamber.member.information' | translate}}</h4>
+        </div>
+        <div class="row clearfix item">
+          <div class="col-md-6">
+            <div class="col-sm-6">
+              <label for="firstNames" class="col-md-12 py-h px-1">{{'chamber.create.firstName'
+                | translate}}</label>
+              <div class="col-md-12">
+                <input type="text" class="form-control" id="firstNames" name="firstName" required
+                       [(ngModel)]="enterprises.firstName" #firstNameHandler="ngModel">
+                <form-message [control]="firstNameHandler"
+                              [fieldName]="'chamber.create.firstName' | translate"></form-message>
+              </div>
+            </div>
+            <div class="col-sm-6" style="padding-bottom: 50px">
+              <label for="laseName" class="col-md-12 py-h px-1">{{'chamber.create.lastName'
+                | translate}}</label>
+              <div class="col-md-12">
+                <input type="text" class="form-control" id="laseName" name="laseName" required
+                       [(ngModel)]="enterprises.lastName" #lastNameHandler="ngModel">
+                <form-message [control]="lastNameHandler"
+                              [fieldName]="'chamber.create.lastName' | translate"></form-message>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <label for="phone" class="col-md-12 py-h px-1">{{'chamber.create.phone'
+                | translate}}</label>
+              <div class="col-md-12">
+                <input type="number" class="form-control" id="enterprisesPhone" name="enterprisesPhone" required
+                       maxlength="11"
+                       [(ngModel)]="enterprises.phone" #ePhoneHandler="ngModel">
+                <form-message [control]="ePhoneHandler"
+                              [fieldName]="'chamber.create.phone' | translate"></form-message>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <label for="enterprisesEmail" class="col-md-12 py-h px-1">{{'chamber.create.email'
+                | translate}}</label>
+              <div class="col-md-12">
+                <input type="text" class="form-control" id="enterprisesEmail" name="enterprisesEmail" [disabled]="true"
+                       required [(ngModel)]="enterprises.email" #eEmailHandler="ngModel">
+                <form-message [control]="eEmailHandler"
+                              [fieldName]="'chamber.create.email' | translate"></form-message>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-12 ">
+              <label for="number" class="col-md-12 clearPadding py-h px-1">{{'chamber.create.certificates'
+                | translate}}</label>
+            </div>
+            <div class="col-md-6 relative clearfix" style="padding-left: 10px">
+              <img class="file_img " height="153" width="100%" [src]="frontUrl"
+                   *ngIf="frontUrl !== '../../../assets/img/logo/default_company_icon.png'"/>
+              <app-file-uploader type="file" [fileInput]="fileName"
+                                 [id]="'front'"
+                                 [width]="650"
+                                 [height]="420"
+                                 [croppedHeight]="420"
+                                 [croppedWidth]="650"
+                                 [widthCover]="'153px'"
+                                 (editChange)="editCountChange($event)" #front></app-file-uploader>
+            </div>
+            <div class="col-md-6 relative clearfix" style="padding-left: 10px">
+              <p class="promptPadding">{{'chamber.prompt.title' | translate}}</p>
+              <p class="promptPaddingText">
+                {{'chamber.prompt.update_certificates_text' | translate}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row clearfix">
+        <h4 class="user-title"> {{'chamber.select.information' | translate}} <span class="text"> {{'chamber.prompt.settled_coc_text' |
+          translate}}</span></h4>
+      </div>
+
+      <div class="form-group row item clearfix">
+        <div class="col-sm-3">
+          <label for="name" class="col-md-12 py-h px-1">{{'chamber.create.name'
+            |
+            translate}}</label>
+          <div class="col-md-12">
+            <input type="text" class="form-control" id="name" name="name" required
+                   placeholder="{{'chamber.placeholder.create.name' | translate}}"
+                   [(ngModel)]="settled.name"
+                   #nameHandler="ngModel">
+            <form-message [control]="nameHandler"
+                          [fieldName]="'chamber.create.name' | translate"></form-message>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <label for="industries" class="col-md-12 py-h px-1">{{'chamber.create.industry'
+            | translate}}</label>
+          <div class="col-md-12">
+            <ng-select
+              id="industries"
+              [items]="industries"
+              ng2SelectRequired
+              [active]="activeIndustries"
+              (data)="selected($event,'industries')">
+            </ng-select>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <label for="locations" class="col-md-12 py-h px-1">{{'chamber.create.region'
+            | translate}}</label>
+          <div class="col-md-12">
+            <ng-select
+              id="locations"
+              [items]="locations"
+              ng2SelectRequired
+              [active]="activeLocations"
+              (data)="selected($event,'locations')">
+            </ng-select>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <label for="scale" class="col-md-12 py-h px-1">{{'chamber.create.number'
+            | translate}}</label>
+          <div class="col-md-12">
+            <ng-select
+              id="scale"
+              [items]="scale"
+              ng2SelectRequired
+              [active]="activeScale"
+              (data)="selected($event,'scale')">
+            </ng-select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row item clearfix">
+        <div class="col-sm-3">
+          <label for="foundingDate" class="col-md-12 py-h px-1">{{'chamber.create.create_time'
+            | translate}}</label>
+          <div class="col-md-12 form-date-content">
+            <input type="text" class="form-control form-date" #myDate id="foundingDate" name="foundingDate"
+                   required
+                   [disabled]="settled.id"
+                   [(ngModel)]="settled.foundingDate"
+                   #foundingDateHandler="ngModel">
+            <i class="caret pull-right"></i>
+            <form-message [control]="foundingDateHandler"
+                          [fieldName]="'chamber.create.create_time' | translate"></form-message>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <label for="contacts" class="col-md-12 py-h px-1">{{'chamber.create.contacts'
+            | translate}}</label>
+          <div class="col-md-12">
+            <input type="text" class="form-control" id="contacts" name="contacts" required
+                   [(ngModel)]="settled.contacts"
+                   #contactsHandler="ngModel">
+            <form-message [control]="contactsHandler"
+                          [fieldName]="'chamber.create.contacts' | translate"></form-message>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <label for="phones" class="col-md-12 py-h px-1">{{'chamber.create.phone'
+            | translate}}</label>
+          <div class="col-md-12">
+            <input type="text" class="form-control" id="phones" name="phone" required
+                   [(ngModel)]="settled.phone"
+                   #phoneHandler="ngModel">
+            <form-message [control]="phoneHandler"
+                          [fieldName]="'chamber.create.phone' | translate"></form-message>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <label for="emails" class="col-md-12 py-h px-1">{{'chamber.create.email'
+            | translate}}</label>
+          <div class="col-md-12">
+            <input type="text" class="form-control" id="emails" name="email" required
+                   [(ngModel)]="settled.email"
+                   #emailHandler="ngModel"
+                   (blur)="regex(settled.email)"
+                   email="true">
+            <div class="text-danger" [hidden]="isEmail">{{'validation.email' | translate}}</div>
+            <form-message [control]="emailHandler"
+                          [fieldName]="'chamber.create.email' | translate"></form-message>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row item border clearfix">
+        <div class="col-sm-6">
+          <label for="address" class="col-md-12 py-h px-1">{{'chamber.create.address'
+            | translate}}</label>
+          <div class="col-md-12">
+            <input type="text" class="form-control" id="address" name="address" required
+                   placeholder="{{'chamber.placeholder.create.address' | translate}}"
+                   [(ngModel)]="settled.address"
+                   #addressHandler="ngModel">
+            <form-message [control]="addressHandler"
+                          [fieldName]="'chamber.create.address' | translate"></form-message>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <label for="purpose" class="col-md-12 py-h px-1 ">{{'chamber.create.purpose'
+            | translate}}</label>
+          <div class="col-md-12">
+            <input type="text" class="form-control" id="purpose" name="purpose" required
+                   placeholder="{{'chamber.placeholder.create.purpose' | translate}}"
+                   [(ngModel)]="settled.purpose"
+                   #purposeHandler="ngModel">
+            <form-message [control]="purposeHandler"
+                          [fieldName]="'chamber.create.purpose' | translate"></form-message>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group row item clearfix border" style="min-height: 172px;">
+        <div class="col-md-3">
+          <div class="col-md-12 clearPadding">
+            <label for="logo" class="col-md-12 py-h px-1 clearPadding">{{'chamber.create.logo'
+              | translate}}</label>
+
+          </div>
+          <div class="col-md-5 clearPadding relative">
+            <img class="file_img" [src]="logoUrl" height="100" width="100"
+                 *ngIf="logoUrl !== '../../../assets/img/logo/default_company_icon.png'"/>
+            <app-file-uploader type="file" [fileInput]="fileName"
+                               [croppedHeight]="200"
+                               [croppedWidth]="200"
+                               [width]="200"
+                               [height]="200"
+                               [id]="'logo'"
+                               [isCover]="isCover"
+                               [widthCover]="'100px'"
+                               (editChange)="editCountChange($event)" #logo></app-file-uploader>
+          </div>
+          <div class="col-md-6 relative clearfix">
+            <p class="promptPadding">{{'chamber.prompt.title' | translate}}</p>
+            <p class="promptPaddingText">
+              {{'chamber.prompt.update_lgo_text' | translate}}
+            </p>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="col-md-12 clearPadding">
+            <label for="cover" class="col-md-12 py-h px-1 clearPadding">{{'chamber.create.cover'
+              | translate}}</label>
+          </div>
+          <div class="col-md-8 clearPadding relative">
+            <img class="file_img" [src]="coverUrl" height="180" width="100%"
+                 *ngIf="coverUrl !== '../../../assets/img/logo/default_company_icon.png'"/>
+            <app-file-uploader type="file" [fileInput]="fileName"
+                               [croppedHeight]="420"
+                               [croppedWidth]="650"
+                               [width]="650"
+                               [height]="420"
+                               [id]="'cover'"
+                               [isCover]="isCover"
+                               [widthCover]="'180px'"
+                               (editChange)="editCountChange($event)" #cover></app-file-uploader>
+
+          </div>
+          <div class="col-md-4 relative clearfix">
+            <p class="promptPadding">{{'chamber.prompt.title' | translate}}</p>
+            <p class="promptPaddingText">
+              {{'chamber.prompt.update_cover_text' | translate}}
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="col-md-12 clearPadding">
+            <label for="qualification" class="col-md-12 py-h px-1 clearPadding">{{'chamber.create.aptitude'
+              | translate}}</label>
+
+          </div>
+          <div class="col-md-8 clearPadding relative">
+            <img class="file_img" [src]="qualificationUrl" height="180" width="100%"
+                 *ngIf="qualificationUrl !== '../../../assets/img/logo/default_company_icon.png'"/>
+            <app-file-uploader type="file" [fileInput]="fileName"
+                               [croppedHeight]="420"
+                               [croppedWidth]="650"
+                               [width]="650"
+                               [height]="420"
+                               [id]="'qualification'"
+                               [isCover]="isCover"
+                               [widthCover]="'180px'"
+                               (editChange)="editCountChange($event)" #qualification></app-file-uploader>
+          </div>
+          <div class="col-md-4 relative clearfix" style="padding-right: 0">
+            <p class="promptPadding">{{'chamber.prompt.title' | translate}}</p>
+            <p class="promptPaddingText">
+              {{'chamber.prompt.update_aptitude_text' | translate}}
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+
+      <!--添加会籍-->
+      <div *ngIf="!settled.isApproved" class="form-group row item clearfix border">
+        <div class="col-md-12 clearPadding">
+          <div class="row">
+            <h4 class="group-title">{{'global.apply_group' | translate}}</h4>
+          </div>
+          <div class="col-md-12">
+            <div *ngIf="groups?.length > 0">
+              <div class="form-group row clearfix" style="padding: 0">
+                <div class="col-sm-12 clearPadding" style="padding: 0;">
+                  <div class="col-sm-2 clearPadding">
+                    <label for="name" class="col-md-12 jiaGouPadding" style="padding-left: 0">{{'chamber.member.framework_name'
+                      | translate}} </label>
+                  </div>
+
+                  <div class="col-sm-2 clearPadding">
+                    <label class="col-md-12 jiaGouPadding" >{{'global.term'
+                      | translate}} / {{'global.month' | translate}}</label>
+                  </div>
+
+                  <!--会费-->
+                  <div class="col-sm-4 clearPadding">
+                    <label class="col-md-12 jiaGouPadding">{{'global.dues'
+                      | translate}}</label>
+                  </div>
+
+                  <div class="col-sm-3 clearPadding">
+                    <label class="col-md-12 jiaGouPadding">{{'chamber.member.sort'
+                      | translate}}</label>
+                  </div>
+                  <div  class="col-sm-1 clearPadding">
+
+                  </div>
+                </div>
+                <div>
+                  <div class="col-sm-12" style="padding: 0;margin-bottom: 30px;" *ngFor="let item of groups; let i = index">
+                    <div class="col-sm-2" style="padding-left: 0">
+                      <div class="col-md-12" style="padding-left: 0">
+                        <input type="text" class="form-control"
+                               required
+                               id="name{{i}}"
+                               name="name{{i}}"
+                               placeholder="{{'chamber.member.placeholder_name' | translate}}"
+                               [(ngModel)]="item.name">
+                      </div>
+                    </div>
+
+                    <div class="col-sm-2 clearPadding">
+                      <div class="col-md-12">
+                        <ng-select
+                          id="time"
+                          [items]="times"
+                          name="time"
+                          [active]="item?.active"
+                          [disabled]="item.deleted"
+                          (data)="changTimes(i,$event)"
+                          placeholder="{{'global.term' | translate}}">
+                        </ng-select>
+                      </div>
+                    </div>
+
+                    <!--会费-->
+                    <div class="col-sm-4 clearPadding">
+                      <div class="col-md-12 ">
+                        <input type="number" class="form-control"
+                               required
+                               id="dues{{i}}"
+                               name="dues{{i}}"
+                               placeholder="{{'chamber.member.placeholder_dues' | translate}}"
+                               [(ngModel)]="item.balance">
+                      </div>
+                    </div>
+
+
+                    <div class="col-sm-3 clearPadding">
+                      <div class="col-md-12">
+                        <input type="number" class="form-control"
+                               required
+                               id="order{{i}}"
+                               name="order{{i}}"
+                               placeholder="{{'chamber.member.placeholder_order' | translate}}"
+                               [(ngModel)]="item.order">
+                      </div>
+                    </div>
+                    <div class="col-sm-1" style="line-height: 40px">
+                      <span  *ngIf="groups?.length > 1" (click)="deleteGroup(i, 'group')" role="button">
+                        <img src="../../../../assets/img/delete.png" height="20" width="20" style="vertical-align: middle"/>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="form-group clearfix" style="margin-bottom: 30px">
+              <div class="col-md-2 col-sm-3">
+                <a style="color: #01AAC1" (click)="addGroup('group', false)">
+                  <img src="../../../../assets/img/add_member.png" class="icon"/>
+                  {{'chamber.btn.add_options' | translate}}
+                </a>
+              </div>
+              <div class="col-md-2 col-sm-3">
+                <a style="color: #01AAC1" (click)="addGroup('group', true)">
+                  <img src="../../../../assets/img/add_member.png" class="icon"/>
+                  {{'chamber.btn.add_forever' | translate}}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--添加职务-->
+      <div *ngIf="!settled.isApproved" class="form-group row item clearfix border">
+        <div class="col-md-12 clearPadding">
+          <div class="row">
+            <h4 class="group-title">{{'global.apply_position' | translate}}</h4>
+          </div>
+          <div class="col-md-12">
+            <div *ngIf="positions?.length > 0">
+              <div class="form-group row clearfix" style="padding: 0">
+                <div class="col-sm-12 clearPadding" style="padding: 0;">
+                  <!--职务名称-->
+                  <div class="col-sm-2 clearPadding">
+                    <label for="name" class="col-md-12 jiaGouPadding" style="padding-left: 0">{{'chamber.member.position' | translate}} </label>
+                  </div>
+                  <!--职务描述-->
+                  <div class="col-sm-3 clearPadding">
+                    <label class="col-md-12 jiaGouPadding">{{'chamber.position.description' | translate}}</label>
+                  </div>
+                  <div  class="col-sm-1 clearPadding">
+                  </div>
+                </div>
+                <div>
+                  <div class="col-sm-12" style="padding: 0;margin-bottom: 30px;" *ngFor="let item of positions; let i = index">
+
+                    <!--职务名称-->
+                    <div class="col-sm-2" style="padding-left: 0">
+                      <div class="col-md-12" style="padding-left: 0">
+                        <input type="text" class="form-control"
+                               required
+                               id="position{{i}}"
+                               name="position{{i}}"
+                               placeholder="{{'chamber.member.position_placeholder_name' | translate}}"
+                               [(ngModel)]="item.title">
+                      </div>
+                    </div>
+                    <!--职务描述-->
+                    <div class="col-sm-6 clearPadding">
+                      <div class="col-md-12">
+                        <input type="text" class="form-control"
+                               required
+                               id="des{{i}}"
+                               name="des{{i}}"
+                               placeholder="{{'chamber.position.description' | translate}}"
+                               [(ngModel)]="item.description">
+                      </div>
+                    </div>
+                    <div class="col-sm-1" style="line-height: 40px">
+                  <span *ngIf="positions?.length > 1" (click)="deleteGroup(i, 'position')" role="button">
+                    <img src="../../../../assets/img/delete.png" height="20" width="20" style="vertical-align: middle"/>
+                  </span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="form-group clearfix" style="margin-bottom: 30px">
+              <div class="col-md-2 col-sm-3">
+                <a style="color: #01AAC1" (click)="addGroup('position')">
+                  <img src="../../../../assets/img/add_member.png" class="icon"/>
+                  {{'chamber.btn.add_position' | translate}}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--商会简介-->
+      <div class="form-group row item clearfix">
+        <div class="col-md-12 clearPadding">
+          <label for="description" class="col-md-12 py-h px-1">{{'chamber.create.introduction'
+            | translate}}</label>
+          <div class="col-md-12">
+            <quill-editor name="description" id="description" required [(ngModel)]="settled.description"
+                          #descriptionHandler="ngModel"></quill-editor>
+            <form-message [control]="descriptionHandler"
+                          [fieldName]="'chamber.create.introduction' | translate"></form-message>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="col-sm-12 text-center" style="margin: 25px 0 40px 0">
+        <button type="button" class="btn btn-submit-primary cursor" style="line-height: 1.8;"
+                (click)="onSubmit()" [disabled]="!mainForm.form.valid || submitLoading"
+                aria-label="Close">
+          <span *ngIf="submitLoading"><i class="fa fa-spin fa-spinner"></i></span>
+          <span *ngIf="!submitLoading">{{'chamber.btn.submit' | translate}}</span>
+        </button>
+        <button type="submit" class="btn btn-outline-submit-primary cursor" style="line-height: 1.8;" *ngIf="!isShow"
+                [routerLink]="['/chamber','select']">
+          {{'chamber.btn.cancel' | translate}}
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

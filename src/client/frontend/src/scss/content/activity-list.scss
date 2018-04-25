@@ -1,0 +1,229 @@
+.activity-body {
+  background-color: $gray-dark-bg;
+}
+.news-mesasge-container{
+  margin-top: 45px;
+}
+
+.activity-wrapper, .activity-filter {
+  margin: 60px 0 20px 0;
+  padding: 20px;
+  background-color: $white-dark-bg;
+
+  h2, .list-inline {
+    float: left;
+  }
+  .activity-state-wrapper, .activity-type-wrapper {
+    display: flex;
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-line-color;
+  }
+  h2 {
+    width: 86px;
+    flex: 0 0 86px;
+    text-align: left;
+    font: 14px $font-family-regular;
+    color: $gray-text-color;
+    line-height: 40px;
+  }
+  .list-inline {
+    flex: 1;
+    li {
+      padding: 0 24px;
+      font: 14px $font-family-regular;
+      color: $black-text-color;
+      line-height: 40px;
+    }
+    li:not(.trade-more):hover {
+      background-color: $blue-dark-bg;
+      color: $white-text-color;
+      cursor: pointer;
+    }
+    .active {
+      background-color: $blue-dark-bg;
+      color: $white-text-color;
+      cursor: pointer;
+    }
+  }
+  .list-inline {
+    .activity-type-more {
+      color: $blue-text-color;
+      i {
+        margin-right: 6px;
+      }
+    }
+  }
+  .list-inline {
+    .activity-type-more:hover {
+      background-color: transparent;
+      color: $blue-text-color;
+    }
+  }
+}
+
+.activity-filter {
+  margin: 0 0 20px 0;
+  padding: 10px 20px;
+  background-color: $white-dark-bg;
+  .activity-start, .activity-end, .connecting-line {
+    float: left;
+  }
+  .activity-start, .activity-end {
+    border: 1px solid $gray-line-color;
+    padding-right: 20px;
+    i {
+      line-height: 38px;
+    }
+  }
+  .connecting-line {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    p {
+      position: absolute;
+      left: 10px;
+      top: 20px;
+      width: 20px;
+      height: 1px;
+      background-color: $gray-line-color;
+    }
+  }
+
+}
+
+.bg {
+  background: #FFFFFF;
+  margin-top: 35px !important;
+  padding-bottom: 0;
+  margin-bottom: 40px;
+}
+
+.activity-card, .news-list {
+  margin-top: 25px;
+  font-family: $font-family-regular;
+  .swiper-container {
+    .swiper-button-prev {
+      background: url("../assets/img/jiantou_left.png") no-repeat;
+    }
+    .swiper-button-prev:before{
+      content: '';
+      width: 50px !important;
+      height: 50px;
+      background: rgba(250, 250, 250, 0.14);
+      box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.14);
+      border-radius: 50%;
+      position: absolute;
+      top: -2px;
+      left: -12px;
+    }
+    .swiper-button-next{
+      width: 38px;
+      background: url("../assets/img/jiantou_right.png") no-repeat;
+    }
+    .swiper-button-next:before{
+      content: '';
+      width: 50px !important;
+      height: 50px;
+      background: rgba(250, 250, 250, 0.14);
+      box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.14);
+      border-radius: 50%;
+      position: absolute;
+      top: -2px;
+      right: -12px;
+    }
+  }
+  .item {
+    margin-top: 30px;
+    padding: 10px;
+  }
+  .item:hover {
+    .img-content img {
+      transform: scale(1.1);
+    }
+    background: $white-text-color;
+    box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.14);
+    .bottom-buttons{
+      .btn{
+        background: $blue-text-color;
+        color: $white-text-color;
+      }
+    }
+  }
+  .img-content {
+    overflow: hidden;
+  }
+  .img-content img {
+    transition: all 0.6s;
+  }
+  .activity-bottom {
+    margin-top: 15px;
+    letter-spacing: $letter-spacing-h4;
+    .title h4 {
+      font-size: $font-size-h4;
+      color: $gray-h4;
+      letter-spacing: $letter-spacing-h4;
+      padding-bottom: 10px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .basic {
+      margin-bottom: 20px;
+      letter-spacing: $letter-spacing-base;
+      .text {
+        font-size: $font-size-base;
+        color: $gray;
+        padding: 0 10px;
+        img{
+          vertical-align: middle;
+        }
+      }
+    }
+    .address {
+      margin-top: 20px;
+      font-size: $font-size-base;
+      letter-spacing: $letter-spacing-base;
+      color: $gray-font-color;
+      padding-bottom: 20px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .purpose {
+      font-size: $font-size-base;
+      color: $gray;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+  .list-content {
+    margin: 10px 0;
+    letter-spacing: $letter-spacing-base;
+    li {
+      border-right: 1px solid #dcdcdc;
+      padding-right: 10px !important;
+      padding-left: 10px !important;
+      .number {
+        color: $gray-h4;
+        font-size: $font-size-base;
+      }
+      .text {
+        margin-top: 10px;
+        color: $gray;
+        font-size: $font-size-base;
+      }
+    }
+    li:last-child {
+      border: none;
+    }
+  }
+  .bottom-buttons {
+    padding: 0 20px;
+    letter-spacing: $letter-spacing-base;
+    button {
+      margin-top: 15px;
+      width: 100%;
+    }
+  }
+}

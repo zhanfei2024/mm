@@ -1,0 +1,13 @@
+{{#extend "mail/layouts/main"}}
+  {{#content "content"}}
+    <span>尊敬的 {{ fullName }},</span>
+    <p>标题: 加班拒绝</p>
+    <p>你的加班已经被拒绝了.</p>
+    <p>开始时间: {{ overtime.startedDate }}</p>
+    <p>结束时间: {{ overtime.endedDate }}</p>
+    <p>如果这封电子邮件对你没有任何意义, 可能是有人故意或无意地输入了你的电子邮件地址, 那么请忽略这封电子邮件.</p>
+    <p>谢谢,</p>
+    <p>{{ siteTeamName }}</p>
+    <p>如果想进一步查询, 请联系: {{ siteSupportEmail }}</p>
+  {{/content}}
+{{/extend}}

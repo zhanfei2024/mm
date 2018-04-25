@@ -1,0 +1,33 @@
+.sidebar {
+  .nav {
+    background: #f0f2f7;
+    .nav-item {
+      background: #f0f2f7;
+      margin-left:20px;
+      margin-right:20px;
+      &.nav-dropdown {
+        &.open {
+          background: #dde2ed;
+          color:#b51d23;
+
+          a.nav-link {
+            color:#323d50;
+            background: #dde2ed ;
+          }
+          a.nav-dropdown-toggle, a.nav-dropdown-toggle i{
+            color: blue;
+          }
+
+        }
+        .nav-item{
+          background: #dde2ed;
+        }
+      }
+      .active{
+        color:green;
+        background: #dde2ed;
+      }
+
+    }
+  }
+}

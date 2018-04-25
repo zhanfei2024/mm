@@ -1,0 +1,6 @@
+lastName,firstName,email,salary_payRate,salary_unit,salary_effectiveDate,otherSalary_payTypeCode,otherSalary_payRate,otherSalary_unit,otherSalary_effectiveDate
+Cummings,Yesenia,Torrey.Farrell33@hotmail.com,40599,monthly,2017-01-18,"CHI, DEN, GYM, LAP, MED","95207, 1725, 3988, 26017, 1444","hourly, hourly, monthly, monthly, yearly","2017-01-18, 2017-01-18, 2017-01-18, 2017-01-18, 2017-01-18"
+Hagenes,Orlo,Karley.Lesch@yahoo.com,72357,yearly,2016-04-28
+Klocko,Nico,Jacklyn22@yahoo.com,27631,hourly,2016-05-12,"CHI","75227","monthly","2016-05-12"
+Dibbert,Jaylon,Corene_Rath91@yahoo.com,96719,monthly,2017-02-16,"CHI, DEN, GYM","10029, 39188, 52813","hourly, monthly, hourly","2017-02-16, 2017-02-16, 2017-02-16"
+Simonis,Dennis,Betty.Torphy@hotmail.com,71112,hourly,2016-04-19,"CHI, DEN, GYM, LAP","78294, 20389, 63094, 97547","monthly, monthly, monthly, hourly","2016-04-19, 2016-04-19, 2016-04-19, 2016-04-19"

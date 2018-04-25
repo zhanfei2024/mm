@@ -1,0 +1,9 @@
+<input class="form-control" [style.background-color]="forbidden ? '#e1e6ef' : '#fff'" type="text" name="daterangeInput" daterangepicker [options]="options"
+    [(ngModel)]="_time" #daterangeInput="ngModel" [required]="requirement" readonly
+    (keydown)="delete($event)" [disabled]="forbidden" [placeholder]="placeholder"
+    (applyDaterangepicker)="applyDaterangepicker($event)"
+    (hideDaterangepicker)="hideDaterangepicker($event)"
+/>
+<form-message *ngIf="!forbidden" [control]="daterangeInput" [fieldName]="fieldName"></form-message>
+
+

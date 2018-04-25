@@ -1,0 +1,146 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      margin: 0;
+    }
+    .print-page {
+      width: 1250px;
+      height: 858px;
+      margin: 0 auto 20px;
+      padding: 10px 30px;
+      border: 1px solid black;
+      position: relative;
+    }
+    .left {
+      float: left
+    }
+    .right {
+      float: right
+    }
+    .clear {
+      clear: both
+    }
+    .half-row {
+      display: flex;
+    }
+    .half-col {
+      width: 50%;
+      padding: 0 20px 4px;
+    }
+    .right-border {
+      border-right: 1px solid gray;
+    }
+    .inline-block {
+      display: inline-block
+    }
+    .row {
+      width: 100%;
+      padding: 5px 0 3px;
+    }
+    .border-bottom {
+      border-bottom: 1px solid gray
+    }
+    .margin-bottom {
+      margin-bottom: 8px
+    }
+    .margin-top {
+      margin-top: 30px
+    }
+    .m-img {
+      margin-left: 100px;
+    }
+    .bottom {
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+{{#each payslips}}
+  <div class="print-page">
+
+    <div class="margin-top">
+      <span class="left">
+        <span style="font-weight: bold;font-size: 1.17em;">PAYSLIP</span>
+        <span style="margin-left: 20px">{{team.name}}</span>
+      </span>
+      <span class="right">{{startedDate}} - {{endedDate}}</span>
+    </div>
+    <div class="clear"></div>
+    <div class="margin-top">
+      <img width="100px;" src="{{sourceUrl}}/images/email/100x82-logo.png" class="left">
+      <div class="half-row m-img">
+        <div class="half-col right-border">
+          <div class="row border-bottom">
+            <i></i>
+            <span class="">{{employee.firstName}} {{employee.lastName}}</span>
+          </div>
+          <div class="row border-bottom">
+            <i></i>
+            <span class="">
+              {{#each employee.groups}}
+                {{name}}
+              {{/each}}
+            </span>
+          </div>
+          <div class="row border-bottom">
+            <i></i>
+            <span>Payment Method</span>
+            <span class="right">{{employee.paymentMethod.name}}</span>
+          </div>
+        </div>
+
+        <div class="half-col">
+          <div class="row border-bottom">
+            <h3 style="margin-bottom: 8px">BASE PAY</h3>
+            <!--<span>Total:</span>-->
+          </div>
+          {{#each details}}
+            {{#if isBasicSalary}}
+              <div class="row border-bottom">
+                <span>{{ name }}:</span>
+                <span class="right">{{ amount}}</span>
+              </div>
+            {{/if}}
+          {{/each}}
+        </div>
+      </div>
+    </div>
+
+    <div class="margin-top clear">
+      <h3>OTHER WAGES</h3>
+      <!--<span>Total:</span>-->
+      {{#each details}}
+        {{#unless isBasicSalary}}
+          <div class="border-bottom margin-bottom">
+              <span class="clear inline-block row">
+                <span>{{ name }}:</span>
+                <span class="right">{{ amount}}</span>
+              </span>
+          </div>
+        {{/unless}}
+      {{/each}}
+    </div>
+
+    <div class="bottom half-row">
+      <div class="half-col right-border">
+        <div class="row border-bottom">
+          <span>Pay Date : </span>
+          <span class="right">{{payDate}}</span>
+        </div>
+      </div>
+      <div class="half-col">
+        <div class="row border-bottom">
+          <span>Total:</span>
+          <span class="right">{{amount}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/each}}
+</body>
+</html>

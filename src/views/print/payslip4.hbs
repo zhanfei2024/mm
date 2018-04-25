@@ -1,0 +1,120 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      margin: 0;
+    }
+    .print-page {
+      width: 1250px;
+      height: 858px;
+      margin: 0 auto 20px;
+      padding: 10px 30px;
+      border: 1px solid black;
+      position: relative;
+      text-align: center;
+    }
+    .row {
+      display: flex;
+      padding: 5px 0 3px;
+    }
+    .col {
+      width: 20%;
+      position: relative;
+    }
+    .col-top {
+      border-bottom: 1px solid gray;
+      padding-top: 5px;
+      padding-bottom: 3px;
+      height: 80px;
+      position: relative;
+    }
+    .col-bottom {
+      padding-top: 5px;
+      padding-bottom: 3px;
+    }
+    .top-content {
+      position: absolute;
+      width: 100%;
+      bottom: 5px;
+    }
+
+    .margin-top {
+      margin-top: 30px
+    }
+    .footer {
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+{{#each payslips}}
+  <div class="print-page">
+    <div class="row">
+      <div class="col">
+        <div class="col-top">
+          <div class="top-content"><span>{{employee.firstName}} {{employee.lastName}}</span></div>
+        </div>
+        <div class="col-bottom">
+          <span>
+            {{#each employee.groups}}
+              {{name}}
+            {{/each}}
+          </span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="col-top">
+          <div class="top-content"><span>Payment</span></div>
+        </div>
+        <div class="col-bottom">
+          <div><span>{{employee.paymentMethod.name}}</span></div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="col-top">
+          <div class="top-content"><span>Pay Date</span></div>
+        </div>
+        <div class="col-bottom"><span>{{payDate}}</span></div>
+      </div>
+      <div class="col">
+        <div class="col-top">
+          <div class="top-content"><span>Wage Time</span></div>
+        </div>
+        <div class="col-bottom"><span>{{startedDate}} - {{endedDate}}</span></div>
+      </div>
+      <div class="col">
+        <div class="col-top">
+          <div class="top-content"><span>Actual wages</span></div>
+        </div>
+        <div class="col-bottom"><span>{{amount}}</span></div>
+      </div>
+    </div>
+
+    <h3 style="margin: 80px auto -20px;">Detail</h3>
+
+    <div class="margin-top" style="display: flex;flex-wrap: wrap;">
+      {{#each details}}
+        <div class="col">
+          <div class="col-top">
+            <div class="top-content"><span>{{ name }}</span></div>
+          </div>
+          <div class="col-bottom"><span>{{ amount }}</span></div>
+        </div>
+      {{/each}}
+    </div>
+
+    <div class="footer">
+      <div style="width: 100%">
+        <img width="40px;" src="{{sourceUrl}}/images/email/100x82-logo.png">
+      </div>
+      <span>{{team.name}}</span>
+    </div>
+  </div>
+
+{{/each}}
+</body>
+</html>

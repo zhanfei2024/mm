@@ -1,0 +1,112 @@
+<app-home-navbar></app-home-navbar>
+<div class="news-body">
+  <div class="container">
+    <div class="row clearfix">
+      <div class="header">
+        <h4>{{'navbar.activity_list' | translate }}</h4>
+      </div>
+    </div>
+
+
+    <div class="row cofc-list clearfix">
+      <div class="location">
+        <div class="location-wrapper">
+          <h2>{{'navbar.activity_state' | translate }}：</h2>
+          <ul class="list-inline">
+            <!--<li [ngClass]="{'active': filter.states.length === 0}">{{'global.unlimited' | translate}}</li>-->
+            <li *ngFor="let item of status" [ngClass]="{active: item.selected}" (click)="selected(item, 'status')">{{item.name | translate}}
+              <!--<i class="fa fa-times" aria-hidden="true" *ngIf="item.selected"></i>-->
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="activity-type clearfix">
+        <div class="location">
+          <div class="location-wrapper">
+            <h2>{{'navbar.activity_type' | translate }}：</h2>
+            <ul class="list-inline">
+              <li *ngFor="let item of activitiesCategories | slice:0:6" [hidden]="isMore" [ngClass]="{active: item.selected}" (click)="selected(item, 'categories')">{{item.name}}
+                <i class="fa fa-times" aria-hidden="true" *ngIf="item.selected"></i>
+              </li>
+              <li *ngFor="let item of activitiesCategories" [hidden]="!isMore" [ngClass]="{active: item.selected}" (click)="selected(item, 'categories')">{{item.name}}
+                <i class="fa fa-times" aria-hidden="true" *ngIf="item.selected"></i>
+              </li>
+              <li class="trade-more pull-right" (click)="more()" *ngIf="activitiesCategories.length > 7">
+                <a href="javascript:;">
+                  <i class="fa fa-caret-down" *ngIf="!isMore"></i>
+                  <i class="fa fa-caret-up" *ngIf="isMore"></i> {{'global.more' | translate}}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div [hidden]="!tableLoading">
+      <div class="text-center pt-3 pb-3">
+        <div class="pt-3 pb-3">
+          <i class="loading-img"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="row clearfix" [hidden]="!(activities?.length === 0 && !tableLoading)">
+      <div class="col-sm-12 no_message no_coc text-center">
+        <img src="../../../../assets/img/no_activity.png" height="120" width="120" />
+        <p> {{'cocShow.home.no_coc_activity' | translate}}</p>
+      </div>
+    </div>
+
+    <div class="row clearfix" [hidden]="!(activities?.length > 0 && !tableLoading)">
+      <div class="activity-card clearfix">
+        <div class="col-md-4 col-sm-6" *ngFor="let item of activities" role="button" style="padding-left: 0" [routerLink]="['/coc-show', item?.coc?.id, 'activity', item?.id,'detail']">
+          <div class="item">
+            <div class="img-content">
+              <img [src]="item?.attachments[0]?.url" class="img-responsive" style="width: 100%">
+            </div>
+            <div class="activity-bottom">
+              <div class="title">
+                <h4>{{item.title}}</h4>
+              </div>
+              <div class="basic text-overflow">
+                <span class="text" style="padding-left: 0">
+                  <span>
+                    <img src="../../assets/img/time.png" height="20" width="20"/>
+                  </span>
+                <span [class]="item.status" style="padding-left: 10px;" title="{{item.startTimedAt | date:'yy.MM.dd'}}">{{item.startTimedAt | date:'yy.MM.dd'}}</span>
+                </span> <span class="text clearPadding">|</span>
+                <span class="text">
+                  <img src="../../assets/img/user.png" height="20" width="20"/>
+                  <span style="padding-left: 10px;" title="{{item?.applyNumberOfPeople}} {{'global.enroll' | translate}}">{{item?.applyNumberOfPeople}} {{'global.enroll' | translate}}</span>
+                </span> <span class="text clearPadding">|</span>
+                <span class="text clearPadding">
+                                    <img src="../../assets/img/status.png" height="20" width="20"
+                                         style="margin-left: 10px"/>
+
+                <span class="col-sm-2 status" [class]="item.status" style="padding-left: 10px;" title="{{'cocShow.home.'+item.status | translate}}"> {{'cocShow.home.'+item.status | translate}}</span>
+                </span>
+              </div>
+              <div class="address">
+                <img src="../../assets/img/address.png" height="20" width="20" style="margin-right: 10px" /> {{item.address}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--分页-->
+
+    <div class="row pager-row" [hidden]="!(activities?.length > 0 && !tableLoading)">
+      <div class="coc-pagination  row clearfix">
+        <div class="col-md-offset-3 col-md-6 col-md-offset-3">
+          <div class="pagination-wrapper center-block">
+            <pagination [previousText]="'button.prev_page' | translate" [nextText]="'button.next_page' | translate" [itemsPerPage]="filter.limit" [totalItems]="meta.pagination.totalCount" [(ngModel)]="filter.page" (pageChanged)="pageChanged($event)">
+            </pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+
+      <!--商会新闻详情-->
+      <div *ngIf="!newsDetailEmpty && !newsDetailLoading" class="news-detail enterprise-tab col-xs-12 col-sm-8 col-md-8">
+        <h1 class="news-title text-center">{{newsDetail?.title}}</h1>
+        <p class="news-info text-center">
+          <img src="../../../assets/img/black_me.png" class="news-publisher"><span class="publisher-info">{{newsDetail?.coc?.name}}</span>
+          <img src="../../../assets/img/time.png" class="news-time"><span class="time-info">{{newsDetail?.createdAt | date:'yyyy-MM-dd'}}</span>
+          <img src="../../../assets/img/black_eye.png" class="news-view"><span class="view-info">{{newsDetail?.view}}次</span>
+        </p>
+        <p class="content-info" [innerHTML]="newsDetail?.content | html">
+        </p>
+      </div>
+      <!--无新闻-->
+      <div *ngIf="newsDetailEmpty && !newsDetailLoading" class="no-news-detail enterprise-tab col-xs-12 col-sm-8 col-md-8">
+        <div class="news-info text-center">
+          <img src="../../../assets/img/no_meassge.png" class="news-publisher">
+          <p class="no-news-text text-center">{{'cocShow.home.no_coc_news' | translate}}</p>
+        </div>
+      </div>
+      <!--加载-->
+      <div *ngIf="newsDetailLoading" class="no-news-detail enterprise-tab col-xs-12 col-sm-8 col-md-8">
+        <div class="news-info text-center">
+          <img src="../../../assets/img/loading.gif" class="news-publisher">
+        </div>
+      </div>
+

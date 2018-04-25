@@ -1,0 +1,130 @@
+<div class="clearfix no-padding  col-xs-12 col-sm-10 col-md-10">
+  <div class="user-right-sidebar">
+    <div class="user-center">
+      <div class="invitations-wrapper">
+        <div class="user-title invitations-title row clearfix ">
+          <h1 class="text-head"><span class="square"></span>{{'user.title.my_coc' | translate}}</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="user-center col-xs-12 col-sm-12 col-md-12">
+      <!--有商会内容-->
+      <div class="center-wrapper">
+        <div class="form-filter row clearfix">
+          <div class="search-contaner clearfix">
+            <div class="col-sm-5 custom-padding">
+              <ng-select
+                id="state"
+                [items]="states"
+                name="state"
+                placeholder="{{'user.user_baseinfo.select-status' | translate}}"
+                (data)="selected($event)">
+              </ng-select>
+            </div>
+            <div class="form-group clear-padding  col-xs-12 col-sm-7 col-md-7">
+              <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+              <div class="input-group">
+                <input type="text" class="form-control search-input" id="exampleInputAmount"
+                       placeholder="{{'user.home.input_search_coc' | translate}}"
+                       #searchBox
+                       (keyup)="search(searchBox.value)"
+                       (keyup.enter)="search(searchBox.value)">
+                <div class="input-group-addon"><img src="../../../assets/img/search.png"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="cocs?.length >0" class="user-coc-title row clearfix">
+          <p class="coc-title-head col-xs-9 col-sm-9 col-md-9">{{'chamber.select.information' | translate}}</p>
+          <p class="coc-state col-xs-3 col-sm-3 col-md-3">{{'chamber.select.status' | translate}}</p>
+        </div>
+        <div *ngIf="cocs?.length >0">
+          <div class="user-card row clearfix" *ngFor="let item of cocs">
+            <div class="user-card-wrapper col-xs-12 col-sm-9 col-md-9 no-padding clearfix">
+              <img class="coc-logo pull-left hidden-xs hidden-sm" [src]="item?.coc.logoUrl"
+                   style="width: 80px; height: 80px;" [routerLink]="['/coc-show', item?.cocId, 'home']">
+              <div class="coc-info pull-left">
+                <h1 class="coc-title" *ngIf="item.status === 'success'">
+                  <a [routerLink]="['/coc-show', item?.cocId, 'home']">{{item?.coc.name}}&nbsp;&nbsp;
+                    <span class="group">{{'chamber.member.post' | translate}}：{{item?.group.name}}</span></a>
+                </h1>
+                <h1 class="coc-title" *ngIf="item.status === 'pending' || item?.status === 'fail'">
+                  <a [routerLink]="['/coc-show', item?.cocId, 'home']">{{item?.coc.name}}
+                    <span class="group">{{'user.home.position' | translate}}：{{item?.group?.name}}</span>
+                    <span *ngIf="item?.memberRating?.title" class="group">{{'chamber.member.position' | translate}}：{{item?.memberRating?.title}}</span>
+                  </a>
+                </h1>
+                <ul class="coc-text clearfix">
+                  <li><p>{{'user.home.number_people' | translate}}</p>
+                    <p>{{item?.coc.scale}}人</p></li>
+                  <li><p>{{'user.home.industry' | translate}}</p>
+                    <p>{{item?.coc.industry.name}}</p></li>
+                  <li><p>{{'user.home.region' | translate}}</p>
+                    <p>{{item?.coc.address | slice:0:4}}</p></li>
+                  <li><p>{{'user.home.contacts' | translate}}</p>
+                    <p>{{item?.coc.contacts}}</p></li>
+                  <li><p>{{'user.home.telephone' | translate}}</p>
+                    <p>{{item?.coc.phone}}</p></li>
+                </ul>
+              </div>
+            </div>
+            <div class="operation col-xs-12 col-sm-3 col-md-3">
+              <div class="status status-success" *ngIf="item?.status === 'success'">
+                <span class="state">{{'user.home.already_joined' | translate}}</span>
+                <span class="state-reject" role="button" [routerLink]="['/user',item?.coc?.id,'notice']">查看公告</span>
+
+              </div>
+              <div class="status status-pending" *ngIf="item?.status === 'pending'">
+                <span class="state">{{'user.user_baseinfo.wait_join' | translate}}</span>
+              </div>
+              <div class="status status-fail" *ngIf="item?.status === 'fail'">
+                <p>
+                  <span class="state-reject">{{'user.home.fail' | translate}}</span><span *ngIf="item?.description"
+                                                                                          class="reject-reason">{{'user.home.administrator_refusal' | translate}}：{{item?.description}}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!--分页-->
+          <div class="user-card user-coc-page row clearfix">
+            <div class="coc-pagination  col-xs-12 col-sm-12 col-md-12">
+              <div class="pagination-wrapper center-block">
+                <pagination [previousText]="'navbar.previous_page' | translate"
+                            [nextText]="'navbar.next_page' | translate"
+                            [itemsPerPage]="filter.limit"
+                            [totalItems]="userCocMeta.pagination.totalCount"
+                            [(ngModel)]="filter.page"
+                            (pageChanged)="pageChanged($event)">
+                </pagination>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--加载-->
+        <div class="row clearfix" *ngIf="cocAppliesLoading">
+          <div class="no-me-coc-wrapper no-padding col-xs-12 col-sm-12 col-md-12 clearfix">
+            <div class="empty-pic-wrapper text-center">
+              <img class="empty-pic" src="../../../assets/img/loading.gif">
+            </div>
+          </div>
+        </div>
+        <!--暂无商会信息-->
+        <div class="row clearfix" *ngIf="cocs?.length === 0">
+          <div class="no-me-coc-wrapper no-padding col-xs-12 col-sm-12 col-md-12 clearfix">
+            <div class="empty-pic-wrapper text-center">
+              <img class="empty-pic center-block" src="../../../assets/img/no-me-coc.png">
+            </div>
+            <p class="empty-text text-center">{{'user.title.no_coc_info' | translate}}</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
+

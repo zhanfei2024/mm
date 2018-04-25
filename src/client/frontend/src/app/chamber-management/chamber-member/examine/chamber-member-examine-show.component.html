@@ -1,0 +1,301 @@
+<div class="container">
+  <div class="member-examine">
+    <div class="post-header" style="margin-top: 20px;">
+      <a class="br" [routerLink]="['/chamber',id,'member','list']">
+        <img src="../../../../assets/img/back.png" class="icon"/>{{'chamber.left.member' | translate}} </a>——
+      <span *ngIf="!isMember">{{'global.'+ rows?.status | translate}}</span>
+      <span *ngIf="isMember">{{'cocShow.navbar.apply_coc' | translate}}</span>
+      <p *ngIf="rows?.status === 'fail'" class="text-danger"></p>
+      <div class="pull-right" *ngIf="rows?.status === 'pending'">
+        <a class="success post-border-right" (click)="inviteModal.show()">
+          <img src="../../../../assets/img/success.png" class="icon"/>{{'chamber.btn.adopt' | translate}}
+        </a>
+        <a class="success" (click)="open('fail')">
+          <img src="../../../../assets/img/fail.png" class="icon"/>{{'chamber.btn.refuse' | translate}}
+        </a>
+
+      </div>
+    </div>
+    <div *ngIf="tableLoading">
+      <div class="text-center pt-3 pb-3">
+        <div class="pt-3 pb-3">
+          <i class="loading-img"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="row clearfix" *ngIf="!tableLoading">
+      <div class="col-sm-12">
+        <div class="examine-header" style="padding-top: 30px">
+          {{'chamber.member.information' | translate}}
+        </div>
+        <div class="member-examine-body clearfix" style="padding-bottom: 30px">
+          <div class="col-sm-1" style="padding-left: 0">
+            <img [src]="rows?.user?.userProfile?.avatar" class="img-responsive img-circle">
+          </div>
+          <div class="col-sm-10">
+            <div class="information">
+              <span class="lastName">{{rows?.user?.userProfile?.name}}</span>
+              <span class="group">{{'global.apply_position' | translate}}：{{rows?.group?.name}}</span> |
+              <span class="group" *ngIf="rows?.introducer">{{'global.introducer' | translate}}：{{rows?.introducer}}</span>
+            </div>
+            <p class="texts">
+              <span>
+                <a class="text-inner" herf="javascript:;">
+                  {{('global.' + rows?.user?.userProfile?.gender) |translate }}
+                </a>
+              </span>
+              <span>
+                  <a class="text-inner">
+                    {{rows?.user?.userProfile?.age}}
+                  </a>
+              </span>
+              <span>
+                <a class="text-inner">
+                  {{rows?.user?.userProfile?.phone}}
+                </a>
+              </span>
+              <span>
+                  <a class="text-inner">
+                  {{rows?.user?.userProfile?.email}}
+                  </a>
+              </span>
+              <span>
+                  <a class="text-inner">
+                  {{'chamber.member.number' | translate}}：{{rows?.number | translate}}
+                  </a>
+              </span>
+              <span>
+                  <a class="text-inner">
+                  {{'chamber.member.post' | translate}}：{{rows?.group?.name | translate}}
+                  </a>
+              </span>
+              <span>
+                  <a class="text-inner">
+                  {{'chamber.member.position' | translate}}：{{rows?.memberRating?.title | translate}}
+                  </a>
+              </span>
+              <span *ngIf="rows?.user?.userProfile?.IDType && rows?.user?.userProfile?.IDNumber">
+                <a class="texts-inner">{{'global.id_type' | translate}}：
+                {{'global.'+rows?.user?.userProfile?.IDType | translate}}
+                </a>
+              </span>
+              <span *ngIf="rows?.user?.userProfile?.IDType && rows?.user?.userProfile?.IDNumber">
+                <a class="texts-inner">
+                  {{'global.id_number' | translate}}：{{rows?.user?.userProfile?.IDNumber}}
+                </a>
+              </span>
+              <!--<span *ngIf="rows?.statement1"><a-->
+                <!--class="texts-inner">{{'global.statement_one_text' | translate}}</a>-->
+              <!--</span>-->
+              <!--<span *ngIf="rows?.statement2"><a-->
+                <!--class="texts-inner">{{'global.statement_two_text' | translate}}</a>-->
+              <!--</span>-->
+              <!--<span *ngIf="rows?.statement3"><a-->
+                <!--class="texts-inner">{{'global.statement_three_text' | translate}}</a>-->
+              <!--</span>-->
+              <!--<span *ngIf="!rows?.statement1"><a-->
+                <!--class="texts-inner">{{'global.statement_one_text_agree' | translate}}</a>-->
+              <!--</span>-->
+              <!--<span *ngIf="!rows?.statement2"><a-->
+                <!--class="texts-inner">{{'global.statement_two_text_agree' | translate}}</a>-->
+              <!--</span>-->
+              <!--<span *ngIf="!rows?.statement3"><a-->
+                <!--class="texts-inner">{{'global.statement_three_text_agree' | translate}}</a>-->
+              <!--</span>-->
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12" *ngIf="rows?.user?.userExperience?.length > 0">
+        <div class="examine-header">
+          {{'chamber.member.experience' | translate}}
+        </div>
+        <div class="member-examine-body clearfix" *ngFor="let item of rows?.user?.userExperience">
+          <div class="col-sm-12 texts clearPadding">
+            <span><a>{{item?.startedDate | date: 'yyyy-MM-dd'}} - {{item?.endedDate | date: 'yyyy-MM-dd'}}</a></span>
+            <span><a>{{item?.companyName}}</a></span>
+            <span><a>{{item?.position}}</a></span>
+          </div>
+          <div class="member-examine-footer clearfix">
+            <p class="col-sm-12 " [innerHtml]="item?.description"></p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-sm-12" *ngIf="rows?.user?.userCompany?.length > 0">
+        <div class="examine-header">
+          {{'chamber.member.company' | translate}}
+        </div>
+        <div class="member-examine-body clearfix" *ngFor="let item of rows?.user?.userCompany">
+          <div class="col-sm-12 clearPadding">
+            <div class="information">
+              <span class="lastName">{{item?.companyName}}</span>
+              <span class="texts">{{item?.legalPersonName}}</span>
+            </div>
+          </div>
+
+          <div class="col-sm-12 clearPadding">
+            <p class="texts">
+              <span><a>{{item?.mobile}}</a></span>
+              <span><a>{{item?.companyEmail}}</a></span>
+              <span><a>{{item?.industry?.name}}</a></span>
+              <span><a>{{item?.address}}</a></span>
+            </p>
+          </div>
+
+          <div class="member-examine-footer">
+            <p class="col-sm-12 clearPadding" [innerHtml]="item?.scopeOfOperation"></p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-sm-12" *ngIf="rows?.user?.userEducation?.length > 0">
+        <div class="examine-header">
+          {{'chamber.member.background' | translate}}
+        </div>
+        <div class="member-examine-body clearfix" style="border: none" *ngFor="let item of rows?.user?.userEducation">
+          <div class="col-sm-12 clearPadding">
+            <p class="texts">
+              <span><a>{{item?.startDate | date: 'yyyy-MM-dd'}} - {{item?.endDate | date: 'yyyy-MM-dd'}}</a></span>
+              <span><a>{{item?.schoolName}}</a></span>
+              <span><a>{{item?.subject}}</a></span>
+            </p>
+          </div>
+
+
+          <div class="member-examine-footer">
+            <p class="col-sm-12 clearPadding" [innerHtml]="item?.description">
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-sm-12" *ngIf="rows?.status === 'fail'">
+        <div class="examine-header">
+          {{'global.rejection_reasons' | translate}}：
+        </div>
+        <div class="member-examine-body clearfix">
+          <p [innerHtml]="rows?.description"></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--通过时设置会籍和职务-->
+<div class="modal fade" bsModal #inviteModal="bs-modal" [config]="{backdrop: 'static',ignoreBackdropClick: true}"
+     tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content clearfix">
+      <div class="modal-header clearfix" style="padding-bottom: 15px">
+        <div class="col-sm-12">
+          <div class="header">
+            <h4>
+              {{'chamber.btn.set_member' | translate}}
+            </h4>
+            <a type="button" class="close pull-right" aria-label="Close" (click)="inviteModal.hide()">
+              <span aria-hidden="true">
+                <img src="../../../../assets/img/delete.png" height="20" width="20"/>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body invitation-form" style="padding-top: 0">
+        <form class="container-fluid" name="postForm" #postForm="ngForm">
+          <!--会籍-->
+          <div class="form-group col-md-6 clearfix">
+            <label for="groups" class="col-md-12 py-h px-1">{{'chamber.member.post'
+              | translate}}</label>
+            <div class="col-md-12">
+              <ng-select
+                #group
+                id="groups"
+                [items]="selectGroups"
+                [active]="activeGroup"
+                ng2SelectRequired
+                name="group"
+                (data)="selected($event, 'groups')">
+              </ng-select>
+            </div>
+          </div>
+          <!--职务-->
+          <div class="form-group col-md-6 clearfix">
+            <label for="positions" class="col-md-12 py-h px-1">{{'chamber.member.position'
+              | translate}}</label>
+            <div class="col-md-12">
+              <ng-select
+                #position
+                id="positions"
+                [items]="selectPositions"
+                [active]="activePosition"
+                ng2SelectRequired
+                name="position"
+                (data)="selected($event, 'position')">
+              </ng-select>
+            </div>
+          </div>
+
+          <div class="modal-selected-footer text-center">
+            <button type="button" class="btn btn-primary transparent cursor btn-submit-primary"
+                    style="line-height: 1.8;"
+                    (click)="open('success')" [disabled]="submitLoading"
+                    aria-label="Close">
+              <span *ngIf="submitLoading"><i class="fa fa-spin fa-spinner"></i></span>
+              <span *ngIf="!submitLoading">{{'button.confirm' | translate}}</span>
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--拒绝-->
+<div class="modal fade" bsModal #editModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header clearfix">
+        <div class="col-sm-12">
+          <div class="header">
+            <h4>
+              {{'global.rejection_reasons' | translate}}
+            </h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="editModal.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <form class="container-fluid" name="mainForm" #mainForm="ngForm">
+          <div class="form-group row">
+            <label for="content" class="col-md-12 clearPadding py-h px-1">
+            </label>
+            <div class="col-md-12 clearPadding">
+              <textarea style="min-height: 150px; width: 99%" id="content" name="content" [(ngModel)]="update.content">
+              </textarea>
+            </div>
+          </div>
+
+          <div class="modal-selected-footer">
+            <div class="row clearfix text-center">
+              <button class="btn-primary btn btn-submit-primary" [disabled]="!mainForm.form.valid" (click)="updateStatus()">
+                <span *ngIf="submitLoading"><i class="fa fa-spin fa-spinner"></i></span>
+                <span *ngIf="!submitLoading">{{'chamber.btn.submit' | translate}}</span>
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

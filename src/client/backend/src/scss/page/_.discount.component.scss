@@ -1,0 +1,27 @@
+.add-category-form{
+  padding:20px 15px;
+}
+.dishes-navbar{
+  margin: 0 20px;
+}
+.dishes-navbar{
+  .nav {
+    margin: 0;
+    li {
+      height: 50px;
+      line-height: 50px;
+      a {
+        display: inline-block;
+        text-align: center;
+        height: 50px;
+        min-width: 220px;
+        background: #f2f4f8;
+      }
+      a.active {
+        color: #e0a139;
+        border-radius: 4px;
+        background: #FFFFFF;
+      }
+    }
+  }
+}

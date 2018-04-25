@@ -1,0 +1,71 @@
+<div class="coc-container">
+  <div class="chamber-home">
+    <div class="row clearfix">
+      <app-chamber-left></app-chamber-left>
+      <div class="col-md-10 add-margin">
+        <div class="list-right">
+          <div class="row clearfix">
+            <div class="list-contents clearfix">
+              <div class="col-sm-4 clearaddingRight">
+                <div class="row clearfix" style="padding: 5px">
+                  <div class="item clearfix" [routerLink]="['/chamber',id,'member','examine']">
+                    <div class="col-sm-4" style="line-height: 50px">
+                      <img src="../../../assets/img/member.png" height="40" width="40"/>
+                    </div>
+                    <div class="col-sm-8">
+                      <p class="text" style="position: relative"> <span
+                        class="number">{{candidates?.cms}}</span>
+                        {{'chamber.home.untreated_member_text' | translate}}
+                        <img src="../../../assets/img/right.png"
+                             style="position: absolute;right: -10px;bottom: -10px;"
+                             height="10" width="10"/>
+                      </p>
+                      <h3 class="title">{{'chamber.home.member' | translate}}</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 clearaddingRight">
+                <div class="row clearfix" style="padding: 5px">
+                  <div class="item clearfix" [routerLink]="['/chamber',id,'activity','examine']">
+                    <div class="col-sm-4" style="line-height: 50px">
+                      <img src="../../../assets/img/activity.png" height="40" width="40"/>
+                    </div>
+                    <div class="col-sm-8">
+                      <p class="text" style="position: relative"> <span
+                        class="number">{{candidates?.cas}}</span>
+                        {{'chamber.home.untreated_activity_text' | translate}}<img src="../../../assets/img/right.png"
+                                                                                   style="position: absolute;right: -10px;bottom: -10px;"
+                                                                                   height="10" width="10"/></p>
+                      <h3 class="title">{{'chamber.home.activity' | translate}}</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 clearaddingLeft">
+                <div class="row clearfix" style="padding: 5px">
+                  <div class="item clearfix" [routerLink]="['/chamber',id,'message']">
+                    <div class="col-sm-4" style="line-height: 50px">
+                      <img src="../../../assets/img/meassge.png" height="40" width="40"/>
+                    </div>
+                    <div class="col-sm-8">
+                      <p class="text" style="position: relative"> <span
+                        class="number">{{candidates?.msgs}}</span>
+                        {{'chamber.home.untreated_message_text' | translate}}
+                        <img src="../../../assets/img/right.png"
+                             style="position: absolute;right: -10px;bottom: -10px;"
+                             height="10" width="10"/>
+                      </p>
+                      <h3 class="title">{{'chamber.home.message' | translate}}</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

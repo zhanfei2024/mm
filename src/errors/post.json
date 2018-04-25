@@ -1,0 +1,11 @@
+{
+  "postCategoryNotExists": {
+    "statusCode": 400,
+    "message": {
+      "en": "Please choose post category  subcategory",
+      "cn": "请选择文章的分类",
+      "hk": "請選擇文章的分類"
+    }, 
+    "code": 16000
+  }
+}

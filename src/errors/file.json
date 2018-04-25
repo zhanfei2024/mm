@@ -1,0 +1,65 @@
+{
+  "fileIsRequired": {
+    "statusCode": 400,
+    "message": {
+      "en": "The file field is required",
+      "cn": "要求上传文件",
+      "hk": "要求上傳文件"
+    },
+    "code": 20000
+  },
+  "unsupportedFormat": {
+    "statusCode": 400,
+    "message": {
+      "en": "File is an unsupported format",
+      "cn": "文件格式不支持",
+      "hk": "文件格式不支持"
+    },
+    "code": 20001
+  },
+  "fileSizeLimit": {
+    "statusCode": 400,
+    "message": {
+      "en": "File is too big",
+      "cn": "文件太大",
+      "hk": "文件太大"
+    },
+    "code": 20002
+  },
+  "upload2AWS": {
+    "statusCode": 400,
+    "message": {
+      "en": "Something get error",
+      "cn": "未知错误",
+      "hk": "未知錯誤"
+    },
+    "code": 20003
+  },
+  "fileCountLimit": {
+    "statusCode": 400,
+    "message": {
+      "en": "File number is greater than 10, You will not be able to upload files",
+      "cn": "上传文件数量不能超过10个",
+      "hk": "上傳文件數量不能超過10個"
+    },
+    "code": 20004
+  },
+  "emptyFile": {
+    "statusCode": 400,
+    "message": {
+      "en": "File can't be empty",
+      "cn": "文件不能为空",
+      "hk": "文件不能為空"
+    },
+    "code": 20005
+  },
+  "duplicate": {
+    "statusCode": 400,
+    "message": {
+      "en": "Invitation Email is duplicate",
+      "cn": "电子邮件错误",
+      "hk": "電子郵件錯誤"
+    },
+    "code": 20006
+  }
+}

@@ -1,0 +1,181 @@
+<div class="content-heading text-primary">
+  {{'panel.link'|translate}}
+</div>
+
+<div class="">
+  <!--<h6 class="card-header text-primary">-->
+  <!--{{'order.order_list'|translate}}-->
+  <!--</h6>-->
+  <div class="card-block">
+    <!-- /.row -->
+    <div class="row align-items-center">
+      <div class="col-sm-12 form-group">
+        <button type="button" (click)="openModal()"
+                class="btn btn-outline-primary pull-right cursor">{{ 'button.create' |
+          translate }}
+        </button>
+      </div>
+    </div>
+    <div *ngIf="tableLoading" class="card-block">
+      <div class="sk-three-bounce">
+        <div class="sk-child sk-bounce1"></div>
+        <div class="sk-child sk-bounce2"></div>
+        <div class="sk-child sk-bounce3"></div>
+      </div>
+    </div>
+    <div *ngIf="!tableLoading">
+      <div *ngIf="rows.length===0">
+        <div class="text-muted pt-3 pb-3 text-center">
+          <div hidden>
+            <img src="../../../assets/img/content/no-role.png" alt="" class="img-fluid mx-auto d-block">
+          </div>
+          <div class="pt-3 pb-3 font-xl">
+            <img src="../../../assets/img/content/no-role.png" alt="" class="img-fluid mx-auto d-block">
+            <p>{{'no_content.no_order' | translate}}</p>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="rows.length!==0" class="table-responsive table-panel">
+        <table class="table table-align-middle table-outline text-center">
+          <thead>
+          <tr>
+            <th>{{'link.name'|translate }}</th>
+            <th>{{'link.url'|translate }}</th>
+            <th>{{'link.contacts'|translate }}</th>
+            <th>{{'link.phone'|translate }}</th>
+            <th>{{'link.createdAt'|translate }}</th>
+            <th class="text-center">{{'link.order'|translate }}</th>
+            <th>{{'link.isActive'|translate }}</th>
+            <th>{{'link.option'|translate }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let row of rows">
+            <td>{{row?.title}}</td>
+            <td><a href="{{row?.linkUrl}}" target="_blank">{{row?.linkUrl}}</a></td>
+            <td>{{row?.contacts}}</td>
+            <td>{{row?.phone}}</td>
+            <td>{{row?.createdAt | date: 'yyyy-MM-dd'}}</td>
+            <td class="text-center">{{row?.order}}</td>
+            <td>
+              <label class="switch switch-3d switch-success">
+                <input (change)="switchEnable(row)" [checked]="row.isActive" [(ngModel)]="row.isActive"
+                       class="switch-input" type="checkbox">
+                <span class="switch-label"></span>
+                <span class="switch-handle"></span>
+              </label>
+            </td>
+            <td>
+              <i (click)="openModal(row)" class="fa fa-pencil-square-o text-primary cursor color-active" aria-hidden="true"></i>
+              <i (click)="delete(row.id)" class="fa fa-trash text-primary cursor color-active" aria-hidden="true"></i>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <!-- /.table-->
+      </div>
+      <div class="text-center" [hidden]="tableLoading || rows.length === 0">
+        <custom-pagination [itemsPrePage]="meta.pagination.prevPage"
+                           [itemsNextPage]="meta.pagination.nextPage"
+                           [currentPage]="meta.pagination.currentPage"
+                           (pageChanged)="changePage($event)">
+        </custom-pagination>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.card-block -->
+
+  <div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" *ngIf="isInitModal">
+        <div class="card-header">
+          <div class="row align-items-center">
+            <div class="col text-primary">
+              {{'link.link_edit'|translate}}
+            </div>
+            <!--/.col-->
+          </div>
+        </div>
+        <div class="modal-body">
+          <form class="container-fluid" name="mainForm" #mainForm="ngForm">
+            <div class="form-group row">
+              <label for="cateName" class="col-md-3 py-h px-1"><sub class="text-danger font-lg">*</sub>{{'link.name'
+                | translate}}</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="cateName" name="cateName" required
+                       [(ngModel)]="link.title" #categoryName="ngModel">
+                <form-message [control]="categoryName"
+                              [fieldName]="'link.name' | translate"></form-message>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="linkUrl" class="col-md-3 py-h px-1"><sub class="text-danger font-lg">*</sub>{{'link.url'
+                | translate}}</label>
+              <div class="col-md-8">
+                <input type="url" class="form-control" id="linkUrl" name="linkUrl" required
+                       [(ngModel)]="link.linkUrl" #linkUrl="ngModel">
+                <form-message [control]="linkUrl"
+                              [fieldName]="'link.url' | translate"></form-message>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="contacts" class="col-md-3 py-h px-1"><sub class="text-danger font-lg">*</sub>{{'link.contacts'
+                | translate}}</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="contacts" name="contacts" required
+                       [(ngModel)]="link.contacts" #contacts="ngModel">
+                <form-message [control]="contacts"
+                              [fieldName]="'link.contacts' | translate"></form-message>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="phone" class="col-md-3 py-h px-1"><sub class="text-danger font-lg">*</sub>{{'link.phone'
+                | translate}}</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="phone" name="phone" required
+                       [(ngModel)]="link.phone" #phone="ngModel">
+                <form-message [control]="phone"
+                              [fieldName]="'link.phone' | translate"></form-message>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="number" class="col-md-3 py-h px-1"><sub class="text-danger font-lg">*</sub>{{'link.order'|translate}}：</label>
+              <div class="col-md-8">
+                <input type="number" class="form-control" id="number" name="number" required
+                       [(ngModel)]="link.order" #categoryPosition="ngModel"
+                       placeholder="{{'chamber.placeholder.course.sort' | translate}}">
+                <form-message [control]="categoryPosition"
+                              [fieldName]="'link.order' | translate"></form-message>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <div class="row">
+                <div class="col text-right">
+                  <button type="button" class="btn btn-outline-primary cursor" (click)="closeModal(editModal)"
+                          aria-label="Close">
+                    <i class="fa fa-close cursor"></i>
+                    {{'industry.button.cancel' | translate}}
+                  </button>
+                  <button type="submit" class="btn btn-primary cursor" [disabled]="!mainForm.form.valid"
+                          (click)="onSubmit()">
+                    <i class="fa fa-save cursor"></i>
+                    {{'industry.button.save'|translate}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

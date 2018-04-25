@@ -1,0 +1,146 @@
+
+<div class="text-right card-block clearfix">
+  <h4 class="pull-left">
+    {{'coc.detail.title'|translate}}
+  </h4>
+    <button (click)="onUpdateIsProved(true,details)" [disabled]="btn_status" type="button"
+            class="btn btn-outline-primary pointer " [ngClass]="btn_class">{{ btn_string |
+      translate }}
+    </button>
+    <button (click)="onUpdateIsProved(false,details)" [disabled]="btn_status" type="button"
+            class="btn btn-outline-primary pointer " [ngClass]="btn_class">{{ 'coc.detail.nproved' |
+      translate }}
+    </button>
+  <button [routerLink]="['/enterprise/list']" class="btn btn-outline-primary pointer">
+    <i class="fa fa-reply font-sm"></i>
+    {{'button.back' | translate}}
+  </button>
+</div>
+<div class="card">
+  <div class="card-block td-text-left">
+    <div *ngIf="modalDetailsLoading">
+      <div class="sk-three-bounce">
+        <div class="sk-child sk-bounce1"></div>
+        <div class="sk-child sk-bounce2"></div>
+        <div class="sk-child sk-bounce3"></div>
+      </div>
+    </div>
+    <div *ngIf="!modalDetailsLoading">
+      <div class="table-responsive">
+        <h5>{{'user.baseinfo' | translate}}</h5>
+        <table class="table table-align-middle table-outline details-head-bg">
+          <tbody>
+          <tr class="coc-details-tr">
+            <td rowspan="4">
+              <img src="{{details?.enterprise?.IDFrontUrl}}" class="fontId cursor" (click)="openModal(details?.enterprise?.IDFrontUrl)">
+              <p>{{'coc.detail.id' | translate}}</p>
+            </td>
+            <td>{{'coc.id' | translate}}</td>
+            <td>{{details?.id}}</td>
+            <td>{{'coc.email'| translate}}</td>
+            <td>{{details?.enterprise?.email}}</td>
+          </tr>
+          <tr class="pointer">
+            <td>{{'coc.detail.first_name' | translate}}</td>
+            <td>{{details?.enterprise?.firstName}}</td>
+            <td>{{'coc.detail.last_name' | translate}}</td>
+            <td>{{details?.enterprise?.lastName}}</td>
+          </tr>
+          <tr class="pointer">
+            <td>{{'coc.detail.phone' | translate}}</td>
+            <td>{{details?.enterprise?.phone}}</td>
+            <td>{{'coc.detail.createdAt' | translate}}</td>
+            <td>{{details?.createdAt }}</td>
+          </tr>
+          <tr class="pointer">
+            <td>{{'coc.status' | translate}}</td>
+            <td *ngIf="details.isApproved">{{'coc.detail.proved' | translate}}</td>
+            <td *ngIf="!details.isApproved">{{'coc.detail.nproved' | translate}}</td>
+            <td>{{'coc.detail.updatedAt' | translate}}</td>
+            <td>{{details?.updatedAt }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <br>
+      <h5>{{'coc.coc' | translate}}</h5>
+      <div class="container table-responsive">
+        <table class="table table-align-middle text-center" style="border-bottom: 1px solid #e1e6ef">
+          <tbody>
+          <tr class="pointer-coc">
+            <td> {{'coc.coc_name' | translate}}</td>
+            <td> {{'coc.industry' | translate}}</td>
+            <td> {{'coc.location' | translate}}</td>
+            <td> {{'coc.detail.num' | translate}}</td>
+            <td> {{'coc.detail.found_time' | translate}}</td>
+          </tr>
+          <tr class="pointer-coc">
+            <td>{{details?.name}}</td>
+            <td>{{details?.industry?.name}}</td>
+            <td>{{details?.locations?.name}}</td>
+            <td>{{details?.scale}}</td>
+            <td>{{details?.foundingDate}}</td>
+          </tr>
+          <tr class="pointer-coc">
+            <td>{{'coc.link_man' | translate}}</td>
+            <td>{{'coc.link_man_phone' | translate}}</td>
+            <td>{{'coc.address' | translate}}</td>
+            <td>{{'coc.link_email' | translate}}</td>
+            <td>{{'coc.purpose' | translate}}</td>
+          </tr>
+          <tr class="pointer-coc">
+            <td>{{details?.contacts}}</td>
+            <td>{{details?.phone}}</td>
+            <td>{{details?.address}}</td>
+            <td>{{details?.email}}</td>
+            <td [innerHTML]="details?.purpose"></td>
+          </tr>
+          <tr class="pointer-coc">
+            <td colspan="1">{{'coc.pic' | translate}}</td>
+            <td colspan="4">{{'coc.description' | translate}}</td>
+          </tr>
+          <tr>
+            <td colspan="1">{{'coc.logo' | translate}}  <img src="{{details.logoUrl}}" style="width:120px;"></td>
+            <td colspan="4" rowspan="3" [innerHTML]="details?.description"></td>
+          </tr>
+          <tr>
+            <td>{{'coc.main' | translate}} <img src="{{details.coverImageUrl}}" style="width:120px;"></td>
+          </tr>
+          <tr>
+            <td (click)="openModal(details?.qualificationUrl)">{{'coc.qualifications' | translate}} <img src="{{details.qualificationUrl}}" style="width:120px;"></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    </div>
+
+  <!--------模态框-------->
+  <div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" *ngIf="isInitModal">
+        <div class="card-header">
+          <div class="row align-items-center">
+            <div class="col text-primary">
+            </div>
+            <!--/.col-->
+            <div class="col text-right">
+              <button type="button" class="btn btn-outline-primary cursor" (click)="closeModal()"
+                      aria-label="Close">
+                <i class="fa fa-close"></i>
+                {{'industry.button.cancel' | translate}}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <img src="{{imgSrc}}" style="display:block;margin:0 auto;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

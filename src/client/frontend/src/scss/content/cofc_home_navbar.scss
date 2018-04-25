@@ -1,0 +1,60 @@
+.cofc-home-navbar {
+  background-color: #fafafa;
+  .navbar-top {
+    padding: 40px 0px;
+    .navbar-left {
+      .avatar {
+        display: inline-block;
+        margin-right: 22px;
+        width: 98px;
+        height: 98px;
+        background-color: yellow;
+      }
+      .cofc-info {
+        display: inline-block;
+        h3 {
+          font-weight: bold;
+        }
+        ul {
+          li {
+            display: inline-block;
+            padding: 0 32px;
+            text-align: center;
+            border-left: 1px solid gray;
+
+          }
+          li:last-child {
+            border-right: 1px solid gray;
+          }
+        }
+      }
+    }
+  }
+  .navbar-bottom {
+    li {
+      float: left;
+      margin-right: 60px;
+      a {
+        line-height: 30px;
+        padding: 0 22px;
+        color: black;
+        &.active {
+          color: $brand-primary;
+          border-bottom: 3px solid $brand-primary;
+        }
+      }
+      a:hover {
+        color: $brand-primary;
+        border-bottom: 3px solid $brand-primary;
+      }
+      a:focus {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+//public css
+ul {
+  margin: 0px;
+}

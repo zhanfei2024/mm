@@ -1,0 +1,196 @@
+@media (min-width: 576px) {
+  .custom-lg {
+    max-width: 80%;
+  }
+}
+
+.card-headers {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px;
+  text-transform: uppercase;
+  color: #6d4853;
+  border-top: 2px solid #544855;
+  border-bottom: 1px solid #cecfd1;
+}
+
+.ipsDialog_title:after {
+  position: absolute;
+  border: 0 solid transparent;
+  border-top-color: #544855;
+  border-width: 8px 8px 0 0px;
+  content: '';
+  display: block;
+  height: 0;
+  left: 0;
+  top: 0;
+  width: 0;
+  z-index: 9;
+}
+
+.custom-lg .modal-content {
+  display: block; /* ie flex */
+}
+
+.guide-line {
+  position: relative;
+  border-top: 1px solid #e1e6ef;
+  padding: 0.5rem;
+  padding-left: 0;
+}
+
+.guide-icon {
+  width: 40px;
+  height: 30px;
+  position: absolute;
+  top: calc(50% - 15px);
+  cursor: pointer;
+  background-image: url("/assets/img/first-guide/sprites.png");
+}
+
+.guide-text {
+  padding-left: 60px;
+  vertical-align: middle;
+  display: table-cell;
+  height: 30px;
+}
+
+.guide-times {
+  background-image: url("/assets/img/first-guide/extend.svg");
+  width: 16px;
+  height: 16px;
+}
+
+.guide-employee-1 {
+  background-position-x: 0;
+}
+
+.guide-employee-2 {
+  background-position-x: 40px;
+}
+
+.guide-employee-3 {
+  background-position-x: 80px;
+}
+
+.guide-attendance-1 {
+  background-position-x: 120px;
+}
+
+.guide-attendance-2 {
+  background-position-x: 160px;
+}
+
+.guide-attendance-3 {
+  background-position-x: 200px;
+}
+
+.guide-attendance-4 {
+  background-position-x: 240px;
+}
+
+.guide-salary-1 {
+  background-position-x: 280px;
+}
+
+.guide-salary-2 {
+  background-position-x: 320px;
+}
+
+.guide-salary-3 {
+  background-position-x: 360px;
+}
+
+.guide-payroll-1 {
+  background-position-x: 400px;
+}
+
+.guide-payroll-2 {
+  background-position-x: 440px;
+}
+
+.guide-payroll-3 {
+  background-position-x: 480px;
+}
+
+.guide-payroll-4 {
+  background-position-x: 520px;
+}
+
+.card-block {
+  padding: 0 !important;
+  min-height: 50px;
+}
+
+.no_products, .no_employee {
+  min-height: 50px;
+  line-height: 50px;
+}
+
+.card-block .loading-img {
+  width: 100%;
+  height: 60px;
+  background-size: contain;
+  background-position: center center;
+}
+
+.turnover_charts {
+  width: 100% !important;
+}
+
+.item {
+  border-radius: 3px;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 1px rgba(63, 63, 68, 0.05), 0 1px 3px 0 rgba(63, 63, 68, 0.15);
+  padding: 20px;
+  .item-fa {
+    font-size: 60px;
+    line-height: 45px;
+
+  }
+  .item-fa:hover{
+    color:#323d50 !important;
+  }
+}
+
+.ka-header, .ka-body {
+  padding: 15px;
+  border-radius: 3px;
+  background-color: #0773a9;
+  color: #FFFFFF;
+  box-shadow: 0 0 0 1px rgba(63, 63, 68, 0.05), 0 1px 3px 0 rgba(63, 63, 68, 0.15);
+  margin-top: 20px;
+}
+
+.ka-body {
+  background: #FFFFFF;
+  margin: 0;
+  .list {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f8f8f8;
+    a {
+      color: #656565;
+      cursor: pointer;
+    }
+    a:hover {
+      color: #323d50;
+    }
+  }
+}
+
+.link-content {
+  .table td {
+    border: none !important;
+    cursor: pointer;
+  }
+  .table td:hover {
+    color: #323d50;
+  }
+  .link-fa {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 50px;
+  }
+}

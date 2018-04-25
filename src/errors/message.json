@@ -1,0 +1,11 @@
+{
+    "notFound":{
+      "statusCode": 400,
+      "message": {
+        "en": "message is not found!",
+        "cn": "消息未找到",
+        "hk": "消息未找到"
+      },
+      "code": 10041
+    }
+  }

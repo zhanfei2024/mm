@@ -1,0 +1,16 @@
+{{#extend "mail/layouts/main"}}
+  {{#content "content"}}
+    <span>尊敬的 {{ fullName }},</span>
+    <p>标题: 你的工资单已经更新了</p>
+      {{#if data.payType}}
+        <p>支付类型: {{ oldSalary.payType.name }} -> {{ data.payType.name }}</p>
+      {{/if}}
+    <p>开始时间: {{ oldSalary.effectiveDate }} -> {{ newSalary.effectiveDate }}</p>
+    <p>标准工资: {{ oldSalary.payRate }} -> {{ newSalary.payRate }}</p>
+    <p>单位: {{ oldSalary.unit }} -> {{ newSalary.unit }}</p>
+    <p>如果这封电子邮件对你没有任何意义, 可能是有人故意或无意地输入了你的电子邮件地址, 那么请忽略这封电子邮件.</p>
+    <p>谢谢,</p>
+    <p>{{ siteTeamName }}</p>
+    <p>如果想进一步查询, 请联系: {{ siteSupportEmail }}</p>
+  {{/content}}
+{{/extend}}

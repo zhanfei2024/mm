@@ -1,0 +1,66 @@
+div.footer {
+  .footer-head {
+    padding: 40px 0 20px;
+    background: rgba(50, 61, 80, 1);
+    .left {
+      ul {
+        li:nth-child(1) {
+          padding-bottom: 20px;
+        }
+        li {
+          a {
+            color: $white-text-color;
+          }
+          a:focus {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+    .right {
+      p {
+        padding-bottom: 10px;
+        letter-spacing: 1.6px;
+        font: 14px $font-family-regular;
+        color: $white-text-color;
+      }
+      ul {
+        li {
+          margin-bottom: 10px;
+          float: left;
+          font: 14px $font-family-regular normal;
+          letter-spacing: $letter-spacing-base;
+          a {
+            color: $white-text-color;
+          }
+          a:focus {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+  .footer-bottom {
+    background: rgba(50, 61, 80, 1);
+    line-height: 40px;
+    height: 40px;
+    font: 14px $font-family-regular normal;
+    color: $white-text-color;
+    .text{
+      border-top: 1px solid #4a5065;
+      padding: 0 10px;
+      margin: 0;
+      span{
+        a{
+          color: #4a5065;
+          margin-right: 15px;
+        }
+      }
+    }
+  }
+}
+
+
+//public css
+ul {padding: 0; margin: 0}
+li {list-style: none}

@@ -1,0 +1,20 @@
+{
+  "applyCoc": {
+    "statusCode": 400,
+    "message": {
+      "en": "coc is not apply",
+      "cn": "商会审核没通过",
+      "hk": "商會審核沒通過"
+    },
+    "code": 10010
+  },
+  "unApproved": {
+    "statusCode": 400,
+    "message": {
+      "en": "coc is not approved",
+      "cn": "商会审核没通过",
+      "hk": "商會審核沒通過"
+    },
+    "code": 10011
+  }
+}

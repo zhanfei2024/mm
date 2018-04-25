@@ -1,0 +1,100 @@
+<div class="coc-container">
+  <div class="chamber-home">
+    <div class="row clearfix">
+      <app-chamber-left></app-chamber-left>
+      <div class="col-md-10">
+        <div class="list-right">
+          <div class="row clearfix">
+            <div class="header">
+              <h4>{{'chamber.left.position' | translate}}</h4>
+            </div>
+          </div>
+
+          <div class="row clearfix">
+            <div class="search-contaner clearfix">
+              <div class="col-sm-5 clearPadding">
+                <div class="search-input-group">
+                  <input type="text" class="form-control search-input"
+                         data-clearbtn="true"
+                         name="search"
+                         placeholder="{{'global.search_text' | translate }}"
+                         (keyup.enter)="onSearch()" [(ngModel)]="filter.search" aria-describedby="sizing-addon2">
+                </div>
+              </div>
+
+              <div class="col-sm-7 xs-search">
+                <button class="btn-primary btn pull-right btn-submit-primary" style="line-height: 1.5"
+                        [routerLink]="['/chamber',id,'positions','create']">{{'chamber.btn.add_position' | translate}}
+                </button>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="table-responsive">
+            <table class="table  table-align-middle table-outline text-center">
+              <thead>
+              <tr>
+                <th>{{'chamber.position.title' | translate}}</th>
+                <th>{{'chamber.position.description' | translate}}</th>
+                <th>{{'chamber.position.time' | translate}}</th>
+                <th class="text-center">{{'chamber.position.operation' | translate}}</th>
+              </tr>
+              </thead>
+              <tbody [hidden]="!tableLoading">
+              <tr>
+                <td colspan="4">
+                  <div class="text-center pt-3 pb-3">
+                    <div class="pt-3 pb-3">
+                      <i class="loading-img"></i>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+              <tbody [hidden]="!(know?.length === 0 && !tableLoading)">
+              <tr>
+                <td colspan="4" class="td_no_meassge">
+                  <div class="row clearfix">
+                    <div class="col-sm-12 no_message text-center">
+                      <img src="../../../../assets/img/no_post.png" height="120" width="120"/>
+                      <p> {{'message.no_post_add_text' | translate}}</p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+              <tbody [hidden]="!(know?.length > 0 && !tableLoading)">
+              <tr *ngFor="let item of know">
+                <td>{{item.title | htmlToPlaintext :6}}</td>
+                <td>{{item?.description | htmlToPlaintext :20}}</td>
+                <td>{{item.createdAt | date: 'yyyy-MM-dd'}}</td>
+                <td class="text-center">
+                  <a [routerLink]="['/chamber',id,'positions',item.id,'edit']">
+                    <img src="../../../assets/img/edit.png" class="icon"
+                         style="vertical-align: middle; margin-right: 60px"/>
+                  </a>
+                  <a (click)="delete(item.id)">
+                    <img src="../../../assets/img/fail.png" class="icon" style="vertical-align: middle;"/>
+                  </a>
+                </td>
+              </tr>
+
+              </tbody>
+            </table>
+            <!-- /.table-->
+            <div class="text-center" [hidden]="tableLoading || know?.length === 0">
+              <custom-pagination [itemsPrePage]="meta?.pagination.prevPage"
+                                 [itemsNextPage]="meta?.pagination.nextPage"
+                                 [currentPage]="meta?.pagination.currentPage"
+                                 (pageChanged)="changePage($event)">
+              </custom-pagination>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

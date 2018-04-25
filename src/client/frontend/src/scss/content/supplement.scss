@@ -1,0 +1,32 @@
+.service-agreement {
+  padding: 40px 20px;
+  font: 14px $font-family-regular;
+  color: $black-text-color;
+  line-height: 24px;
+  section {
+    padding-bottom: 20px;
+  }
+  h1 {
+    font: 18px $font-family-regular;
+    color: $black-text-color;
+    line-height: 36px;
+  }
+  p:not(.second-content) {
+    text-indent: 28px;
+  }
+  ul {
+    margin-left: 28px;
+  }
+  .second-content{
+    margin-left: 12px;
+  }
+}
+.custom-supplement-height {
+  min-height: 1894px;
+}
+.contact-us {
+  ul {
+    margin-left: 0;
+  }
+
+}

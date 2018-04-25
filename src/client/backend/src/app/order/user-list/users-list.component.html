@@ -1,0 +1,89 @@
+<div class="content-heading">
+  {{'panel.user'|translate}}
+</div>
+
+<div class="">
+  <!--<h6 class="card-header text-primary">-->
+  <!--{{'order.order_list'|translate}}-->
+  <!--</h6>-->
+  <div class="card-block">
+    <div class="row align-items-center">
+      <div class="col-sm-3 form-group">
+        <input type="text" class="form-control" placeholder="{{'user.search' | translate}}" name="search" [(ngModel)]="filter.search">
+      </div>
+      <div class="col-sm-3 form-group">
+        <button (click)="reset()" [disabled]="!filter.search" type="button"
+                class="btn btn-outline-primary cursor">{{ 'button.reset' |
+          translate }}
+        </button>
+        <button (click)="getAllOrders()" [disabled]="!filter.search" type="button"
+                class="btn btn-outline-primary cursor">{{ 'button.search' |
+          translate }}
+        </button>
+        <button (click)="exportExcel()" type="button"
+                class="btn btn-outline-primary cursor">{{ 'button.exprot' |
+          translate }}
+        </button>
+      </div>
+    </div>
+    <!-- /.row -->
+    <div *ngIf="tableLoading" class="card-block">
+      <div class="sk-three-bounce">
+        <div class="sk-child sk-bounce1"></div>
+        <div class="sk-child sk-bounce2"></div>
+        <div class="sk-child sk-bounce3"></div>
+      </div>
+    </div>
+    <div *ngIf="!tableLoading">
+      <div *ngIf="rows.length===0">
+        <div class="text-muted pt-3 pb-3 text-center">
+          <div hidden>
+            <img src="../../../assets/img/content/no-role.png" alt="" class="img-fluid mx-auto d-block">
+          </div>
+          <div class="pt-3 pb-3 font-xl">
+            <img src="../../../assets/img/content/no-role.png" alt="" class="img-fluid mx-auto d-block">
+            <p>{{'no_content.no_order' | translate}}</p>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="rows.length!==0" class="table-responsive table-panel">
+        <table class="table table-align-middle table-outline text-center">
+          <thead>
+          <tr>
+            <th class="text-center">{{'user.id'|translate }}</th>
+            <th>{{'user.number'|translate }}</th>
+            <th>{{'user.name'|translate }}</th>
+            <th>{{'user.phone'|translate }}</th>
+            <th>{{'user.time'|translate }}</th>
+            <th>{{'user.option'|translate }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let row of rows">
+            <td class="text-center">{{row?.id}}</td>
+            <td>{{row?.email}}</td>
+            <td>{{row?.userProfile?.name}}</td>
+            <td>{{row?.userProfile?.phone}}</td>
+            <td>{{row?.createdAt | date :'yyyy-MM-dd'}}</td>
+            <td>
+              <a [routerLink]="['/users',row?.id,'details']" class="text-primary">{{'coc.check' | translate}}</a>
+              <i (click)="deleteMember(row)" class="fa fa-trash text-primary cursor color-active" aria-hidden="true"></i>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <!-- /.table-->
+      </div>
+      <div class="text-center" [hidden]="tableLoading || rows.length === 0">
+        <custom-pagination [itemsPrePage]="meta.pagination.prevPage"
+                           [itemsNextPage]="meta.pagination.nextPage"
+                           [currentPage]="meta.pagination.currentPage"
+                           (pageChanged)="changePage($event)">
+        </custom-pagination>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.card-block -->
+</div>
+

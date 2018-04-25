@@ -1,0 +1,161 @@
+
+      <!--加载中-->
+      <div *ngIf="noticeDetailLoading" class="news-detail enterprise-tab col-xs-12 col-sm-12 col-md-8">
+        <div class="news-content">
+          <i class="loading-img"></i>
+        </div>
+      </div>
+      <!--有权限查看-->
+      <div *ngIf="authority === 0" class="news-detail-wrapper">
+        <!--商会公告详情-->
+        <div *ngIf="!cocNoticeEmpty || authority" class="news-detail enterprise-tab col-xs-12 col-sm-8 col-md-8 col-lg-12">
+          <h1 class="news-title text-center">{{cocNoticeDetail?.title | slice:0:25}}</h1>
+          <p class="news-info text-center">
+            <img src="../../../assets/img/black_me.png" class="news-publisher"><span class="publisher-info">{{cocNoticeDetail?.coc.name}}</span>
+            <img src="../../../assets/img/time.png" class="news-time"><span class="time-info">{{cocNoticeDetail?.publishAt | date:'yyyy-MM-dd'}}</span>
+            <!--<img src="../../../assets/img/black_eye.png" class="news-view"><span class="view-info">无字段</span>-->
+          </p>
+          <p class="content-info" [innerHTML]="cocNoticeDetail?.content | html">
+          </p>
+        </div>
+        <!--无商会公告详情-->
+        <div *ngIf="cocNoticeEmpty && !noticeDetailLoading" class="no-news-detail enterprise-tab col-xs-12 col-sm-8 col-md-8  col-lg-12">
+          <div class="news-info text-center">
+            <img src="../../../assets/img/no_meassge.png" class="news-publisher">
+            <p class="no-news-text text-center">{{'cocShow.notice.no_member_notice' | translate}}</p>
+          </div>
+        </div>
+      </div>
+      <!--无查看权限显示-->
+      <div *ngIf="authority === 17004" class="no-news-detail no-authority enterprise-tab col-xs-12 col-sm-8 col-md-8  col-lg-12">
+        <div class="news-info text-center">
+          <img src="../../../assets/img/no-authority.png" class="news-publisher">
+          <p class="no-news-text text-center">{{'cocShow.home.member_can_read' | translate}}</p>
+          <input type="button" class="btn btn-default apply-authority" value="{{title | translate}}" [disabled]="title !== 'cocShow.navbar.apply_into_coc'" (click)="openModel()">
+        </div>
+      </div>
+      <!--通知公告-->
+
+
+<!--模态框-->
+
+<div class="modal fade" bsModal #editModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-sm-12">
+          <div class="header">
+            <h4>
+              {{'profile.apply' | translate}}
+            </h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="editModal.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body" *ngIf="step1">
+        <form class="container-fluid" name="mainForm" #mainForm="ngForm">
+          <div class="form-group row clearfix">
+            <div class="col-sm-2">
+              <p class="text-right"> {{'global.apply_position' | translate}}</p>
+            </div>
+            <div class="col-sm-10">
+              <div class="group-container">
+                <div class="col-sm-4" *ngFor="let item of groups;let i = index">
+                  <div class="group-list text-center" [ngClass]="{'group-active': item.id === groupId}"
+                       (click)="selected(item,'group')">
+                    <label>
+                      {{item?.name}}
+                    </label>
+                    <p>{{item?.balance}} / {{'global.session' | translate}}</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row clearfix" *ngIf="bank?.length > 0">
+            <div class="col-sm-2">
+              <p class="text-right">{{'global.session' | translate}}</p>
+            </div>
+            <div class="col-sm-10">
+              <div>
+                <div class="col-sm-4" *ngFor="let item of bank;let i = index">
+                  <div class="group-list text-center" [ngClass]="{'group-active': item.id === bankId}"
+                       (click)="selected(item,'bank')">
+                    <label>
+                      {{item?.cardNumber}}
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-sm-12">
+                <ul>
+                  <li style="margin-bottom: 10px">{{'chamber.payment.name' | translate}}：{{bankItem?.bankName}}</li>
+                  <li style="margin-bottom: 10px">{{'chamber.payment.number' | translate}}：{{bankItem?.cardNumber}}</li>
+                  <li style="margin-bottom: 10px">{{'chamber.payment.opening_bank' | translate}}：{{bankItem?.depositBank}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row clearfix">
+            <div class="app_coc_content clearfix">
+              <div class="col-sm-10 col-sm-offset-2">
+                <h4 class="shengming">{{'global.statement' | translate}}</h4>
+                <p class="text">1、{{'global.statement_one' | translate}}</p>
+                <p class="text">2、{{'global.statement_two' | translate}}</p>
+                <p class="text">3、{{'global.statement_three' | translate}}</p>
+              </div>
+              <div class="col-sm-10 col-sm-offset-2">
+                <div class="content">
+                  <label role="button">
+                    <input style="width: 20px;
+    margin-right: 15px;" type="checkbox" name="statement1" [(ngModel)]="statement1">
+                    {{'global.statement_one_text' | translate}}
+                  </label>
+                  <label role="button">
+                    <input type="checkbox"
+                           style="width: 20px;
+    margin-right: 15px;" name="statement2" role="button" [(ngModel)]="statement2">
+                    {{'global.statement_two_text' | translate}}
+                  </label>
+                  <label role="button">
+                    <input type="checkbox"
+                           style="width: 20px;
+    margin-right: 15px;" name="statement3" role="button" [(ngModel)]="statement3">
+                    {{'global.statement_three_text' | translate}}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-selected-footer text-center">
+            <button type="submit" class="btn btn-rimary cursor btn-submit-primary" style="line-height: 1.8;"
+                    [disabled]="!statement1 && !statement2 && !statement3"
+                    (click)="onSubmit()">
+              {{'button.save' | translate}}
+            </button>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-body" *ngIf="!step1">
+        <div class="settled-success" style="min-height: 0">
+          <div class="imgContent text-center">
+            <img src="../../../../assets/img/settled_success.png" height="120" width="120"/>
+          </div>
+          <h4 class="text-success text-center">{{'chamber.prompt.settled_success' | translate}}</h4>
+          <div class="text-center btn-content">
+            <button class="btn btn-primary" (click)="link()">{{'button.determine' | translate}}</button>
+          </div>
+          <p class="text text-center">{{'global.remarks' | translate}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

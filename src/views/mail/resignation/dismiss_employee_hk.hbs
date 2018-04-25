@@ -1,0 +1,9 @@
+{{#extend "mail/layouts/main"}}
+  {{#content "content"}}
+    <p>您好 {{ fullName }} , 你被解僱了 {{ team.name }}</p>
+    <p>日期 : {{ resignation.endedDate }}</p>
+    <p>備註 : {{ resignation.remark }}</p>
+    <p>如果仍有問題, 請聯繫YOOV支持.</p>
+    <p>這是一個自動生成的電子郵件, 請不要回覆 ***</p>
+  {{/content}}
+{{/extend}}

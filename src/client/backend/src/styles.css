@@ -1,0 +1,175 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+  margin: 0;
+}
+
+a.LINK{
+  color: #0088cc !important;
+}
+/**
+  *global
+  */
+.no-margin {
+  margin: 0 !important;
+}
+
+.margin-bottom {
+  margin-bottom: 10px;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+.with-padding {
+  padding: 10px
+}
+
+.padding-side {
+  padding: 0 10px
+}
+
+.no-border {
+  border: 0 !important;
+}
+
+.with-border {
+  border: 1px solid #f2f4f8
+}
+
+.border-bottom {
+  border-bottom: 2px solid #f2f4f8
+}
+
+.border-radius {
+  border-radius: 6px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+
+.pointer {
+  cursor: pointer !important;
+}
+
+.none {
+  display: none;
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.ng2-datetime-picker {
+  box-sizing: content-box;
+}
+
+/* input-group contains ng-select fix */
+ng-select {
+  width: 100%;
+}
+
+.ui-select-container .ui-select-match .ui-select-toggle {
+  width: 100%;
+  display: inline-block;
+}
+
+.ui-select-container .ui-select-search {
+  width: 100% !important;
+}
+
+/* select long text */
+.ui-select-match-text {
+  position: absolute;
+  width: 80%;
+  overflow: hidden;
+}
+
+.ui-select-match-text:hover {
+  min-width: 80%;
+  width: auto;
+}
+
+.ui-select-match-text, .dropdown-item div {
+  pointer-events: none;
+}
+
+/* overwrite fullCalendar class */
+.fc-day-number {
+  display: inline-block !important;
+  padding: 10px 10px 10px 16px !important;
+}
+
+.fc-other-month {
+  background: #f0f0f0 !important;
+  color: #c2c2c2 !important;
+}
+
+.fc-row .fc-content-skeleton td, .fc-row .fc-helper-skeleton td {
+  border-color: inherit !important;
+}
+
+.fc-event {
+  font-size: 1em !important;
+}
+
+.custom-day {
+  background-color: lightblue !important;
+}
+
+/* dashboard attendance select approve */
+.select-model {
+  visibility: hidden;
+}
+
+.select-model .modal {
+  visibility: visible;
+}
+
+.select-model .nav-tabs {
+  overflow-x: visible;
+}
+
+/* custom-date-picker only-time */
+.datePickerParent .calendar-table, .datePickerParent .input-mini, .datePickerParent .fa-calendar {
+  display: none !important;
+}
+
+.datePickerParent .calendar-time {
+  min-width: 10rem;
+}
+
+.datePickerParent .daterangepicker {
+  left: 1rem !important;
+}
+
+.loading-img {
+  background: url(/assets/img/loading.gif) no-repeat;
+  width: 80px;
+  height: 80px;
+  display: block;
+  margin: auto;
+}
+
+table thead th, table tr td {
+  text-align: center ;
+}
+
+label {
+  margin: 0 !important;
+}
+

@@ -1,0 +1,26 @@
+{{#extend "mail/layouts/main"}}
+  {{#content "content"}}
+    <span>尊敬的 {{ fullName }},</span>
+    {{#if data.payroll}}
+      <p>標題: 創建了一個新的工資單</p>
+      <p>開始時間: {{ startedDate }}</p>
+      <p>結束時間: {{ endedDate }}</p>
+      <p>支付日期: {{ payDate }}</p>
+      <p>總額: {{ amount }}</p>
+    {{/if}}
+    {{#if data.salary}}
+      <p>標題: 你有新的工資單信息</p>
+      {{#if data.payType}}
+        <p>支付類型: {{ data.payType.name }}</p>
+      {{/if}}
+      <p>開始時間: {{ startedDate }}</p>
+      <p>標準工資: {{ amount }}</p>
+      <p>單位: {{ unit }}</p>
+    {{/if}}
+
+    <p>如果這封電子郵件對你沒有任何意義, 可能是有人故意或無意地輸入了您的電子郵件地址, 那麼請忽略這封電子郵件.</p>
+    <p>謝謝,</p>
+    <p>{{ siteTeamName }}</p>
+    <p>如果想進一步查詢, 請聯繫: {{ siteSupportEmail }}</p>
+  {{/content}}
+{{/extend}}

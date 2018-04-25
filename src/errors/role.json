@@ -1,0 +1,20 @@
+{
+  "cannotDestroyRoleWithEmployee": {
+    "statusCode": 400,
+    "message": {
+      "en": "Cannot delete the role with employees",
+      "cn": "无法删除与雇员的角色",
+      "hk": "無法刪除與雇員的角色"
+    },
+    "code": 24000
+  },
+  "cannotEditOwner": {
+    "statusCode": 400,
+    "message": {
+      "en": "Role 'Owner' cannot be edited",
+      "cn": "基于角色的“owner”不能被编辑",
+      "hk": "基于角色的“owner”不能被編輯"
+    },
+    "code": 24001
+  }
+}

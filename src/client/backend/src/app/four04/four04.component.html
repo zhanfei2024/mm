@@ -1,0 +1,16 @@
+<div class="app flex-row align-items-center" style="background-color: #fff;">
+  <div class="col">
+    <div class="row justify-content-center">
+      <div class="col-12" *ngIf="!this.lang">
+        <i class="fa fa-4x fa-spinner fa-spin" aria-hidden="true"></i>
+      </div>
+      <div class="col-12" *ngIf="this.lang">
+        <img  src="../../../assets/img/content/404-{{'global.lang' | translate }}.png" alt=""  class="img-fluid mx-auto d-block">
+      </div>
+      <!--/.col-->
+    </div>
+    <!--/.row-->
+  </div>
+    <!--/.col-->
+</div>
+<!--/.row-->

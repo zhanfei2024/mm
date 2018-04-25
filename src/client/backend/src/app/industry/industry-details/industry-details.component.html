@@ -1,0 +1,96 @@
+<div class="text-right card-block clearfix">
+  <h4 class="text-primary pull-left">
+    {{'order.order_details'|translate}}
+  </h4>
+  <button [routerLink]="['/orders/list']" class="btn btn-primary pointer">
+    <i class="fa fa-reply font-sm"></i>
+    {{'button.back' | translate}}
+  </button>
+</div>
+<div class="card">
+  <div class="card-block td-text-left">
+    <div *ngIf="modalDetailsLoading">
+      <div class="sk-three-bounce">
+        <div class="sk-child sk-bounce1"></div>
+        <div class="sk-child sk-bounce2"></div>
+        <div class="sk-child sk-bounce3"></div>
+      </div>
+    </div>
+    <div *ngIf="!modalDetailsLoading">
+      <div class="table-responsive">
+        <table class="table table-align-middle table-outline details-head-bg">
+          <tbody>
+          <tr class="pointer">
+            <td>{{'order.thead.orderNo' | translate}}</td>
+            <td>{{details?.id}}</td>
+            <td>{{'order.thead.order_time' | translate}}</td>
+            <td>{{details?.createdAt | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+            <td>{{'order.waiter' | translate}}</td>
+            <td>{{details?.employee?.name}}</td>
+          </tr>
+          <tr class="pointer">
+            <td>{{'order.customer_ID' | translate}}</td>
+            <td>{{details?.customerId}}</td>
+            <td>{{'order.thead.pay_type' | translate}}</td>
+            <td>{{details?.orderTransaction?.payType?.name}}</td>
+            <td>{{'order.cashier' | translate}}</td>
+            <td>{{details?.employee?.name}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <div class="container table-responsive">
+        <table class="table table-align-middle text-center" style="border-bottom: 1px solid #e1e6ef">
+          <thead>
+          <tr>
+            <th>{{'order.dishes_name'| translate}}</th>
+            <th>{{'order.specification' | translate}}</th>
+            <th>{{'order.quantity' | translate}}</th>
+            <th>{{'order.single_price' | translate}}</th>
+            <th>{{'order.thead.total_price' | translate}}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of details?.items" class="pointer">
+            <td>{{item?.name}}</td>
+            <td>{{item?.productVariant?.option1}}</td>
+            <td>{{item?.quantity}}</td>
+            <td>{{item?.price}}</td>
+            <td>{{item?.price*item?.quantity}}</td>
+          </tr>
+          <tr>
+            <td>{{'order.subtotal' | translate}}</td>
+            <td colspan="3"></td>
+            <td>{{details?.totalItemPrice}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="table-responsive">
+          <table class="table table-align-middle footer-table">
+            <tbody>
+            <tr>
+              <td>{{'order.people_amount' | translate}}</td>
+              <td>{{details?.headcount}}</td>
+              <td>{{'order.service_charge' | translate}}</td>
+              <td>12.00(暂无)</td>
+              <td>{{'order.discount' | translate}}</td>
+              <td>{{details?.totalDiscount}}(暂时为空对象)</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row">
+          <h6 class="col">{{'order.actual_payment' | translate}}</h6>
+          <h6 class="col text-right text-danger">{{details?.currency}} {{details?.totalPrice}}</h6>
+        </div>
+        <!--<div class="row">-->
+        <!--<h6 class="col-sm-6">{{'order.refund' | translate}}</h6>-->
+        <!--<h6 class="col-sm-6 text-right">0.00(暂无)</h6>-->
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+</div>

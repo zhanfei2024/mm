@@ -1,0 +1,9 @@
+{{#extend "mail/layouts/main"}}
+  {{#content "content"}}
+    <p>Dear {{ fullName }}, you have got a new announcement from {{author.firstName}} {{author.lastName}}. Follow the link below to view complete details of announcement.</p>
+    <p><a href="{{siteUrl}}/announcements/{{announcement.id}}">{{siteUrl}}/announcements/{{announcement.id}}</a></p>
+    <p>If you continue to have difficulty, please contact YOOV Support.</p>
+    <p>{{ siteSupportEmail }}</p>
+    <p>This is an automatically generated email, please do not reply ***</p>
+  {{/content}}
+{{/extend}}

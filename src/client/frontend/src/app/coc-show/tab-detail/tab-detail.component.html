@@ -1,0 +1,24 @@
+
+<div class="coc-home">
+  <div class="enterprise-tab-wrapper coc-framework clearfix custom-heigh">
+    <div class="enterprise-tab-head row">
+      <div class="big-title clearfix">
+        <h1 class="text-center">{{cocSelf?.title}}</h1>
+      </div>
+    </div>
+    <div *ngIf="cocSelf?.content" class="news-content col-xs-12 col-sm-12 col-md-12 no-padding">
+      <p class="framework-text" [innerHTML]="cocSelf?.content | html"></p>
+    </div>
+    <div *ngIf="!cocSelf?.content && !frameworkLoading" class="row no-coc-content1">
+      <div class="news-content">
+        <img class="center-block" src="../../../assets/img/no-coc-notice.png">
+        <p class="content text-center">{{'cocShow.framework.no_introduction_coc' | translate}}</p>
+      </div>
+    </div>
+    <div class="row no-member-rules" *ngIf="frameworkLoading">
+      <div class="news-content">
+        <i class="loading-img"></i>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,134 @@
+<div class="coc-container">
+  <div class="chamber-home">
+    <div class="row clearfix">
+      <app-chamber-left></app-chamber-left>
+      <div class="col-md-10">
+        <div class="list-right">
+          <div class="row clearfix">
+            <div class="header">
+              <h4>{{'chamber.left.activity' | translate}}</h4>
+            </div>
+          </div>
+
+          <div class="row clearfix">
+            <div class="search-contaner clearfix">
+              <!--<div class="col-sm-3" style="padding-right: 15px">-->
+              <!--<ng-select-->
+              <!--id="public"-->
+              <!--[items]="public"-->
+              <!--name="public"-->
+              <!--placeholder="{{'chamber.activity.jurisdiction' | translate}}"-->
+              <!--(data)="changStatus($event,'public')">-->
+              <!--</ng-select>-->
+              <!--</div>-->
+              <div class="col-sm-3 xs-search">
+                <ng-select
+                  id="status"
+                  [items]="status"
+                  name="status"
+                  placeholder="{{'chamber.activity.status' | translate}}"
+                  (data)="changStatus($event,'status')">
+                </ng-select>
+              </div>
+              <div class="col-sm-5 xs-search">
+                <div class="search-input-group">
+                  <input type="text" class="form-control search-input"
+                         data-clearbtn="true"
+                         name="search"
+                         placeholder="{{'global.search_text' | translate }}"
+                         (keyup.enter)="onSearch()" [(ngModel)]="filter.search" aria-describedby="sizing-addon2">
+                </div>
+              </div>
+              <div class="col-sm-4 xs-search">
+                <button class="btn-primary btn pull-right btn-submit-primary" style="line-height: 1.5"
+                        [routerLink]="['/chamber',id,'activity','create']">{{'chamber.btn.add_activity' | translate}}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-align-middle table-outline text-center">
+              <thead>
+              <tr>
+                <th> {{'chamber.know.title' | translate}}</th>
+                <th> {{'chamber.know.coc' | translate}}</th>
+                <th> {{'chamber.activity.status' | translate}}</th>
+                <th> {{'chamber.activity.scale' | translate}}</th>
+                <th> {{'cocShow.activity.enrolment' | translate}}</th>
+                <th class="text-center"> {{'chamber.know.operation' | translate}}</th>
+              </tr>
+              </thead>
+              <tbody [hidden]="!tableLoading">
+              <tr>
+                <td colspan="5">
+                  <div class="text-center pt-3 pb-3">
+                    <div class="pt-3 pb-3">
+                      <i class="loading-img"></i>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+
+              <tbody [hidden]="!(rows?.length === 0 && !tableLoading)">
+              <tr>
+                <td colspan="5" class="td_no_meassge">
+                  <div class="row clearfix">
+                    <div class="col-sm-12 no_message text-center">
+                      <img src="../../../../assets/img/no_post.png" height="120" width="120"/>
+                      <p> {{'message.no_post_add_text' | translate}}</p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+
+              <tbody [hidden]="!(rows?.length > 0 && !tableLoading)">
+              <tr *ngFor="let item of rows">
+                <td>{{item.title | htmlToPlaintext :10}}...</td>
+                <td>{{item.coc.name}}</td>
+                <td>
+                  <span class="status" [class]="item.status"> {{'cocShow.home.'+item.status | translate}}</span>
+                </td>
+                <td>
+                  <span class="status">{{item.personnelNumber}}</span>
+                </td>
+                <td>
+                  <span class="status">{{item.applyNumberOfPeople}}</span>
+                </td>
+                <td class="text-center"><a [routerLink]="['/chamber',id,'activity',item.id,'edit']">
+                  <img src="../../../assets/img/edit.png" class="icon"
+                       style="vertical-align: middle; margin-right: 30px"/>
+                </a>
+
+                  <a (click)="delete(item.id)">
+                    <img src="../../../assets/img/fail.png" class="icon" style="vertical-align: middle;"/>
+                  </a>
+
+                </td>
+              </tr>
+
+
+              </tbody>
+            </table>
+            <!-- /.table-->
+          </div>
+          <div class="text-center" [hidden]="tableLoading || rows?.length === 0">
+            <custom-pagination [itemsPrePage]="meta?.pagination.prevPage"
+                               [itemsNextPage]="meta?.pagination.nextPage"
+                               [currentPage]="meta?.pagination.currentPage"
+                               (pageChanged)="changePage($event)">
+            </custom-pagination>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

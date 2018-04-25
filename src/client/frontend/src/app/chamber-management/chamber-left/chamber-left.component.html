@@ -1,0 +1,138 @@
+<div class="chamber-navbar col-md-2">
+  <div class="chamber-wrapper">
+    <div class="user-avatar" style="padding-top: 20px">
+      <img style="width: 80px; height: 80px; border-radius: 28px"
+           [src]="current?.logoUrl"
+           class="img-circle center-block">
+    </div>
+    <div class="user-email text-center" role="button" (click)="inviteModal.show()">{{current?.name}}
+      <i class="fa fa-caret-down"></i>
+    </div>
+    <ul class="chamber-list">
+      <li>
+        <a [routerLink]="['/chamber',id,'home']" routerLinkActive="active">
+          <i class="home"></i>
+          {{'chamber.left.home' | translate}}
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/chamber',id,'member','list']" routerLinkActive="active">
+          <i class="member"></i>
+          {{'chamber.left.member' |
+          translate}}</a>
+      </li>
+      <li>
+        <a [routerLink]="['/chamber',id,'member','examine']" routerLinkActive="active">
+          <i class="examine"></i>
+          {{'chamber.left.examine' | translate}}</a>
+      </li>
+      <li>
+        <a [routerLink]="['/chamber',id,'positions','list']" routerLinkActive="active">
+          <i class="member"></i>
+          {{'chamber.left.position' | translate}}
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/chamber',id,'know','list']" routerLinkActive="active">
+          <i class="know"></i>
+          {{'chamber.left.know' | translate}}
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/chamber',id,'news','list']" routerLinkActive="active">
+          <i class="news"></i>
+          {{'chamber.left.news' | translate}}
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/chamber',id,'notice','list']" routerLinkActive="active">
+          <i class="notice"></i>
+          {{'chamber.left.notice' | translate}}
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/chamber',id,'course','list']" routerLinkActive="active">
+          <i class="course"></i>
+          {{'chamber.left.course' | translate}}
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/chamber',id,'activity','list']" routerLinkActive="active">
+          <i class="activity"></i>
+          {{'chamber.left.activity' |
+          translate}}</a>
+      </li>
+      <li>
+        <a [routerLink]="['/chamber',id,'activity','examine']" routerLinkActive="active">
+          <i class="activity_examine"></i>
+          {{'chamber.left.activity_examine'
+          | translate}}</a>
+      </li>
+      <li>
+        <a [routerLink]="['/chamber',id,'payment']" routerLinkActive="active">
+          <i class="payment"></i>
+          {{'chamber.left.payment' | translate}}</a>
+      </li>
+      <li>
+        <a [routerLink]="['/chamber',id,'message']" routerLinkActive="active">
+          <i class="message"></i>
+          {{'chamber.left.message' | translate}}</a>
+      </li>
+      <li>
+        <a [routerLink]="['/chamber',id,'tab','list']" routerLinkActive="active">
+          <i class="notice"></i>
+          {{'chamber.tab.custom_tab' | translate}}
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</div>
+
+
+<div class="modal fade" bsModal [config]="{backdrop: 'static',ignoreBackdropClick: true}" #inviteModal="bs-modal"
+     tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header clearfix">
+        <div class="col-sm-12">
+          <div class="header">
+            <h4>
+              {{'global.selected_coc' | translate}}
+            </h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="inviteModal.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body" style="padding-top: 0;">
+        <ul class="list-unstyled">
+          <li class="row clearfix modal-selected" *ngFor="let item of coc;let i= index;">
+            <a class="clearfix" (click)="selected(i)">
+              <div class="col-xs-1" style="line-height: 80px;">
+                <i class="modal-icon" [ngClass]="{'modal-icon-active': i === index}"></i>
+              </div>
+              <div class="col-xs-3 text-right" style="padding-left: 25px;">
+                <img [src]="item.logoUrl" class="img-responsive pull-right" *ngIf="item.logoUrl !== null"/>
+                <img src="../../../assets/img/logo/default_company_icon.png" class="img-responsive pull-right"
+                     *ngIf="item.logoUrl === null"/>
+              </div>
+              <div class="col-xs-8" style="line-height: 76px">
+                <span class="name">{{item.name}}</span>
+              </div>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+      <div class="modal-selected-footer">
+        <div class="row clearfix text-center">
+          <button class="btn-primary btn btn-submit-primary" (click)="selectChamber()">{{'button.confirm' | translate}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

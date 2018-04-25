@@ -1,0 +1,89 @@
+<div class="content-heading">
+  {{'bank.bank_list'|translate}}
+</div>
+
+<div class="">
+  <!--<h6 class="card-header text-primary">-->
+  <!--{{'order.order_list'|translate}}-->
+  <!--</h6>-->
+  <div class="card-block">
+
+    <div class="row align-items-center">
+
+      <div class="col-sm-3 form-group">
+        <label>{{'bank.coc' | translate}}</label>
+        <input type="text" class="form-control" [(ngModel)]="filter.search" placeholder="{{'bank.coc' | translate}}">
+      </div>
+      <div class="col-sm-3 form-group">
+        <button (click)="onSearch('')" [disabled]="!filter.search" type="button"
+                class="btn btn-outline-primary cursor">{{ 'button.reset' |
+          translate }}
+        </button>
+        <button (click)="onSearch(filter.search)" [disabled]="!filter.search" type="button"
+                class="btn btn-outline-primary cursor">{{ 'button.search' |
+          translate }}
+        </button>
+      </div>
+    </div>
+
+    <!-- /.row -->
+    <div *ngIf="tableLoading" class="card-block">
+      <div class="sk-three-bounce">
+        <div class="sk-child sk-bounce1"></div>
+        <div class="sk-child sk-bounce2"></div>
+        <div class="sk-child sk-bounce3"></div>
+      </div>
+    </div>
+    <div *ngIf="!tableLoading">
+      <div *ngIf="rows.length===0">
+        <div class="text-muted pt-3 pb-3 text-center">
+          <div hidden>
+            <img src="../../../assets/img/content/no-role.png" alt="" class="img-fluid mx-auto d-block">
+          </div>
+          <div class="pt-3 pb-3 font-xl">
+            <img src="../../../assets/img/content/no-role.png" alt="" class="img-fluid mx-auto d-block">
+            <p>{{'no_content.no_order' | translate}}</p>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="rows.length!==0" class="table-responsive table-panel">
+        <table class="table table-align-middle table-outline text-center">
+          <thead>
+          <tr>
+            <th>{{'bank.coc'|translate }}</th>
+            <th>{{'bank.bank'|translate }}</th>
+            <th>{{'bank.card'|translate }}</th>
+            <th>{{'bank.holder'|translate }}</th>
+            <th>{{'bank.depositBank'|translate }}</th>
+            <th>{{'bank.updatedAt'|translate }}</th>
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let row of rows">
+            <td>{{row?.coc?.name}}</td>
+            <td>{{row?.bankName}}</td>
+            <td>{{row?.cardNumber}}</td>
+            <td>{{row?.accountHolder}}</td>
+            <td>{{row?.depositBank}}</td>
+            <td>{{row?.createdAt | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+
+          </tr>
+          </tbody>
+        </table>
+        <!-- /.table-->
+      </div>
+      <div class="text-center" [hidden]="tableLoading || rows.length === 0">
+        <custom-pagination [itemsPrePage]="meta.pagination.prevPage"
+                           [itemsNextPage]="meta.pagination.nextPage"
+                           [currentPage]="meta.pagination.currentPage"
+                           (pageChanged)="changePage($event)">
+        </custom-pagination>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.card-block -->
+
+</div>
+

@@ -1,0 +1,10 @@
+{{#extend "mail/layouts/main"}}
+  {{#content "content"}}
+    <p>Dear {{email}} user, you have been invited to {{user.firstName}} {{user.lastName}}'s Team. Click
+     <a href="{{siteUrl}}/auth/login">{{siteUrl}}/auth/login</a>
+     to login or register your account.</p>
+    <p>If you continue to have difficulty, please contact YOOV Support.</p>
+    <p>{{ siteSupportEmail }}</p>
+    <p>This is an automatically generated email, please do not reply ***</p>
+  {{/content}}
+{{/extend}}

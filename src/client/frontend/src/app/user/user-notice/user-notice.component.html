@@ -1,0 +1,65 @@
+<div class="clearfix no-padding col-xs-12 col-sm-10 col-md-10">
+  <div class="user-right-sidebar">
+    <!-- 商会邀请 -->
+    <div class="user-center">
+      <div class="invitations-wrapper">
+
+        <div class="user-center user-coc-apply">
+          <div class="center-wrapper">
+            <div class="user-title user-apply-title invitations-wrapper invitations-title row clearfix no-margin-top">
+              <h1 class="text-head col-xs-10 col-sm-10 col-md-9"><span class="square"></span>{{'user.title.coc_notice' |
+                translate}}</h1>
+            </div>
+            <div *ngIf="announcements?.length > 0">
+              <div class="user-card border-top row clearfix" role="button" *ngFor="let item of announcements" [routerLink]="['/coc-show', item?.cocId, 'notice']">
+                <div class="user-card-wrapper col-xs-12 col-sm-10 col-md-9 no-padding clearfix">
+                  <div class="coc-info pull-left">
+                    <h1 class="coc-title"><a href="javascript:;">{{'chamber.create.name' | translate}}: {{item?.coc?.name}}</a></h1>
+                    <p style="color: #828da0">{{'chamber.know.title' | translate}}: {{item?.title}}</p>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <p class="pull-right text-gray" style="color: #828da0">{{item?.publishAt | date :'yyyy-MM-dd'}}</p>
+                </div>
+              </div>
+              <div class="user-card user-coc-page row clearfix">
+                <div class="coc-pagination  col-xs-12 col-sm-12 col-md-12">
+                  <div class="pagination-wrapper center-block">
+                    <pagination [previousText]="'navbar.previous_page' | translate"
+                                [nextText]="'navbar.next_page' | translate"
+                                [itemsPerPage]="filter.limit"
+                                [totalItems]="userCocMeta.pagination.totalCount"
+                                [(ngModel)]="filter.page"
+                                (pageChanged)="pageChanged($event)">
+                    </pagination>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!--加载-->
+            <div class="user-card no-invitations-bottom row clearfix" *ngIf="announcementsLoading">
+              <div class="no-padding col-xs-12 col-sm-12 col-md-12 clearfix">
+                <div class="empty-pic-wrapper text-center clearfix">
+                  <img class="empty-pic loading-gif" src="../../../assets/img/loading.gif">
+                </div>
+              </div>
+            </div>
+            <!--暂无商会留言-->
+            <div class="user-card no-invitations-bottom row clearfix" *ngIf="announcements?.length === 0" style="min-height: 512px">
+              <div class="no-padding col-xs-12 col-sm-12 col-md-12 clearfix">
+                <div class="empty-pic-wrapper text-center clearfix">
+                  <img class="empty-pic" src="../../../assets/img/no-coc-apply.png">
+                  <p class="empty-text text-center">{{'user.title.no_notice' | translate}}</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

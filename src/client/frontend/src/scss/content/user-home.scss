@@ -1,0 +1,826 @@
+.user-center {
+  padding: 0;
+
+}
+.center-wrapper {
+  padding: 30px 20px;
+  background-color: $white-dark-bg;
+  .no-margin-top {
+    margin-top: 0;
+  }
+  input:-webkit-autofill, textarea:-webkit-autofill{
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+  }
+  input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, input[type=password]:focus, textarea:focus {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+  }
+}
+.user-coc-apply {
+  .center-wrapper {
+    padding: 0 20px 30px 20px;
+  }
+}
+.user-info-title {
+  margin-left: 20px;
+}
+.invitations-wrapper {
+  background-color: $white-dark-bg;
+  .invitations-title {
+    padding: 30px 20px 20px 20px;
+    border-bottom: 1px solid $gray-line-color;
+    .margin-right {
+      margin-right: 20px;
+    }
+    .text-head {
+      float: left;
+    }
+    .must-input {
+      font: 14px $font-family-regular !important;
+      color: $gray-text-color !important;
+      line-height: 24px !important;
+    }
+  }
+  .invitations-title-custom {
+    margin: 0 20px;
+    padding: 30px 0 20px 0;
+  }
+  .user-card {
+    padding: 20px;
+  }
+  .user-invitations-card {
+    margin: 30px;
+    padding: 0 0 30px 0;
+  }
+  .user-invitations-card-wrapper {
+
+  }
+
+}
+
+.user-card {
+  margin: 0;
+  padding: 30px 0;
+  border-bottom: 1px solid $gray-line-color;
+  .no-padding {
+    padding: 0;
+  }
+}
+.user-coc-page {
+  padding: 4px 0;
+}
+.user-card:last-child {
+  border-bottom: 1px solid transparent;
+}
+
+
+
+.no-invitations-bottom {
+  padding: 60px 0;
+  border-bottom: 1px solid transparent;
+  .empty-pic-wrapper {
+    width: 240px;
+    margin: 0 auto;
+    .empty-pic {
+      margin-right: 20px;
+      float: left;
+    }
+    .empty-text {
+      float: left;
+      line-height: 60px;
+      color: $gray-text-color;
+    }
+    .loading-gif {
+      margin-left: 59px;
+    }
+  }
+  .empty-baseinfo-wrapper {
+    width: 460px;
+    margin: 0 auto;
+    .empty-pic {
+      margin-right: 20px;
+      float: left;
+    }
+    .empty-text {
+      float: left;
+      line-height: 60px;
+      color: $gray-text-color;
+    }
+    .loading-gif {
+      margin-left: 190px;
+    }
+  }
+}
+.padding-bottom-282 {
+  padding-bottom: 282px;
+}
+
+
+.no-me-coc-wrapper {
+  margin-bottom: 60px;
+  padding: 100px;
+  background-color: $white-dark-bg;
+  margin-left: 20px;
+  height: 689px;
+  .empty-pic-wrapper {
+    margin-bottom: 20px;
+  }
+  .empty-text {
+    font: 18px $font-family-regular;
+    line-height: 18px;
+    color: $gray-text-color;
+  }
+}
+
+
+
+
+.coc-logo {
+  width: 80px;
+  padding: 0;
+}
+.coc-logo:hover {
+  cursor: pointer;
+}
+.coc-info {
+  margin-left: 20px;
+  padding: 0;
+  .coc-title {
+    font: 18px $font-family-regular;
+    line-height: 18px;
+    margin-bottom: 20px;
+    a {
+      color: $black-text-color;
+    }
+  }
+  .group {
+    padding-left: 30px;
+  }
+  .coc-text {
+    li {
+      float: left;
+      border-right: 1px solid $gray-line-color;
+      padding: 0 20px;
+      p:first-child {
+        font: 14px $font-family-regular;
+        color: $black-text-color;
+        line-height: 14px;
+        margin-bottom: 10px;
+      }
+      p:last-child {
+        font: 14px $font-family-regular;
+        color: $gray-text-color;
+        line-height: 14px;
+      }
+    }
+    li:first-child {
+      padding-left: 0;
+    }
+    li:last-child {
+      border-right: none;
+    }
+  }
+}
+.operation {
+  padding: 0;
+  .accept-logo, .reject-logo {
+    margin: 30px 10px 30px 0;
+  }
+  .accept {
+    font: 18px $font-family-regular;
+    color: $black-text-color;
+    line-height: 80px;
+    padding-right: 40px;
+    border-right: 1px solid $gray-line-color;
+  }
+  .border-right-no {
+    border-right: none;
+    color: $gray-text-color;
+  }
+  .accept:hover, .reject:hover {
+    cursor: pointer;
+  }
+  .reject {
+    font: 18px $font-family-regular;
+    color: $black-text-color;
+    line-height: 80px;
+    padding-left: 40px;
+  }
+  .status {
+    font: 18px $font-family-regular;
+    line-height: 80px;
+  }
+  .status-pending {
+    color: $cyan-dark-bg;
+  }
+  .status-fail, .status-success {
+    color: $gray-text-color;
+  }
+  .state-active {
+    color: $blue-text-color;
+  }
+}
+.border-top {
+  border-bottom: 1px solid $gray-line-color;
+}
+
+.user-title {
+  margin: 0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid $gray-line-color;
+}
+.user-big-title {
+  margin: 30px 0 0 0;
+}
+.text-head, .state {
+  padding: 0;
+}
+.text-head {
+  font: 24px $font-family-regular;
+  color: $black-text-color;
+  line-height: 24px;
+  .square {
+    display: block;
+    float: left;
+    width: 10px;
+    height: 24px;
+    background-color: $blue-dark-bg;
+    margin-right: 10px;
+  }
+}
+
+/*我的商会页面*/
+.state-reject {
+  margin-right: 20px;
+  font: 18px $font-family-regular;
+  color: $gray-text-color;
+  line-height: 18px;
+}
+.reject-reason {
+  font: 14px $font-family-regular;
+  color: $black-text-color;
+  line-height: 18px;
+}
+.reject-info {
+  font: 14px $font-family-regular;
+  color: $black-text-color;
+  line-height: 24px;
+}
+
+.user-coc-title {
+  margin: 0;
+  padding: 10px 0;
+  border-bottom: 1px solid $gray-line-color;
+  .coc-title-head, .coc-state {
+    padding: 0;
+    font: 14px $font-family-regular;
+    color: $gray-text-color;
+    line-height: 14px;
+  }
+}
+.form-filter {
+  margin: 0 0 20px 0;
+}
+.clear-padding {
+  padding: 0;
+}
+.form-filter {
+  .examine-title {
+    font: 14px $font-family-regular;
+    color: $black-text-color;
+    line-height: 40px;
+    margin-right: 10px;
+  }
+  .form-control {
+    width: 70%;
+    height: 40px;
+    border-color: $gray-line-color;
+  }
+  .input-group {
+    width: 100%;
+  }
+  .search-input {
+    width: 100%;
+    border-color: $gray-line-color;
+    border-right: none;
+    border-radius: 0;
+  }
+  .input-group-addon {
+    padding: 8px 10px;
+    background-color: transparent;
+    border: 1px solid $gray-line-color;
+    border-left:none;
+    border-radius: 0;
+    width: 40px !important;
+  }
+  .input-group-addon:hover {
+    cursor: pointer;
+  }
+  .ui-select-toggle, .ui-select-search {
+    width: 100%;
+  }
+  .custom-padding {
+    padding: 0 20px 0 0;
+  }
+}
+
+
+/*我的活动页面*/
+.coc-info {
+  li {
+    font: 14px $font-family-regular;
+    color: $black-text-color;
+    line-height: 20px;
+  }
+  img {
+    margin-right: 10px;
+  }
+}
+.margin-no {
+  margin: 0;
+}
+/*我的资料页面*/
+.user-item {
+  .baseinfo-padding {
+    padding-top: 30px;
+  }
+  .head {
+    font: 18px $font-family-regular;
+    color: $black-text-color;
+    line-height: 18px;
+  }
+  .add-state, .edit-state {
+    font: 14px $font-family-regular;
+    color: $cyan-dark-bg;
+    line-height: 18px;
+  }
+  .base_info {
+    margin: 4px 10px 4px 0;
+  }
+  .add-state:hover, .edit-state:hover {
+    cursor: pointer;
+  }
+  table {
+    tr:nth-child(1) {
+      background-color: transparent !important;
+      td {
+        padding: 0;
+        width: 25%;
+        font: 14px $font-family-regular;
+        color: $black-text-color;
+        height: 60px;
+      }
+    }
+   tr:nth-child(n+2) {
+     background-color: transparent !important;
+     td {
+       padding: 0;
+       width: 25%;
+       font: 14px $font-family-regular;
+       color: $black-text-color;
+       height: 80px;
+     }
+     td:nth-child(4) {
+       width: 18%;
+     }
+     img:hover {
+       cursor: pointer;
+     }
+   }
+  }
+}
+.user-base-info {
+  .user-info {
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid $gray-line-color;
+    .info-item {
+      margin-top: 30px;
+      overflow: hidden;
+    }
+    .item-text {
+      font: 14px $font-family-regular;
+      color: $gray-text-color;
+      line-height: 14px;
+      color: $black-text-color
+    }
+    .item-title {
+      display: block;
+      float: left;
+      width: 25%;
+      text-align: left;
+      font: 14px $font-family-regular;
+      line-height: 40px;
+      color: $gray-text-color;
+    }
+    .age-active {
+      display: inline-block;
+      width: 17px;
+    }
+    .phone-active {
+      display: inline-block;
+      width: 90px;
+    }
+    .IDType-active {
+      display: inline-block;
+      width: 42px;
+    }
+    .IDNumber-active {
+      display: inline-block;
+      width: 140px;
+    }
+  }
+  .form-control {
+    line-height: 38px;
+    height: 38px !important;
+  }
+}
+.modal {
+  label {
+    line-height: 38px;
+    text-align: left;
+  }
+  .modal-header-padding {
+    padding: 20px !important;
+  }
+  .modal-content {
+    .choice-current-wrapper {
+      line-height: 37px !important;
+      height: 37px !important;
+    }
+    .choice-current {
+      margin-top: 0px;
+      line-height: 36px !important;
+      height: 36px !important;
+    }
+    .to-current {
+      line-height: 36px;
+    }
+    .custom-checkbox {
+      display: inline-block;
+      margin: 0;
+      line-height: 38px;
+      label {
+        height: 38px;
+        min-height: 38px;
+      }
+      input {
+        display: inline-block;
+        margin-top: 0;
+      }
+    }
+    .modal-body-padding {
+      padding: 0 20px 20px 20px !important;
+    }
+    .padding-right {
+      padding: 0 20px 0 0 !important;
+    }
+    .padding-left {
+      padding: 0 0 0 20px !important;
+    }
+    .no-padding {
+      padding: 0 !important;
+    }
+    .form-group {
+      margin: 0;
+      padding-right: 0;
+    }
+    .form-control {
+      box-shadow: none;
+      color: $gray-text-color;
+      background-color: transparent;
+    }
+
+    .textarea-control {
+      padding: 6px 12px;
+      border-radius: 0;
+      font: 14px $font-family-regular;
+      border: 1px solid #cccccc;
+      color: $gray-text-color;
+      line-height: 38px;
+      resize : none;
+    }
+    input::-webkit-input-placeholder{
+      color: $input-text-color;
+    }
+    input:-moz-placeholder{
+      color: $input-text-color;
+    }
+    input::-moz-placeholder{
+      color: $input-text-color;
+    }
+    input:-ms-input-placeholder{
+      color: $input-text-color;
+    }
+    .textarea-control::-webkit-input-placeholder{
+      color: $input-text-color;
+    }
+    .textarea-control:-moz-placeholder{
+      color: $input-text-color;
+    }
+    .textarea-control::-moz-placeholder{
+      color: $input-text-color;
+    }
+    .textarea-control:-ms-input-placeholder{
+      color: $input-text-color;
+    }
+    .select-control {
+      .form-control {
+        padding: 6px 12px;
+        border-radius: 0;
+        font: 14px $font-family-regular;
+        color: $gray-text-color;
+        border-color: #cccccc;
+        line-height: 38px;
+      }
+      .ui-select-match-text, .ui-select-placeholder {
+        line-height: 26px;
+      }
+      .ui-select-placeholder {
+        color: $input-text-color;
+      }
+    }
+
+    .img-responsive {
+      margin-top: 0;
+      width: 100px;
+    }
+    .custom-btn {
+      width: 200px;
+      height: 40px;
+      border: 1px solid $cyan-dark-bg;
+      border-radius: 0;
+      font: 14px $font-family-regular;
+      color: $cyan-dark-bg;
+      line-height: 40px;
+      background-color: $white-dark-bg;
+    }
+    .custom-btn:hover {
+      background-color: $cyan-dark-bg;
+      color: $white-text-color;
+      cursor: pointer;
+    }
+    .ui-select-match-text, .ui-select-placeholder {
+      //line-height: 10px;
+    }
+    .user-input {
+      position: absolute;
+      width: 100%;
+      height: 20px;
+      line-height: 20px;
+      border: none;
+      text-align: left;
+      background-color: transparent;
+    }
+    .text-danger {
+      text-align: left;
+      padding-left: 18px;
+    }
+  }
+
+
+}
+
+.no-userinfo-content {
+  font: 14px $font-family-regular;
+  color: $gray-line-color;
+  line-height: 14px;
+  margin-bottom: 20px;
+}
+.table-margin-bottom {
+  margin-bottom: 30px;
+}
+/**
+用户中心基本信息表单
+ */
+.infi-edit-content {
+  display: flex;
+  padding: 20px 0 30px 0;
+  margin-bottom: 30px;
+  border-bottom: 1px solid $gray-line-color;
+  label {
+    line-height: 38px;
+    text-align: left;
+  }
+  .form-group {
+    margin-bottom: 0;
+  }
+  .avatar-edit-wrapper {
+    width: 128px;
+    flex: 0 0 128px;
+    margin-right: 20px;
+    position: relative;
+    .uploader-bg {
+      position: absolute;
+      left: 0;
+      top: 38px;
+    }
+  }
+  .info-edit-wrapper {
+    flex: 1;
+    .absolute {
+      position: absolute;
+    }
+    .text-danger {
+      font: 14px $font-family-regular;
+      line-height: 14px;
+      transform: scale(0.83);
+    }
+    .select-control {
+      .form-control {
+        padding: 6px 12px;
+        border-radius: 0;
+        font: 14px $font-family-regular;
+        color: $gray-text-color;
+        border-color: #cccccc;
+        line-height: 38px;
+      }
+      .ui-select-match-text, .ui-select-placeholder {
+        line-height: 26px;
+      }
+      .ui-select-placeholder {
+        color: $gray-text-color;
+      }
+    }
+  }
+  .sava-wrapper {
+    position: absolute;
+    right: 0;
+    top: -3px;
+    background-color: $white-dark-bg;
+    .accept-wrapper {
+      line-height: 20px;
+      height: 20px;
+      border: none;
+    }
+    .accept-logo, .reject-logo {
+      margin-right: 10px;
+    }
+    .accept-wrapper {
+      border-right: 1px solid $black-text-color;
+      padding: 0 20px 0 0;
+    }
+    .accept-wrapper,.reject-wrapper{
+      button:hover{
+        color: $cyan-dark-bg;
+      }
+    }
+    .reject-wrapper {
+      padding: 0 0 0 20px;
+    }
+    button {
+      padding: 0;
+      border: none;
+      line-height: 20px;
+      background-color: $white-dark-bg;
+    }
+  }
+  .file_cut {
+    width: 128px !important;
+    height: 194px !important;
+    line-height: 194px !important;
+    text-align: center !important;
+    background-color: transparent;
+    border: none;
+  }
+  .padding-right {
+    padding: 0 20px 0 0;
+  }
+  .padding-left {
+    padding: 0 0 0 20px;
+  }
+  .no-padding {
+    padding: 0;
+  }
+  .form-group {
+    margin: 0;
+    padding-right: 0;
+  }
+  .form-control {
+    box-shadow: none;
+    color: $gray-text-color;
+    background-color: transparent;
+  }
+}
+
+
+/*媒体查询*/
+@media (min-width: 1200px) {
+  .user-right-sidebar {
+    width: 970px;
+  }
+  .center-navbar {
+    padding: 0;
+    width: 200px;
+  }
+  .navbar-wrapper {
+    //min-height: 959px;
+  }
+  .user-message {
+    min-height: 959px;
+  }
+
+}
+
+@media (max-width: 1200px) {
+  .invitations-wrapper, .center-wrapper {
+    margin-left: 0;
+  }
+  .center-navbar {
+    padding: 0;
+  }
+}
+
+@media (max-width: 992px) {
+ .center-navbar {
+    padding: 0;
+  }
+  .center-wrapper, .invitations-wrapper {
+    margin-left: 0;
+    padding: 0;
+  }
+  .user-card-wrapper {
+    padding: 0;
+  }
+  .user-card {
+    .coc-info {
+      margin-left: 0;
+    }
+    .coc-text {
+      padding-right: 10px;
+    }
+  }
+}
+
+@media (max-width: $screen-sm-min) {
+  .user-invitations-card {
+    margin: 0px !important;
+  }
+  .invitations-title {
+    padding: 30px 0 20px 0 !important;
+    margin: 0 !important;
+  }
+  .center-wrapper {
+    padding: 0 !important;
+  }
+  .user-right-sidebar {
+    margin: 0 20px !important;
+  }
+  .user-card {
+    padding: 0 !important;
+    .coc-text {
+      li {
+        padding: 0 8px;
+      }
+      li:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+  .info-item {
+    margin-top: 0 !important;
+    .item-title {
+      margin: 8px;
+      display: block;
+      float: left;
+    }
+  }
+  .modal {
+    .modal-content {
+      .padding-left, .padding-right {
+        padding: 0 !important;
+      }
+    }
+  }
+  .info-edit-wrapper {
+    .padding-left, .padding-right {
+      padding: 0 !important;
+    }
+  }
+
+  .custom-padding {
+    padding-right: 0 !important;
+    margin-bottom: 10px !important;
+  }
+  .navbar-wrapper {
+    margin-bottom: 0 !important;
+  }
+  table {
+    tr {
+      td:nth-child(1) {
+        width: 40%;
+        line-height: 40px;
+      }
+      td:nth-child(2) {
+        width: 30%;
+        line-height: 40px;
+      }
+      td:nth-child(3) {
+        width: 24%;
+        line-height: 40px;
+      }
+      img:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

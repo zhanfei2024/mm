@@ -1,0 +1,114 @@
+<div class="coc-container">
+  <div class="select-container" style="min-height: 740px">
+    <div class="select-bg">
+      <div class="row clearfix">
+        <div class="col-sm-10" style="padding-left: 0">
+          <div class="row clearfix">
+            <div class="header col-sm-10" style="margin-top: 5px;padding-left: 0;font-size: 24px">
+              <h4>{{'chamber.select.my_coc' | translate}}
+                <span class="title left">{{'chamber.prompt.title' | translate}} :</span>
+                <span class="title">{{'chamber.prompt.add_coc_text' | translate}}</span>
+              </h4>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-sm-2" style="  margin-top: 20px;">
+          <span [routerLink]="['/coc','create']" class="add_link" role="button"><img
+            src="../../../../assets/img/add_member.png" class="icon"/>
+            {{'chamber.btn.add_coc' | translate}}</span>
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <div class="table-responsive">
+      <table class="table table-align-middle table-outline text-center">
+        <thead>
+        <tr>
+          <th>{{'chamber.select.information' | translate}}</th>
+          <th></th>
+          <th>{{'chamber.select.contacts' | translate}}</th>
+          <th>{{'chamber.select.phone' | translate}}</th>
+          <th>{{'button.edit' | translate}}</th>
+          <th class="text-center">{{'chamber.select.operation' | translate}}</th>
+        </tr>
+        </thead>
+        <tbody [hidden]="!tableLoading">
+        <tr>
+          <td colspan="6">
+            <div class="text-center pt-3 pb-3">
+              <div class="pt-3 pb-3">
+                <i class="loading-img"></i>
+              </div>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+
+        <tbody [hidden]="!(coc?.length === 0 && !tableLoading)">
+        <tr>
+          <td class="clearfix td_no_meassge" colspan="6">
+            <div class="row clearfix">
+              <div class="col-sm-12 no_message text-center" style="margin: 40px 0">
+                <img src="../../../../assets/img/no_coc.png" height="120" width="120"/>
+                <p> {{'message.no_coc_add_text' | translate}}</p>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        </tbody>
+
+        <tbody [hidden]="!(coc?.length > 0 && !tableLoading)">
+        <tr *ngFor="let item of coc">
+          <td class="clearfix">
+            <div class="left pull-left hidden-xs">
+              <img [src]="item?.logoUrl" class="img-responsive img-circle">
+            </div>
+            <div class="right coc-content-wrapper">
+              <h4 class="name">{{item.name}}</h4>
+              <div class="content clearfix coc-content">
+                <ul class="list-unstyled clearfix">
+                  <li class="text-left col-xs-3 text-overflow">
+                    <span class="number">{{item?.industry?.name}} </span>
+                    <p class="text">{{'chamber.select.industry' | translate}}</p>
+                  </li>
+
+                  <li class="text-center col-xs-3 text-overflow">
+                    <span class="number">{{item?.locations?.name}}</span>
+                    <p class="text">{{'chamber.select.region' | translate}}</p>
+                  </li>
+                  <li class="text-center col-xs-3 text-overflow">
+                    <span class="number">{{item?.scale}}</span>
+                    <p class="text">{{'chamber.select.number' | translate}}</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </td>
+          <td style="color: #fff;"> .</td>
+          <td>
+            <span class="contacts">{{item.contacts}}</span>
+          </td>
+          <td>
+            <span class="phone">{{item.phone}}</span></td>
+          <td>
+            <a [routerLink]="['/coc',item.id,'edit']">
+              <img src="../../../assets/img/edit.png" class="icon" style="vertical-align: middle;"/></a>
+          <td class="text-center">
+            <a (click)="selectChamber(item)" class="selectChamber">{{'chamber.btn.entry_management' | translate}}</a>
+            <a (click)="delete(item.id)"  class="selectChamber">{{'button.delete' | translate}}</a>
+          </td>
+        </tr>
+
+        </tbody>
+      </table>
+      <!-- /.table-->
+    </div>
+  </div>
+
+
+</div>

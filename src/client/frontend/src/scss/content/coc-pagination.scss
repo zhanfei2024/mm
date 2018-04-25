@@ -1,0 +1,61 @@
+.coc-pagination {
+  padding: 0;
+  margin: 40px 0 60px 0;
+  background-color: $white-dark-bg;
+  .pagination {
+    display: flex;
+    margin: 0;
+    padding: 10px 0;
+    background-color: $white-dark-bg;
+    li {
+      a {
+        text-align: center;
+        padding: 0 6px;
+        margin-right: 6px;
+        line-height: 20px;
+        border: none;
+      }
+    }
+    li:first-child {
+      flex: 1;
+      a {
+        float: right;
+        padding: 0 10px;
+        margin: 0 20px;
+        line-height: 20px;
+      }
+    }
+    li:nth-last-child(2) {
+      a {
+        margin-right: 0;
+      }
+    }
+    li:last-child {
+      flex: 1;
+      a {
+        float: left;
+        padding: 0 10px;
+        margin: 0 20px;
+        line-height: 20px;
+      }
+    }
+    li:first-child:hover {
+      a {
+        background-color: $blue-text-color;
+        color: $white-text-color;
+        border-radius: 0;
+      }
+    }
+    li:last-child:hover {
+      a {
+        background-color: $blue-text-color;
+        color: $white-text-color;
+        border-radius: 0;
+      }
+    }
+  }
+}
+.pager-row {
+  margin-left: 0;
+  margin-right: 0;
+}

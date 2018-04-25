@@ -1,0 +1,27 @@
+<div *ngIf="control.errors">
+    <div *ngIf="control.dirty || control.touched">
+          <div class="text-danger" [hidden]="!control.errors.required" style="font-size: 12px">
+            {{ 'validation.required' | translate: {field : fieldName} }}
+          </div>
+
+          <div class="text-danger" [hidden]="!control.errors.pattern" style="font-size: 12px">
+            {{ 'validation.tel' | translate: {field : fieldName} }}
+          </div>
+
+          <div class="text-danger" [hidden]="!control.errors.minlength" style="font-size: 12px">
+            {{ 'validation.minlength' | translate:{field : fieldName, value: control.errors.minlength?.requiredLength } }}
+          </div>
+          <div class="text-danger" [hidden]="!control.errors.maxlength" style="font-size: 12px">
+            <!--{{ 'validation.maxlength' | translate:{field : fieldName, value: control.errors.maxlength?.requiredLength } }}-->
+            ssss
+          </div>
+    </div>
+
+    <div class="text-danger" [hidden]="!control.errors.ng2SelectRequired">
+        {{ 'validation.required' | translate: {field : fieldName} }}
+    </div>
+
+    <div class="text-danger" [hidden]="!control.errors.minDate">
+        min date
+    </div>
+</div>

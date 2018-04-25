@@ -1,0 +1,32 @@
+.orderNo-btn {
+  padding: 0.4rem 1rem;
+  background: #fefefe;
+}
+
+button{
+  margin-top:18px;
+}
+
+.activity-table tr td{
+  width:10%;
+}
+.activity-table tr td:nth-child(1){  width:15%;  }
+.activity-table tr td:nth-child(2){  width:10%;  }
+.activity-table tr td:nth-child(3){  width:10%;  }
+.activity-table tr td:nth-child(4){  width:10%;  }
+.activity-table tr td:nth-child(5){  width:10%;  }
+.activity-table tr td:nth-child(6){  width:15%;  }
+.activity-table tr td:nth-child(7){  width:10%;  }
+.activity-table tr td:nth-child(8){  width:10%;  }
+.activity-table tr td:nth-child(9){  width:5%;  }
+.activity-table tr td:nth-child(10){  width:5%;  }
+
+th,td{
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width:250px;
+  width:10%;
+}
+

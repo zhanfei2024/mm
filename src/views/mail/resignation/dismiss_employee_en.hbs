@@ -1,0 +1,9 @@
+{{#extend "mail/layouts/main"}}
+  {{#content "content"}}
+    <p>Hello {{ fullName }} , you have been dismissed from {{ team.name }}</p>
+    <p>Date : {{ resignation.endedDate }}</p>
+    <p>Remark : {{ resignation.remark }}</p>
+    <p>If you still have questions, please contact YOOV support.</p>
+    <p>This is an automatically generated email, please do not reply ***</p>
+  {{/content}}
+{{/extend}}

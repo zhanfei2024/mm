@@ -1,0 +1,77 @@
+.mar-l {
+  margin-left: .5rem;
+}
+
+.mar-r {
+  margin-right: .5rem;
+}
+
+.mar-t {
+  margin-top: .5rem;
+}
+
+.mar-b {
+  margin-bottom: .5rem;
+}
+
+.mar-a {
+  margin: .5rem;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.img-avatar-lg {
+  width: 80px;
+  height: 80px;
+  border-radius: 50rem;
+  border: 1px solid #ddd;
+}
+
+.img-avatar-md {
+  width: 36px;
+  height: 36px;
+  border-radius: 50rem;
+  border: 1px solid #ddd;
+}
+
+.img-avatar-sm {
+  width: 28px;
+  height: 28px;
+  border-radius: 50rem;
+  border: 1px solid #ddd;
+}
+
+.word-wrap {
+  word-wrap: break-word;
+}
+
+// auth
+
+.auth-last-fist-name {
+  line-height: 1;
+  background-image: url('../assets/img/auth_last_first_name.svg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 20px 16px;
+}
+
+
+// app-footer
+.app-footer {
+  min-height: 35px;
+  line-height: 35px;
+  flex: 0 0 35px;
+}
+
+// nav-tab
+.nav-tabs .nav-link:hover {
+  background-color: #fff;
+}
+
+.fa{
+  font-size: 20px;
+}
+
+

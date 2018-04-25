@@ -1,0 +1,13 @@
+.orderNo-btn {
+  padding: 0.4rem 1rem;
+  background: #fefefe;
+}
+
+th,td{
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width:200px;
+  width:10%;
+}

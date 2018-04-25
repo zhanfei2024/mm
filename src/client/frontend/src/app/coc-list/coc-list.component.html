@@ -1,0 +1,129 @@
+<app-home-navbar></app-home-navbar>
+<section class="news-body">
+  <div class="container">
+    <div class="row clearfix">
+      <div class="header">
+        <h4 *ngIf="!isSearch">{{'navbar.coc_list' | translate}}</h4>
+        <h4 *ngIf="isSearch">{{'global.find' | translate}}
+          <span class="invitation">{{cocs?.length}}</span> {{'global.individual' | translate}}{{'global.coc' | translate}} </h4>
+      </div>
+    </div>
+    <div class="row cofc-list clearfix" [style.margin-bottom]="isSearch? '40px' : '0'">
+      <div class="location">
+        <div class="location-wrapper">
+          <h2>{{'chamber.select.region' | translate}}：</h2>
+          <ul class="list-inline">
+            <li [ngClass]="{'active': filter.locationId.length === 0}" (click)="restSelected('locations')">{{'global.unlimited' | translate}}</li>
+            <li *ngFor="let item of locations | slice:0:6" [hidden]="isMore" [ngClass]="{'active': item.select}" (click)="selected(item,'locations')">
+              {{item.name}}
+              <i class="fa fa-times" aria-hidden="true" *ngIf="item.select"></i>
+            </li>
+            <li *ngFor="let item of locations" [hidden]="!isMore" [ngClass]="{'active': item.select}" (click)="selected(item,'locations')">{{item.name}}
+              <i class="fa fa-times" aria-hidden="true" *ngIf="item.select"></i>
+            </li>
+            <li class="trade-more pull-right" (click)="more('locations')" *ngIf="locations.length > 7">
+              <a href="javascript:;">
+                <i class="fa fa-caret-down" *ngIf="!isMore"></i>
+                <i class="fa fa-caret-up" *ngIf="isMore"></i> {{'global.more' | translate}}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="trade">
+        <div class="trade-wrapper">
+          <h2>{{'chamber.select.industry' | translate}}：</h2>
+          <ul class="list-inline">
+            <li [ngClass]="{'active': filter.industryId.length === 0}"  (click)="restSelected('industry')">{{'global.unlimited' | translate}}</li>
+            <li *ngFor="let item of industries | slice:0:6" [ngClass]="{'active': item.select}" [hidden]="isIndustriesMore" (click)="selected(item,'industry')">{{item.name}}
+              <i class="fa fa-times" aria-hidden="true" *ngIf="item.select"></i>
+            </li>
+            <li *ngFor="let item of industries" [ngClass]="{'active': item.select}" [hidden]="!isIndustriesMore" (click)="selected(item,'industry')">
+              {{item.name}}
+              <i class="fa fa-times" aria-hidden="true" *ngIf="item.select"></i>
+            </li>
+            <li class="trade-more pull-right">
+              <a href="javascript:;" (click)="more('industries')" *ngIf="industries.length > 7">
+                <i class="fa fa-caret-down" *ngIf="!isIndustriesMore"></i>
+                <i class="fa fa-caret-up" *ngIf="isIndustriesMore"></i> {{'global.more' | translate}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row cofc-filter clearfix" *ngIf="!isSearch">
+      <h2>{{'global.sort' | translate}}：</h2>
+      <ul class="list-inline clearfix">
+        <li (click)="stateToggle('scopeShow')" [ngClass]="{scopeShow: scopeShow}">
+          <span>{{'cocShow.navbar.scale' | translate}}</span>
+          <i *ngIf="scopeShow" class="fa fa-caret-down" aria-hidden="true"></i>
+          <i *ngIf="!scopeShow" class="fa fa-caret-up" aria-hidden="true"></i>
+        </li>
+        <li (click)="stateToggle('foundingShow')" [ngClass]="{scopeShow: !scopeShow}">
+          <span>{{'cocShow.navbar.founding_time' | translate}}</span>
+          <i *ngIf="foundingShow" class="fa fa-caret-down" aria-hidden="true"></i>
+          <i *ngIf="!foundingShow" class="fa fa-caret-up" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </div>
+
+    <div [hidden]="!tableLoading">
+      <div class="text-center pt-3 pb-3">
+        <div class="pt-3 pb-3">
+          <i class="loading-img"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="row clearfix" [hidden]="!(cocs.length === 0 && !tableLoading)">
+      <div class="col-sm-12 no_message no_coc text-center">
+        <img src="../../../../assets/img/no_coc.png" height="120" width="120" />
+        <p> {{'message.no_message' | translate}}</p>
+      </div>
+    </div>
+
+    <section class="hot-cofc" [hidden]="!(cocs.length > 0 && !tableLoading)">
+      <div class="hot-cofc-list row clearfix" *ngFor="let item of cocs" [routerLink]="['/coc-show', item.id,'home']" role="button">
+        <div class="col-sm-2">
+          <img class="img-responsive img-circle center-block" style="width: 120px;margin-top:10px;" [src]="item?.logoUrl" *ngIf="item?.logoUrl !== null">
+        </div>
+        <div class="col-sm-8">
+          <div class="title">
+            <span class="name">{{item.name}}</span> |
+            <span class="cearte-time">{{'chamber.create.create_time' | translate}}：{{item?.foundingDate}}</span>
+          </div>
+          <div class="basic">
+            <span class="text">{{'cocShow.navbar.contacts' | translate}}：{{item.contacts}}</span> |
+            <span class="text">{{'cocShow.navbar.scale' | translate}}：{{item.scale}}</span> |
+            <span class="text">{{'cocShow.navbar.industry' | translate}}：{{item.industry?.name}}</span> |
+            <span class="text">{{'cocShow.navbar.region' | translate}}：{{item.locations?.name}}</span>
+          </div>
+          <div class="address text-overflow">
+            <span class="phone">
+              <img src="../../assets/img/phone.png" height="18" width="18" style="margin-right: 5px;vertical-align: middle" /> {{item.phone}}
+            </span>
+            <span class="phone">
+              <img src="../../assets/img/address.png" height="18" width="18" style="margin-right: 5px;vertical-align: middle" /> {{item.address}}
+            </span>
+          </div>
+        </div>
+        <div class="col-sm-2 clearfix apply-content">
+          <button class="btn btn-primary apply">{{'global.see_coc' | translate}}</button>
+        </div>
+      </div>
+    </section>
+    <!--分页-->
+    <div class="row" [hidden]="!(cocs.length > 0 && !tableLoading)">
+      <div class="coc-pagination  row clearfix">
+        <div class="col-md-offset-3 col-md-6 col-md-offset-3">
+          <div class="pagination-wrapper center-block">
+            <pagination [previousText]="'button.prev_page' | translate" [nextText]="'button.next_page' | translate" [itemsPerPage]="filter.limit"
+              [totalItems]="meta.pagination.totalCount" [(ngModel)]="filter.page" (pageChanged)="pageChanged($event)">
+            </pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

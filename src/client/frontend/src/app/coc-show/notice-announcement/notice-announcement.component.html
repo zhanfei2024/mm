@@ -1,0 +1,142 @@
+<div class="notice-announcement">
+  <!--入会须知-->
+  <div class="notice-announcement-wrapper">
+    <div class="notice-announcement-inner">
+      <div class="notice-announcement-head row clearfix">
+        <div class="big-title clearfix">
+          <h1 class="text-center">{{'cocShow.rules.member_rules' | translate}}
+          </h1>
+        </div>
+      </div>
+      <div *ngIf="memberNotice?.length > 0" class="notice-list row clearfix">
+        <ul>
+          <li *ngFor="let item of memberNotice" class="clearfix"
+              [routerLink]="['/coc-show', item?.cocId, 'rules', item?.id,'detail']"><p class="point"></p>
+            <p class="notice-text">{{item?.title}}</p></li>
+        </ul>
+      </div>
+      <!--无入会须知-->
+      <div *ngIf="memberNotice?.length === 0" class="row no-member-rules clearfix">
+        <div class="news-content">
+          <img class="center-block" src="../../../assets/img/no-coc-rules.png">
+          <p class="content text-center">{{'cocShow.rules.no_member_rules' | translate}}</p>
+        </div>
+      </div>
+      <!--入会须知载入-->
+      <div class="row no-member-rules clearfix" *ngIf="memberNoticeLoading">
+        <div class="news-content">
+          <i class="loading-img"></i>
+        </div>
+      </div>
+      <div *ngIf="memberNotice?.length > 0" class="more-content row clearfix">
+        <p class="more-button side-button" [routerLink]="['/coc-show', cocId, 'rules']">{{'cocShow.notice.more' |
+          translate}}</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!--商会公告-->
+  <div class="notice-announcement-wrapper">
+    <div class="notice-announcement-head row">
+      <div class="big-title clearfix">
+        <h1 class="text-center">{{'chamber.left.notice' | translate}}
+        </h1>
+      </div>
+    </div>
+    <div *ngIf="cocNotice?.length > 0" class="notice-list row">
+      <ul>
+        <li *ngFor="let item of cocNotice" [routerLink]="['/coc-show', item?.cocId, 'notice', item?.id,'detail']"
+            class="clearfix"><p class="point"></p>
+          <p class="notice-text">{{item?.title}}</p></li>
+      </ul>
+    </div>
+    <!--无商会公告-->
+    <div class="row no-member-rules clearfix" *ngIf="cocNotice?.length === 0">
+      <div class="news-content no-bottom">
+        <img class="center-block" src="../../../assets/img/no-coc-notice.png">
+        <p class="content text-center">{{'cocShow.notice.no_member_notice' | translate}}</p>
+      </div>
+    </div>
+    <!--商会公告载入-->
+    <div class="row no-member-rules" *ngIf="cocNoticeLoading">
+      <div class="news-content">
+        <i class="loading-img"></i>
+      </div>
+    </div>
+    <div *ngIf="cocNotice?.length >0" class="more-content row">
+      <p class="more-button side-button" [routerLink]="['/coc-show', cocId, 'notice']">{{'cocShow.notice.more' |
+        translate}}</p>
+    </div>
+
+  </div>
+  <div class="reply-container">
+    <div class="reply" (click)="openModel()" role="button">
+      <img src="../../../assets/img/liuyan.png" height="40" width="40"/>
+      <p class="text">{{'global.reply' | translate}}</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" bsModal #inviteModal="bs-modal" [config]="{backdrop: 'static',ignoreBackdropClick: true}"
+     tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content clearfix">
+      <div class="modal-header clearfix" style="padding-bottom: 15px">
+        <div class="col-sm-12">
+          <div class="header">
+            <h4>
+              {{'global.reply' | translate}}
+            </h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="inviteModal.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body" style="padding-top: 0">
+        <form class="container-fluid" name="postForm" #postForm="ngForm">
+          <div class="form-group row clearfix">
+            <label for="title" class="col-md-12 clearPadding py-h px-1">{{'chamber.know.title'
+              | translate}}</label>
+            <div class="col-md-12 clearPadding">
+              <input type="text" class="form-control" id="title" name="title" [(ngModel)]="meassge.title" required
+                      minlength="10"
+                     #nameHandler="ngModel">
+              <form-message [control]="nameHandler"
+                            [fieldName]="'chamber.know.title' | translate"></form-message>
+            </div>
+          </div>
+
+          <div class="form-group row clearfix">
+            <label for="leavingMessage" class="col-md-12 clearPadding py-h px-1">{{'chamber.know.content'
+              | translate}}</label>
+            <div class="col-md-12 clearPadding">
+              <textarea type="text" class="form-control" id="leavingMessage" name="leavingMessage" style="min-height: 150px;width: 98%"
+                        [(ngModel)]="meassge.leavingMessage" required
+                        #leavingMessageHandler="ngModel"></textarea>
+              <form-message [control]="leavingMessageHandler"
+                            [fieldName]="'chamber.know.content' | translate"></form-message>
+            </div>
+          </div>
+
+
+          <div class="modal-selected-footer text-center">
+            <button type="button" class="btn btn-primary transparent cursor btn-submit-primary"
+                    style="line-height: 1.8;"
+                    (click)="onSubmit()" [disabled]="!postForm.form.valid && !sumbitLoading"
+                    aria-label="Close">
+              <i class="fa fa-save"></i>
+              <span *ngIf="sumbitLoading"><i class="fa fa-spin fa-spinner"></i></span>
+              <span *ngIf="!sumbitLoading">{{'button.release' | translate}}</span>
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

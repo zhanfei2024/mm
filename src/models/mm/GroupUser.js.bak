@@ -1,0 +1,31 @@
+
+
+module.exports = function (sequelize, DataTypes) {
+  const Model = sequelize.define('GroupUser', {}, {
+    schema: 'mm',
+    charset: 'utf8',
+    timestamps: true,
+    freezeTableName: true,
+    classMethods: {},
+    getterMethods: {},
+    setterMethods: {},
+  });
+
+  Model.getAttributes = function () {
+    return Object.keys(Model.rawAttributes);
+  };
+
+  Model.associate = function (models) {
+
+  };
+
+  Model.prototype.toJSON = function () {
+    const res = this.dataValues;
+
+    // hide field
+    delete res.enterpriseId;
+
+    return res;
+  };
+  return Model;
+};

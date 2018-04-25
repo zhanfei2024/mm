@@ -1,0 +1,161 @@
+<div class="content-heading">
+  {{'messages.messages_list'|translate}}
+</div>
+
+<div class="">
+  <!--<h6 class="card-header text-primary">-->
+  <!--{{'order.order_list'|translate}}-->
+  <!--</h6>-->
+  <div class="card-block">
+
+    <div class="row align-items-center">
+
+      <div class="col-sm-3 form-group">
+        <label>{{'messages.coc'|translate}}</label>
+        <input type="text" class="form-control" [(ngModel)]="filter.cocName" placeholder="{{'messages.coc' |translate}}">
+      </div>
+      <div class="col-sm-3 form-group">
+        <button (click)="onSearch('')" [disabled]="!filter.cocName" type="button"
+                class="btn btn-outline-primary cursor">{{ 'button.search' |
+          translate }}
+        </button>
+        <button (click)="onReset(filter.search)" [disabled]="!filter.cocName" type="button"
+                class="btn btn-outline-primary cursor">{{ 'button.reset' |
+          translate }}
+        </button>
+      </div>
+    </div>
+
+    <!-- /.row -->
+    <div *ngIf="tableLoading" class="card-block">
+      <div class="sk-three-bounce">
+        <div class="sk-child sk-bounce1"></div>
+        <div class="sk-child sk-bounce2"></div>
+        <div class="sk-child sk-bounce3"></div>
+      </div>
+    </div>
+    <div *ngIf="!tableLoading">
+      <div *ngIf="rows.length===0">
+        <div class="text-muted pt-3 pb-3 text-center">
+          <div hidden>
+            <img src="../../../assets/img/content/no-role.png" alt="" class="img-fluid mx-auto d-block">
+          </div>
+          <div class="pt-3 pb-3 font-xl">
+            <img src="../../../assets/img/content/no-role.png" alt="" class="img-fluid mx-auto d-block">
+            <p>{{'no_content.no_order' | translate}}</p>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="rows.length!==0" class="table-responsive table-panel">
+        <table class="table table-align-middle table-outline text-center">
+          <thead>
+          <tr>
+            <th>{{'messages.email'|translate }}</th>
+            <th>{{'messages.coc'|translate }}</th>
+            <th>{{'messages.title'|translate }}</th>
+            <th>{{'messages.leavingMessage'|translate }}</th>
+            <th>{{'messages.leavingMessagedAt'|translate }}</th>
+            <th>{{'messages.status'|translate }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let row of rows">
+            <td>{{row?.email}}</td>
+            <td>{{row?.coc?.name}}</td>
+            <td>{{row?.title}}</td>
+            <td>{{row?.leavingMessage}}</td>
+            <td>{{row?.leavingMessagedAt | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+            <td *ngIf="row.messageReply==null">
+              <a >{{'messages.wait'|translate }}</a>
+              <i (click)="deleteMessage(row)" class="fa fa-trash text-primary cursor color-active" aria-hidden="true"></i>
+            </td>
+            <td *ngIf="row.messageReply!=null">
+              <a  class="cursor color-active" (click)="openModal(row)">{{'messages.check'|translate }}</a>
+              <i (click)="deleteMessage(row)" class="fa fa-trash text-primary cursor color-active" aria-hidden="true"></i>
+            </td>
+
+          </tr>
+          </tbody>
+        </table>
+        <!-- /.table-->
+      </div>
+      <div class="text-center" [hidden]="tableLoading || rows.length === 0">
+        <custom-pagination [itemsPrePage]="meta.pagination.prevPage"
+                           [itemsNextPage]="meta.pagination.nextPage"
+                           [currentPage]="meta.pagination.currentPage"
+                           (pageChanged)="changePage($event)">
+        </custom-pagination>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.card-block -->
+  <!--模态框-->
+  <div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" *ngIf="isInitModal">
+        <div class="card-header">
+          <div class="row align-items-center">
+            <div class="col text-primary">
+              {{'messages.check_re'|translate}}
+            </div>
+            <!--/.col-->
+            <div class="col text-right">
+              <button type="button" class="btn btn-outline-primary cursor" (click)="closeModal(editModal)"
+                      aria-label="Close">
+                <i class="fa fa-close"></i>
+                {{'industry.button.cancel' | translate}}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <form class="container-fluid" name="mainForm" #mainForm="ngForm">
+            <div class="form-group row">
+              <label class="col-md-3 py-h px-1"><sub class="text-danger font-lg">*</sub>{{'messages.email'
+                | translate}}</label>
+              <div class="col-md-8">
+               <label class="form-control">{{message?.email}}</label>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 py-h px-1"><sub class="text-danger font-lg">*</sub>{{'messages.coc'
+                | translate}}</label>
+              <div class="col-md-8">
+                <label class="form-control">{{message?.coc?.name}}</label>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 py-h px-1"><sub class="text-danger font-lg">*</sub>{{'messages.title'
+                | translate}}</label>
+              <div class="col-md-8">
+                <label class="form-control">{{message?.title}}</label>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 py-h px-1"><sub class="text-danger font-lg">*</sub>{{'messages.leavingMessage'
+                | translate}}</label>
+              <div class="col-md-8">
+                <label class="form-control">{{message?.leavingMessage}}</label>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 py-h px-1"><sub class="text-danger font-lg">*</sub>{{'messages.messageReply'
+                | translate}}</label>
+              <div class="col-md-8">
+                <label class="form-control">{{message?.messageReply}}</label>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

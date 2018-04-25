@@ -1,0 +1,20 @@
+{
+  "isSelf": {
+    "statusCode": 404,
+    "message": {
+      "en": "JointWorkCoc can't be self",
+      "cn": "合作商會不能是自身",
+      "hk": "合作商会不能是自身"
+    },
+    "code": 40010
+  },
+  "jointedCoc": {
+    "statusCode": 404,
+    "message": {
+      "en": "Have jointed this coc",
+      "cn": "已经加入了商会",
+      "hk": "已經加入了商會"
+    },
+    "code": 40011
+  }
+}

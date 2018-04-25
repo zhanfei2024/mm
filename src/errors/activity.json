@@ -1,0 +1,47 @@
+{
+  "activityNotFound": {
+    "statusCode": 400,
+    "message": {
+      "en": "Activity isn't Found",
+      "cn": "没有找到活动",
+      "hk": "沒有找到活動"
+    },
+    "code": 15999
+  },
+  "categoryNotExists": {
+    "statusCode": 400,
+    "message": {
+      "en": "Please choose post category  subcategory",
+      "cn": "请选择职位类别/子类别",
+      "hk": "請選擇職位類別/子類別"
+    },
+    "code": 16000
+  },
+  "startGreaterEndTime": {
+    "statusCode": 400,
+    "message": {
+      "en": "Activity start time cannot be greater than active end time",
+      "cn": "活动开始时间不能大于活动结束时间",
+      "hk": "活動開始時間不能大於活動結束時間"
+    },
+    "code": 16001
+  },
+  "startGreaterRegistrationTime": {
+    "statusCode": 400,
+    "message": {
+      "en": "Activity start time should not exceed registration deadline",
+      "cn": "活动开始时间不应超过注册截止日期",
+      "hk": "活動開始時間不應超過註冊截止日期"
+    },
+    "code": 16002
+  },
+  "overNumber": {
+    "statusCode": 400,
+    "message": {
+      "en": "Activity number of people should not exceed max number or limit number",
+      "cn": "活动人数不应超过最大数或限制数",
+      "hk": "活動人數不應超過最大數或限制數"
+    },
+    "code": 16003
+  }
+}

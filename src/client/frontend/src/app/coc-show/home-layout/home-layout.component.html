@@ -1,0 +1,239 @@
+<div class="coc-enterprise-navbar">
+  <div class="container">
+    <div class="enterprise-info row">
+      <div class="enterprise-avatar" [routerLink]="['/coc-show', cocId, 'home']">
+        <img [src]="cocSelf?.logoUrl" style="width: 100%; height: 100%">
+      </div>
+      <div class="enterprise-text">
+        <h1 class="enterprise-name" [routerLink]="['/coc-show', cocId]">{{cocSelf?.name}}</h1>
+        <p class="enterprise-purpose">{{'cocShow.navbar.purpose' | translate}}：{{cocSelf?.purpose | slice:0:38}}</p>
+        <p class="enterprise-purpose-address">{{'cocShow.navbar.coc_address' | translate}}：{{cocSelf?.address}}</p>
+      </div>
+      <div class="enterprise-join  hidden-xs">
+        <input class="coc-join btn btn-default" type="button" value="{{title | translate}}"
+               [disabled]="title !== 'cocShow.navbar.apply_into_coc'" (click)="openModel()">
+      </div>
+    </div>
+
+    <div class="enterprise-info enterprise-info-add row">
+      <ul class="enterprise-detail">
+        <li>
+          <p class="content">{{'cocShow.navbar.industry' | translate}}</p>
+          <p class="title">{{cocSelf?.industry.name}}</p>
+        </li>
+        <li>
+          <p class="content">{{'cocShow.navbar.region' | translate}}</p>
+          <p class="title">{{cocSelf?.locations.name}}</p>
+        </li>
+        <li>
+          <p class="content">{{'cocShow.navbar.scale' | translate}}</p>
+          <p class="title">{{cocSelf?.scale}}人</p>
+        </li>
+        <li>
+          <p class="content">{{'cocShow.navbar.founding_time' | translate}}</p>
+          <p class="title">{{cocSelf?.foundingDate}}</p>
+        </li>
+        <li>
+          <p class="content">{{'cocShow.navbar.contacts' | translate}}</p>
+          <p class="title">{{cocSelf?.contacts}}</p>
+        </li>
+        <li>
+          <p class="content">{{'cocShow.navbar.contact_number' | translate}}</p>
+          <p class="title">{{cocSelf?.phone}}</p>
+        </li>
+        <!--<li><p class="content">{{cocSelf?.address}}</p><p class="title">{{'cocShow.navbar.coc_address' | translate}}</p></li>-->
+      </ul>
+    </div>
+
+    <div class="row enterprise-join-xs hidden-sm hidden-md hidden-lg">
+      <div class="col-xs-12 text-center">
+        <input class="coc-join-xs btn btn-default" type="button" value="{{title | translate}}"
+               [disabled]="title !== 'cocShow.navbar.apply_into_coc'" (click)="openModel()">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="coc-enterprise-navbar coc-enterprise-navbar-add">
+  <div class="container">
+    <div class="enterprise-navbar row">
+      <ul class="enterprise-nav-tabs clearfix">
+        <li [routerLink]="['/coc-show', cocId,'home']" routerLinkActive="active"><a href="javascript:;">{{'cocShow.home.index'
+          | translate}}</a></li>
+        <li [routerLink]="['/coc-show', cocId, 'framework']" routerLinkActive="active"><a href="javascript:;">{{'cocShow.framework.introduction_coc'
+          | translate}}</a></li>
+        <li [routerLink]="['/coc-show', cocId, 'news']" routerLinkActive="active"><a href="javascript:;">{{'cocShow.news.coc_news'
+          | translate}}</a></li>
+        <li [routerLink]="['/coc-show', cocId ,'activity']" routerLinkActive="active"><a href="javascript:;">{{'cocShow.activity.coc_activity'
+          | translate}}</a></li>
+        <li class="hidden-xs" [routerLink]="['/coc-show', cocId, 'rules']" routerLinkActive="active"><a
+          href="javascript:;">{{'cocShow.rules.member_rules'
+          | translate}}</a></li>
+        <li class="hidden-xs" [routerLink]="['/coc-show', cocId, 'notice']" routerLinkActive="active"><a
+          href="javascript:;">{{'cocShow.notice.member_notice'
+          | translate}}</a></li>
+        <li *ngFor="let item of tabs" [routerLink]="['/coc-show', cocId, 'tab', item.id, 'detail']"
+            routerLinkActive="active">
+          <a href="javascript:;">{{item.title | slice:0:6}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" bsModal #editModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true"
+     [config]="{backdrop: 'static',ignoreBackdropClick: true}">
+  <div class="user-invitations modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-sm-12">
+          <div class="header">
+            <h4>
+              {{'profile.apply' | translate}}
+            </h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="editModal.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body user-invitations-coc" *ngIf="step1">
+        <form class="container-fluid" name="mainForm" #mainForm="ngForm">
+
+
+          <div class="form-group row group-content clearfix" style="margin-top: 20px">
+            <div class="col-sm-12">
+              <p class="text-center group-title"> {{'global.apply_group' | translate}}</p>
+            </div>
+
+            <div class="group-container">
+              <div *ngFor="let item of groups" class="group-list text-center"
+                   [ngClass]="{'group-active': item.id === groupId}"
+                   (click)="selected(item,'group')">
+                <label>
+                  {{item?.name}}
+                </label>
+                <p>{{item?.balance}} /
+                  <span
+                    *ngIf="!item?.isForever && item?.timeSpan !== 0">{{item?.timeSpan}} {{'global.month' | translate}}</span>
+                  <span *ngIf="item?.isForever">{{'global.forever' | translate}}</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <p class="text-center group-title"> {{'global.apply_position' | translate}}</p>
+            </div>
+            <!--职务-->
+            <div class="group-container">
+              <div *ngFor="let item of positions" class="group-list text-center"
+                   [ngClass]="{'group-active': item['active']}"
+                   (click)="selected(item,'position')">
+                <label>
+                  {{item?.title}}
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group app_coc_content row clearfix">
+            <div class="col-sm-3 user-user-introducer">
+              <input type="checkbox" name="isIntroducer" id="isIntroducer" [(ngModel)]="isIntroducer">
+              <label for="isIntroducer" role="button">{{'global.isIntroducer' | translate}}</label>
+            </div>
+            <div class="col-sm-8 no-padding" *ngIf="isIntroducer">
+              <div class="group-title">
+                <input type="text" placeholder="{{'global.isIntroducer_text' | translate}}" class="form-control"
+                       [(ngModel)]="introducer" name="introducer">
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group row clearfix" *ngIf="bank?.length > 0">
+            <div class="col-sm-12">
+              <div>
+                <div class="col-sm-3" *ngFor="let item of bank;let i = index">
+                  <div class="group-list text-center" [ngClass]="{'group-active': item.id === bankId}"
+                       (click)="selected(item,'bank')">
+                    <label>
+                      {{item?.cardNumber}}
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-sm-12 user-invitations-point">
+                <ul>
+                  <li style="margin-bottom: 10px">{{'chamber.payment.name' | translate}}：{{bankItem?.bankName}}</li>
+                  <li style="margin-bottom: 10px">{{'chamber.payment.number' | translate}}：{{bankItem?.cardNumber}}</li>
+                  <li style="margin-bottom: 10px">{{'chamber.payment.opening_bank' |
+                    translate}}：{{bankItem?.depositBank}}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row clearfix">
+            <div class="app_coc_content clearfix">
+              <div class="col-sm-12" style="padding: 0 20px;">
+                <h4 class="shengming group-title text-center">{{'global.statement' | translate}}</h4>
+                <p class="text">1、{{'global.statement_one' | translate}}</p>
+                <p class="text">2、{{'global.statement_two' | translate}}</p>
+                <p class="text">3、{{'global.statement_three' | translate}}</p>
+              </div>
+              <div class="col-sm-12 user-shengming" style="padding: 0 10px;">
+                <input type="checkbox" name="statement1" id="statement1" [(ngModel)]="statement1">
+                <label for="statement1" role="button">{{'global.statement_one_text' | translate}}</label>
+              </div>
+              <div class="col-sm-12 user-shengming" style="padding: 0 10px;">
+                <input type="checkbox" name="statement2" id="statement2" [(ngModel)]="statement2">
+                <label for="statement2" role="button">{{'global.statement_two_text' | translate}}</label>
+              </div>
+              <div class="col-sm-12 user-shengming" style="padding: 0 10px;">
+                <input type="checkbox" name="statement3" id="statement3" [(ngModel)]="statement3">
+                <label for="statement3" role="button">{{'global.statement_three_text' | translate}}</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-selected-footer text-center">
+            <button type="submit" class="btn btn-rimary cursor btn-submit-primary" style="line-height: 1.8;"
+                    [disabled]="submitLoading" (click)="onSubmit()">
+              <span *ngIf="submitLoading"><i class="fa fa-spin fa-spinner"></i></span>
+              <span *ngIf="!submitLoading"> {{'button.apply' | translate}}</span>
+            </button>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-body" *ngIf="!step1">
+        <div class="settled-success" style="min-height: 0">
+          <div class="imgContent text-center">
+            <img src="../../../../assets/img/settled_success.png" height="120" width="120"/>
+          </div>
+          <h4 class="text-success text-center">{{'chamber.prompt.settled_success' | translate}}</h4>
+          <div class="text-center btn-content">
+            <button class="btn btn-primary" (click)="link()">{{'button.determine' | translate}}</button>
+          </div>
+          <p class="text text-center">{{'global.remarks' | translate}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="enterprise-point">
+  <div class="container">
+    <div class="clearfix coc-home-content">
+
+      <router-outlet></router-outlet>
+
+
+      <div class="app-notice-announcement-wrapper">
+        <app-notice-announcement></app-notice-announcement>
+      </div>
+    </div>
+  </div>
+</div>

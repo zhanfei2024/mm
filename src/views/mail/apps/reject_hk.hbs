@@ -1,0 +1,10 @@
+{{#extend "mail/layouts/main"}}
+  {{#content "content"}}
+    <span>尊敬的 {{ fullName }},</span>
+    <p>{{ email }} 用戶拒絕你的邀請!</p>
+    <p>如果這封電子郵件對你沒有任何意義, 可能是有人故意或者無意地輸入了您的郵件地址, 那麼請忽略這封電子郵件.</p>
+    <p>謝謝,</p>
+    <p>{{ siteTeamName }}</p>
+    <p>如果想進一步查詢, 請聯繫: {{ siteSupportEmail }}</p>
+  {{/content}}
+{{/extend}}

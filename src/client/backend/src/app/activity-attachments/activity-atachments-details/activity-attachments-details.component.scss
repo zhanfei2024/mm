@@ -1,0 +1,13 @@
+.td-text-left {
+  .details-head-bg {
+    background-color: #fdfdfd;
+  }
+  table tr {
+    th, td {
+      text-align: left !important;
+    }
+  }
+  .footer-table td {
+    border: none !important;
+  }
+}

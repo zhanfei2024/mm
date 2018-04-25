@@ -1,0 +1,17 @@
+.app-body {
+  letter-spacing: $font-letter-spacing;
+  display: block !important;
+}
+
+.aside-menu-fixed {
+
+  .aside-menu {
+    top: $navbar-height;
+  }
+
+}
+
+
+input, textarea, select, button {
+  font-family: inherit;
+}

@@ -1,0 +1,28 @@
+<label for="image_uploads" class="btn btn-primary text-uppercase" [style.width]="widthCover ? '100%' : 'auto'">
+  {{name}}
+</label>
+<!--<span >{{fileSize > 0 ? (fileSize + ((fileSize > 1 ? 'employee.files.choose_files' : 'employee.files.choose_file') | translate) + fileName) : ''}}</span>-->
+<div *ngIf="showFileName">
+  <div *ngFor="let name of fileNameItems" class="attach-item">
+    <span>
+      <i class="fa fa-file-o"></i>
+      <span>{{name}}</span>
+      <i class="fa fa-close item-close" (click)="deleteItem(true, name)"></i>
+    </span>
+  </div>
+  <div *ngFor="let attachment of oldSelectedFileItems" class="attach-item">
+    <span>
+      <i class="fa fa-file-o"></i>
+      <span>{{attachment.name + '.' + attachment.extension}}</span>
+      <i class="fa fa-close item-close" (click)="deleteItem(false, attachment.id)"></i>
+    </span>
+  </div>
+</div>
+
+<input type="file"
+       id="image_uploads"
+       multiple="multiple"
+       (change)="fileChangeEvent($event)"
+       placeholder="Upload file"
+       name="files" [accept]="acceptType" hidden/>
+<!--<button type="button" (click)="upload()">Upload</button>-->

@@ -1,0 +1,66 @@
+<div class="login-body">
+  <div class="container d-table">
+    <div class="logon-content">
+      <div class="text-center">
+        <img src="assets/img/logo/logo.png" class="login-logo img-fluid" alt="logo">
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <div class="card-group">
+            <div class="card p-2">
+              <div class="lang" style="position: absolute;right: 10px;top: 5px;">
+                <span><button type="button" class="btn btn-link btn-xs langNoneSelect" [ngClass]="{'langSelect': language === 'zh-cn'}" (click)="setLanguage('zh-cn')">简</button></span>|
+                <span><button type="button" class="btn btn-link btn-xs langNoneSelect" [ngClass]="{'langSelect': language === 'zh-hk'}" (click)="setLanguage('zh-hk')">繁</button></span>|
+                <span><button type="button" class="btn btn-link btn-xs langNoneSelect" [ngClass]="{'langSelect': language === 'en-us'}" (click)="setLanguage('en-us')">EN</button></span>
+              </div>
+              <!--./lang-->
+              <div class="card-block">
+                <form (ngSubmit)="signup()" name="mainForm" #mainForm="ngForm">
+                  <h1 class="text-center">{{'auth.sign_up' | translate}}</h1>
+                  <p class="text-muted text-center">Create your account</p>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="icon-envelope"></i></span>
+                    <input [(ngModel)]="email" required #emailHandler="ngModel" type="text" name="email"
+                           class="form-control" placeholder="Email" email="true">
+                  </div>
+                  <div *ngIf="emailHandler.errors && (emailHandler.dirty || emailHandler.touched)"
+                       class="alert alert-danger">
+                    <div [ngClass]="{'d-none': !emailHandler.errors.required}">
+                      {{'auth.message.email_required' | translate}}
+                    </div>
+                    <div [ngClass]="{'d-none': emailHandler.errors.required}">
+                      {{'auth.message.email_illegal' | translate}}
+                    </div>
+                  </div>
+                  <div class="mb-2"></div>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="icon-lock"></i></span>
+                    <input [(ngModel)]="password" minlength="6" required #passwordHandler="ngModel" type="password" name="password"
+                               class="form-control" placeholder="Password">
+                  </div>
+                  <div *ngIf="passwordHandler.errors && (passwordHandler.dirty || passwordHandler.touched)"
+                       class="alert alert-danger">
+                    <div [ngClass]="{'d-none': !passwordHandler.errors.required}">
+                      {{'auth.message.password_required' | translate}}
+                    </div>
+                    <div [ngClass]="{'d-none': !passwordHandler.errors.minlength}">
+                      {{'auth.message.password_length_error' | translate}}
+                    </div>
+                  </div>
+                  <div class="mb-2"></div>
+                  <button type="submit" class="btn btn-block btn-primary"
+                          [disabled]="!mainForm.form.valid || signupLoading">Create Account
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="text-center text-white">
+            <p class="text-center">{{'auth.message.has_account' | translate}} <a [routerLink]="['/auth/login']">{{'auth.login' | translate}}.</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

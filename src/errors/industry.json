@@ -1,0 +1,11 @@
+{
+  "existed": {
+    "statusCode": 400,
+    "message": {
+      "en": "The created industry already exists",
+      "cn": "创建的行业已经存在",
+      "hk": "創建的行業已經存在"
+    },
+    "code": 4001
+  }
+}

@@ -1,0 +1,255 @@
+.cocNavbar {
+  background: #ffffff;
+  color: #323d50 !important;
+  letter-spacing: $letter-spacing-base;
+  padding: 10px;
+  .list-content ul {
+    li {
+      display: inline-block;
+      margin-right: 20px;
+      line-height: 65px;
+      height: 60px;
+      border-bottom: 1px solid transparent;
+
+      a {
+        color: $gray-h4 !important;
+        font-family: $font-family-regular;
+      }
+
+    }
+    li.active {
+      border-bottom: 1px solid $blue-text-color;
+    }
+  }
+  .seeker-right {
+    .nav-right {
+      img {
+        vertical-align: middle;
+      }
+      li {
+        display: inline-block;
+        a {
+          letter-spacing: 1px;
+          color: $gray-h4;
+          font-family: $font-family-regular;
+          .tiao {
+            width: 10px;
+            height: 20px;
+            display: inline-block;
+            position: relative;
+            background: transparent;
+            top: 7px;
+            left: -2px
+          }
+          i.icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            margin-right: 10px;
+          }
+          .if {
+            background: url('../assets/img/n_if.png') no-repeat;
+          }
+          .edit {
+            background: url('../assets/img/n_edit.png') no-repeat;
+          }
+          .logout {
+            background: url('../assets/img/n_lout.png') no-repeat;
+          }
+          .cn_icon {
+            background: url('../assets/img/cn.png') no-repeat;
+          }
+          .hk_icon {
+            background: url('../assets/img/hk.png') no-repeat;
+          }
+          .en_icon {
+            background: url('../assets/img/en.png') no-repeat;
+          }
+        }
+
+
+
+        a.active {
+          color: $blue-text-color !important;
+          background: transparent !important;
+          .cn_icon {
+            background: url('../assets/img/cn_a.png') no-repeat !important;
+          }
+          .hk_icon {
+            background: url('../assets/img/hk_a.png') no-repeat !important;
+          }
+          .en_icon {
+            background: url('../assets/img/en_a.png') no-repeat !important;
+          }
+          .tiao {
+            background: $blue-text-color !important;
+          }
+        }
+
+
+      }
+      li.dropdown:hover {
+        .dropdown-menu {
+          display: block;
+        }
+      }
+      .lang-right {
+        text-align: right;
+      }
+      .dropdown-menu {
+        background: $white-dark-bg;
+        color: $white-text-color;
+        min-width: 0;
+        left: inherit;
+        padding: 10px !important;
+        right: 0;
+        top: 50px;
+        border: 1px solid $gray-text-color;
+        border-radius: 0;
+        li {
+          display: inline;
+          border-bottom: 1px solid $gray-line-color;
+          a {
+            line-height: 24px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            color: $gray;
+          }
+        }
+        li:last-child a {
+          border-bottom: none;
+        }
+        li:hover {
+          a {
+            color: $blue-text-color !important;
+            background: transparent !important;
+            .cn_icon {
+              background: url('../assets/img/cn_a.png') no-repeat;
+            }
+            .hk_icon {
+              background: url('../assets/img/hk_a.png') no-repeat;
+            }
+            .en_icon {
+              background: url('../assets/img/en_a.png') no-repeat;
+            }
+
+            .if {
+              background: url('../assets/img/if.png') no-repeat;
+            }
+            .edit {
+              background: url('../assets/img/edit.png') no-repeat;
+            }
+            .logout {
+              background: url('../assets/img/lout.png') no-repeat;
+            }
+          }
+          .tiao {
+            background: $blue-text-color !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@-webkit-keyframes myfirst /* Safari 与 Chrome */
+{
+  0% {
+    top: -100px;
+    opacity: 0.1;
+  }
+  100% {
+    top: 0px;
+    opacity: 0.9;
+  }
+}
+
+
+@media (min-width: $screen-lg-min) {
+  .fixed {
+    position: fixed;
+    z-index: 10000;
+    top: 0px;
+    left: 0;
+    padding: 0!important;
+    width: 100%;
+    opacity: 0.9;
+    background: #fff;
+    box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.3);
+    //transition: all 1s ease;
+    animation: myfirst 0.8s;
+    -webkit-animation: myfirst 0.8s;
+  }
+}
+
+.nav-main-xs {
+  background: #FFFFFF;
+  box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.3);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+  height: 60px;
+  .xs-right-icon {
+    line-height: 50px;
+    cursor: pointer;
+    a {
+      font-size: $font-size-h3;
+      color: $gray-h4;
+    }
+  }
+  .modal-xs-content {
+    position: fixed;
+    top: 60px;
+    bottom: 0;
+    width: 100%;
+    background: rgba(51, 51, 51, 0.3);
+    .modal-xs {
+      .item-xs {
+        line-height: 45px;
+        padding-left: 20px;
+        height: 45px;
+        border-bottom: 1px solid #dcdcdc;
+        background: rgba(50, 61, 77, 0.98);
+        a {
+          color: $white-text-color;
+        }
+      }
+      .item-xs:last-child {
+        border: none;
+      }
+    }
+  }
+}
+
+@media (max-width: $screen-xs-max) {
+  .search, .member-login-body,.enterprise-info {
+    margin-top: 60px;
+  }
+  .cocNavbar{
+    display: none;
+  }
+  .apply-activity{
+    .apply-btn{
+      width: 200px;
+    }
+  }
+}
+
+@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max){
+  .apply-activity{
+    .apply-btn{
+      width: 300px;
+    }
+  }
+  .activity-info{
+    margin-left: 20px!important;
+  }
+}
+

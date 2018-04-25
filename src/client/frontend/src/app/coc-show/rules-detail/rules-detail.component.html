@@ -1,0 +1,25 @@
+
+      <!--入会须知详情-->
+      <div *ngIf="!cocRulesEmpty && !RulesDetailLoading" class="news-detail enterprise-tab col-xs-12 col-sm-12 col-md-12">
+        <h1 class="news-title text-center">{{cocRulesDetail?.title}}</h1>
+        <p class="news-info text-center">
+          <img src="../../../assets/img/black_me.png" class="news-publisher"><span class="publisher-info">{{cocRulesDetail?.coc.name}}</span>
+          <img src="../../../assets/img/time.png" class="news-time"><span class="time-info">{{cocRulesDetail?.createdAt | date: 'yyyy-MM-dd'}}</span>
+          <!--<img src="../../../assets/img/black_eye.png" class="news-view"><span class="view-info">100次</span>-->
+        </p>
+        <p class="content-info" [innerHTML]="cocRulesDetail?.content">
+        </p>
+      </div>
+      <!--无入会须知详情-->
+      <div *ngIf="cocRulesEmpty && !RulesDetailLoading" class="no-news-detail enterprise-tab col-xs-12 col-sm-12 col-md-12">
+        <div class="news-info text-center">
+          <img src="../../../assets/img/no_meassge.png" class="news-publisher">
+          <p class="no-news-text text-center">{{'cocShow.rules.no_member_rules' | translate}}</p>
+        </div>
+      </div>
+      <!--加载中-->
+      <div *ngIf="RulesDetailLoading" class="news-detail enterprise-tab col-xs-12 col-sm-12 col-md-12">
+        <div class="news-content">
+          <i class="loading-img"></i>
+        </div>
+      </div>

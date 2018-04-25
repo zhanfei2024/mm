@@ -1,0 +1,26 @@
+.employee-icon {
+  a {
+    border-right: 1px solid #f1f1f1;
+  }
+  a:last-child {
+    border-right: 0;
+  }
+}
+
+.employee-modal-search {
+  form {
+    border: 1px solid #eee;
+    input {
+      border: 0;
+    }
+    i {
+      padding-left: .5rem;
+    }
+  }
+}
+
+.card-block .tab-content {
+  margin-top: -1px;
+  background: #fff;
+  border: 1px solid #e1e6ef;
+}

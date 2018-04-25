@@ -1,0 +1,28 @@
+.orderNo-btn {
+  padding: 0.4rem 1rem;
+  background: #fefefe;
+}
+.post-tr td{
+  width:10%;
+}
+.post-tr td:nth-child(1){
+  width:20%;
+}
+.post-tr td:nth-child(2){
+  width:22%;
+}
+.post-tr td:nth-child(3){
+  width:22%;
+}
+button{
+  margin-top:18px;
+}
+
+th,td{
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width:300px;
+  width:16%;
+}

@@ -1,0 +1,14 @@
+{{#extend "mail/layouts/main"}}
+  {{#content "content"}}
+    <span>Dear {{ fullName }},</span>
+    <p>Title: Leave approved</p>
+    <p>Your Leave already approved.</p>
+    <p>Leave type: {{ leaveType.name }}</p>
+    <p>Start time: {{ leave.startedDate }}</p>
+    <p>End time: {{ leave.endedDate }}</p>
+    <p>If this email means nothing to you, then it is possible that somebody else has entered your email address either deliberately or accidentally, so please ignore this email.</p>
+    <p>Thanks,</p>
+    <p>{{ siteTeamName }}</p>
+    <p>For any further queries contact: {{ siteSupportEmail }}</p>
+  {{/content}}
+{{/extend}}

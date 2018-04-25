@@ -1,0 +1,152 @@
+<div class="content-heading">
+  {{'admin.list'|translate}}
+</div>
+
+<div class="">
+  <!--<h6 class="card-header text-primary">-->
+  <!--{{'order.order_list'|translate}}-->
+  <!--</h6>-->
+  <div class="card-block">
+
+    <div class="col-sm-3 ">
+      <p>{{'commom.filter_query' | translate}}</p>
+    </div>
+    <div class="row align-items-center">
+      <div class="col-sm-12 form-group">
+        <button   type="button" (click)="openModal()"
+                  class="btn btn-outline-primary pull-right cursor">{{ 'button.create' |
+          translate }}
+        </button>
+      </div>
+    </div>
+
+    <!-- /.row -->
+    <div *ngIf="tableLoading" class="card-block">
+      <div class="sk-three-bounce">
+        <div class="sk-child sk-bounce1"></div>
+        <div class="sk-child sk-bounce2"></div>
+        <div class="sk-child sk-bounce3"></div>
+      </div>
+    </div>
+    <div *ngIf="!tableLoading">
+      <div *ngIf="rows.length===0">
+        <div class="text-muted pt-3 pb-3 text-center">
+          <div hidden>
+            <img src="../../../assets/img/content/no-role.png" alt="" class="img-fluid mx-auto d-block">
+          </div>
+          <div class="pt-3 pb-3 font-xl">
+            <img src="../../../assets/img/content/no-role.png" alt="" class="img-fluid mx-auto d-block">
+            <p>{{'no_content.no_order' | translate}}</p>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="rows.length!==0" class="table-responsive table-panel">
+        <table class="table table-align-middle table-outline text-center">
+          <thead>
+          <tr>
+            <th>{{'admin.name'|translate }}</th>
+            <th>{{'admin.description'|translate }}</th>
+            <th>{{'admin.time'|translate }}</th>
+            <th>{{'admin.status'|translate }}</th>
+            <th>{{'admin.option'|translate }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let row of rows">
+            <td>{{row?.email}}</td>
+            <td></td>
+            <td>{{row?.createdAt | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+            <td>
+              <label class="switch switch-3d switch-success">
+                <input (change)="switchEnable(row)" [checked]="row.active" [(ngModel)]="row.active" class="switch-input" type="checkbox">
+                <span class="switch-label"></span>
+                <span class="switch-handle"></span>
+              </label>
+            </td>
+
+            <td >
+              <i (click)="openModal(row)" class="color-active fa fa-pencil-square-o text-primary cursor"
+                 aria-hidden="true"></i>
+              <i (click)="deleteAdmin(row)" class="fa fa-trash text-primary cursor color-active" aria-hidden="true"></i>
+            </td>
+
+
+          </tr>
+          </tbody>
+        </table>
+        <!-- /.table-->
+      </div>
+      <div class="text-center" [hidden]="tableLoading || rows.length === 0">
+        <custom-pagination [itemsPrePage]="meta.pagination.prevPage"
+                           [itemsNextPage]="meta.pagination.nextPage"
+                           [currentPage]="meta.pagination.currentPage"
+                           (pageChanged)="changePage($event)">
+        </custom-pagination>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.card-block -->
+  <!--模态框-->
+  <div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" *ngIf="isInitModal">
+        <div class="card-header">
+          <div class="row align-items-center">
+            <div class="col text-primary" >
+              {{'admin.edit'|translate}}
+            </div>
+
+            <!--/.col-->
+            <div class="col text-right">
+              <button  type="submit" class="btn btn-primary cursor"  (click)="onSelect(row); editModal.hide()" name="second">
+                <i class="fa fa-save"></i>
+                {{'industry.button.save'|translate}}
+              </button>
+              <button type="button" class="btn btn-outline-primary cursor" (click)="closeModal(editModal)"
+                      aria-label="Close">
+                <i class="fa fa-close"></i>
+                {{'industry.button.cancel' | translate}}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <form class="container-fluid" name="mainForm" #mainForm="ngForm">
+            <div class="form-group row">
+              <label class="col-md-3 py-h px-1"><sub class="text-danger font-lg">*</sub>{{'admin.name' | translate}}</label>
+              <div class="col-md-8">
+               <input class="form-control" [(ngModel)]="admin_data.name" name="ad_name">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 py-h px-1"><sub class="text-danger font-lg">*</sub>{{'admin.email' | translate}}</label>
+              <div class="col-md-8">
+                <input class="form-control" [(ngModel)]="admin_data.email" name="ad_email">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 py-h px-1"><sub class="text-danger font-lg">*</sub>{{'admin.password' | translate}}</label>
+              <div class="col-md-8">
+                <input class="form-control" [(ngModel)]="admin_data.password" name="ad_password">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 py-h px-1"><sub class="text-danger font-lg">*</sub>{{'admin.remark' | translate}}</label>
+              <div class="col-md-8">
+                <input class="form-control" [(ngModel)]="admin_data.remark" name="ad_remark">
+              </div>
+            </div>
+
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

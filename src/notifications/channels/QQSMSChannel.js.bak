@@ -1,0 +1,94 @@
+// core
+const debug = require('debug')('APP:SMS_QQ');
+
+// library
+const smsConfig = require('../../config/sms');
+const request = require('superagent');
+const crypto = require('crypto');
+const moment = require('moment');
+
+function getRandomNumber() {
+  return Math.floor((Math.random() * 10000000) + 1);
+}
+
+class QQSMSChannel {
+
+  constructor() {
+
+  }
+
+  /**
+   * Send the given notification.
+   *
+   * @param  {Object} data
+   *
+   * @return Promise
+   */
+  send(data) {
+    const nationCode = data.nationCode;
+    const phone = data.phone;
+    const message = data.message;
+
+    const input = {
+      tel: {
+        nationcode: nationCode,
+        mobile: phone,
+      },
+      type: 0,
+      msg: message,
+      sig: '',
+      time: moment().format('X'),
+      extend: '',
+      ext: '',
+    };
+    const randomNumber = getRandomNumber();
+    const url = `${smsConfig.qq.url}?sdkappid=${smsConfig.qq.appId}&random=${randomNumber}`;
+    const hashString = `appkey=${smsConfig.qq.key}&random=${randomNumber}&time=${input.time}&mobile=${input.tel.mobile}`;
+
+    input.sig = crypto.createHash('sha256').update(hashString).digest('hex');
+
+    return new Promise((resolve, reject) => {
+      request
+        .post(url)
+        .send(input)
+        .end((err, res) => {
+          if (err) return reject(err);
+          return resolve(res.body);
+        });
+    });
+  }
+
+  /**
+   * Get the data for the notification.
+   *
+   * @param  {Sequelize} notifiable
+   * @param  {class}  notification
+   *
+   * @return Object
+   */
+  getSendData(notifiable, notification) {
+    return notification.toQQSMS();
+  }
+
+  /**
+   * Handle for queue Process
+   *
+   * @param  {Kue} queue
+   *
+   * @return Object
+   */
+  queueProcess(queue) {
+    const self = this;
+    queue.process(`notification::${this.constructor.name}`, 1, async (job, done) => {
+      try {
+        await self.send(job.data.sendData);
+        done();
+      } catch (err) {
+        done(err);
+      }
+    });
+  }
+
+}
+
+module.exports = QQSMSChannel;

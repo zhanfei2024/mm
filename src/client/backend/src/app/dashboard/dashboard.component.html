@@ -1,0 +1,236 @@
+<!--<h2 class="text-center with-padding">{{'panel.dashboard_Welcome'| translate }}</h2>-->
+
+<div class="content-heading">
+  {{'panel.dashboard' | translate}}
+</div>
+<div class="container">
+
+  <div *ngIf="tableLoading">
+    <div class="sk-three-bounce">
+      <div class="sk-child sk-bounce1"></div>
+      <div class="sk-child sk-bounce2"></div>
+      <div class="sk-child sk-bounce3"></div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="!tableLoading">
+    <div class="col-md-3">
+      <div class="item">
+        <i class="fa fa-id-card pull-left item-fa"></i>
+        <span>
+          {{'dashboard.pending_coc' | translate}}
+          <br>
+          {{rows?.ccs}}
+        </span>
+      </div>
+
+    </div>
+    <div class="col-md-3">
+      <div class="item">
+        <i class="fa fa-id-card pull-left item-fa"></i>
+        <span>
+          {{'dashboard.success_coc' | translate}}
+          <br>
+          {{rows?.cocs}}
+        </span>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="item">
+        <i class="fa fa-id-card pull-left item-fa"></i>
+        <span>
+          {{'dashboard.member' | translate}}
+          <br>
+          {{rows?.members}}
+        </span>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="item">
+        <i class="fa fa-id-card pull-left item-fa"></i>
+        <span>
+            {{'dashboard.users' | translate}}
+          <br>
+          {{rows?.users}}
+        </span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row" *ngIf="!tableLoading">
+    <div class="col-sm-12">
+      <div class="ka-header">
+        <strong>{{'dashboard.pending' | translate}}</strong>
+      </div>
+      <div class="col-sm-12" style="padding: 0">
+        <div class="ka-body row">
+          <div class="col-sm-4 list">
+            <a [routerLink]="['/enterprise','list']">
+              <span>{{'dashboard.settled' | translate}}</span>
+              <span class="text-danger pull-right">{{rows?.ccs}}</span>
+            </a>
+          </div>
+          <div class="col-sm-4 list">
+            <a [routerLink]="['/users','list']">
+              <span>{{'dashboard.join' | translate}}</span>
+              <span class="text-danger pull-right">{{rows?.ccs}}</span>
+            </a>
+          </div>
+          <div class="col-sm-4 list">
+            <a [routerLink]="['/activity-candidate','list']">
+              <span>{{'dashboard.activity' | translate}}</span>
+              <span class="text-danger pull-right">{{rows?.cms}}</span>
+            </a>
+          </div>
+          <div class="col-sm-4 list">
+            <a [routerLink]="['/message','list']">
+              <span>{{'dashboard.message' | translate}}</span>
+              <span class="text-danger pull-right">{{rows?.cas}}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row" *ngIf="!tableLoading">
+    <div class="col-sm-12">
+      <div class="ka-header">
+        <strong>{{'dashboard.link' | translate}}</strong>
+      </div>
+      <div class="col-sm-12" style="padding: 0">
+        <div class="ka-body link-content">
+          <table class="table  table-align-middle  text-center" style="color: #656565">
+            <tbody>
+            <tr>
+              <td class="text-center" [routerLink]="['/enterprise','list']">
+                <i class="fa fa-id-card pull-left item-fa link-fa"></i>
+                <br>
+                {{'panel.enterprise' | translate}}
+              </td>
+              <td class="text-center" [routerLink]="['/coc','list']">
+                <i class="fa fa-id-card pull-left item-fa link-fa"></i>
+                <br>
+                {{'panel.coc' | translate}}
+              </td>
+              <td class="text-center" [routerLink]="['/users','list']">
+                <i class="fa fa-id-card pull-left item-fa link-fa"></i>
+                <br>
+                {{'panel.member' | translate}}
+              </td>
+              <td class="text-center" [routerLink]="['/post','list']">
+                <i class="fa fa-id-card pull-left item-fa link-fa"></i>
+                <br>
+                {{'panel.post' | translate}}
+              </td>
+              <td class="text-center" [routerLink]="['/rule','list']">
+                <i class="fa fa-id-card pull-left item-fa link-fa"></i>
+                <br>
+                {{'panel.rule' | translate}}
+              </td>
+              <td class="text-center" [routerLink]="['/message','list']">
+                <i class="fa fa-id-card pull-left item-fa link-fa"></i>
+                <br>
+                {{'panel.messages' | translate}}
+              </td>
+              <td class="text-center" [routerLink]="['/activity','list']">
+                <i class="fa fa-id-card pull-left item-fa link-fa"></i>
+                <br>
+                {{'panel.activity' | translate}}
+              </td>
+              <td class="text-center"  [routerLink]="['/users','list']">
+                <i class="fa fa-id-card pull-left item-fa link-fa"></i>
+                <br>
+                {{'dashboard.join' | translate}}
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row" *ngIf="!tableLoading">
+    <div class="col-md-6">
+      <div class="ka-header">
+        <strong>{{'dashboard.coc_privew' | translate}}</strong>
+      </div>
+      <div class="col-sm-12" style="padding: 0">
+        <div class="ka-body link-content">
+          <table class="table  table-align-middle  text-center" style="color: #656565">
+            <tbody>
+            <tr>
+              <td class="text-center">
+                {{rows?.tacs}}
+                <br>
+                {{'dashboard.tacs' | translate}}
+              </td>
+              <td class="text-center">
+                {{rows?.yacs}}
+                <br>
+                {{'dashboard.yacs' | translate}}
+              </td>
+              <td class="text-center">
+                {{rows?.macs}}
+                <br>
+                {{'dashboard.macs' | translate}}
+              </td>
+              <td class="text-center">
+                {{rows?.cocs}}
+                <br>
+                {{'dashboard.cocs' | translate}}
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-6">
+      <div class="ka-header">
+        <strong>{{'dashboard.members_privew' | translate}}</strong>
+      </div>
+      <div class="col-sm-12" style="padding: 0">
+        <div class="ka-body link-content">
+          <table class="table  table-align-middle  text-center" style="color: #656565">
+            <tbody>
+            <tr>
+              <td class="text-center">
+                {{rows?.tams}}
+                <br>
+                {{'dashboard.tacs' | translate}}
+              </td>
+              <td class="text-center">
+                {{rows?.yams}}
+                <br>
+                {{'dashboard.yacs' | translate}}
+              </td>
+              <td class="text-center">
+                {{rows?.mams}}
+                <br>
+                {{'dashboard.macs' | translate}}
+              </td>
+              <td class="text-center">
+                {{rows?.members}}
+                <br>
+                {{'dashboard.members' | translate}}
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>

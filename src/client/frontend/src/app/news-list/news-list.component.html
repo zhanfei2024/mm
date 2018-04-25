@@ -1,0 +1,95 @@
+<app-home-navbar></app-home-navbar>
+<div class="news-message">
+  <div class="container">
+    <div class="row clearfix">
+      <div class="header clearfix">
+        <div class="col-sm-12" style="padding-left: 0">
+          <h4>{{'navbar.news_list' | translate}}</h4>
+        </div>
+      </div>
+    </div>
+    <div [hidden]="!tableLoading">
+      <div class="text-center pt-3 pb-3">
+        <div class="pt-3 pb-3">
+          <i class="loading-img"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="row clearfix" [hidden]="!(news?.length === 0 && !tableLoading)">
+      <div class="col-sm-12 no_message no_coc text-center">
+        <img src="../../../../assets/img/no_activity.png" height="120" width="120"/>
+        <p> {{'cocShow.home.no_coc_news' | translate}}</p>
+      </div>
+    </div>
+
+
+    <div class="news-mesasge-container" [hidden]="!(news?.length > 0 && !tableLoading)">
+      <div class="news-list row clearfix" role="button" *ngFor="let item of news"
+           [routerLink]="['/coc-show', item?.coc?.id, 'news', item?.id,'detail']">
+        <div class="col-md-8" style="padding-left: 0">
+          <div class="clearfix">
+            <div class="news-pic col-xs-12 col-sm-4">
+              <div class="pic-wrapper">
+                <img [src]="item?.cover?.url" class="img-responsive">
+              </div>
+            </div>
+            <div class="news-content col-xs-12 col-sm-8 col-md-8">
+              <div class="content-wrapper">
+                <div class="title">
+                  <h1 class="new-title">{{item.title}}</h1>
+                  <p><span class="time"><img style="margin-right: 10px" height="20" src="../../assets/img/time.png"
+                                             width="20"> {{item.createdAt | date:'yyyy-MM-dd'}}</span></p>
+                </div>
+                <div class="content" [innerHtml]="item.content | htmlToPlaintext :50">
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-4 clearSmPadding">
+          <div class="list-right clearfix">
+            <div class="col-sm-12 clearPadding">
+              <div class="title text-overflow title-center">
+                <h4>{{item?.coc?.name}}</h4>
+              </div>
+              <div class="list-content clearfix">
+                <ul class="list-unstyled clearfix">
+                  <li class="text-left col-xs-4 text-overflow">
+                    <p class="text">{{'cocShow.navbar.scale' | translate}}</p>
+                    <span class="number">{{item?.coc?.scale}}</span>
+                  </li>
+
+                  <li class="text-center col-xs-4 text-overflow">
+                    <p class="text">{{'cocShow.navbar.industry' | translate}}</p>
+                    <span class="number">{{item?.coc?.industry?.name}}</span>
+                  </li>
+                  <li class="text-center col-xs-4 text-overflow">
+                    <p class="text">{{'cocShow.news.views' | translate}}</p>
+                    <span class="number">{{item?.view}}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--分页-->
+      </div>
+    </div>
+
+    <div class="coc-pagination  row clearfix" [hidden]="!(news?.length > 0 && !tableLoading)">
+      <div class="col-md-offset-3 col-md-6 col-md-offset-3">
+        <div class="pagination-wrapper center-block">
+          <pagination [previousText]="'button.prev_page' | translate" [nextText]="'button.next_page' | translate"
+                      [itemsPerPage]="filter.limit"
+                      [totalItems]="meta.pagination.totalCount"
+                      [(ngModel)]="filter.page"
+                      (pageChanged)="pageChanged($event)">
+          </pagination>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

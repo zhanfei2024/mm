@@ -1,0 +1,85 @@
+<div class="login-body">
+  <div class="container d-table">
+    <div class="logon-content">
+      <div class="text-center">
+        <img src="assets/img/logo/logo.png" class="login-logo img-fluid" alt="logo">
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <div class="card-group">
+            <div class="card p-2">
+              <div class="lang" style="position: absolute;right: 10px;top: 5px;">
+                <span><button type="button" class="btn btn-link btn-xs langNoneSelect"
+                              [ngClass]="{'langSelect': language === 'zh-cn'}" (click)="setLanguage('zh-cn')">简</button></span>|
+                <span><button type="button" class="btn btn-link btn-xs langNoneSelect"
+                              [ngClass]="{'langSelect': language === 'zh-hk'}" (click)="setLanguage('zh-hk')">繁</button></span>
+              </div>
+              <!--./lang-->
+              <div class="card-block">
+                <form (ngSubmit)="login()" name="mainForm" #mainForm="ngForm">
+                  <h1 class="text-center">{{'auth.login' | translate}}</h1>
+                  <br>
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="icon-user"></i>
+                    </span>
+                    <input [(ngModel)]="email" required #emailHandler="ngModel" type="text"
+                           name="email"
+                           class="form-control" placeholder="{{'auth.email' | translate}}" email="true">
+                  </div>
+                  <div *ngIf="emailHandler.errors && (emailHandler.dirty || emailHandler.touched)"
+                       class="alert alert-danger">
+                    <div [ngClass]="{'d-none': !emailHandler.errors.required}">
+                      {{'auth.message.email_required' | translate}}
+                    </div>
+                    <div [ngClass]="{'d-none': emailHandler.errors.required}">
+                      {{'auth.message.email_incorrect' | translate}}
+                    </div>
+                  </div>
+                  <div class="mb-2"></div>
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="icon-lock"></i>
+                    </span>
+                    <input [(ngModel)]="password" minlength="6" required #passwordHandler="ngModel"
+                           type="text"
+                           name="password" class="form-control" placeholder="{{'auth.password' | translate}}"
+                           password="true"
+                           onfocus="this.type='password'">
+                  </div>
+                  <div
+                    *ngIf="passwordHandler.errors && (passwordHandler.dirty || passwordHandler.touched)"
+                    class="alert alert-danger">
+                    <div [ngClass]="{'d-none': !passwordHandler.errors.required}">
+                      {{'auth.message.password_required' | translate}}
+                    </div>
+                    <div [ngClass]="{'d-none': !passwordHandler.errors.minlength}">
+                      {{'auth.message.password_length_error' | translate}}
+                    </div>
+                  </div>
+                  <div class="mb-2"></div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-block px-2"
+                            [disabled]="emailHandler.errors || passwordHandler.errors || loginLoading">
+                      {{'button.login' | translate}}
+                    </button>
+                  </div>
+                  <div class="text-center mt-1">
+                    <a href="javascript:;" [routerLink]="['/auth/forget_password']">{{'auth.forget_password' |
+                      translate}}</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!--<div class="text-center text-white">-->
+          <!--<p> {{'auth.message.signup_account' | translate}}-->
+          <!--<a [routerLink]="['/auth/signup']" class="active mt-1"><strong>{{'auth.sign_up' | translate}}</strong></a>-->
+          <!--</p>-->
+          <!--</div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

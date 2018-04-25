@@ -1,0 +1,28 @@
+.attach-item > span {
+  position: relative;
+  display: flex;
+  padding: 2px 50px 2px 10px;
+  margin: 4px 0;
+  border: 2px dotted #29ada7;
+  border-radius: 4px;
+}
+.attach-item > span > i.fa {
+  padding-top: 4px;
+  margin-right: 5px;
+}
+.attach-item > span > span {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+.attach-item .item-close {
+  position: absolute;
+  padding: 4px;
+  cursor: pointer;
+  right: 2px;
+  top: 2px;
+  color: #CD272D;
+}

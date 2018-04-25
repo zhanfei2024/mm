@@ -1,0 +1,248 @@
+<div class="clearfix no-padding col-xs-12 col-sm-10 col-md-10">
+  <div class="user-right-sidebar">
+    <!-- 商会公告 -->
+    <div class="user-center">
+      <div class="invitations-wrapper">
+        <div class="user-title invitations-title row clearfix ">
+          <h1 class="text-head col-xs-10 col-sm-10 col-md-9"><span class="square"></span>{{'user.title.coc_notice' |
+            translate}}</h1>
+          <p class="state col-xs-2 col-sm-2 col-md-3" *ngIf="invitations?.length > 0">
+            <a class="text-primary pull-right" [routerLink]="['/user', userId, 'notice']">{{'global.more' | translate}}</a>
+          </p>
+        </div>
+        <div *ngIf="announcements?.length > 0">
+            <div class="user-card border-top row clearfix" role="button" *ngFor="let item of announcements" [routerLink]="['/coc-show', item?.cocId, 'notice']">
+              <div class="user-card-wrapper col-xs-12 col-sm-10 col-md-9 no-padding clearfix">
+                <div class="coc-info pull-left">
+                  <h1 class="coc-title"><a href="javascript:;">{{'chamber.create.name' | translate}}: {{item?.coc?.name}}</a></h1>
+                  <p style="color: #828da0">{{'chamber.know.title' | translate}}: {{item?.title}}</p>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <p class="pull-right text-gray" style="color: #828da0">{{item?.publishAt | date :'yyyy-MM-dd'}}</p>
+              </div>
+            </div>
+          </div>
+          <!--加载-->
+          <div class="user-card no-invitations-bottom row clearfix" *ngIf="announcementsLoading">
+            <div class="no-padding col-xs-12 col-sm-12 col-md-12 clearfix">
+              <div class="empty-pic-wrapper text-center clearfix">
+                <img class="empty-pic loading-gif" src="../../../assets/img/loading.gif">
+              </div>
+            </div>
+          </div>
+          <!--暂无商会申请-->
+          <div class="user-card no-invitations-bottom row clearfix" *ngIf="announcements?.length === 0">
+            <div class="no-padding col-xs-12 col-sm-12 col-md-12 clearfix">
+              <div class="empty-pic-wrapper text-center clearfix">
+                <img class="empty-pic" src="../../../assets/img/no-coc-apply.png">
+                <p class="empty-text text-center">{{'user.title.no_notice' | translate}}</p>
+              </div>
+            </div>
+          </div>
+
+
+      </div>
+    </div>
+    <div class="user-center user-coc-apply">
+      <div class="center-wrapper">
+        <!-- 商会邀请 -->
+        <div class="user-title user-apply-title row clearfix no-margin-top">
+            <h1 class="text-head col-xs-10 col-sm-10 col-md-9"><span class="square"></span>{{'user.title.coc_invitation' |
+              translate}}</h1>
+            <p class="state col-xs-2 col-sm-2 col-md-3" *ngIf="applyinvitations?.length > 0">{{'chamber.select.status' |
+              translate}}</p>
+        </div>
+        <div *ngIf="invitations?.length > 0">
+            <div class="user-card user-invitations-card row clearfix" *ngFor="let item of invitations">
+              <div class="user-card-wrapper col-xs-12 col-sm-10 col-md-9 no-padding clearfix">
+                <img class="coc-logo pull-left hidden-xs hidden-sm" [src]="item?.coc.logoUrl"
+                     style="width: 80px; height: 80px;" [routerLink]="['/coc-show', item?.cocId, 'home']">
+                <div class="coc-info pull-left">
+                  <h1 class="coc-title"><a [routerLink]="['/coc-show', item?.cocId, 'home']">{{item?.coc?.name}}"{{'user.home.Invitation'
+                    | translate}}"{{'user.home.you_join' | translate}}<span class="group">{{'user.home.position' | translate}}：{{item?.group?.name}}</span></a>
+                  </h1>
+                  <ul class="coc-text clearfix">
+                    <li><p>{{'user.home.number_people' | translate}}</p>
+                      <p>{{item?.coc?.scale}}</p></li>
+                    <li><p>{{'user.home.industry' | translate}}</p>
+                      <p>{{item?.coc?.industry.name}}</p></li>
+                    <li><p>{{'user.home.region' | translate}}</p>
+                      <p>{{item?.coc?.locations?.name | slice:0:6}}</p></li>
+                    <li><p>{{'user.home.contacts' | translate}}</p>
+                      <p>{{item?.coc?.contacts}}</p></li>
+                    <li><p>{{'user.home.telephone' | translate}}</p>
+                      <p>{{item?.coc?.phone}}</p></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="operation col-xs-12 col-sm-2 col-md-3">
+                <div class="invitation" *ngIf="item?.status === 'pending'">
+                  <span class="accept" (click)="Invitations(item, 'success')"><img class="accept-logo"
+                                                                                   src="../../../assets/img/success.png">{{'user.home.accept' | translate}}</span>
+                  <span class="reject" (click)="Invitations(item, 'fail')"><img class="reject-logo"
+                                                                                src="../../../assets/img/fail.png">{{'user.home.refuse' | translate}}</span>
+                </div>
+                <div class="invitation" *ngIf="item?.status === 'success' || item?.status === 'fail'">
+                  <span class="already accept border-right-no" *ngIf="item?.status === 'success'">{{'user.home.already-accept' | translate}}</span>
+                  <span class="already accept border-right-no" *ngIf="item?.status === 'fail'">{{'user.home.already-refuse' | translate}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--加载-->
+          <div class="no-invitations-bottom row clearfix" *ngIf="invitationsLoading">
+            <div class="no-padding col-xs-12 col-sm-12 col-md-12 clearfix">
+              <div class="empty-pic-wrapper text-center clearfix">
+                <img class="empty-pic loading-gif" src="../../../assets/img/loading.gif">
+              </div>
+            </div>
+          </div>
+          <!--无商会邀请-->
+          <div class="no-invitations-bottom row clearfix" *ngIf="invitations?.length === 0">
+            <div class="no-padding col-xs-12 col-sm-12 col-md-12 clearfix">
+              <div class="empty-pic-wrapper text-center clearfix">
+                <img class="empty-pic" src="../../../assets/img/no-coc-invitations.png">
+                <p class="empty-text text-center">{{'user.title.no_coc_Invitation_to_you' | translate}}</p>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+        <!-- 商会申请 -->
+        <div class="user-title user-apply-title row clearfix no-margin-top">
+          <h1 class="text-head col-xs-10 col-sm-10 col-md-9"><span class="square"></span>{{'user.title.coc_apply' |
+            translate}}</h1>
+          <p class="state col-xs-2 col-sm-2 col-md-3" *ngIf="applyinvitations?.length > 0">{{'chamber.select.status' |
+            translate}}</p>
+        </div>
+        <div *ngIf="applyinvitations?.length > 0">
+          <div class="user-card border-top row clearfix" *ngFor="let item of applyinvitations">
+            <div class="user-card-wrapper col-xs-12 col-sm-10 col-md-9 no-padding clearfix">
+              <img class="coc-logo pull-left hidden-xs hidden-sm"
+                   [routerLink]="['/coc-show', item?.coc?.id, 'activity', item?.activityId, 'detail']"
+                   [src]="item?.coc.logoUrl" style="width: 80px; height: 80px;">
+              <div class="coc-info pull-left">
+                <h1 class="coc-title" [routerLink]="['/coc-show', item?.cocId, 'home']">
+                  <a href="javascript:;">{{item?.coc?.name}}<span
+                  class="group">{{'chamber.member.post' | translate}}：{{item?.group?.name}}</span>
+                    <span
+                      class="group">{{'chamber.member.position' | translate}}：{{item?.memberRating?.title}}</span>
+                  </a></h1>
+                <ul class="coc-text clearfix">
+                  <li><p>{{'user.home.number_people' | translate}}</p>
+                    <p>{{item?.coc?.scale}}</p></li>
+                  <li><p>{{'user.home.industry' | translate}}</p>
+                    <p>{{item?.coc?.industry.name}}</p></li>
+                  <li><p>{{'user.home.region' | translate}}</p>
+                    <p>{{item?.coc?.locations?.name | slice:0:6}}</p></li>
+                  <li><p>{{'user.home.contacts' | translate}}</p>
+                    <p>{{item?.coc?.contacts}}</p></li>
+                  <li><p>{{'user.home.telephone' | translate}}</p>
+                    <p>{{item?.coc?.phone}}</p></li>
+                </ul>
+              </div>
+            </div>
+            <div class="operation col-xs-2 col-sm-2 col-md-3">
+              <div class="status">
+                <span class="state status-pending" *ngIf="item?.status === 'pending'">{{'user.home.pending' | translate}}</span>
+                <span class="state status-success" *ngIf="item?.status === 'success'">{{'user.home.success' | translate}}</span>
+                <span class="state status-fail"
+                      *ngIf="item?.status === 'fail'">{{'user.home.refuse' | translate}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--加载-->
+        <div class="user-card no-invitations-bottom row clearfix" *ngIf="applyinvitationsLoading">
+          <div class="no-padding col-xs-12 col-sm-12 col-md-12 clearfix">
+            <div class="empty-pic-wrapper text-center clearfix">
+              <img class="empty-pic loading-gif" src="../../../assets/img/loading.gif">
+            </div>
+          </div>
+        </div>
+        <!--暂无商会申请-->
+        <div class="user-card no-invitations-bottom row clearfix" *ngIf="applyinvitations?.length === 0">
+          <div class="no-padding col-xs-12 col-sm-12 col-md-12 clearfix">
+            <div class="empty-pic-wrapper text-center clearfix">
+              <img class="empty-pic" src="../../../assets/img/no-coc-apply.png">
+              <p class="empty-text text-center">{{'user.title.no_coc_info' | translate}}</p>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- 活动申请 -->
+        <div class="user-title  row clearfix">
+          <h1 class="text-head col-xs-10 col-sm-10 col-md-9"><span class="square"></span>{{'user.title.activity_apply' |
+            translate}}</h1>
+          <p class="state col-xs-2 col-sm-2 col-md-3" *ngIf="activities?.length > 0">{{'chamber.select.status' |
+            translate}}</p>
+        </div>
+        <div *ngIf="activities?.length > 0">
+          <div class="user-card border-top row clearfix" *ngFor="let item of activities">
+            <div class="user-card-wrapper col-xs-12 col-sm-9 col-md-9 no-padding clearfix">
+              <img class="coc-logo pull-left hidden-xs hidden-sm" [routerLink]="['/coc-show', item?.coc?.id, 'home']"
+                   style="width: 80px; height: 80px;" [src]="item?.coc?.logoUrl">
+              <div class="coc-info pull-left">
+                <h1 class="coc-title cursor"
+                    [routerLink]="['/coc-show', item?.coc?.id, 'activity', item?.activityId, 'detail']">
+                  {{'user.home.activity_name' | translate}}：{{item?.activities.title | slice:0:12}}
+                  <span class="group" [routerLink]="['/coc-show', item?.coc?.id, 'home']">{{'user.home.sponsor' | translate}}：{{item?.coc?.name}}</span>
+                </h1>
+                <ul class="coc-text clearfix">
+                  <li><p>{{'user.home.number_people' | translate}}</p>
+                    <p>{{item?.coc?.scale}}</p></li>
+                  <li><p>{{'user.home.industry' | translate}}</p>
+                    <p>{{item?.coc?.industry?.name}}</p></li>
+                  <li><p>{{'user.home.region' | translate}}</p>
+                    <p>{{item?.coc?.locations?.name}}</p></li>
+                  <li><p>{{'user.home.contacts' | translate}}</p>
+                    <p>{{item?.contact}}</p></li>
+                  <li><p>{{'user.home.telephone' | translate}}</p>
+                    <p>{{item?.phone}}</p></li>
+                </ul>
+              </div>
+            </div>
+            <div class="operation col-xs-12 col-sm-3 col-md-3">
+              <div class="status">
+                <span class="state status-pending" *ngIf="item?.status === 'pending'">{{'user.home.pending' | translate}}</span>
+                <span class="state status-success" *ngIf="item?.status === 'success'">{{'user.home.success' | translate}}</span>
+                <span class="state status-fail"
+                      *ngIf="item?.status === 'fail'">{{'user.home.refuse' | translate}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--加载-->
+        <div *ngIf="activitiesLoading" class="user-card no-invitations-bottom row clearfix">
+          <div class="no-padding col-xs-12 col-sm-12 col-md-12 clearfix">
+            <div class="empty-pic-wrapper text-center clearfix">
+              <img class="empty-pic loading-gif" src="../../../assets/img/loading.gif">
+            </div>
+          </div>
+        </div>
+        <!--暂无活动申请-->
+        <div class="user-card no-invitations-bottom row clearfix" *ngIf="activities?.length === 0">
+          <div class="no-padding col-xs-12 col-sm-12 col-md-12 clearfix">
+            <div class="empty-pic-wrapper text-center clearfix">
+              <img class="empty-pic" src="../../../assets/img/no-coc-activity.png">
+              <p class="empty-text text-center">{{'user.title.no_activity' | translate}}</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+

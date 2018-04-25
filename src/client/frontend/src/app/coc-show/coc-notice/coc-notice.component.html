@@ -1,0 +1,42 @@
+
+      <!--商会公告-->
+      <div class="coc-home">
+        <div class="enterprise-tab-wrapper clearfix custom-heigh">
+          <div class="enterprise-tab-head row">
+            <div class="big-title clearfix">
+              <h1 class="text-center">{{'profile.notice' | translate}}</h1>
+            </div>
+          </div>
+          <div *ngIf="cocNotice?.length > 0" class="rule-content row clearfix">
+            <div class="rule-item" *ngFor="let item of cocNotice; let i = index" [routerLink]="['/coc-show', item?.coc?.id, 'notice', item?.id,'detail']">
+              <h1 class="rule-title cursor">{{item?.title}}</h1>
+              <p class="push-time">{{item?.publishAt | date:'yyyy-MM-dd'}}</p>
+              <p class="rule-text" [innerHTML]="item?.content | htmlToPlaintext"></p>
+            </div>
+          </div>
+          <!--无数据-->
+          <div *ngIf="cocNotice?.length === 0" class="row no-coc-content1">
+            <div class="news-content">
+              <img class="center-block" src="../../../assets/img/no-coc-notice.png">
+              <p class="content text-center">{{'cocShow.notice.no_member_notice' | translate}}</p>
+            </div>
+          </div>
+          <!--加载中-->
+          <div class="row no-member-rules clearfix" *ngIf="cocNoticeLoading">
+            <div class="news-content">
+              <i class="loading-img"></i>
+            </div>
+          </div>
+          <!--分页-->
+          <div class="coc-pagination  col-xs-12 col-sm-12 col-md-12"  *ngIf="cocNotice?.length > 0">
+            <div class="pagination-wrapper center-block">
+              <pagination [previousText]="'navbar.previous_page' | translate" [nextText]="'navbar.next_page' | translate"
+                          [itemsPerPage]="filter.limit"
+                          [totalItems]="cocNoticeMeta.pagination.totalCount"
+                          [(ngModel)]="filter.page"
+                          (pageChanged)="pageChanged($event)">
+              </pagination>
+            </div>
+          </div>
+        </div>
+      </div>

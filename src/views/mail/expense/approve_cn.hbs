@@ -1,0 +1,15 @@
+{{#extend "mail/layouts/main"}}
+  {{#content "content"}}
+    <span>尊敬的 {{ fullName }},</span>
+    <p>标题: 费用批准</p>
+    <p>你的费用已经批准了.</p>
+    <p>费用类型: {{ expenseType.name }}</p>
+    <p>日期: {{ expense.date }}</p>
+    <p>费用: {{ expense.cost }}</p>
+    <p>备注: {{ expense.remark }}</p>
+    <p>如果这封电子邮件对你没有任何意义, 可能是有人故意或无意地输入了你的电子邮件地址, 那么请忽略这封电子邮件.</p>
+    <p>谢谢,</p>
+    <p>{{ siteTeamName }}</p>
+    <p>如果想进一步查询, 请联系: {{ siteSupportEmail }}</p>
+  {{/content}}
+{{/extend}}

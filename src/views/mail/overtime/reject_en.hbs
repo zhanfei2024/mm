@@ -1,0 +1,13 @@
+{{#extend "mail/layouts/main"}}
+  {{#content "content"}}
+    <span>Dear {{ fullName }},</span>
+    <p>Title: Overtime rejected</p>
+    <p>Your Overtime already rejected.</p>
+    <p>Start time: {{ overtime.startedDate }}</p>
+    <p>End time: {{ overtime.endedDate }}</p>
+    <p>If this email means nothing to you, then it is possible that somebody else has entered your email address either deliberately or accidentally, so please ignore this email.</p>
+    <p>Thanks,</p>
+    <p>{{ siteTeamName }}</p>
+    <p>For any further queries contact: {{ siteSupportEmail }}</p>
+  {{/content}}
+{{/extend}}

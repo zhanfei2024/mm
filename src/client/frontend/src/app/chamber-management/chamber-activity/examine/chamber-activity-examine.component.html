@@ -1,0 +1,126 @@
+<div class="coc-container">
+  <div class="chamber-home">
+    <div class="row clearfix">
+      <app-chamber-left></app-chamber-left>
+      <div class="col-md-10">
+        <div class="list-right">
+          <div class="row clearfix">
+            <div class="header">
+              <h4>{{'chamber.left.activity_examine' | translate}}</h4>
+            </div>
+          </div>
+
+          <div class="row clearfix">
+            <div class="search-contaner clearfix">
+              <div class="col-sm-3 clearPadding">
+                <ng-select
+                  id="status"
+                  [items]="status"
+                  name="status"
+                  placeholder="{{'chamber.member.state' | translate}}"
+                  (data)="changStatus($event)">
+                </ng-select>
+              </div>
+              <div class="col-sm-5 xs-search">
+                <div class="search-input-group">
+                  <input type="text" class="form-control search-input"
+                         data-clearbtn="true"
+                         name="search"
+                         placeholder="{{'global.search_text' | translate }}"
+                         (keyup.enter)="onSearch()" [(ngModel)]="filter.search" aria-describedby="sizing-addon2">
+                </div>
+              </div>
+              <div class="col-sm-4 xs-search" *ngIf="rows?.length > 0">
+                <button class="btn-primary btn pull-right btn-submit-primary" style="line-height: 1.5"
+                        (click)="exportExcel()">
+                  {{'chamber.btn.export' | translate}}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-align-middle table-outline text-center">
+              <thead>
+              <tr>
+                <th>{{'chamber.activity.name' | translate}}</th>
+                <th>{{'chamber.activity.status' | translate}}</th>
+                <th>{{'chamber.member.name' | translate}}</th>
+                <th>{{'chamber.create.phone' | translate}}</th>
+                <th>{{'chamber.create.email' | translate}}</th>
+                <th>{{'chamber.member.operation' | translate}}</th>
+              </tr>
+              </thead>
+              <tbody [hidden]="!tableLoading">
+              <tr>
+                <td colspan="6">
+                  <div class="text-center pt-3 pb-3">
+                    <div class="pt-3 pb-3">
+                      <i class="loading-img"></i>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+
+              <tbody [hidden]="!(rows?.length === 0 && !tableLoading)">
+              <tr>
+                <td colspan="6" class="td_no_meassge">
+                  <div class="row clearfix">
+                    <div class="col-sm-12 no_message text-center">
+                      <img src="../../../../assets/img/no_examine.png" height="120" width="120"/>
+                      <p> {{'message.no_activity_examine_title' | translate}}</p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+
+              <tbody [hidden]="!(rows?.length > 0 && !tableLoading)">
+              <tr *ngFor="let item of rows">
+                <td>{{item.activities.title | htmlToPlaintext :8}}...</td>
+                <td>
+                  <span>{{('cocShow.home.' + item?.activities?.status) |translate }}</span>
+                </td>
+                <td>{{item.contact}}</td>
+                <td>{{item.phone}}</td>
+                <td>{{item.email}}</td>
+                <td>
+                  <p class="text-success" *ngIf="item.status === 'success'">
+                    {{('global.' + item.status) |translate }}
+                  </p>
+                  <p class="text-danger" *ngIf="item.status === 'fail'">
+                    {{('global.' + item.status) |translate }}
+                  </p>
+                  <p *ngIf="item.status === 'pending'">
+                       <span class="text-success cursor" role="button"
+                             (click)="update(item.activityId,{candidateId: item.id,userId: item.userId,status: 'success'})">{{'chamber.btn.adopt' | translate}}</span>
+                    <span role="button" class="text-danger cursor"
+                          (click)="update(item.activityId,{candidateId: item.id,userId: item.userId,status: 'fail'})">{{'chamber.btn.refuse' | translate}}</span>
+                    <img src="../../../../assets/img/right.png" height="10" width="10"
+                         style="vertical-align: middle;margin-left: 10px"/>
+                  </p>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <!-- /.table-->
+            <div class="text-center" [hidden]="tableLoading || rows?.length === 0">
+              <custom-pagination [itemsPrePage]="meta?.pagination.prevPage"
+                                 [itemsNextPage]="meta?.pagination.nextPage"
+                                 [currentPage]="meta?.pagination.currentPage"
+                                 (pageChanged)="changePage($event)">
+              </custom-pagination>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

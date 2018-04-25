@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400');
+
+@import "theme/clever/style";
+
+// page
+@import "page/login.component";
+@import "page/employee.component";
+@import "page/employee-profile-personal-info.component";
+@import "page/todo_list.component";
+@import "page/calendar.component";
+@import "page/payroll.component";
+@import "page/team.component";
+@import "page/dashboard.component";
+@import "page/.common.component";
+@import "page/.payType.component";
+@import "page/dishes-category-form.component";
+@import "page/.discount.component";
+@import "page/.analytics.component";
